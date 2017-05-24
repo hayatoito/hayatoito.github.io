@@ -1,0 +1,117 @@
+body {
+  padding-bottom: 1em;
+}
+
+/* My own class. borrowed from bootstrap's document */
+.article-info, .article-danger {
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    margin-top: -5px;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.article-info {
+    border-left-color: #1b809e;
+}
+.article-danger {
+    border-left-color: #ce4844;
+}
+
+/* for pages and articles */
+.page-header {
+  border-bottom: 0;
+}
+
+article > header .post-date {
+  color: gray;
+}
+
+article .site-article-title, .site-page .site-page-title, .site-archives-header {
+  border-bottom: 0;
+  font-size: 30px;
+  padding-top: 0;
+}
+
+article h1, .site-page > h1 {
+  font-size: 24px;
+  padding-top: 1.5em;
+}
+
+article h2, .site-page h2 {
+  padding-top: 0.5em;
+  font-size: 20px;
+}
+
+article h1, .site-page > h1, article h2, .site-page h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+}
+
+.base-footer {
+  color: gray;
+}
+
+blockquote p {
+  font-size: 14px;
+}
+
+.social {
+  margin-top: 3em;
+}
+
+.site-footnote-title {
+  margin-bottom: 1em;
+}
+
+blockquote {
+  background-color: #f4f8fa;
+  border-left: 3px solid #5bc0de;
+}
+
+code {
+  background-color: #f0f0f0;
+  color: #337ab7;
+}
+
+/* http://afeld.github.io/bootstrap-toc/ */
+/* Override https://github.com/afeld/bootstrap-toc/blob/gh-pages/bootstrap-toc.css */
+nav[data-toggle='toc'] {
+  margin-top: 10px;
+}
+
+nav[data-toggle='toc'] .nav .active .nav {
+  display: block;
+}
+
+nav[data-toggle='toc'] .nav > .active > a,
+nav[data-toggle='toc'] .nav > .active:hover > a,
+nav[data-toggle='toc'] .nav > .active:focus > a,
+nav[data-toggle='toc'] .nav > li > a:hover,
+nav[data-toggle='toc'] .nav > li > a:focus {
+  color: #337ab7 !important;
+}
+
+nav[data-toggle='toc'] .nav > li > a:hover,
+nav[data-toggle='toc'] .nav > li > a:focus {
+  border-left: 1px solid #337ab7 !important;
+}
+
+nav[data-toggle='toc'] .nav > .active > a,
+nav[data-toggle='toc'] .nav > .active:hover > a,
+nav[data-toggle='toc'] .nav > .active:focus > a {
+   border-left: 2px solid #337ab7 !important
+}
+
+h1 > a.self-link, h2 > a.self-link {
+  color: black;
+}
+
+h1 > a.self-link:hover, h2 > a.self-link:hover {
+  text-decoration: none;
+}
+
+h1 > a.self-link:hover::after, h2 > a.self-link:hover::after {
+  content: '\2002\00a7\2002';
+}

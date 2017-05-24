@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Suffix Array — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2007/2007suffixarray/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      Suffix Array
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2007-03-27">
+        2007-03-27
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>TopCoder SRM187、
+<a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=2224&amp;rd=4755">DNAMultiMatcher</a>
+は、</p>
+<blockquote>
+<p>Stringが3つ(それぞれの長さは最大2500)与えられたとき、
+3つ全てに含まれる最長のSubstringの長さを求めなさい。</p>
+</blockquote>
+<p>という問題です。これに対して、</p>
+<ul>
+<li>長さをBinary-Searchで絞りながら、</li>
+<li>Stringが含まれるかどうかの判定をJava標準のjava.lang.String#containsを使用</li>
+</ul>
+<p>という方針で解く場合は、こうなります。</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DNAMultiMatcher</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestMatch</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sequence1</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence2</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence1</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence2</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence3</span><span class="o">);</span>
+
+      <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">+</span><span class="mi">1</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+          <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">mid</span> <span class="o">&lt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">String</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="n">mid</span><span class="o">);</span>
+              <span class="k">if</span> <span class="o">(</span><span class="n">s2</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">s3</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+                  <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                  <span class="k">break</span><span class="o">;</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">found</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">low</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">String</span> <span class="nf">join</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sa</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+      <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">sa</span><span class="o">)</span> <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>この場合は、ワーストケースで軽く2分以上かかってしまい、タイムアウトです。
+String Aの長さをn、String Bの長さをmとした場合、JavaのA.contains(B)は、
+普通にO(m*n)っぽいですね。</p>
+<p>AがBを含んでいるか?を高速に判定するときに使用できるのが、 <a href="http://en.wikipedia.org/wiki/Suffix_array">Suffix
+Array</a> です。</p>
+<p>ナイーブに実装してみると、</p>
+<div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SuffixArray</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">suffixes</span><span class="o">;</span>
+
+    <span class="n">SuffixArray</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="n">suffixes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">suffixes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">suffixes</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="nf">find</span><span class="o">(</span><span class="n">String</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">suffixes</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">suffixes</span><span class="o">[</span><span class="n">middle</span><span class="o">].</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">suffixes</span><span class="o">[</span><span class="n">high</span><span class="o">].</span><span class="na">startsWith</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">len</span> <span class="o">-</span> <span class="n">suffixes</span><span class="o">[</span><span class="n">high</span><span class="o">].</span><span class="na">length</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>Javaのjava.lang.String#substringメソッドは、
+もとのStringと内部の配列char[]を共有したStringを返すので、
+この実装でも無駄にメモリを消費しないはずです。</p>
+<p>オーダーは、</p>
+<ul>
+<li>Aに対するSuffix Arrayの構築: O(n\^2 log(n))</li>
+<li>AがBを含んでいるかの判定: O(m log(n))</li>
+</ul>
+<p>になるでしょうか?
+改良の余地はまだまだ残っていますが、今回の目的にはこれで十分です。
+(Suffix ArrayをO(n)で作成するアルゴリズムもあるようです。。。)</p>
+<p>先ほどの例を、Suffix Arrayを使用して書き直すとこうなります。</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DNAMultiMatcher</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestMatch</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sequence1</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence2</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence1</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence2</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence3</span><span class="o">);</span>
+
+      <span class="n">SuffixArray</span> <span class="n">sa2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SuffixArray</span><span class="o">(</span><span class="n">s2</span><span class="o">);</span>
+      <span class="n">SuffixArray</span> <span class="n">sa3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SuffixArray</span><span class="o">(</span><span class="n">s3</span><span class="o">);</span>
+
+      <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">+</span><span class="mi">1</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+          <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">mid</span> <span class="o">&lt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">String</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="n">mid</span><span class="o">);</span>
+              <span class="k">if</span> <span class="o">(</span><span class="n">sa2</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sa3</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                  <span class="k">break</span><span class="o">;</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">found</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">low</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+
+
+<p>これで、ワーストケースでも1秒以内に処理できるようになり、システムテストに通ります。
+Suffix
+Arrayの応用例はほかにもいろいろあり、全文検索などでもよく使われるようです。</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2007/srm349/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2007/2007googlecodeprettify/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

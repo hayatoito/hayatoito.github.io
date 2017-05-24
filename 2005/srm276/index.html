@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SRM276 - お買い物は楽しくDPで — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2005/srm276/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      SRM276 - お買い物は楽しくDPで
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2005-12-09">
+        2005-12-09
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p><a href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8073">SRM276</a> に挑戦．
+かなーり，眠かったので，スルーしようかと思ったのですが，挑戦しました．</p>
+<h1 id="volumediscount-code"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5945&amp;rd=8073">VolumeDiscount</a> (<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=246939&amp;rd=8073&amp;pm=5945&amp;cr=15632820">code</a>)</h1>
+<p>250点問題． お買い物です．たとえば，</p>
+<ul>
+<li>1個なら4\$</li>
+<li>3個まとめて買うと10\$</li>
+<li>20個まとめて買うと48\$</li>
+</ul>
+<p>だったとします．50個，買いたいとします．最低何\$ですむか？という問題です.
+この例だと</p>
+<blockquote>
+<p>20個 x 2 + 3個 x 3 + 1個 x 1= 50個 (48\$ x 2 + 10\$ x 3 + 4\$ x 1 =
+130\$)</p>
+</blockquote>
+<p>がベストな買い方で，答えは 130 です．
+しかし，50個ではなく，55個買いたいとすると，ベストな買い方は</p>
+<blockquote>
+<p>20個 x 2 + 3個 x 5 = 55個 (48\$ x 2 + 10\$ x 5 = 146\$)</p>
+</blockquote>
+<p>ではなく</p>
+<blockquote>
+<p>20個 x 3 = 60個 ( 48\$ x 3 = 144\$)</p>
+</blockquote>
+<p>です．答えは，144 になります．
+SRM中は，入力条件が緩いのでBrute-Forceで十分いけると思ってSubmitしました．
+チャレンジタイムでは，MemoizationなしのBrute-Forceではタイムアウトすると思われたのか,
+2回チャレンジをうけました．チャレンジで使用された入力は</p>
+<p><img alt="SRM276 Challenge" src="http://static.flickr.com/39/74265649_2eb414d63b_o.png"></p>
+<p>と明らかに2秒タイムオーバー狙いです．
+チャレンジタイム後に，チャレンジしてきた人に質問されました．
+2秒以内に終わったのが，信じられなかったようです.</p>
+<p><img alt="SRM276 Chat" src="http://static.flickr.com/36/74263840_738db61dae_o.png"></p>
+<p>その後, HiltonLange さんには，さらに</p>
+<blockquote>
+<p>{"51 1","1 99"}, 99 だと，失敗するんじゃない？</p>
+</blockquote>
+<p>と指摘されました．
+そのとおりです．この入力だと51個x2=101個，2ドルが正解ですが，SubmitしたCodeでは</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</pre></div>
+
+
+<p>このように上限を100にしていたため，51 x 1 + 99 * 48 =
+4803ドルを出力していまいます． 上限は，最低200じゃないと．System
+Testに落ちますね．．．</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</pre></div>
+
+
+<p>このように上限200にしておくと，2秒近くかかりますが，なんとかSystem
+Testに通っていました．
+それでも無駄だらけなので，無駄をなくすと共に，Memoizationを併用すれば，劇的に早くなります．
+以下のようになります．</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">go</span><span class="o">(</span><span class="kt">int</span> <span class="n">q</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">N</span><span class="o">)</span> <span class="o">{</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">q</span> <span class="o">&lt;</span> <span class="n">quantity</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1000000</span><span class="o">;</span>
+       <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+   <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+   <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+       <span class="n">min</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">min</span><span class="o">,</span> <span class="n">cost</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">go</span><span class="o">(</span><span class="n">q</span> <span class="o">+</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">*</span> <span class="n">i</span><span class="o">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">quantity</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">return</span> <span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">min</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>この手の問題は，やはりDP(Dynamic
+Programming)を使うのが常套手段でしたね． SRM後に書いてみました.</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">bestDeal</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">priceList</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantity</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">priceList</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">unit</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">];</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">cost</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">priceList</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">priceList</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)[</span><span class="mi">1</span><span class="o">]);</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">best</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">300</span><span class="o">];</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">best</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+    <span class="n">best</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">quantity</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">best</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]])</span> <span class="o">{</span>
+                    <span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]]</span> <span class="o">=</span> <span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">quantity</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">quantity</span> <span class="o">+</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">min</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">min</span><span class="o">,</span> <span class="n">best</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>ほとんどの人は，さくっと躊躇することなくDPを使用していました．さすが，Division1．</p>
+<h1 id="testingcar"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=4634&amp;rd=8073">TestingCar</a></h1>
+<p>500点問題． レーシングカーの試験走行をします．
+ただし，時間帯により制限速度の条件がいくつか与えられます.</p>
+<ul>
+<li>[5秒から10秒の間は，10 m/s以上スピードを出してはいけない ]</li>
+<li>[15秒から20秒の間は，15 m/s以上スピードを出してはいけない ]</li>
+<li>[30秒から40秒の間は，5 m/s以上スピードを出してはいけない ]</li>
+</ul>
+<p>というふうにです． 入力として</p>
+<ul>
+<li>レーシングカーの加速度 a (m / s\^2 ) (減速度(?) も兼ねています．）</li>
+<li>試験走行の時間 (duratation) が与えられます.</li>
+</ul>
+<p>この条件のもとで，レーシングカーが出せる最高速度はいくつになるかという問題です.
+SRM中は，途中で方針が間違っていたことことにきずき，お手上げでした．
+（つぎのつぎの制限速度の変更を考慮していなかったため減速が間に合わない．）</p>
+<h1 id="forcetest"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5934&amp;rd=8073">ForceTest</a></h1>
+<p>1000点問題． Openしませんでした．</p>
+<h1 id="_1">結果</h1>
+<p>System Testの結果です． ( <a href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8073&amp;rm=246939">Room
+Statistics</a>
+)</p>
+<p><img alt="Room Statistics" src="http://static.flickr.com/9/74683887_7179f797b8_o.png"></p>
+<p>レーティングは低下．今日は，敗北感が強いな．．</p>
+<h1 id="_2">今日の教訓</h1>
+<ul>
+<li>DPをちゃんとマスターしておく</li>
+</ul>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2005/200512tco/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2005/srm273/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

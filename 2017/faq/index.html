@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017) — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2017/faq/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2017-03-20">
+        2017-03-20
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <ul>
+<li>Hayato Ito is a Software Engineer @ Google.</li>
+<li>グーグルではたらくソフトウェアエンジニアです。</li>
+<li>ご意見やご質問 あるいは Typo 等を見つけたときは <a href="https://github.com/hayatoito/hayatoito.github.io/issues">GitHub Issues</a> にお願いします。
+  答えられる範囲でできるだけ答えますね。</li>
+<li>
+<p>この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。あまり推敲しないで書きなぐっているところばかりですので、万人向けに読みやすいとは思いません。不適切な内容や表現等がありましたら教えてください。</p>
+</li>
+<li>
+<p>Last update date: <code>[2017-05-24 Wed]</code></p>
+</li>
+</ul>
+<h1 id="contact-info">連絡先は？ (Contact Info)</h1>
+<ul>
+<li><i class="fa fa-inbox"></i> Mail: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#97;&#121;&#97;&#116;&#111;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#46;&#99;&#111;&#109;">&#104;&#97;&#121;&#97;&#116;&#111;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#46;&#99;&#111;&#109;</a></li>
+<li><i class="fa fa-google-plus"></i> Google+: <a href="http://google.com/+HayatoIto">google.com/+HayatoIto</a></li>
+<li><i class="fa fa-github"></i> GitHub: <a href="http://github.com/hayatoito">github.com/hayatoito</a></li>
+<li><i class="fa fa-twitter"></i> Twitter (inactive): <a href="http://twitter.com/hayatoito">@hayatoito</a></li>
+<li><i class="fa fa-twitter"></i> Twitter: <a href="http://twitter.com/shadow_hayato">@shadow_hayato</a></li>
+<li><i class="fa fa-slack"></i> <a href="https://freenode.net/">IRC freenode</a>: hayato</li>
+</ul>
+<h1 id="tech-lead">テックリード (Tech Lead) <a name="tech-lead"></a></h1>
+<h2 id="google-tech-lead">Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ <a name="google-tech-lead"></a></h2>
+<p>Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼びます。
+数人から10名ほどのチームに、Tech Lead が１人います。
+私は Web Components プロジェクトの Tech Lead です。</p>
+<h2 id="_1">普段、何をしていますか？ <a name="what"></a></h2>
+<p>主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。</p>
+<h2 id="_2">普段、どれくらいコードを書いていますか？ <a name="commits"></a></h2>
+<p>Blink はオープンソースです。Commits は公開されています =&gt; <a href="https://codereview.chromium.org/search?owner=hayato&amp;reviewer=&amp;cc=&amp;sort=modified&amp;limit=100">コミット一覧</a>。</p>
+<p><a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/">DOM</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/shadow/">Shadow DOM</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/events/">Events</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/css/">CSS</a> あたりを触っていることが多いです。</p>
+<h2 id="_3">普段、どのようなコードを書いてますか？  <a name="code"></a></h2>
+<p>たとえば以下のパッチは、Google Chrome の Event Dispatching を400倍速くしたパッチです。</p>
+<ul>
+<li><a href="https://codereview.chromium.org/182683002">Lazy evaluation of event.path by numbering TreeScopes in DFS order for later O(1) queries</a></li>
+</ul>
+<p>このパッチは、Chrome の <em><a href="http://www.chromium.org/developers/speed-hall-of-fame">Speed Hall of Fame</a></em> を受賞しました。</p>
+<blockquote>
+<p>3/12/2014 - Improvement of the Week</p>
+<p>Last week Hayato Ito reduced checking if a DOM tree is a descendent of another from O(N) in the height of the tree of trees to O(1). In smaller trees this produces <a href="https://chromeperf.appspot.com/report?masters=ChromiumPerf&amp;bots=android-nexus5%2Cchromium-rel-mac8%2Cchromium-rel-win7-dual&amp;tests=blink_perf%2FEvents_EventsDispatchingInShadowTrees&amp;rev=256330&amp;checked=core">2-3x faster event dispatching</a>, but in the deeply nested trees Hayato created he saw more than a 400x improvement! I'd also like to thank Hayato for the <a href="https://codereview.chromium.org/182683002">fantastic description</a> of the patch and its effects in the CL description. Great work!</p>
+</blockquote>
+<h2 id="_4">出張は多いですか？ <a name="trip"></a></h2>
+<p>Web Standards に関わると、他のブラウザベンダ(Apple, Mozilla, Microsoft 等)と直接話をする必要があります。旅行が好きなら、Web Standards のお仕事はオススメです。</p>
+<ul>
+<li>2015:<ol>
+<li>[Jan] Sydney (Midnight Train)</li>
+<li>[Apr] San Francisco, Mountain View (Shadow DOM F2F)</li>
+<li>[May] Sydney (BlinkOn4)</li>
+<li>[Jul] Mountain View (Custom Elements F2F)</li>
+<li>[Oct] San Francisco (BlinkOn5)</li>
+<li>[Nov] Sapporo (W3C TPAC)</li>
+</ol>
+</li>
+<li>2016:<ol>
+<li>[Jan] Mountain View / Cupertino (Custom Elements F2F)</li>
+<li>[Jun] Munich (BlinkOn6)</li>
+<li>[Nov]: Lisbon (W3C TPAC)</li>
+</ol>
+</li>
+<li>2017:<ol>
+<li>(Plan) [Jan] Mountain View / San Francisco (BlinkOn7)</li>
+<li>(Plan) [??]: San Francisco (W3C TPAC)</li>
+</ol>
+</li>
+</ul>
+<h1 id="web-web-standards">Web 標準 (Web Standards) <a name="web-standards"></a></h1>
+<h2 id="spec-editor">Spec Editor とはどのようなお仕事ですか？ <a name="spec-editor"></a></h2>
+<p>Web そのものの仕組みをつくるお仕事です。Web 標準の仕様書を書きます。私は <a href="http://w3c.github.io/webcomponents/spec/shadow/index.html">Shadow DOM</a> の Spec Editor です。<a href="https://dom.spec.whatwg.org/">DOM</a> や <a href="https://html.spec.whatwg.org/multipage/">HTML</a> の仕様策定もしています。</p>
+<ul>
+<li><a href="https://github.com/w3c/webcomponents/commits/gh-pages/spec/shadow">Commits for Shadow DOM Specification</a></li>
+<li><a href="https://github.com/w3c/webcomponents/commits/gh-pages?author=hayatoito">Commits for Web Components</a></li>
+</ul>
+<h2 id="html-whatwg-html-standard-w3c-html5-chrome">HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ <a name="whatwg-w3c"></a></h2>
+<p>W3C の HTML5 仕様は見ていません。</p>
+<ul>
+<li>私が仕様の策定をしているのは <a href="https://whatwg.org/">WHATWG</a> の <a href="https://dom.spec.whatwg.org/">DOM Living Standard</a> や <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a> です。そこには 「5」 のようなバージョンはありません。</li>
+<li>私も含めて Chrome の開発者が参考にするのは W3C HTML5仕様ではなく WHATWG の HTML Living Standard です。</li>
+<li>Chrome の バグトラッカー <a href="http://crbug.com/">crbug.com</a> 上でも、WHATWG の HTML Living Standard をベースに議論します。バグを報告をするときは、この辺りをぜひ理解しておいてくださいね。</li>
+</ul>
+<h1 id="web-components-shadow-dom">Web Components / Shadow DOM <a name="web-components-shadow-dom"></a></h1>
+<h2 id="web-components">Web Components とは? <a name="web-components"></a></h2>
+<p>早い話がこのような Web を目指します。難しいことは覚えなくてよい、誰もがタグを書くだけでOKなWebに戻します。</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+     <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;import&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;gmail-app.html&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">google-header</span><span class="p">&gt;&lt;/</span><span class="nt">google-header</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">gmail-app</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">google-hangout</span><span class="p">&gt;&lt;/</span><span class="nt">google-hangout</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">google-mail</span><span class="p">&gt;&lt;/</span><span class="nt">google-mail</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">gmail-app</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>昔とある講演のためつくったスライド: <a href="https://hayato.io/webcomponents-slides/">https://hayato.io/webcomponents-slides/</a>。</p>
+<h2 id="shadow-dom">Shadow DOM とは？ <a name="shadow-dom"></a></h2>
+<p>毎回、説明にとても苦労します。簡単に言うと:</p>
+<ol>
+<li>
+<p>Web は DOM Node という基本的単位から成り立ちます。</p>
+</li>
+<li>
+<p>複数の Node が あつまり Tree を形成して Node Tree になります。みなさんがみている Web ページは（おおまかにいうと）この Node Tree ひとつからできています。</p>
+</li>
+<li>
+<p>Web の根本的な問題点のひとつとして、「他の Web ページの特定の部分を再利用することは本質的に困難である」というのがあげられます:</p>
+<ul>
+<li>
+<p>他の Web ページの Node Tree の Subtree を、自分の Node Tree に「混ぜて」使用した場合、なにが起きるかを事前に予期するのは非常に困難です。</p>
+</li>
+<li>
+<p>つまり、これまでの Web は 「混ぜるな危険」でした。少し混ぜただけで、ページ全体が容易に壊れてしまいます。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Shadow DOM は Node Tree 自体を <em>Shadow Tree</em> として、他に干渉することなく再利用することを可能にします。Node Tree 自体を、コンポーネントの単位とすることが可能になります。</p>
+<ul>
+<li>
+<p>これにより、抽象化の概念がなかった、DOM に抽象化の概念をもたらします。C に Class の概念を持ち込んだのが C++ であるのと同様に、DOM に抽象化の概念をもたらすのが Shadow DOM です。</p>
+</li>
+<li>
+<p>これまでの Web ページがひとつの Node Tree から成り立っていたのに対して、Shadow DOM の世界では Web ページは Node Tree の Tree から成り立ちます。
+    Tree だった Web が これからは Tree of Trees となります。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>以下も参考にしてください。</p>
+<ul>
+<li><a href="http://blog.chromium.org/2016/08/chrome-53-beta-shadow-dom.html">Chrome 53 Beta: Shadow DOM, PaymentRequest, and Android autoplay (Posted by Hayato Ito, Shadow DOM Chaffeur)</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/primers/shadowdom/">Shadow DOM v1: self-contained web components</a></li>
+</ul>
+<h2 id="shadow-dom_1">Shadow DOM はどこに使用されているのですか？ <a name="shadow-dom-usage"></a></h2>
+<ul>
+<li>Chrome / Blink の built-in elements (<code>&lt;input&gt;</code>, <code>&lt;video&gt;</code> など)。つまり Electron や Atom Editor や Visual Studio Code なども。</li>
+<li>Chrome / Blink の devtools や Setting Page などたくさん。</li>
+<li>Andoroid の WebView</li>
+<li><a href="https://www.ampproject.org/">AMP (Accelarated Mobile Pages)</a></li>
+<li><a href="https://dev.twitter.com/web/embedded-tweets">Twitter: Tweet の埋め込み <code>&lt;twitterwidget&gt;</code></a></li>
+<li>Polymer を使用しているページ:<ul>
+<li><a href="https://youtube.com/">YouTube</a></li>
+<li><a href="https://gaming.youtube.com/">YouTube Gaming</a></li>
+<li><a href="https://earth.google.com/web/">Google Earch</a></li>
+<li>...</li>
+</ul>
+</li>
+<li>Angular (Option)</li>
+<li>その他 (Todo)</li>
+</ul>
+<h2 id="web-components_1">もう少し詳しく Web Components について教えてください <a name="web-components-details"></a></h2>
+<p>(...Shadow DOMからの続き) Shadow DOM と Custom Elemenets と HTML Imports を組み合わせることによって、Web 開発者は、自分のつくった世界そのものを
+Web Component として簡単に再利用可能な形で公開することができるようになります。</p>
+<p>コンポーネントの利用者は、タグ を書くだけで、他の人がつくったコンポーネントを再利用できます。
+ひとつの Web Component は、その内部ではさらに複数の Web Component を使用しているかもしれませんが、利用者はそれは気にしなくてよいです。</p>
+<p>...とここまで聞くと、とても複雑なことをしているように思えますが、実は目指している世界は、むしろその逆です。</p>
+<ol>
+<li>
+<p>複雑高度になり一部の技術者だけのものになりつつある現在の Web を、HTML の"タグ" を手書きするだけで良かった誰もが楽しめる Web に戻します:</p>
+<p>Web プラットフォームは進化を続けています。もはやタグを手書きして HTML を書くだけでは、とてもユーザーを満足させるサイトは作成できなくなりました。
+「きちんとした」サイトをつくるには、多くのことを学習する必要があります。</p>
+<p>どうして多くのことを覚えなければいけないのでしょうか？ それは Web プラットフォームの根幹である DOM に抽象化の仕組みがないのが大きな理由のひとつです。
+適切な抽象化レイヤーがあれば、本来、知らなくてよいことは「隠す」ことができるはずです。</p>
+<p>Web Components の世界では、「タグ」を書くだけで、他の人が書いた Web Components をレゴブロックのように組み合わせて利用できます。
+コンポーネントの内部がどのようになっているかは知る必要はありません。
+そう、古き良きタグを手書きするだけでよかったあの時代に戻ります。</p>
+</li>
+<li>
+<p>ブラウザが本来もつパワーを Web 開発者に開放します:</p>
+<p>たとえば HTML に標準で用意されている <code>&lt;video&gt;</code> タグは、誰でもタグを書くだけで、動画を再生することができます。
+<code>&lt;video&gt;</code> タグの内部がどのように実装されているかは気にしませんよね？
+実は <code>&lt;video&gt;</code> タグは Google Chrome では Shadow DOM を内部で使用しています。ある意味、これはひとつの Web Components です。</p>
+<p>現在の Web では、<code>&lt;video&gt;</code> タグと同じようなものを、Web開発者は自分ではつくれません。
+Web Components の世界では、Web 開発者に Shadow DOM のもつ力を開放します。私は、Web 開発者の情熱・想像力を信じています。</p>
+<p>誰もが Web Components を作れるようになり、そしてそれを公開し誰もが再利用できたら、ステキですよね。
+Shadow DOM や Web Components はそのような世界を目指しています。</p>
+</li>
+</ol>
+<p>Web Components は 2014 の <a href="http://www.w3.org/blog/2014/05/web-components-won-the-best-new-technology-2014-net-award/">The Best New Web Technology new Award</a> を受賞しました。</p>
+<h2 id="shadow-dom-8800000">Shadow DOM のコードは 8,800,000行 あるというのは本当でしょうか？ <a name="shadow-dom-8.8m"></a></h2>
+<p>違います。この <a href="https://trac.webkit.org/changeset/164131">CL</a> や この WebKit の <a href="https://webkit.org/blog/2455/last-week-in-webkit-millions-of-lines/">Blog</a>
+をみて、一部でそのような勘違いをしてしまった人がいるようです。</p>
+<blockquote>
+<p>Purge remaining ENABLE(SHADOW_DOM) cruft.</p>
+<p>&lt;​https://webkit.org/b/128827&gt;</p>
+<p>Source/WebCore:</p>
+<p>Remove the remaining 8.8 million lines of Shadow DOM code to align
+   with goals for intent to ship 60fps on mobile in 2014.</p>
+</blockquote>
+<p>この CL はその先日に Google が Blink から WebKit 由来の 8.8 million 行のコードを削除したとの記事:</p>
+<p><a href="http://techcrunch.com/2013/05/16/google-has-already-removed-8-8m-lines-of-webkit-code-from-blink/">Google Has Already Removed 8.8M Lines Of WebKit Code From Blink</a></p>
+<p>を受けての Apple さんのジョークです。</p>
+<h2 id="shadow-dom-spec">Shadow DOM の Spec の場所は? <a name="shadowdom-spec"></a></h2>
+<p>常に 最新の Editors Draft (<a href="http://w3c.github.io/webcomponents/spec/shadow/">http://w3c.github.io/webcomponents/spec/shadow/</a>) を参照あるいはリンクを貼るようにしてください。</p>
+<h2 id="_5">今のフロントエンドの現状についてどう思いますか？ <a name="front-end"></a></h2>
+<p>100人中99人が間違った方向を向いていて、その全員が同じ間違った方向を向いているため、自分が間違っていることにさえ気づいていない状態ですね。
+少なくともそのように考えてみることは重要です。
+長くなるので、直接会ったときに聞いてください。</p>
+<h2 id="web">今後 Web で取り組みたいことは？  <a name="future-plans"></a></h2>
+<p>まだまだ Web Components / Shadow DOM についてはやることが山積みではあるのですが (HTML Modules 等も控えています)、
+<a href="https://annevankesteren.nl/2016/04/html-components">Web プラットフォームの20年以上に渡る問題を解決した</a>あとは、以下のことに取り組みたいです。</p>
+<ul>
+<li>
+<p>DOM と CSS の根本的な問題は Shadow DOM で直した（希望）ので、次に手をつけるとしたらやはり JavaScript ですね。Rust -&gt; WebAssembly, Rust DOM Bining 辺り。
+    JavaScript を Rust で置き換えることができれば Web はより面白くなります。
+    いままで JavaScript を使用することに難色があったため参入してこなかった優れたプログラマたちが、その障壁がなくなることにより一挙にWebに参入してくれば、
+    いままで JavaScript の壁で守られていた JavaScript 専門のフロントエンドエンジニアさんたちもうかうかしていれられなくなるかもね（適当）。どんなときも健全な競争は良いことです。</p>
+</li>
+<li>
+<p>あるいは Blink 自体を Rust で書き直すとか。現在は主に C++ で書かれています。</p>
+</li>
+</ul>
+<p>あくまで未確定な予定ですので、あまり過度な期待はしないで、温かく見守っていてくださいね。</p>
+<h1 id="_6">漫画「王様達のヴァイキング」の技術監修 <a name="kingsviking"></a></h1>
+<h2 id="_7">「王様達のヴァイキング」って？ <a name="what-is-kingsviking"></a></h2>
+<p>「<a href="http://spi-net.jp/weekly/comic008.html">王様達のヴァイキング</a>」は、
+小学館の<a href="http://spi-net.jp/">週刊スピリッツ</a>で連載中の漫画です。
+ハッカーと投資家が主人公です。</p>
+<p>Twitter 公式アカウントは、<a href="https://twitter.com/kingsviking">@kingsviking</a> です。</p>
+<h2 id="_8">漫画の監修とは具体的にはどのようなことをするのでしょうか？ <a name="kingsviking-supervisor"></a></h2>
+<p>私は技術監修としてこの漫画をサポートしています。主に次のようなことに関わっています。</p>
+<ul>
+<li>ストーリーや設定について技術面からサポート。</li>
+<li>是枝くんをはじめとする登場人物たちの「サポート」。</li>
+<li>毎週のネームやゲラのチェック。 技術的に不自然な箇所やセリフについてアドバイス。</li>
+<li>単行本のカバー下のアイデア出しと巻末用語解説の執筆。</li>
+</ul>
+<p>つまり、一般の読者からは「難しいところはわからないです（けれど面白いです！）」と言われ、詳しい人からは「この設定気にいらない！」と石を投げられる側の役割です...。</p>
+<p>この作品にかかわる方（漫画家さん、担当編集さん、ライターさん等）、みなさん本当に漫画を面白くするプロ・よい文章を書くプロで、いつもその仕事のプロフェッショナルっぷりに感心しきっています。
+週刊連載を抱える漫画家さんがコンスタントにアウトプットを重ねていく姿を、みなさんより近いところで見ることができるのは、とてもよい刺激になります。</p>
+<p>プログラミングの素晴らしさが、漫画のもつ偉大な力を通じて、多くの読者に伝わればよいなと思ってお手伝いしています。</p>
+<hr>
+<p>漫画家さん宛に届く作品のファンの方からのファンレターをときどき見せてもらうことがあります（もちろん宛先として「関係者の皆様」となっていた場合です）。
+そこにはとても温かいお言葉があり「あー、漫画家さんってとてもとても大変なお仕事だけど、こうしてファンの皆様から直接温かいお手紙を頂けるとは素晴らしいお仕事だなー。苦労が報われるわー」とちょっぴり羨ましい気持ちにもなったりします。</p>
+<p>それにひきかえ、ソフトウェアエンジニアがいくらコードを書いても、ファンの方ではなくユーザーの方から「バグさっさとなおせ！」といわれるだけですからね。いや、とてもありがたいです。いつも貴重なフィードバッグありがとうございます。</p>
+<p>一度くらい感謝されてもいいのでは...と思いつつ、それでも好きだからコードを書き続けるのです。:)</p>
+<h2 id="_9">是枝くんのモデルですか？ <a name="zer0"></a></h2>
+<p>違います。是枝くんが使用するプログラミング言語・ソースコードは私にとてもよく似てますが、あくまで偶然です。</p>
+<h2 id="_10">坂井さんのモデルですか？ <a name="sakai"></a></h2>
+<p>違います。パンイチになったりしません。</p>
+<h2 id="_11">笑い猫のモデルですか？ <a name="laughingcat"></a></h2>
+<p>違います。裸になったりしません。</p>
+<h2 id="_12">ヴァルちゃん のモデルですか？ <a name="valkyrja"></a></h2>
+<p>違います。ワインを頭からかけたりしません。</p>
+<h2 id="_13">漫画では、これまでどのようなプログラミング言語が登場しましたか？ <a name="kingsviking-programming-language"></a></h2>
+<p>これまで  C, C++, PowerPC Assembly, Python 3, Scala, Rust 等が登場しています。</p>
+<p>例)</p>
+<ul>
+<li>是枝くん: PowerPC Assembly (スパコンでパスワードを解析するときに使用 @単行本2巻), Python 3 (ATM に対する Man-in-the-middle Attack への Counter Attack @単行本4巻), C++ (何度も登場しています。改良型 <em>Sniper</em> @単行本11巻 など)</li>
+<li>ヴァルちゃん: Scala (マネーロンダリング Bot @単行本5巻, オンライン証券取引のクラッキング @単行本8巻), Rust (省庁に寄生する自己増殖型 Bot - <em>Pawn</em>@単行本11巻)</li>
+</ul>
+<p>興味のあるかたは (単行本を買って) コードも読んでみてくださいね。</p>
+<h2 id="_14">監修をしているということはセキュリティの専門家ですか？ <a name="security"></a></h2>
+<p>違います。もちろんブラウザの開発においてセキュリティは最重要視しているので、セキュリティ関連のお仕事をすることもありますがそれはメインではありません。</p>
+<p>最近でいうと:</p>
+<ul>
+<li>
+<p>世界的に有名なポーランドのセキュリティ研究者 Mariusz Mlynski が報告してきた Chrome のUniversal XSS 脆弱性についてその原因の調査・修正したり
+    (<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870">crbug.com/630870</a>)</p>
+<p>(この脆弱性の報告には 賞金 $7,500 が支払われました。報告してくれた人には賞金がでたのに、直した私は1ドルももらえません （当たり前））</p>
+<p>引用: <a href="https://chromereleases.googleblog.com/2016/12/stable-channel-update-for-desktop.html">https://chromereleases.googleblog.com/2016/12/stable-channel-update-for-desktop.html</a></p>
+<blockquote>
+<p>[$7500][630870] High CVE-2016-5204: Universal XSS in Blink. Credit to Mariusz Mlynski</p>
+</blockquote>
+</li>
+<li>
+<p>Rust の iron (Web サーバ）で使用される staticfile crate に脆弱性を見つけたので報告したら (<a href="https://github.com/iron/staticfile/issues/89">iron/staticfile/issues/89</a>)、
+   「よかったら、直してくれない？」といわれたので直してあげたり</p>
+</li>
+</ul>
+<p>してました。だ、だけど、メインのお仕事じゃないからね！</p>
+<h1 id="google">Google ソフトウェアエンジニアの採用 <a name="google-hiring"></a></h1>
+<h2 id="google_1">今まで何人、Googleでソフトウェアエンジニアの面接（インタビュー）をしましたか？ <a name="google-interview-number"></a></h2>
+<p>150人以上です。すべて 1 : 1 での面接です。電話インタビューやインターンの面接も含みます。</p>
+<h2 id="_15">インタビューではどのようなことを聞くのでしょうか？ <a name="google-interview"></a></h2>
+<p>Q. 「バスにゴルフボールはいくつ入るでしょうか？」</p>
+<p>A. 「そんな問題はもはや聞いていないです。いまはゴルフボールにバスが何台はいるかを聞いています。」</p>
+<p>...といった、変な情報に振り回されないでください。</p>
+<h2 id="google_2">Google にソフトウェアエンジニアとして入るにはどのような勉強・経験をしておけばよいでしょうか? <a name="google-join"></a></h2>
+<p>「何をすればよいのか」を挙げるのは難しいです...。 (TODO: いつかちゃんと書く)</p>
+<p>その反対、「特にやる必要はないこと」を挙げるなら簡単にできます。
+たとえば、以下の項目はプログラマとしての能力とはいっさい関係がないことは、みんな理解していますので、安心してください。</p>
+<ul>
+<li>Twitter での発言数やフォロワー数</li>
+<li>ブログの記事数・ブックマーク数</li>
+<li>本や雑誌の記事の執筆</li>
+<li>勉強会やハッカソンの出席回数・登壇数</li>
+<li>イベントの主催</li>
+</ul>
+<p>これらの活動を特にしていなくても、気にしないでください。
+プログラマ・ソフトウェアエンジニアとして濃密な時間を過ごした人が正しく報われるインタビューをいつも心がけています。</p>
+<h2 id="google_3">ソフトウェアエンジニアとしてはたらくにあたって Google のよいところって?  <a name="google-swe"></a></h2>
+<ul>
+<li>
+<p>ソフトウェアエンジニアリング的に正しいことを正しく行っている</p>
+<p>「正しいことをやりたいのに」技術レベルが下の人に合わせざるを得ずに断念せざるを得ない...ということはまずありません。
+その逆で、「技術が上」の人にみんなが合わせるように努力している。</p>
+</li>
+<li>
+<p>ソフトウェアエンジニアの採用が一貫して実力主義</p>
+<p>採用において、実力のみがものをいう仕組みを制度として持っている・その制度を維持しようとしているところ。
+これを続けている限り、Google は強いと思います。</p>
+</li>
+<li>
+<p>みんなコードを書く</p>
+<p>コードを書くのがソフトウェアエンジニアのお仕事です。</p>
+</li>
+<li>
+<p>無駄なプロジェクトはわりとあっさり切り捨てる。その判断が早い。</p>
+<p>エンジニアのリソースが限られている以上、意識的に切り捨てていかないと、前には進めません。</p>
+</li>
+</ul>
+<h1 id="google_4">Google でのインターンについて <a name="google-intern"></a></h1>
+<h2 id="google_5">今まで何人、Googleでインターンのホストをしましたか？ <a name="google-intern-number"></a></h2>
+<p>6人です。すべて学部生です。</p>
+<h2 id="google_6">Google でのソフトウェアエンジニア・インターンはどのようなことをするのでしょうか？ 応募したいのですが、スキル的に不安です...。  <a name="google-interview-what"></a></h2>
+<p>TODO: 書きます。</p>
+<h2 id="2017">今年(2017年)も、インターンのホストをしますか？ <a name="google-intern-rust"></a></h2>
+<p>いい人がいれば。</p>
+<h2 id="google-step">Google STEP インターンについて質問があります <a name="google-step-intern"></a></h2>
+<p>TODO: 書きます。</p>
+<p>当分の間、質問があればこちらに <a href="https://github.com/hayatoito/hayatoito.github.io/issues">GitHub Issues</a> どうぞ。</p>
+<h1 id="_16">競技プログラミング / レッドコーダー <a name="competitive-programming"></a></h1>
+<h2 id="google_7">レッドコーダーになると Google からお誘いがくると聞きました。 <a name="redcoder"></a></h2>
+<p>Google から誘いがくるというのは、「よかったら面接をうけてみませんか？」くらいの意味しかありません。</p>
+<ol>
+<li>誘いが来て面接を受ける場合</li>
+<li>自ら応募して面接を受ける場合</li>
+</ol>
+<p>1 と 2 で採用プロセスは基本変わらないです。</p>
+<p>私は今はインタビューする側ですが、インタビュー中は 1 と 2 の違いを意識していません。</p>
+<p>Google の採用担当の人が何度も熱心に声をかけた結果、ようやく面接にきていただいたとしても、
+エンジニアがインタビューした結果、思うような評価が得られなかった場合は、普通にお断りされてしまいます。</p>
+<h2 id="goolge">Goolge に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ <a name="google-competitive-programming"></a></h2>
+<p>これはよく聞かれる質問です。Google のソフトウェアエンジニアになるにあたって、レッドコーダーになることは必須ではありません。
+競技プログラミングはシステムの制限があるため限られた知識しか身につきません。
+競技プログラミングで必要となる「アルゴリズムとデータ構造」などは、ソフトウェアエンジニアにとって必要な経験・知識のほんの一部ですし、
+それらを身につけるにあたってより効率的な学習方法は他にもたくさんあると思います。</p>
+<p>いろんなことを経験しておいたほうが長い目でみてお得です。おすすめは学生なら <a href="https://developers.google.com/open-source/gsoc/">Google Summer of Code</a> などに参加することです。
+学生じゃないとしても、Summer of Code で記載されている <a href="https://summerofcode.withgoogle.com/projects/">プロジェクトの一覧</a> を見てみましょう。
+この世の中は解決を待っている素敵な問題たちであふれています。</p>
+<p>競技プログラミングのレートが Resume に書いてあったとしても、その事実自体はインタビューの評価には影響しないです。
+最後に頼れるのは、ソフトウェアエンジニアとしての自分の実力だけです。レートは気にしないでください。</p>
+<p>Google は「プロダクト（製品）を実際にユーザーに届けてなんぼ」の会社だと思っていますので、「プロダクトのコードが書ける」能力が大事です。</p>
+<h1 id="_17">プログラミング <a name="programming"></a></h1>
+<h2 id="_18">どのようなプログラミング言語を普段使用していますか？その用途は？ <a name="programming-language"></a></h2>
+<ul>
+<li>C++: Google Chrome が使用しているレンダリングエンジン Blink の開発。</li>
+<li>Rust: CPU Intensive なコードを安全に書きたいとき。JVM に絶望したとき。</li>
+<li>
+<p>Python: Chrome の開発で使用する Tool や個人の Tool 等を書くとき。Python で書くのはおよそ 100 行以下までです。</p>
+<ul>
+<li>追記 (2016): 最近は個人用の Tool （100行以下の規模のものでも) Rust で書くようにしてます。Python を使う場面はとても減りました。
+   この規模の Tool で Rust を使うのが正解と思う人はほとんどいないと思いますが、最近はだいぶ Rust に慣れてきたので、
+   生産性の観点でも Python より Rust のほうが上になりつつあります。</li>
+</ul>
+</li>
+<li>
+<p>Scala: 1,000 行以上のある程度大きなものを書くとき。footprint をあまり気にしなくてよいとき。ICFPC (関数型言語の国際学会が毎年開催しているプログラミング大会)に参加するとき。</p>
+<ul>
+<li>追記 (2016): Rust を使い始めてからは Scala はほとんど使わなくなりました。2016 からは ICFP Programming Contest も Rust で参戦しています。</li>
+</ul>
+</li>
+<li>
+<p>Haskell: まともな型システムが欲しくなったとき。Scala の型システムに絶望したとき。</p>
+</li>
+<li>JavaScript: Web。</li>
+<li>Shell Script: シェル環境に直接作用するものや、zsh の Line Editor 用の function など。</li>
+<li>Emacs Lisp: 趣味と実益。</li>
+</ul>
+<h2 id="_19">各プログラミング言語において、後世に残すべき価値のあるものはなんだと思いますか？ <a name="programming-language-values"></a></h2>
+<ul>
+<li>C++: Move Semantics, Zero-Overhead Principle, RAII, References, Template and Monomorphization</li>
+<li>Lisp: Macro, s-expression</li>
+<li>Haskell: Type System, Type Inference, Type Classes, algebraic data types, Pattern Matching</li>
+<li>OCaml: Type Inference, algebraic data types, Pattern Matching</li>
+<li>Scheme: Hygienic macros</li>
+<li>Rust: (後述)</li>
+</ul>
+<h2 id="_20">プログラミング言語がひとつだけしか選べないとしたら何を選びますか？ <a name="best-programming-language"></a></h2>
+<p>Rust。</p>
+<h2 id="rust">Rust のよいところを教えてください。 <a name="rust"></a></h2>
+<p>Rust は Move Semantics を言語デザインの中心にすることで、驚くほど多くの問題が統一的に解決できるということを実用的に示した唯一の言語だと思います。</p>
+<p>とくに C++ の良いところと危険なところを理解している人には、とてもオススメできるプログラミング言語だと思います。
+逆にいうと、C++ への理解が足りない （というよりコンピュータの基礎がわかっていない）人にとっては、とても学習曲線が高いプログラミング言語だと思います...。
+学習曲線が高いかわりに、いままでのプログラミング言語では放置されていた多くの問題が静的に解決できるので、見返りがとても大きいです。</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ownership.html">Ownership</a>, <a href="https://doc.rust-lang.org/book/references-and-borrowing.html">Borrowing</a>, <a href="https://doc.rust-lang.org/book/lifetimes.html">Lifetimes</a> の仕組み。メモリだけでなくネットワークコネクションなどのリソース管理全般に関するバグをコンパイル時に発見します。</li>
+<li>安全性を重点をおきながら、同時に Zero-Cost Abstractions について妥協していません。安全性のチェックはコンパイル時に解決済みなので、実行時に余分なオーバーヘッドはありません。C++ と同等に速いです。Zero-Cost Abstractions を追求しないと、 C++ の置き換えにはなれないのでとても重要です。</li>
+<li>モダンなプログラミング言語なら当然あってほしい機能（<a href="https://doc.rust-lang.org/book/patterns.html">Pattern Matching</a>, <a href="https://doc.rust-lang.org/book/enums.html">Algebraic data type</a>, <a href="https://doc.rust-lang.org/book/traits.html">Traits</a> 等）をちゃんと備えています。十分に高い抽象化レベルでコードを安全に書けます。</li>
+<li><a href="https://doc.rust-lang.org/book/macros.html">Macro</a> や Compiler Plugins があります。Macro は <a href="https://en.wikipedia.org/wiki/Hygienic_macro">Hygienic macro</a> です。identifier の衝突の心配はありません。</li>
+<li>vtable が必要になる Dynamic Dispatch よりも、Static Dispatch (Parametric Polymorphism) が推奨されています。正しい。</li>
+<li>コストがかかる処理を書くときはプログラマにちゃんと罪悪感を感じてもらうような API デザインが意図的に多く採用されています。
+    未熟なプログラマが、知らないうちに効率の悪いコードを書くのを防ぐ教育的効果があります。</li>
+<li>C などの他のプログラミング言語との 相互呼び出し (<a href="https://doc.rust-lang.org/book/ffi.html">FFI</a>) が容易です。ランタイムレスですので、Rust で書いておけばすべてのプログラミング言語の資産になりえます。</li>
+<li>System Programming Language です。必要に応じて <a href="https://doc.rust-lang.org/book/unsafe.html">unsafe</a> なコードを書けます。OS が書けます。</li>
+<li>Type System。あらゆるところに型をつけようという強い意志があります。そのため他のプログラミング言語ならランタイム時に行わざるをえないこともコンパイル時に解決・最適化できます。</li>
+<li>コンパイラにしっかり守られている感覚が強いです。ただし unsafe な部分を書くときは、「ここから先はコンパイラは助けてくれない。自分がしっかりしなくては...」という気分になれます。</li>
+<li>十分に賢い型推論 （Lifetime のサポートがあるため 厳密には Hindley/Milner ではありません）。</li>
+<li>
+<p>他のプログラミング言語に備わっている定評のあるアイデアやパラダイムからインスパイアされています。代表的なものとしては:</p>
+<ul>
+<li>SML, OCaml: algebraic data types, pattern matching, type inference</li>
+<li>C++: references, RAII, smart pointers, move semantics, monomorphization, memory model</li>
+<li>Cyclone: region based memory management</li>
+<li>Haskell: typeclasses</li>
+<li>Scheme: hygienic macros</li>
+</ul>
+<p>などが挙げられます (<a href="https://doc.rust-lang.org/reference.html#appendix-influences">参考</a>)。
+これらは、100人中99人が「これは間違いなくよいもの☆」と思うであろう定評のある機能やパラダイムです。</p>
+<p>その一方、100人中40人が「こんなのいらないです。お願いですからやめてください。」と思うであろう機能・パラダイム、たとえば</p>
+<ul>
+<li>よく見かけるタイプのいわゆる Class と Class の継承をもとにした OOP (オブジェクト指向プログラミング) [Java, Scala, C++, Python 等]</li>
+<li>Function Overloading [C, C++, Java 等]</li>
+<li>やめてほしい暗黙の型変換: int -&gt; float など [C, C++, Java, Python 等ほとんどのプログラミング言語]</li>
+</ul>
+<p>などについては「そんなのいりません。出直してきてくだい。」という感じで最初から入れる気がまったくないところが素敵です。</p>
+</li>
+</ul>
+<h2 id="rust_1">でも Rust って関数型プログラミング言語なんでしょ？ 難しそう。 <a name="rust-is"></a></h2>
+<p>Rust はあえていうなら「型クラス指向 (Type Class Oriented )」「Move Semantics Oriented」のプログラミング言語です。</p>
+<p>Rust のことを関数型プログラミング言語と呼んでいる人がいたら、その人は Rust のことも関数型プログラミングのこともどちらもわかっていない可能性が高いです。
+「これは◯◯指向だ」「いや◯◯型言語だ」のような抽象的な議論はあまり生産的ではないので、個々の具体的な特徴についてその背景・意義・有用性についてきちんと学んだほうが生産的です。</p>
+<p>Rust は学習コストが高いプログラミング言語と思われていますが、そもそも（ある程度大きな）「正しいプログラム」を書くこと自体が普通の人間には相当難しいことです。
+これまでの学習コストが低いといわれているプログラミング言語は、最初のほうだけちょっと助けてくれるだけであり、「正しいプログラム」を書くことについては何も助けてくれず、放置プレイです。
+Rust は「正しいプログラム」を人間が書けるようになるまでひたすら指摘してくるので学習コストが高くなっちゃいますが、それはどうせいずれは何らかの形で身につけなければいけないことなのでむしろ嬉しいことです。</p>
+<p>大人になるとなぜか余計な知恵がついてしまって「xxx で十分。yyy は学習コストが高い。」と新しいことを学ぶのが億劫になってしまうのですが、
+「足し算だけで十分。掛け算の学習コストは高い。」と主張して「九九」の学習を拒否する意識の高い小学二年生はいなかったですよね？
+掛け算とか割り算とかあんな難しいものをどんどん吸収していった小学生のころのピュアな気持ちをもって疑うことなく学習すれば小学生並の学習スピードできっといけるはずです。</p>
+<p>まあ、Rustに限った話ではないのですが...。:)</p>
+<h2 id="icfp-programming-contest"><a href="http://www.icfpconference.org/contest.html">ICFP Programming Contest</a> には何を使用して参加してますか？ <a name="icfpc"></a></h2>
+<p>2009 - 2015 は Scala で、2016 は  Rust で参加しました。</p>
+<ul>
+<li>
+<p><a href="http://www.ittc.ku.edu/icfp-contest/">2009</a>:</p>
+<p>Scala で参加。</p>
+<p>シャトルを操縦してスペースデブリを回収するプログラムをつくる問題。コードは VM 上で動きます。VM も仕様が与えられるので、最初に自分で書きます。
+惑星の重力をうまく利用していかにシャトルの燃料消費を抑えるかとうがポイントだった気が。</p>
+</li>
+<li>
+<p><a href="http://www2010.icfpcontest.org/2010/task/">2010</a></p>
+<p>Scala で参加。</p>
+<p>車とそれを動かすための燃料を設計する問題。最初に謎の3進数データを解析しないといけないのが大変。</p>
+</li>
+<li>
+<p><a href="http://icfpc2011.blogspot.jp/2011/06/task-description-contest-starts-now.html">2011</a></p>
+<p>Scala で参加。</p>
+<p>「Magic the Gathering」 からインスパイアされた（であろう） 「Lamda: the Gathering」という対戦型カードゲームの AI をつくる問題。
+基本カードとして SKI Combinator などが与えられるので、それらを上手く組み合わせて強いカード(スロット)をつくる必要があります。</p>
+</li>
+<li>
+<p><a href="https://icfpcontest2012.wordpress.com/">2012</a></p>
+<p>Scala で参加。<a href="https://gist.github.com/hayatoito/3123427">Code</a> (<a href="https://plus.google.com/+HayatoIto/posts/JvydCvGrpAz">感想</a>)</p>
+<p><a href="https://www.google.co.jp/search?q=%E3%83%90%E3%83%AB%E3%83%80%E3%83%BC%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5">バルダーダッシュ</a> （のような）問題の AI をつくる問題。</p>
+</li>
+<li>
+<p><a href="http://icfpc2013.cloudapp.net/">2013</a></p>
+<p>Scala で参加。 <a href="https://github.com/hayatoito/icfpc2013-kirakira/">Code</a></p>
+<p>入力と出力が与えられるので、それを満たすプログラム（式）を生成するプログラムをつくる問題。</p>
+</li>
+<li>
+<p><a href="https://web.archive.org/web/20140728102535/http://icfpcontest.org/specification.html">2014</a> (archive)</p>
+<p>Scala で参加。</p>
+<p>パックマンの AI をつくる問題。パックマン側とゴースト側の両方をつくる必要があります。
+ただし GHost CPU (GHC) という仮想的な CPU （非常に限られたローレベルの命令セットしかサポートしていない）上で動かす必要があります。
+直接 GHC Program を書くのは普通の人間には困難ですので、AI 自体はハイレベルな言語で書くようにして、
+それを GHC Program に変換するコンパイラ等を自力で書くといった方針でないと、強い AI を書くのは実質不可能です。
+Lisp っぽい言語を自分でつくって、それを GHC Program にコンパイルしている人が多かった気が。</p>
+</li>
+<li>
+<p><a href="http://2015.icfpcontest.org/">2015</a></p>
+<p>Scala で参加。 <a href="https://github.com/hayatoito/icfpc2015/">Code</a> (<a href="https://plus.google.com/+HayatoIto/posts/5xzjW21xGQU">感想</a>)</p>
+<p>六角形のマスをつかったテトリスの AI をつくる問題。</p>
+</li>
+<li>
+<p><a href="http://icfpc2016.blogspot.jp/2016/08/task-description.html">2016</a></p>
+<p>Rust で参加。 <a href="https://github.com/hayatoito/icfpc2016-origami/">Code</a></p>
+<p>入力としてすでに折った後の折り紙の形が与えられます。折り方を見つけてくださいという問題。</p>
+</li>
+</ul>
+<h2 id="_21">動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? <a name="dynamic-programming-language-is-dead"></a></h2>
+<p>これもよく聞かれる質問です。自分で考えましょう。問題解決にあたって最適な道具を選択するのも、ソフトウェアエンジニアにとって大事なスキルのひとつです。</p>
+<p>以下は私の（まとまっていない）意見です。</p>
+<p>動的言語の「動的」性がどうしても必要になるプログラムというのは1%もないのですが、実際はそれ以上の割合で動的言語が使用されています。</p>
+<p>人類が静的型チェックなしの動的スクリプト言語に費やしたこの20年くらいは、将来黒歴史として語り継がれるかもしれません。
+「原理的に遅い」けれど「コンピュータの速度は毎年速くなるから大丈夫！」といった「言い訳」のセリフも今となっては、通用しなくなってしまいました。ムーアの法則も崩壊して、実在する動的言語技術を用いて実用的なブラウザやOSが書ける見込みはほぼゼロです。</p>
+<p>正しくコンピュータの知識を身につけて「無駄なく」利用するという「いわれてみれば当たり前」のことが今後より重要視されるようになるでしょう。
+なんてことはない、もとの正常な状態に戻っただけです。</p>
+<p>「コンパイラ」技術や「ゼロコスト抽象化」といった技術は今後その価値が増す一方、それ以外の「コストが高い抽象化」の価値はどんどん失われていくことでしょう。</p>
+<p>「（速度はともかく）小規模なスクリプトだと静的言語より動的言語のほうが生産性が高いんです！」という主張も個人の限られた経験に基づくものがほとんどでたいていの場合疑ったほうがよいです。
+この主張をする人で、そもそもモダンな型システムをもっている安全で生産性の高いプログラミング言語の習得に、動的言語と同じくらいの時間を投資したことのある人はほとんどいないです。</p>
+<p>生産性についてちゃんとした議論をするためには、「静的言語」と「動的言語」というあいまいな言葉を使わないで、より具体的な個々のプログラミング言語にきちんと向き合うべきです。</p>
+<p>いちサンプルとして、私は Python は10年以上、Rust は2年弱ほど使用していますが、小規模な使い捨て「スクリプト」を書くときも
+すでに私はほとんどのユースケースにおいて Rust で書くほうが生産性が上になっています。</p>
+<p>ひとつの価値観にとらわれることなく、実際に自分で触れて経験して発見することはとても大事です。</p>
+<h2 id="rust_2">使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ <a name="rust-as-scripting"></a></h2>
+<p>そう思っていた時期がありました。しかし、Rust は <code>&lt;create_root&gt;/src/bin</code> 以下に <code>*.rs</code> ファイルをおいておくだけで、それぞれの <code>*.rs</code> をビルドして別の実行ファイルをつくってくれます。
+たとえば my-hello-world "スクリプト" を書きたいと思ったら <code>&lt;crate_root&gt;/src/bin/my-hello-world.rs</code> においておけば開発中は:</p>
+<div class="highlight"><pre><span></span>&gt; cargo run --bin my-hello-world [args...]
+</pre></div>
+
+
+<p>ですぐにテスト実行できます。 <code>&lt;crate_root&gt;/target/release</code> に PATH を通しておけば</p>
+<div class="highlight"><pre><span></span>&gt; cargo build --release
+</pre></div>
+
+
+<p>と必要に応じてまとめてビルドしておくだけで、普段は</p>
+<div class="highlight"><pre><span></span>&gt; my-hello-world
+</pre></div>
+
+
+<p>で普通に呼び出せるので完全にスクリプト感覚で使用できます。 <code>&lt;crate_root&gt;/src/bin</code> の仕組みがなかったら、普段使いの"スクリプト"言語として Python を Rust で置き換えようとはきっと思わなかったでしょう。</p>
+<h2 id="_22">初心者にプログラミングを教えるとき「変数は箱」は変ですか？ <a name="variable-is-not-box"></a></h2>
+<p>やめましょう。その例えは表現力に乏しく、ほとんどのケースにおいて不適切ですぐに破綻します。混乱の元です。</p>
+<p>オススメは最初からメモリをきちんと意識してもらうこと、これが一番の近道です。</p>
+<p>慣れないうちは、以下のようにメモリー上の「表」を自分で書いてみるのがよいです。大事なのは、それぞれの変数に対して address と value の「両方」を最初から意識することです。</p>
+<div class="highlight"><pre><span></span>address  variable  value
+10:       mut a      0 (u8)
+11:       mut b      1 (u8)
+12:       mut a1    10 (&amp;mut u8)
+13:           a2    12 (&amp;mut &amp;mut u8)
+</pre></div>
+
+
+<p>慣れてくると、コードを見るだけでこのような「表」が自然と頭の中で構築されるようになるでしょう。
+関数呼び出しの際も「値渡し」「参照渡し」という曖昧な言葉を使うのはできるだけ避けて、最初からメモリ（スタック）を意識して理解するようにすれば、覚えなければいけない「ルール」はぐっと減ります。</p>
+<p>例えば以下のような、Rust のコードの場合:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">a</span>: <span class="kt">u8</span> <span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="o">**</span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="o">*</span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+
+
+<p>以下のようになります。変数の型はほとんどの場合省略できますがここではあえて書いています。</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">a</span>: <span class="kt">u8</span> <span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">b</span>: <span class="kt">u8</span> <span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// address  variable  value</span>
+<span class="c1">// 10:       mut a      0 (u8)</span>
+<span class="c1">// 11:       mut b      1 (u8)</span>
+
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">a1</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="kt">u8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// address  variable  value</span>
+<span class="w">    </span><span class="c1">// 10:       mut a      0 (u8)</span>
+<span class="w">    </span><span class="c1">// 11:       mut b      1 (u8)</span>
+<span class="w">    </span><span class="c1">// 12:       mut a1    10 (&amp;mut u8)</span>
+
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">a2</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="kt">u8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// address  variable  value</span>
+<span class="w">        </span><span class="c1">// 10:       mut a      0 (u8)</span>
+<span class="w">        </span><span class="c1">// 11:       mut b      1 (u8)</span>
+<span class="w">        </span><span class="c1">// 12:       mut a1    10 (&amp;mut u8)</span>
+<span class="w">        </span><span class="c1">// 13:           a2    12 (&amp;mut &amp;mut u8)</span>
+
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="o">**</span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// address  variable  value</span>
+<span class="w">        </span><span class="c1">// 10:       mut a      2 (u8)</span>
+<span class="w">        </span><span class="c1">// 11:       mut b      1 (u8)</span>
+<span class="w">        </span><span class="c1">// 12:       mut a1    10 (&amp;mut u8)</span>
+<span class="w">        </span><span class="c1">// 13:           a2    12 (&amp;mut &amp;mut u8)</span>
+
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="o">*</span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// address  variable  value</span>
+<span class="w">        </span><span class="c1">// 10:       mut a      2 (u8)</span>
+<span class="w">        </span><span class="c1">// 11:       mut b      1 (u8)</span>
+<span class="w">        </span><span class="c1">// 12:       mut a1    11 (&amp;mut u8)</span>
+<span class="w">        </span><span class="c1">// 13:           a2    12 (&amp;mut &amp;mut u8)</span>
+
+<span class="w">        </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">**</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// address  variable  value</span>
+<span class="w">    </span><span class="c1">// 10:       mut a      2 (u8)</span>
+<span class="w">    </span><span class="c1">// 11:       mut b      1 (u8)</span>
+<span class="w">    </span><span class="c1">// 12:       mut a1    11 (&amp;mut u8)</span>
+
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// address  variable  value</span>
+<span class="w">    </span><span class="c1">// 10:       mut a      2 (u8)</span>
+<span class="w">    </span><span class="c1">// 11:       mut b      3 (u8)</span>
+<span class="w">    </span><span class="c1">// 12:       mut a1    11 (&amp;mut u8)</span>
+
+<span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="o">*</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// address  variable  value</span>
+<span class="c1">// 10:       mut a      2 (u8)</span>
+<span class="c1">// 11:       mut b      3 (u8)</span>
+
+<span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+
+
+<ul>
+<li>address の値はここでは適当です。他と区別するのに必要十分であればOKです。</li>
+<li>上の表の <code>u8</code>, <code>&amp;mut u8</code> など各変数の型や型のサイズも意識するとよいです。
+  上の例でいえば、<code>u8</code> は 1 byte、<code>&amp;mut u8</code> などの 「ポインタ」 は 64bit architecture だと 8 bytes です。address の「間隔」も本来であれば型のサイズで調整します。</li>
+<li>実際はスタックに加えてヒープも意識する必要があります。例えば Java だと Primitive Type 以外はヒープにアロケートされます。常にヒープの表とスタックの表の両方を（最初のうちは）書くようにしましょう。</li>
+</ul>
+<p>この FAQ エントリは、何度も同じ説明をホワイトボードに書くのがつらくなったため参照してもらうために書きました。</p>
+<p>Todo: ヒープの例を追加。</p>
+<p><em>「プログラミングとはメモリの Syntax Sugar である。」</em></p>
+<h1 id="_23">開発環境 <a name="dev-env"></a></h1>
+<h2 id="_24">キーボードは何を使用していますか？ <a name="keyboard"></a></h2>
+<p><a href="https://www.microsoft.com/accessories/en-us/business/sculpt-ergonomic-keyboard-for-business/5kv-00001">Sculpt Ergonomic Keyboard for Business</a>。</p>
+<p>このキーボード（US配列版）は残念ながら日本では販売していません。</p>
+<h2 id="_25">おすすめのエディタは？ <a name="recommended-editor"></a></h2>
+<p>ないです。</p>
+<h2 id="_26">エディタは何を使用してますか？ <a name="editor"></a></h2>
+<p>（Scala 以外は） Emacs。</p>
+<hr>
+<p>ちなみに観測範囲においては Google のソフトウェアエンジニアは (Java や Objective-C を書く人を除くと）Emacs を使う人がほとんどです。Emacs ユーザーの割合は 80% を超えると思います。</p>
+<h2 id="emacs">Emacs で使用しているパッケージは？ <a name="emacs"></a></h2>
+<p>使用している e-lisp library をひとつひとつ挙げるのはとても難しいです...。
+Emacs に標準で付属していない・自分でインストールしたパッケージなら、リストにするのは簡単にできます。以下の通りです。</p>
+<p>★ が付いているのは、特定の言語用の Major Mode ではなく、汎用的に使用する・オススメできるものです。</p>
+<ul>
+<li>ace-window</li>
+<li>avy</li>
+<li>back-button</li>
+<li>bind-key</li>
+<li>c-eldoc</li>
+<li>company ★</li>
+<li>company-jedi</li>
+<li>company-statistics</li>
+<li>company-tern</li>
+<li>company-web</li>
+<li>counsel ★</li>
+<li>easy-repeat</li>
+<li>epc</li>
+<li>exec-path-from-shell</li>
+<li>expand-region</li>
+<li>flycheck ★</li>
+<li>ggtags</li>
+<li>git-gutter+</li>
+<li>haskell-mode</li>
+<li>htmlize</li>
+<li>imenu-anywhere</li>
+<li>ivy ★</li>
+<li>jedi-core</li>
+<li>jinja2-mode</li>
+<li>js2-mode,</li>
+<li>magit ★</li>
+<li>markdown-mode</li>
+<li>multiple-cursors ★</li>
+<li>racer</li>
+<li>rainbow-delimiters</li>
+<li>rtags</li>
+<li>rust-mode</li>
+<li>scala-mode2</li>
+<li>smart-mode-line</li>
+<li>swiper ★</li>
+<li>term+</li>
+<li>tern</li>
+<li>undo-tree</li>
+<li>visual-regexp</li>
+<li>web-mode</li>
+<li>wgrep ★</li>
+<li>which-key</li>
+<li>yaml-mode</li>
+<li>yasnippet</li>
+</ul>
+<h2 id="emacs-1">Emacs の設定ファイルが1万行くらいあると聞いたのですがほんとうですか？ <a name="emacs-el"></a></h2>
+<p>一時期そういう噂が流れましたが、いまはぐっと減っていると思います。安心してください。</p>
+<p><code>&lt;2016-12-15 Thu&gt;</code> 数えてみたところ、たったの 5,000 行でした。</p>
+<div class="highlight"><pre><span></span>$ wc emacs/*.el
+     <span class="m">330</span>    <span class="m">1412</span>   <span class="m">17854</span> emacs/custom.el
+     <span class="m">471</span>    <span class="m">1166</span>   <span class="m">13912</span> emacs/emacs.el
+      <span class="m">17</span>      <span class="m">52</span>     <span class="m">459</span> emacs/my-ace-window.el
+      <span class="m">74</span>     <span class="m">316</span>    <span class="m">3137</span> emacs/my-ansi-color.el
+      <span class="m">25</span>      <span class="m">72</span>     <span class="m">869</span> emacs/my-auto-insert.el
+      <span class="m">32</span>      <span class="m">84</span>    <span class="m">1142</span> emacs/my-back-button.el
+      <span class="m">34</span>     <span class="m">121</span>    <span class="m">1224</span> emacs/my-bookmark.el
+      <span class="m">21</span>      <span class="m">42</span>     <span class="m">505</span> emacs/my-browse-url.el
+      <span class="m">59</span>     <span class="m">130</span>    <span class="m">1673</span> emacs/my-cc.el
+     <span class="m">193</span>     <span class="m">521</span>    <span class="m">7040</span> emacs/my-chrome.el
+      <span class="m">52</span>     <span class="m">131</span>    <span class="m">1713</span> emacs/my-clipboard-sync.el
+     <span class="m">113</span>     <span class="m">236</span>    <span class="m">3419</span> emacs/my-company.el
+      <span class="m">67</span>     <span class="m">170</span>    <span class="m">2546</span> emacs/my-compile.el
+     <span class="m">129</span>     <span class="m">372</span>    <span class="m">4947</span> emacs/my-counsel.el
+      <span class="m">41</span>     <span class="m">124</span>    <span class="m">1275</span> emacs/my-dabbrev.el
+      <span class="m">65</span>     <span class="m">196</span>    <span class="m">2568</span> emacs/my-dir-locals.el
+      <span class="m">99</span>     <span class="m">247</span>    <span class="m">2993</span> emacs/my-dired.el
+      <span class="m">17</span>      <span class="m">46</span>     <span class="m">482</span> emacs/my-dumb-jump.el
+      <span class="m">20</span>      <span class="m">30</span>     <span class="m">430</span> emacs/my-easy-repeat.el
+      <span class="m">56</span>     <span class="m">153</span>    <span class="m">2002</span> emacs/my-ediff.el
+      <span class="m">84</span>     <span class="m">218</span>    <span class="m">2548</span> emacs/my-emacs-lisp.el
+      <span class="m">23</span>      <span class="m">53</span>     <span class="m">786</span> emacs/my-exec-path-from-shell.el
+       <span class="m">7</span>      <span class="m">12</span>     <span class="m">131</span> emacs/my-expand-region.el
+      <span class="m">60</span>     <span class="m">157</span>    <span class="m">2160</span> emacs/my-filecache.el
+      <span class="m">36</span>      <span class="m">78</span>    <span class="m">1115</span> emacs/my-flycheck.el
+     <span class="m">105</span>     <span class="m">283</span>    <span class="m">3366</span> emacs/my-frame.el
+       <span class="m">7</span>      <span class="m">12</span>     <span class="m">115</span> emacs/my-ggtags.el
+      <span class="m">13</span>      <span class="m">26</span>     <span class="m">272</span> emacs/my-go.el
+      <span class="m">42</span>     <span class="m">101</span>    <span class="m">1127</span> emacs/my-google3.el
+      <span class="m">12</span>      <span class="m">19</span>     <span class="m">221</span> emacs/my-haskell.el
+      <span class="m">69</span>     <span class="m">163</span>    <span class="m">2038</span> emacs/my-helm.el
+      <span class="m">36</span>      <span class="m">96</span>     <span class="m">896</span> emacs/my-hydra.el
+      <span class="m">29</span>      <span class="m">80</span>     <span class="m">876</span> emacs/my-imenu-anywhere.el
+      <span class="m">38</span>      <span class="m">84</span>     <span class="m">893</span> emacs/my-init.el
+      <span class="m">60</span>     <span class="m">169</span>    <span class="m">1878</span> emacs/my-ivy.el
+      <span class="m">64</span>     <span class="m">185</span>    <span class="m">1796</span> emacs/my-js2.el
+     <span class="m">102</span>     <span class="m">269</span>    <span class="m">3181</span> emacs/my-kings-viking.el
+      <span class="m">14</span>      <span class="m">45</span>     <span class="m">460</span> emacs/my-linux.el
+      <span class="m">27</span>      <span class="m">84</span>     <span class="m">717</span> emacs/my-mac-ns.el
+      <span class="m">16</span>      <span class="m">42</span>     <span class="m">514</span> emacs/my-mac.el
+      <span class="m">47</span>      <span class="m">95</span>    <span class="m">1195</span> emacs/my-magit.el
+      <span class="m">26</span>      <span class="m">69</span>     <span class="m">708</span> emacs/my-markdown.el
+     <span class="m">331</span>     <span class="m">971</span>   <span class="m">10738</span> emacs/my-memo.el
+      <span class="m">89</span>     <span class="m">245</span>    <span class="m">3007</span> emacs/my-nxml.el
+     <span class="m">267</span>     <span class="m">777</span>    <span class="m">9537</span> emacs/my-org.el
+      <span class="m">19</span>      <span class="m">34</span>     <span class="m">370</span> emacs/my-outline.el
+     <span class="m">155</span>     <span class="m">424</span>    <span class="m">5922</span> emacs/my-perspective.el
+      <span class="m">13</span>      <span class="m">34</span>     <span class="m">352</span> emacs/my-platform.el
+      <span class="m">52</span>     <span class="m">117</span>    <span class="m">1322</span> emacs/my-python.el
+      <span class="m">24</span>      <span class="m">41</span>     <span class="m">532</span> emacs/my-rescue.el
+     <span class="m">164</span>     <span class="m">516</span>    <span class="m">5842</span> emacs/my-rtags.el
+     <span class="m">120</span>     <span class="m">313</span>    <span class="m">3926</span> emacs/my-rust.el
+      <span class="m">81</span>     <span class="m">223</span>    <span class="m">2769</span> emacs/my-scala.el
+      <span class="m">27</span>      <span class="m">55</span>     <span class="m">500</span> emacs/my-scratch.el
+      <span class="m">44</span>     <span class="m">130</span>    <span class="m">1400</span> emacs/my-shackle.el
+      <span class="m">27</span>      <span class="m">65</span>     <span class="m">933</span> emacs/my-smart-mode-line.el
+       <span class="m">6</span>      <span class="m">11</span>     <span class="m">118</span> emacs/my-smartparens.el
+      <span class="m">54</span>     <span class="m">133</span>    <span class="m">1657</span> emacs/my-swiper.el
+      <span class="m">76</span>     <span class="m">257</span>    <span class="m">2300</span> emacs/my-term.el
+      <span class="m">19</span>      <span class="m">54</span>     <span class="m">656</span> emacs/my-undo-tree.el
+     <span class="m">476</span>    <span class="m">1197</span>   <span class="m">15433</span> emacs/my-util.el
+     <span class="m">106</span>     <span class="m">300</span>    <span class="m">3727</span> emacs/my-web.el
+      <span class="m">17</span>      <span class="m">31</span>     <span class="m">419</span> emacs/my-wgrep.el
+     <span class="m">151</span>     <span class="m">480</span>    <span class="m">6780</span> emacs/my-workaround.el
+      <span class="m">54</span>     <span class="m">116</span>    <span class="m">1480</span> emacs/my-xterm-color.el
+      <span class="m">34</span>      <span class="m">73</span>     <span class="m">895</span> emacs/my-yasnippet.el
+    <span class="m">5238</span>   <span class="m">14558</span>  <span class="m">177798</span> total
+</pre></div>
+
+
+<h2 id="emacs_1">Emacs の設定ファイルを公開する予定はありますか？ <a name="emacs-el-publish"></a></h2>
+<p>ありません。</p>
+<h2 id="python">Python の開発環境は? <a name="python-dev"></a></h2>
+<ul>
+<li>Emacs (python-mode, jedi-mode, company-mode, flycheck, flycheck-mypy)</li>
+<li>mypy, ipython, pyenv, flake8</li>
+</ul>
+<h2 id="html-css-javascript">HTML / CSS / JavaScript の開発環境は? <a name="web-dev"></a></h2>
+<ul>
+<li>Emacs (web-mode, nxml-mode, js2-mode, tern-mode, flycheck)</li>
+<li>babel, eslint, csslint, tidy-html5</li>
+</ul>
+<h2 id="c">C++ の開発環境は? <a name="cpp-dev"></a></h2>
+<ul>
+<li>Emacs (cc-mode, <a href="https://github.com/Andersbakken/rtags">rtags</a>, flycheck-rtags, company-rtags)</li>
+<li><a href="https://eclipse.org/cdt/">Eclipse CDT</a></li>
+<li>Build: <a href="https://waf.io/">waf</a> / make /  <a href="https://chromium.googlesource.com/chromium/src/tools/gn/">gn</a> + <a href="https://ninja-build.org/">ninja</a></li>
+</ul>
+<p>rtags はとてもオススメです。</p>
+<p>ビルドツールである ninja や CMake は <a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html">JSON Compilation Database Format Specification</a> を出力できます。
+rtags はこの情報をもとにコードを解析するので、シンボル・ジャンプや補完がほぼ正確です。
+私も実際に Blink の開発で使用しています。</p>
+<h2 id="rust_3">Rust の開発環境は? <a name="rust-dev"></a></h2>
+<ul>
+<li>Emacs (rust-mode, <a href="https://github.com/phildawes/racer">racer</a>, flycheck, company-mode)</li>
+<li><a href="https://github.com/rust-lang-nursery/rustup.rs">rustup</a></li>
+</ul>
+<h2 id="scala">Scala の開発環境は? <a name="scala-dev"></a></h2>
+<ul>
+<li>sbt</li>
+<li>Eclipse (<a href="http://scala-ide.org/">Scala IDE</a>) (+ <a href="http://www.mulgasoft.com/">Emacs+ Eclipse plugin</a>)</li>
+</ul>
+<h2 id="_27">メモ はどのようにとってますか？ <a name="memo"></a></h2>
+<p>Emacs + org-mode (アウトラインエディタとして) + org-babel (コード実行できるメモ環境として)。</p>
+<p>アウトラインエディタはとても重要です。Todo やメモなどはすべて アウトラインエディタ ( Emacs + org-mode ) で管理しています。</p>
+<h1 id="_28">オススメの本や勉強方法 <a name="study"></a></h1>
+<p>基本的に人にオススメとかはしないです。自分で見つけましょう。</p>
+<p>以下は単なる私の感想です。</p>
+<h2 id="_29">オススメの本は？ <a name="book"></a></h2>
+<ul>
+<li>
+<p><a href="https://mitpress.mit.edu/sicp/">SICP: Structure and Interpretation of Computer Programs</a>: ★★★★★★★</p>
+<p>名著です。カバーする範囲はとても多岐に渡ります。大好きな本です。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Introduction-Theory-Computation-Michael-Sipser/dp/1133187811/">Introduction to the Theory of Computation</a>: ★★★★★</p>
+<p>実用性はあまりないのかもしれませんが、とても面白いです。「計算するとはいったいどういうことか？」ということを、「証明の力」で鮮やかに切っていきます。
+私はこの手の本を読むのがわりと好きだったりします。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025">Concreate Mathematics</a>: ★★★★</p>
+<p>Knuth 先生の隠れた名著。離散数学楽しいです。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/C-Programming-Language-Bjarne-Stroustrup-ebook/dp/B00DUW4BMS/">The C++ Programming Language, 4th Edition</a>: ★★★★</p>
+<p>C++ 11 に関しての知識が足りないな―と思って読んだ本です。なんといっても、著者は、C++ の作者である Stroustrup さんです。
+古い仕様にとらわれず、最初から C++ 11 の機能をきっちり使っていきます。最初のほうはチュートリアル形式で解説していくので、C++ の初学書にも実はよいのかもしれません。
+そのあまりのボリュームのためぜんぶ読むのは大変なのですが、C++ 好きなら読むのを苦痛に感じることはなく楽しく読めると思います。</p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/dp/B00PGCMGDQ/">Effective Modern C++</a>: ★★</p>
+<p>（Effective C++ と比較した場合）ちょっと重箱の隅をつつきすぎ、という感想をもってはいけないのかもしれませんが、ちょっと蛇足が多いかなーと。</p>
+</li>
+<li>
+<p><a href="http://shop.oreilly.com/product/0636920040385.do">Programming Rust</a>: TODO</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/gp/product/0201543303">The Design and Evolution of C++</a>: ★★★★</p>
+<p>これも Stroustrup さんの本です。技術書というより歴史的な読み物です。C++ 使いなら、涙なしでは読むことのできないノン・フィクションです。
+とても共感できます。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/API-Design-C-Martin-Reddy-ebook/dp/B004NNUZ6O/">API Design for C++</a>: ★★</p>
+<p>楽しみにしていたものの、わりと当たり前のことしか書いてなかった気がします。そのため、ほとんど内容を覚えていないです...。ごめんなさい。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Code-Complete-Developer-Best-Practices-ebook/dp/B00JDMPOSY/">Code Complete (Developer Best Practices)</a>: ★★★</p>
+<p>これも当たり前のことしか書いてなかった気がします。そのため、あまり印象にのこっていないです...。
+当たり前のことを当たり前に身につけるにはとてもいいショートカットになるのかも。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Programming-Scala-Comprehensive-Step---Step-ebook/dp/B004Z1FTXS/">Programming in Scala: A Comprehensive Step-by-Step Guide</a>: ★★★★</p>
+<p>Scala をはじめたときに一通りの知識を身につけるため読みました。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Hacking-Art-Exploitation-ebook/dp/B004OEJN3I/">Hacking: The Art of the Exploitation</a> ★★★★</p>
+<p>ハッキングは芸術です。「こんな本、他に誰が読むんだろう」と思っていたら、以外に Amazon.com などでの順位が高くて、びっくりした覚えがあります...。
+前半部分がとてもよいです。特に3章。1章、2章でつくったプログラムには実は脆弱性があって、3章ではそこをついて、特権を奪っていく過程がとてもエキサイティングです。</p>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Types-Programming-Languages-Benjamin-Pierce-ebook/dp/B00AJXZ5JE/">Types and Programming Languages</a>: ★★★★★</p>
+<p>型理論は、コンピュータ・サイエンスの中でも理論が実際にとても役立っている貴重な分野のひとつだと思います。
+TAPL では OCaml が使用されていますが、自分の好きな言語ですべての演習をやってみるというのもありだと思います。
+私は以下の章は OCaml ではなく <a href="https://github.com/hayatoito/tapl-in-rust">Rust で実装</a>しました。</p>
+<ul>
+<li>chapter 4: An ML Implementation of Arithmetic Expressions</li>
+<li>chapter 7: An ML Implementation of the Lambda-Calculus</li>
+<li>chapter 10: An ML Implementation of Simple Types</li>
+<li>chapter 17: An ML Implementation of Subtyping</li>
+<li>chapter 25: An ML Implementation of System F</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.amazon.com/Functional-Programming-Scala-Paul-Chiusano/dp/1617290653/">Functional Programming in Scala</a>: ★★★★</p>
+<p>「関数型プログラミングとは！」とは頭の中で理解するものではなく体得するものです。この本はまさにそれに応えてくれます。
+前半、いろいろなものを自作させられます。そして、後半で、「ほーら、いままで作ってきたものは、全部、同じような類似点があったでしょ。それが、モ・ナ・ド♡」と優しく教えてくれます。</p>
+</li>
+<li>
+<p>TODO: 追加する</p>
+</li>
+</ul>
+<h2 id="coursera-udacity">Coursera や Udacity でのおすすめの オンラインのコースは？ <a name="course"></a></h2>
+<ul>
+<li>
+<p><a href="https://www.udacity.com/course/intro-to-artificial-intelligence--cs271">Intro to Artificial Intelligence</a>: ★</p>
+<p><a href="https://plus.google.com/+HayatoIto/posts/GxdKuvVsN5E">感想</a></p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/course/compilers">Compilers</a>: ★★★★</p>
+<p>COOL という Mini Object Oriented Language のコンパイラをつくるコースです。一度もコンパイラをつくったことがないのなら、とても楽しいと思います。</p>
+</li>
+<li>
+<p><a href="https://www.coursera.org/course/optimization">Discreate Optimization</a>: ★★★</p>
+<p>離散最適化に関する数々の理論とテクニックを学べます。なんといっても、講師の先生がノリノリです。</p>
+</li>
+<li>
+<p>TODO: 他のコースを追加。</p>
+</li>
+</ul>
+<h2 id="python_1">Python のオススメの勉強方法は? <a name="python-study"></a></h2>
+<ul>
+<li>
+<p><a href="https://docs.python.org/3/tutorial/">The Python Tutorial</a> :  ★★★★★</p>
+<p>Python は公式のチュートリアルがとてもよいので、これだけ読めば最初は十分です。</p>
+</li>
+</ul>
+<h2 id="haskell">Haskell のオススメの勉強方法は? <a name="haskell-study"></a></h2>
+<ul>
+<li>
+<p><a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good!</a>: ★★★★★</p>
+<p>最初は圧倒的にこれがオススメです。Haskell そのものは学ぶつもりはないけれど、「関数型プログラミングの考え方」だけはきちんと理解したいという人にもよいかもしれません。</p>
+</li>
+</ul>
+<h2 id="scala_1">Scala のオススメの勉強方法は? <a name="scala-study"></a></h2>
+<ul>
+<li>TODO: 書きます。</li>
+</ul>
+<h2 id="rust_4">Rust のオススメの勉強方法は?  <a name="rust-study"></a></h2>
+<ul>
+<li>TODO: 落ち着いたら書きます。</li>
+</ul>
+<h1 id="_30">ソフトウェア・エンジニアリング <a name="software-engineering"></a></h1>
+<h2 id="_31">オブジェクト指向って何ですか？ <a name="object-oriented"></a></h2>
+<p>Google 社内で「オブジェクト指向」というい単語が会話にでてくることはまずありません。
+コードレビュー等では、もっと具体的な内容を指摘し合います。そのような曖昧な言葉がでてくる場面はほとんどないです。
+「ここはオブジェクト指向っぽくない」のようなレビューコメント見たことないです。レビューではもっと具体的に指摘します。</p>
+<p>(... 質問に対する答えになっていないですね。ごめんなさい.)</p>
+<h2 id="_32">テスト駆動開発って何ですか？ <a name="tdd"></a></h2>
+<p>Google 社内で「テスト駆動開発」という単語が会話にでてくることはまずありません。
+テストを書くのは当たり前のことであり、わざわざそれが開発の「駆動」のもとになるとか、ちょっと意味がわかりません。</p>
+<p>大事なのはきちんとテストを書くことであり、「テスト駆動」ではありません。</p>
+<h2 id="_33">エンジニアの採用を担当しています。優秀と思って採用したエンジニアが、まったくの期待はずれであることが多いです。よいソフトウェア・エンジニアをどうやって見分けているのですか？ <a name="jirai"></a></h2>
+<p>少なくとも以下の条件にあてはまる人はよいエンジニアじゃない可能性が大です。外から見ると一見「よさそう」にみえますが、たいていの場合中の人からはまったく評価されてないケースがほとんどです。</p>
+<ul>
+<li>「データサイエンティスト」という単語を含むツイートを1年に10回以上している。</li>
+<li>「オブジェクト指向」という単語を含むツイートを1年に10回以上している。</li>
+<li>「日本のエンジニア」という単語を含むツイートを1年に30回以上している。</li>
+<li>「エンジニアの地位向上」という単語を含むツイートを1年に10回以上している。</li>
+<li>「日本のIT業界」という単語を含むツイートを1年に10回以上している。</li>
+<li>「シリコンバレー」という単語を含むツイートを1年に10回以上している。</li>
+<li>「XXX入門」という本を書いているが、内容は公式ドキュメントの劣化コピー。</li>
+<li>「はじめてのXXX」という本を書いているが、内容は公式ドキュメントの劣化コピー。</li>
+<li>雑誌に自分がつくったわけではない他人がつくったプロダクトの解説記事を連載している。</li>
+<li>その他、募集中です。 何か載せたいものがある場合は <a href="https://github.com/hayatoito/hayatoito.github.io/issues">GitHub Issues</a> の方にコメントお願いします。</li>
+</ul>
+<p>大事なのは、ちゃんと自社の組織やプロダクトにきっちり貢献する人だと思いますので（それだけじゃないけど...）、そこを重視するとよいと思います。派手じゃないけれど、大事な部分にしっかり貢献しているところをきちんと見てあげてください。</p>
+<h1 id="_34">その他 <a name="misc"></a></h1>
+<h2 id="_35">タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。<a name="roppongi"></a></h2>
+<p>ほんとそう思います。気にしているんですからそこは触れないでください。ほんとすいません。とある事情で...。</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="next"><a href="https://hayato.io/2016/shadowdomv1/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+            <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

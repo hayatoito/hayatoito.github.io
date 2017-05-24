@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogger Betaに移行 — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2006/200610bloggerbeta/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      Blogger Betaに移行
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2006-10-30">
+        2006-10-30
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>Blogger Betaに移行してみました。大きな変更点としては</p>
+<ul>
+<li>Labelが使えるようになった</li>
+<li>テンプレート・システムがまったく新しくなっている</li>
+<li>ページを動的に作成するようになったので、テンプレートを変更するとすぐにページに反映される</li>
+</ul>
+<p>といったところでしょうか？</p>
+<h1 id="_1">テンプレート・システム</h1>
+<p>新しいテンプレート・システムのうりのひとつは、ブラウザ上でGUIでデザインできることです。
+必ずGUIを使う必要はなく、全部自分で手作業で設定することももちろん可能でした。
+いい機会ですので、新規にテンプレート・CSSを作成してみました。
+テンプレートのタグも新規タグが用意されています。
+これまでより細部で機能アップしてますね。
+ほとんど全ての箇所をいじることができる自由度は相変わらず健在ですので、
+特にデザイン上支障はありません。
+GUIデザイン用に使用されるテンプレート内の変数部分は、わずらわしいので全部消去しました。</p>
+<h1 id="_2">スタイルシートの動的切り替え</h1>
+<p>「Printer Friendly View」 は <a href="http://alistapart.com/stories/alternate/">Alternative Style: Working With Alternate
+Style Sheets</a>
+を参考にしてみました。 スタイルシートを動的に切り替えることができます。</p>
+<h1 id="google-data-apis">Google Data APIs</h1>
+<p>ブラウザから記事を投稿する人には関係のない話ですが、 私の場合は、記事は
+<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>
+形式でローカルで書いてから、
+自作のPythonスクリプトで記事を投稿できるようにしています。
+Bloggerでは、そのためにATOM APIが用意されています。
+こちらもBetaでは変更が入り、 <a href="http://code.google.com/apis/gdata/">Google Data
+APIs</a> を用いるようになりました。</p>
+<p>主な変更点としては、</p>
+<ul>
+<li>ATOM APIのバージョンが0.3から1.0に変更</li>
+<li>認証システムも、Basic認証から、 <a href="http://code.google.com/apis/accounts/Authentication.html">Google Account
+    Authentication</a>
+    に変更</li>
+</ul>
+<p>といったところです。 <a href="http://code.google.com/apis/gdata/blogger.html">Blogger Data
+API</a>
+として使用方法が解説してありますので、ここを見れば簡単です。</p>
+<p>JavaやC#用のクライアント・ライブラリも用意されていましたが、
+reStructutedTextの変換を考えるとやはりPythonのほうがよいと思い、
+Pythonでクライアントを書きました。
+ATOMを使用するにあたり、いくつかすんなりとはいかなかった点としては、</p>
+<ol>
+<li>指定されたPost先にPost要求を出すと、Betaのサーバはリダイレクトを返してきます。</li>
+<li>投稿に成功した場合、ステータスコード201を返してきます。</li>
+</ol>
+<p>この2点です。
+Pythonの標準のAPI(urllib/urllib2)では、Post要求に対してリダイレクトが返って来ると、
+リダイレクト先へPostを再送するのではなくGet要求を出してしまいます。
+また、ステータスコード201もエラー扱いするようになっていました。
+そのため、自分で <code>urllib2.HTTPRedirectHandler</code>
+をもとにした、ちょっとしたハックが必要になります。</p>
+<p>その他に気づいた問題点は、新規記事をATOM
+1.0で送る時、&lt;published&gt;での日付指定が無視されてしまうことです。
+これは、現在サーバ側の問題らしく、 <a href="http://groups.google.com/group/bloggerDev/">Blogger Dev
+Group</a>
+で議論されていますのでいずれ解決しそうです。</p>
+<p>これでほぼ移行作業が完了しましたが、全体としてはBetaの方がはるかに使いやすくなりましたね。
+なによりラベルが使えるようになったのがいちばんうれしいですね。</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2006/200610googlecodejam-final/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2006/200609googlecodejam-round1/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

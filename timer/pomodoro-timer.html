@@ -1,0 +1,71 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<link rel="import" href="bower_components/iron-icons/iron-icons.html" >
+<link rel="import" href="bower_components/iron-icons/av-icons.html" >
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+
+<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="pomodoro-timer">
+  <style>
+    :host {
+      @apply(--layout-vertical);
+    }
+    #time {
+      font-weight: 200;
+      margin-left: 0.5em;
+      margin-bottom: 0.2em;
+      letter-spacing: 0.05em;
+      color: #333;
+      font-size: 72px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    paper-radio-group {
+      margin-top: 0.4em;
+      margin-left: 0.8em;
+    }
+    paper-radio-button {
+      margin: -0.4em;
+    }
+  </style>
+  <template>
+    <style is="custom-style">
+      paper-radio-button.work {
+        --paper-radio-button-checked-color: var(--paper-pink-500);
+        --paper-radio-button-checked-ink-color: var(--paper-pink-500);
+        --paper-radio-button-unchecked-color: var(--paper-pink-100);
+        --paper-radio-button-unchecked-ink-color: var(--paper-pink-900);
+      }
+      paper-radio-button.break {
+        --paper-radio-button-checked-color: var(--paper-grey-500);
+        --paper-radio-button-checked-ink-color: var(--paper-grey-500);
+        --paper-radio-button-unchecked-color: var(--paper-grey-300);
+        --paper-radio-button-unchecked-ink-color: var(--paper-grey-900);
+        --paper-radio-button-label-color: var(--paper-grey-500);
+      }
+      .flex-horizontal {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+    </style>
+    <div id="time" class="flex-horizontal">
+      <span>[[timeMM]] [[timeSS]]</span>
+      <span><paper-icon-button on-click="reset" icon="av:replay" title="reset"></paper-icon-button></span>
+    </div>
+    <div class="flex-horizontal">
+      <paper-fab icon="[[startOrPauseIcon]]" on-click="startOrPause"></paper-fab>
+    </div>
+    <div class="flex-horizontal">
+      <paper-radio-group selected="[[currentSession.name]]">
+        <template is="dom-repeat" items="[[sessions]]">
+          <paper-radio-button name$="[[item.name]]" class$="{{item.type}}" on-click="selectSession"></paper-radio-button>
+        </template>
+      </paper-radio-group>
+    </div>
+  </template>
+  <script src="pomodoro-timer.js"></script>
+</dom-module>

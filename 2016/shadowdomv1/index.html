@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What's New in Shadow DOM v1 (by examples) — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2016/shadowdomv1/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      What's New in Shadow DOM v1 (by examples)
+    </h1>
+    <div class="text-right">
+      Hayato Ito (hayato@google.com)
+    </div>
+    <div class="text-right">
+      <time datetime="2016-06-22">
+        2016-06-22
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>This document is my attempt to track the difference between Shadow DOM v0 and v1.</p>
+<p>This is not a tutorial for Shadow DOM. Rather, this is my attempt to provide a guide for those who are already familiar with Shadow DOM v0 and want to migrate their components to v1.
+This guide should be considered work-in-progress. I will make my best efforts to maintain this guide.</p>
+<ul>
+<li>Last update date: <code>&lt;2016-10-05 Wed&gt;</code></li>
+</ul>
+<h1 id="creating-a-shadow-root">Creating a shadow root</h1>
+<h2 id="v0">v0</h2>
+<p>Use <code>Element.createShadowRoot()</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+</pre></div>
+
+
+<h2 id="v1">v1</h2>
+<p>Use <code>Element.attachShadow({ mode: 'open' })</code> for an <em>open</em> shadow root.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+</pre></div>
+
+
+<p>Use <code>Element.attachShadow({ mode: 'closed' })</code> for a <em>closed</em> shadow root.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;closed&#39;</span> <span class="p">});</span>
+</pre></div>
+
+
+<div class="article-danger">
+A <code>mode</code> is mandatory in v1.
+</div>
+
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="c1">// let shadowRoot = e.attachShadow(); // Throws an exception because `mode` is not given.</span>
+</pre></div>
+
+
+<h1 id="multiple-shadow-roots">Multiple Shadow Roots</h1>
+<h2 id="v0_1">v0</h2>
+<p>Supported.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">olderShadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">youngerShadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">createShadowRoot</span><span class="p">();</span>  <span class="c1">// It&#39;s okay. A shadow host can host more than one shadow roots.</span>
+</pre></div>
+
+
+<div class="article-danger">
+Though multiple shadow roots were originally introduced to support an <em>Inheritance Model</em> for components,
+Blink has already deprecated this feature even in v0. Do not use multiple shadow roots.
+</div>
+
+<h2 id="v1_1">v1</h2>
+<p>No longer supported.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+<span class="c1">// let another = e.attachShadow({ mode: &#39;open&#39; });  // Error.</span>
+</pre></div>
+
+
+<h1 id="a-closed-shadow-root">A closed shadow root</h1>
+<h2 id="v0_2">v0</h2>
+<p>A shadow root is always <em>open</em>.</p>
+<h2 id="v1_2">v1</h2>
+<p><em>v1</em> has a new kind of a shadow root, called <em>closed</em>.</p>
+<p>The design goal of a <em>closed</em> mode is to disallow any access to a node in a closed shadow root from an outside world.</p>
+<p>It is similar that a user's JavaScript can never access an <em>inside</em> of a <code>&lt;video&gt;</code> element in Google chrome.
+A <code>&lt;video&gt;</code> element is using a closed-mode shadow root in its implementation in Blink.</p>
+<p>Open:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">shadowRoot</span> <span class="o">==</span> <span class="nx">shadowRoot</span><span class="p">);</span>  <span class="c1">// It&#39;s okay. shadowHost.shadowRoot returns a shadow root if it is open.</span>
+</pre></div>
+
+
+<p>Closed:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span><span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;closed&#39;</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">assert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">shadowRoot</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>  <span class="c1">// shadowHost.shadowRoot does not return the shadow root if it is closed.</span>
+</pre></div>
+
+
+<p>The following APIs are subject to this kind of constraints:</p>
+<ul>
+<li>Element.shadowRoot</li>
+<li>Element.assignedSlot</li>
+<li>TextNode.assignedSlot</li>
+<li>Event.composedPath()</li>
+</ul>
+<div class="article-info">
+To be precise, a concept of a <a href="https://dom.spec.whatwg.org/#concept-unclosed-node">unclosed node</a> is used to decide its <em>visibility</em> between two nodes.
+A <a href="https://dom.spec.whatwg.org/#concept-unclosed-node">unclosed node</a> is a binary relation between two nodes.
+</div>
+
+<div class="article-danger">
+Shadow DOM is not a security mechanism. Please do not use Shadow DOM if you want a security.
+Nothing prevents <code>Element.prototype.attachShadow</code> from being hijacked.
+</div>
+
+<h1 id="elements-which-can-be-a-shadow-host">Elements which can be a shadow host</h1>
+<h2 id="v0_3">v0</h2>
+<p>Every element can be a shadow host, <em>theoretically</em>.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">shadowRoot1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">createShadowRoot</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">shadowRoot2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">).</span><span class="nx">createShadowRoot</span><span class="p">();</span>  <span class="c1">// Should be okay.</span>
+</pre></div>
+
+
+<div class=article-danger>
+This is not real. We never successfully define proper semantics for every elements.
+Thus, some of them do not work as intended. See this <a href="https://github.com/w3c/webcomponents/issues/511#issuecomment-223851226">comment</a> for the history.
+Blink has already banned most of the supports.
+</div>
+
+<h2 id="v1_3">v1</h2>
+<p>A limited number of elements can be a shadow host.</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">shadowRoot</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+<span class="c1">// document.createElement(&#39;input&#39;).attachShadow({ mode: &#39;open&#39; });  // Error. `&lt;input&gt;` can not be a shadow host.</span>
+</pre></div>
+
+
+<p>See the definition of the <a href="https://dom.spec.whatwg.org/#dom-element-attachshadow">attachShadow</a> for the complete list of such elements.
+Custom elements can be a shadow host.</p>
+<h1 id="insertion-points-v0-vs-slots-v1">Insertion Points (v0) vs Slots (v1)</h1>
+<h2 id="v0_4">v0</h2>
+<p>Use <code>&lt;content select=query&gt;</code> to select host's children. It can select host's children by CSS query selector.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">class</span><span class="o">=</span><span class="s">foo</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c3</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i1</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;.foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i2</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;my-child&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i3</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>The result is:</p>
+<table>
+<thead>
+<tr>
+<th>Insertion point</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#i1</td>
+<td>#c1</td>
+</tr>
+<tr>
+<td>#i2</td>
+<td>#c2, #c3</td>
+</tr>
+<tr>
+<td>#i3</td>
+<td>Empty</td>
+</tr>
+</tbody>
+</table>
+<p>The v0 also had <code>&lt;shadow&gt;</code> insertion points, however, let me skip the explanation of <code>&lt;shadow&gt;</code> because multiple shadow roots are deprecated.</p>
+<h2 id="v1_4">v1</h2>
+<p>Use <code>&lt;slot&gt;</code> to select host's children. It selects host's children by <em>exact</em> slot name matching.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot1</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot2</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c3</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree: --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s1</span> <span class="na">name</span><span class="o">=</span><span class="s">slot1</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s2</span> <span class="na">name</span><span class="o">=</span><span class="s">slot2</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s3</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>The result is:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#s1</td>
+<td>#c1</td>
+</tr>
+<tr>
+<td>#s2</td>
+<td>#c2</td>
+</tr>
+<tr>
+<td>#s3  (also known as the <em>"default slot"</em>)</td>
+<td>#c3</td>
+</tr>
+</tbody>
+</table>
+<h1 id="re-distribution-directly-v0-vs-indirectly-by-flattening-v1">Re-distribution: Directly (v0) vs Indirectly by flattening (v1)</h1>
+<h2 id="v0_5">v0</h2>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">class</span><span class="o">=</span><span class="s">foo</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c3</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-splatoon</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i1</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;.foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c4</span> <span class="na">class</span><span class="o">=</span><span class="s">foo</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i2</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;my-child&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i3</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-splatoon</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-splatoon&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i4</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;#c3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i5</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;.foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i6</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>The result is:</p>
+<table>
+<thead>
+<tr>
+<th>Insertion point</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#i1</td>
+<td>#c1</td>
+</tr>
+<tr>
+<td>#i2</td>
+<td>#c2, #c3</td>
+</tr>
+<tr>
+<td>#i3</td>
+<td>Empty</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Insertion point</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#i4</td>
+<td>#c3</td>
+</tr>
+<tr>
+<td>#i5</td>
+<td>#c1, #c4</td>
+</tr>
+<tr>
+<td>#i6</td>
+<td>#c2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="v1_5">v1</h2>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot1</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot2</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c3</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-splatoon</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s1</span> <span class="na">name</span><span class="o">=</span><span class="s">slot1</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot4</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s2</span> <span class="na">name</span><span class="o">=</span><span class="s">slot2</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot4</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c4</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot4</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s3</span> <span class="na">slot</span><span class="o">=</span><span class="s">slot6</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-splatoon</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-splatoon&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s4</span> <span class="na">name</span><span class="o">=</span><span class="s">slot4</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s5</span> <span class="na">name</span><span class="o">=</span><span class="s">slot5</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">s6</span> <span class="na">name</span><span class="o">=</span><span class="s">slot6</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>The result is:</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#s1</td>
+<td>#c1</td>
+</tr>
+<tr>
+<td>#s2</td>
+<td>#c2</td>
+</tr>
+<tr>
+<td>#s3</td>
+<td>#c3</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#s4</td>
+<td>#c1, #c2, #c4</td>
+</tr>
+<tr>
+<td>#s5</td>
+<td>empty</td>
+</tr>
+<tr>
+<td>#s6</td>
+<td>#c3</td>
+</tr>
+</tbody>
+</table>
+<p>You can find another complex <a href="http://w3c.github.io/webcomponents/spec/shadow/#flattening-example">example</a>
+in the Shadow DOM specification.</p>
+<h1 id="fallback-contents">Fallback contents</h1>
+<h2 id="v0_6">v0</h2>
+<p>No supports.</p>
+<div class=article-info>
+Blink has tried to support <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=380436">shadow as a function</a> as a similar feature.
+That should have archived "a constructor call for a super class", however, we gave it up.
+</div>
+
+<h2 id="v1_6">v1</h2>
+<p>Child nodes of <code>&lt;slot&gt;</code> can be used as <em>fallback contents</em>.
+A good analogy of this feature is "default value of function parameter" in a programming language.</p>
+<p>The following example is borrowed from <a href="https://codereview.chromium.org/1530643003">Blink's CL</a></p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top-level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;host&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;child1&#39;</span> <span class="na">slot</span><span class="o">=</span><span class="s">&#39;slot2&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- #host&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#39;slot1&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;fallback1&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#39;slot2&#39;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;fallback2&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#39;slot3&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#39;slot4&#39;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;fallback3&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>The result is</p>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Assigned nodes</th>
+<th>Distributed nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slot1</td>
+<td>empty</td>
+<td>#fallback1, #child1</td>
+</tr>
+<tr>
+<td>slot2</td>
+<td>#child1</td>
+<td>#child1</td>
+</tr>
+<tr>
+<td>slot3</td>
+<td>empty</td>
+<td>#fallback3</td>
+</tr>
+<tr>
+<td>slot4</td>
+<td>empty</td>
+<td>#fallback3</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, the flat tree will be:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;host&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;fallback1&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;child1&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;fallback3&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<h1 id="events-to-react-the-change-of-distributions">Events to react the change of distributions</h1>
+<h2 id="v0_7">v0</h2>
+<p>No way.</p>
+<h2 id="v1_7">v1</h2>
+<p>A v1 has a new kind of events, called <code>slotchange</code>. If a slot's distributed nodes changes as a result of DOM mutations, <code>slotchange</code> event will be fired at the end of a microtask.</p>
+<p>HTML:</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">slot</span><span class="o">=</span><span class="s">s1</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">i1</span> <span class="na">name</span><span class="o">=</span><span class="s">s1</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>JavaScript:</p>
+<div class="highlight"><pre><span></span><span class="nx">slot_i1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;slotchange&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fired&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">let</span> <span class="nx">c2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="nx">my_host</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">c2</span><span class="p">);</span>
+<span class="nx">c2</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;slot&#39;</span><span class="p">,</span> <span class="s1">&#39;s1&#39;</span><span class="p">);</span>
+<span class="c1">// slotchange event will be fired on slot, &#39;&lt;slot id=i1 name=s1&gt;&#39;, at the end of a micro task.</span>
+</pre></div>
+
+
+<p>TODO(hayato): Explain this feature in-depth. For a while, see <a href="https://github.com/w3c/webcomponents/issues/288">#issue 288</a> for the context.</p>
+<h1 id="styling-for-distributed-nodes">Styling for distributed nodes</h1>
+<h2 id="v0_8">v0</h2>
+<p>Use <code>::content selector</code> pseudo elements.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">class</span><span class="o">=</span><span class="s">foo</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c3</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">content</span> <span class="na">id</span><span class="o">=</span><span class="s">i1</span> <span class="na">select</span><span class="o">=</span><span class="s">&quot;my-child&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">content</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">#</span><span class="nn">i1</span><span class="p">::</span><span class="nd">content</span> <span class="p">.</span><span class="nc">foo</span> <span class="p">{</span>
+     <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p><code>#c1</code> becomes red.</p>
+<h2 id="v1_8">v1</h2>
+<p>Use <code>::slotted (compound-selector)</code> pseudo elements.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c1</span> <span class="na">slot</span><span class="o">=</span><span class="s">s1</span> <span class="na">class</span><span class="o">=</span><span class="s">foo</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">my-child</span> <span class="na">id</span><span class="o">=</span><span class="s">c2</span> <span class="na">slot</span><span class="o">=</span><span class="s">s1</span><span class="p">&gt;&lt;/</span><span class="nt">my-child</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree: --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">slot</span> <span class="na">id</span><span class="o">=</span><span class="s">i1</span> <span class="na">name</span><span class="o">=</span><span class="s">s1</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">#</span><span class="nn">i1</span><span class="p">::</span><span class="nd">slotted</span><span class="o">(</span><span class="p">.</span><span class="nc">foo</span><span class="o">)</span> <span class="p">{</span>
+     <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p><code>#c1</code> becomes red.</p>
+<div class=article-info>
+While <code>::content</code> can take any arbitrary selector, <code>::slotted</code> can only take a
+<a href="https://drafts.csswg.org/selectors-4/#compound">compound selector</a> (in the parenthesis).
+The reason of this restriction is to make a selector style-engine friendly, in terms of performance.
+
+In v0, it is difficult to avoid a performance penalty caused by an arbitrary selector which crosses shadow boundaries.
+</div>
+
+<h1 id="shadow-piercing-combinators">Shadow piercing combinators</h1>
+<h2 id="v0_9">v0</h2>
+<p>Use <code>/deep/</code> (zero-or-more shadow boundary crossing) and <code>::shadow</code> (one level shadow boundary crossing).</p>
+<div class=article-danger>
+These selectors were already deprecated in Blink. Do not use that.
+</div>
+
+<h2 id="v1_9">v1</h2>
+<p>No alternative.</p>
+<h1 id="css-cascading-order">CSS Cascading order</h1>
+<h2 id="v0_10">v0</h2>
+<p>The spec has a bug and the implementation in Blink is broken. It's too late to fix it without breaking the Web.</p>
+<h2 id="v1_10">v1</h2>
+<p>Clarified. In short: "A rule in an outer tree wins a rule in an inner tree".</p>
+<div class=article-info>
+Because <code>/deep/</code> and <code>::shadow</code> are unavailable in v1, only <code>::slotted</code> is affected by the new rule, as of now.
+</div>
+
+<p>See <a href="https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Shadow-DOM-Cascade-Order-in-v1.md">this document</a> for the example.</p>
+<h1 id="sequential-focus-navigation">Sequential Focus Navigation</h1>
+<h2 id="v0_11">v0</h2>
+<p>A document tree and a shadow tree are forming a <em>scope</em> of sequential focus navigation.</p>
+<h2 id="v1_11">v1</h2>
+<p>In addition to v0, <code>&lt;slot&gt;</code> becomes a <em>scope</em> of sequential focus navigation.</p>
+<p>See <a href="https://github.com/w3c/webcomponents/issues/375#issuecomment-178989178">the comment</a> in the spec issue
+for an example.</p>
+<p>TODO(hayato): Explain the concept behind the scene and its behavior here.</p>
+<h1 id="delegatesfocus">DelegatesFocus</h1>
+<p>TODO(hayato): Explain this.</p>
+<h1 id="activeelement">ActiveElement</h1>
+<p>TODO(hayato): Explain the difference. For a while, see <a href="https://github.com/w3c/webcomponents/issues/358">webcomponents #358</a>.</p>
+<h1 id="events-across-shadow-boundaries">Events across shadow boundaries</h1>
+<h2 id="v0_12">v0</h2>
+<p>Events are propagating across shadow boundaries by default, except for a limited kinds of events.
+See the <a href="http://w3c.github.io/webcomponents/spec/shadow/#scoped-flag">list</a>.</p>
+<h2 id="v1_12">v1</h2>
+<p>Events are scoped in a tree by default, except for some of UA UIEvents.</p>
+<p>For user-made synthetic events, you can control the behavior by a <code>composed</code> flag.</p>
+<p>HTML:</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Top level HTML --&gt;</span>
+<span class="p">&lt;</span><span class="nt">my-host</span><span class="p">&gt;&lt;/</span><span class="nt">my-host</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- &lt;my-host&gt;&#39;s shadow tree --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">d1</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>JavaScript:</p>
+<div class="highlight"><pre><span></span><span class="nx">my_host</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;my-click1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;my-click1 is fired&#39;</span><span class="p">);</span> <span class="c1">// This will not be called.</span>
+<span class="p">});</span>
+<span class="nx">my_host</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;my-click2&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;my-click2 is fired&#39;</span><span class="p">);</span>  <span class="c1">// This will be called.</span>
+<span class="p">});</span>
+
+<span class="nx">d1</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;my-click1&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}));</span>
+<span class="nx">d1</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">Event</span><span class="p">(</span><span class="s1">&#39;my-click2&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">composed</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}));</span>
+</pre></div>
+
+
+<p>At <code>#my-host</code>, only an event listener for <code>my-click2</code> is called.</p>
+<h1 id="getting-event-path">Getting Event path</h1>
+<h2 id="v0_13">v0</h2>
+<p>Use <code>Event.path</code>, which is a <em>property</em>.</p>
+<h2 id="v1_13">v1</h2>
+<p>Use <code>Event.composedPath()</code>, which is a <em>function</em>.</p>
+<div class=article-info>
+There is a small difference between them.
+After an event dispatching is done, <code>Event.composedPath()</code> returns an empty array, while <code>Event.path</code> does not.
+</div>
+
+<h1 id="functions-which-are-renamed">Functions which are renamed</h1>
+<table>
+<thead>
+<tr>
+<th>V0</th>
+<th>V1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insertionPoint.getDistributedNodes()</code></td>
+<td><code>slot.assignedNodes({flatten: true})</code></td>
+</tr>
+<tr>
+<td>No equivalence</td>
+<td><code>slot.assignedNodes()</code></td>
+</tr>
+<tr>
+<td><code>Element.getDestinationInsertionPoints()</code></td>
+<td><code>Element.assignedSlot</code> (The meaning is slightly different. It returns only the directly assigned slot.)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="new-utility-functions-in-node">New utility functions in Node</h1>
+<p>These functions are just utility functions. Thus, v0 or v1 does not matter.</p>
+<ul>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#dom-node-isconnected">Node.isConnected</a></p>
+<p>Returns true if the node is <a href="https://dom.spec.whatwg.org/#dom-node-isconnected">connected</a>. <em>connected</em> is relativey a new concept in the DOM Standard.
+Roughly speaking, it extends the meaning of <em>in a document</em> for the era of Shadow DOM.</p>
+</li>
+<li>
+<p><a href="https://dom.spec.whatwg.org/#dom-node-getrootnode">Node.getRootNode(options)</a></p>
+<p>Returns its root, or its <a href="https://dom.spec.whatwg.org/#concept-shadow-including-root">shadow-including root</a> (aka <em>super-root</em>) if options's composed is true.</p>
+</li>
+</ul>
+<h1 id="questions">Questions?</h1>
+<p>If you find a typo, mistake or a question in this document, please file an issue <a href="https://github.com/hayatoito/hayatoito.github.io/issues">here</a>.</p>
+<p>If you have a question about the Web Standard itself, please see the followings:</p>
+<ul>
+<li><a href="https://dom.spec.whatwg.org/">DOM Standard</a></li>
+<li><a href="https://html.spec.whatwg.org/">HTML Standard</a></li>
+<li><a href="https://drafts.csswg.org/css-scoping/">CSS Scoping</a></li>
+<li><a href="http://w3c.github.io/webcomponents/spec/shadow/">Shadow DOM</a></li>
+</ul>
+<div class=article-info>
+We have been upstream-ing Shadow DOM specification into the DOM Standard, the HTML Standard, or the CSS Scoping.
+The content of the Shadow DOM specification might not reflect the latest status.
+See <a href="https://github.com/w3c/webcomponents/issues/377">webcomponents #377</a> for details.
+</div>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2017/faq/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2014/timer/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+            <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

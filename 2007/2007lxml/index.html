@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>lxmlでHTMLスクレーピング — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2007/2007lxml/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      lxmlでHTMLスクレーピング
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2007-07-19">
+        2007-07-19
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>たまにはPythonでTopCoderの問題を解いてみようと思ってはみたものの，
+書いたコードが正しいがどうかどうやってチェックすればいいんだろう？
+サポートされているJavaやC++なら，TopCoderのプラクティスルームでSubmitして，テストを走らせればいいんですけど．</p>
+<p>問題文に付属しているような数個のサンプルケースだけでは，テストとしてはもちろん不十分．
+実際のシステムテストで使用された入力と正解のフルセットさえ入手できれば，ローカルでもテストを走らせることができるはず．
+そう思い，そのようなデータがTopCoderで提供されているかというとちょっと探してみる．
+<a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=dataFeed">Data
+Feeds</a>
+を発見したけど，該当データは提供されていない．</p>
+<p>システムテストでどのようなテストが走ったかは，たしかWebでもみれたはず．
+たとえば，SRM354のHard問題，RookPlacementなら，正解を提出したPetrの
+<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=265123&amp;rd=10711&amp;pm=7658&amp;cr=10574855">Code</a>
+を見れば， システムテストで使用されたテストケースもすべて載っています．</p>
+<p>「このHTMLページから抜き出せばいいじゃん．」
+ということでスクレーピングしてみる．</p>
+<p>まずは、HTMLファイルの取得。
+もちろん，ブラウザ上でアクセスしてHTMLを保存してもいいですけど、
+ここでは、プログラムの中から取得してみる。
+認証チェックがあるので、ページを取得する際は，
+認証済みCookieが入ったリクエストでないとはじかれてしまいます．
+ふだんブラウザで使用しているCookieを渡してしまうのが一番楽．
+Pythonなら，こんな感じ．</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">cookielib</span><span class="o">,</span> <span class="nn">urllib2</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">cj</span> <span class="o">=</span> <span class="n">cookielib</span><span class="o">.</span><span class="n">MozillaCookieJar</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">cj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;cookies.txt&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">html</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+
+
+<p>あとは，HTMLをパース． <a href="http://codespeak.net/lxml/">lxml</a> を使用．</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html</span><span class="p">),</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTMLParser</span><span class="p">())</span>
+</pre></div>
+
+
+<p>lxmlは，HTMLが多少壊れていても，リカバーしてくれるので，
+このようなスクレーピング用途にはもってこいです．
+Well-FormattedでないHTMLやXMLをパースするのって，
+結構，テーマとしては奥が深いような気もするんですけど，どういうアルゴリズムになってるんですかね．</p>
+<p>HTMLを見る限り、欲しいデータはすべて、このような</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">&#39;statText&#39;</span> <span class="err">...</span><span class="nt">&gt;</span>190<span class="nt">&lt;/td&gt;</span>
+</pre></div>
+
+
+<p>エレメント内であることがわかりますので、
+xpathで該当エレメント内テキストをとりあえず全部取得．</p>
+<div class="highlight"><pre><span></span>In [9]: ts = [t.strip() for t in tree.xpath(&quot;//td[@class=&#39;statText&#39;]/text()&quot;)]
+</pre></div>
+
+
+<p>結果を表示してみると，最初の方は余分なごみです．</p>
+<div class="highlight"><pre><span></span>In [10]: ts[30:40]
+Out[11]:
+[&#39;&#39;,
+ &#39;&#39;,
+ &#39;&#39;,
+ &#39;Test\n            Arguments&#39;,
+ &#39;Expected Results&#39;,
+ &#39;Success&#39;,
+ &#39;4,\n5,\n2&#39;,
+ &#39;190&#39;,
+ &#39;Passed&#39;,
+ &#39;2,\n3,\n3&#39;]
+</pre></div>
+
+
+<p>'Success'文字列以降だけに絞る．</p>
+<div class="highlight"><pre><span></span>In [12]: ts = ts[ts.index(&#39;Success&#39;)+1:]
+In [13]: ts
+Out[14]:
+[&#39;4,\n5,\n2&#39;,
+ &#39;190&#39;,
+ &#39;Passed&#39;,
+ &#39;2,\n3,\n3&#39;,
+ &#39;6&#39;,
+ &#39;Passed&#39;,
+ &#39;6,\n7,\n20&#39;,
+ &#39;0&#39;,
+ &#39;Passed&#39;,
+ &#39;50,\n25,\n50&#39;,
+ &#39;879507&#39;,
+ &#39;Passed&#39;,
+</pre></div>
+
+
+<p>入力，正解はそれぞれ，3つおきに出現するので</p>
+<div class="highlight"><pre><span></span>In [15]: testcases = zip(ts[::3], ts[1::3])
+In [16]: testcases
+Out[17]:
+[(&#39;4,\n5,\n2&#39;, &#39;190&#39;),
+ (&#39;2,\n3,\n3&#39;, &#39;6&#39;),
+ (&#39;6,\n7,\n20&#39;, &#39;0&#39;),
+</pre></div>
+
+
+<p>入力の各パラメータは，',\n'がセパレータになってるので</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">testcases</span> <span class="o">=</span> <span class="p">[(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;,\n&#39;</span><span class="p">,</span> <span class="nb">input</span><span class="p">),</span> <span class="n">expected</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testcases</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="n">testcases</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">21</span><span class="p">]:</span>
+<span class="p">[([</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">],</span> <span class="s1">&#39;190&#39;</span><span class="p">),</span>
+ <span class="p">([</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="s1">&#39;6&#39;</span><span class="p">),</span>
+ <span class="p">([</span><span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">],</span> <span class="s1">&#39;0&#39;</span><span class="p">),</span>
+</pre></div>
+
+
+<p>各データは文字列ですので、evalします．
+今回のデータには含まれていないですけど、TopCoderの配列のリテラルは'{..}'形式ですので、evalできるように'[..]'に変換してから．
+evalが怖いなら，JSONとしてパースしてもいいです．</p>
+<div class="highlight"><pre><span></span><span class="nv">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]</span><span class="s s-Atom">:</span> <span class="s s-Atom">def</span> <span class="nf">evalf</span><span class="p">(</span><span class="s s-Atom">s</span><span class="p">)</span><span class="s s-Atom">:</span>
+    <span class="p">...</span><span class="s s-Atom">:</span>     <span class="s s-Atom">if</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="s s-Atom">and</span> <span class="s s-Atom">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;{&#39;</span> <span class="s s-Atom">and</span> <span class="s s-Atom">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;}&#39;:</span>
+    <span class="p">...</span><span class="s s-Atom">:</span>         <span class="s s-Atom">s</span> <span class="o">=</span> <span class="s s-Atom">&#39;[&#39;</span> <span class="o">+</span> <span class="s s-Atom">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s s-Atom">&#39;]&#39;</span>
+    <span class="p">...</span><span class="s s-Atom">:</span>     <span class="s s-Atom">return</span> <span class="nf">eval</span><span class="p">(</span><span class="s s-Atom">s</span><span class="p">)</span>
+    <span class="p">...</span><span class="s s-Atom">:</span>
+<span class="nv">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]</span><span class="s s-Atom">:</span> <span class="s s-Atom">testcases</span> <span class="o">=</span> <span class="p">[(</span><span class="nf">map</span><span class="p">(</span><span class="s s-Atom">evalf</span><span class="p">,</span> <span class="s s-Atom">input</span><span class="p">),</span> <span class="nf">evalf</span><span class="p">(</span><span class="s s-Atom">expected</span><span class="p">))</span> <span class="nf">for</span> <span class="p">(</span><span class="s s-Atom">input</span><span class="p">,</span> <span class="s s-Atom">expected</span><span class="p">)</span> <span class="s s-Atom">in</span> <span class="s s-Atom">testcases</span><span class="p">]</span>
+<span class="nv">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]</span><span class="s s-Atom">:</span> <span class="s s-Atom">testcases</span>
+<span class="nv">Out</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="s s-Atom">:</span>
+<span class="p">[([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">190</span><span class="p">),</span>
+ <span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">6</span><span class="p">),</span>
+ <span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span>
+</pre></div>
+
+
+<p>これでOK。あとはテストするだけ。</p>
+<div class="highlight"><pre><span></span>In [26]: for input, expected in testcases:
+    ...:     assert RooksPlacement().countPlacements(*input) == expected
+</pre></div>
+
+
+<p>テストケースを抜き出す部分は、まとめると最終的にはこうなります。</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_testcases</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookie_file</span><span class="o">=</span><span class="s1">&#39;cookies.txt&#39;</span><span class="p">):</span>
+    <span class="n">cj</span> <span class="o">=</span> <span class="n">cookielib</span><span class="o">.</span><span class="n">MozillaCookieJar</span><span class="p">()</span>
+    <span class="n">cj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">cookie_file</span><span class="p">)</span>
+    <span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPCookieProcessor</span><span class="p">(</span><span class="n">cj</span><span class="p">))</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html</span><span class="p">),</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTMLParser</span><span class="p">())</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//td[@class=&#39;statText&#39;]/text()&quot;</span><span class="p">)]</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="nb">map</span><span class="p">(</span><span class="n">evalf</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;,\n&#39;</span><span class="p">,</span> <span class="nb">input</span><span class="p">)),</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ts</span><span class="p">[::</span><span class="mi">3</span><span class="p">],</span> <span class="n">ts</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">])]</span>
+</pre></div>
+
+
+<p>昔はこういうことをしたかったら，Perlで正規表現を書いて抜きだしていたけど，
+どうしてもコードが長くなりがち．
+いまは，大抵どの言語でも便利なXMLライブラリが付属しているので，楽ちん．</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2007/2007newlanguage/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2007/srm358/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

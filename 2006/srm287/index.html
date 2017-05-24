@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SRM287 - 気分は中学生？連立２元方程式 — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2006/srm287/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      SRM287 - 気分は中学生？連立２元方程式
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2006-02-05">
+        2006-02-05
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p><a href="http://www.topcoder.com/stat?c=round_overview&amp;rd=9808">SRM287</a> に挑戦．
+1ヶ月ぶりの参戦．</p>
+<h1 id="twoequations-code"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6013&amp;rd=9808">TwoEquations</a> (<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247545&amp;rd=9808&amp;pm=6013&amp;cr=15632820">code</a>)</h1>
+<p>300点問題．以下のような2つの文字列が与えられます．</p>
+<div class="highlight"><pre><span></span>&quot;1*X + 2*Y = 6&quot;
+&quot;1*X + (-4)*Y = (-3)&quot;
+</pre></div>
+
+
+<p>連立2元方程式です．「中学生か俺は？」でした．．
+これを解いて，解が唯一存在するならば，以下のように解を文字列で</p>
+<div class="highlight"><pre><span></span>&quot;X=(-7)/3 Y=3/4&quot;
+</pre></div>
+
+
+<p>解がないならば</p>
+<div class="highlight"><pre><span></span>&quot;NO SOLUTIONS&quot;
+</pre></div>
+
+
+<p>を，解が複数存在するならば</p>
+<div class="highlight"><pre><span></span>&quot;MULTIPLE SOLUTIONS&quot;
+</pre></div>
+
+
+<p>を返しなさい．という問題です.
+250点問題ではなく300点問題ですのでちょっと面倒です．ですがそれほど難しい問題ではないと一見思ったのですが．．</p>
+<p>方針としては，各係数A1-A3, B1-B3</p>
+<div class="highlight"><pre><span></span>A1 * X + A2 * Y = A3
+B1 * X + B2 * Y = B3
+</pre></div>
+
+
+<p>をパースしてから，</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">det</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">B2</span> <span class="o">-</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">B1</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">B2</span> <span class="o">*</span> <span class="n">A3</span> <span class="o">-</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">B3</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">A3</span><span class="o">;</span>
+</pre></div>
+
+
+<p>を計算して，det == 0 ならば，「解がない」 か 「解が複数」</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">det</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;MULTIPLE SOLUTIONS&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>それ以外ならば， 「解がひとつ」ということで，</p>
+<div class="highlight"><pre><span></span><span class="s">&quot;X=x/det Y=y/det&quot;</span>
+</pre></div>
+
+
+<p>として，約分等・正しくフォーマットして返せばよい．
+これでいけると思ってSubmitしたのですが，甘かったです．</p>
+<p>これだけでは，以下のような係数がゼロの場合に対処できませんでした．</p>
+<div class="highlight"><pre><span></span>&quot;0*X + 0*Y = 1&quot;
+&quot;0*X + 0*Y = 2&quot;
+</pre></div>
+
+
+<p>この場合は，正しい正解は"NO
+SOLUTIONS"ですが，上記ロジックだけだと"MULTIPLE
+SOLUTIONS"を返してしまいます．</p>
+<p>以下のように係数ゼロを特別に扱う必要性がありました．</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">A1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A3</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">B1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B3</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">A1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">A2</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B2</span> <span class="o">*</span> <span class="n">A3</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">A2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">A1</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">A3</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+</pre></div>
+
+
+<p>私も含めて多くの人はゼロのケースを考慮しないCodeを書いてしまったようです．
+これに気づいた人は，チャレンジタイムで大稼ぎしていました．</p>
+<p>この問題のDivision1での正解率は11%，
+同じ問題がDivision2のレベル2問題にも使用されていましたがDivision2ではなんと正解率0%，
+誰ひとり正解できなかったようです．．</p>
+<p><img alt="Problem Stats" src="http://static.flickr.com/25/95611480_5e4542f8c0_o.png"></p>
+<h1 id="mooreslaw-code"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5973&amp;rd=9808">MooresLaw</a> (<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247545&amp;rd=9808&amp;pm=5973&amp;cr=15632820">code</a>)</h1>
+<p>450点問題．</p>
+<blockquote>
+<p>「ムーアの法則」: コンピュータのスピードは，18ヶ月で2倍になる</p>
+</blockquote>
+<p>今，計算を始めると14年かかる問題があるとします．
+今すぐ始めるのではなく，18ヶ月待ってスピードが2倍の新しいコンピュータを買ってそれで計算を始めると7年ですみます．
+14年かかる計算が，合計 (1.5 + 7 = ) 8.5年ですむわけです．
+この例だと，約4年まってから計算を始めるのがベストです．合計( 4 + 2.2 = )
+6.2年ですみます.</p>
+<p>このように，計算にかかる年数 (years)
+が与えられた場合，ムーアの法則が成り立つとすると，最短・今から何年後に計算を終わらせることができるでしょうか？という問題です．
+いつ新しいコンピュータを買い計算をはじめるか？がポイントになります．</p>
+<p>x年後に，新しいコンピュータを買って計算を始めるとすると，トータルでは</p>
+<blockquote>
+<p>y = x + (years / 2\^(x / 1.5) )</p>
+</blockquote>
+<p>かかることになります．このyが最小になるxを探せばよいことになります．
+数学的に解くことはできるのでしょうが（微分してゼロになるところを求める）．．
+数学的に悩むよりは，このようなU字型の関数の場合は， いわゆるbinary
+searchではなく，ternary search で，yが最小になるxを探すことができます．</p>
+<p><img alt="ternary search" src="http://static.flickr.com/38/95712324_5b626917dd_o.png"></p>
+<p>区間 ( [left, right] ) 内の2点(x1, x2)をとり，y1, y2 を計算して，</p>
+<ul>
+<li>y1 &gt; y2 ならば，left = x1</li>
+<li>y1 &lt; y2 ならば，right = x2</li>
+</ul>
+<p>として，区間を狭めていけば，最終的には，最小のyをとるxaにたどり着きます.</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MooresLaw</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">shortestComputationTime</span><span class="o">(</span><span class="kt">int</span> <span class="n">years</span><span class="o">)</span> <span class="o">{</span>
+
+      <span class="kt">double</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">double</span> <span class="n">right</span> <span class="o">=</span> <span class="n">years</span><span class="o">;</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mf">1e-11</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">double</span> <span class="n">x1</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="o">;</span>
+          <span class="kt">double</span> <span class="n">x2</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">cal</span><span class="o">(</span><span class="n">x1</span><span class="o">,</span> <span class="n">years</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">cal</span><span class="o">(</span><span class="n">x2</span><span class="o">,</span> <span class="n">years</span><span class="o">))</span> <span class="o">{</span>
+              <span class="n">left</span> <span class="o">=</span> <span class="n">x1</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">right</span> <span class="o">=</span> <span class="n">x2</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">cal</span><span class="o">(</span><span class="n">right</span><span class="o">,</span> <span class="n">years</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">double</span> <span class="nf">cal</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">years</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">years</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">1.5</span><span class="o">);</span>
+  <span class="o">}</span>
+</pre></div>
+
+
+<p>SRM中は，x年後のコンピュータのスピードが，Math.pow(2, x / 1.5)
+で表せることにきずかず，
+前半部分・回りくどいことをしていまいました．．．
+なんとか正解しましたが．</p>
+<h1 id="coingame"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6005&amp;rd=9808">CoinGame</a></h1>
+<p>1000点問題． Openしたものの，手が出ず．．</p>
+<h1 id="_1">結果</h1>
+<p>System Testの結果です． ( <a href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=9808&amp;rm=247545">Room
+Statistics</a>
+)</p>
+<p><img alt="Room Statistics" src="http://static.flickr.com/41/95603073_48fb4a2290_o.png"></p>
+<p>全体的にポイントが低かったためか，レーティングは 1542 -&gt; 1626
+と上昇しました．</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2006/200602developersSummit/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2006/srm281/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

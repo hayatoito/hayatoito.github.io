@@ -1,0 +1,126 @@
+body {
+  margin-top: 1em !important
+}
+
+#timer-container {
+  width: 480px !important;
+}
+
+
+.progress {
+  height: 5px !important;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.container-fluid {
+  max-width: 400px;
+}
+
+#timer-time {
+  margin-top: 0px;
+  font-size: 72px;
+}
+
+#timer-time.break {
+  color: #007aff;
+}
+
+#timer-buttons-column {
+  padding-top: 8px;
+}
+
+.timer-minutes-column {
+  padding-right: 8px;
+}
+
+.timer-minutes.active {
+  font-weight: 500;
+  color: #007aff;
+}
+
+#buttons {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+#timer-volume,
+#timer-repeat {
+  color: #007aff;
+}
+
+#timer-volume {
+  margin-left: 12px;
+}
+
+#help {
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+#timer-volume.off,
+#timer-repeat.off {
+  color: #aaa;
+}
+
+.timer-progress-column {
+}
+
+/* iOS7 theme */
+body {
+  margin: 1em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.428571429;
+  letter-spacing: 0.05em;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  line-height: 1.1;
+  color: inherit;
+}
+
+
+.btn-default {
+  color: #007aff;
+  background-color: #ffffff;
+  border-color: #007aff;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #007aff;
+  background-color: #fff;
+  border-color: #005dc2;
+}
+
+.btn-default:hover {
+  color: #ffffff;
+  background: #007aff;
+}
+
+.progress-bar-info {
+  background-color: #34aadc;
+}
+
+.progress-striped .progress-bar-info {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}

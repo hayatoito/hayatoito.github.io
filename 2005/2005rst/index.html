@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>reStructuredTextでblogger — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2005/2005rst/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      reStructuredTextでblogger
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2005-12-16">
+        2005-12-16
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>このBlogは， もともとは
+<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>
+形式で書いています．
+ここで公開しているのはそれをHTMLに変換した結果です． Blogger では，
+<a href="http://code.blogger.com/archives/atom-docs.html">ATOM API</a>
+が用意されているので，
+ありがたいことにブラウザを使用しなくてもBlogの更新ができます．</p>
+<p>以下のような手順をとっています．</p>
+<ol>
+<li>reStructuredText形式で，テキストファイルを作成</li>
+<li>Python，docutils で html に変換</li>
+<li>2のhtmlを ATOM API で Blogger.comへ更新</li>
+</ol>
+<p>2と3はひとつのPythonスクリプト内で行っています． reStructuredText から
+html への変換は，docutilsで行えます． :</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docutils.core</span> <span class="kn">import</span> <span class="n">publish_parts</span>
+<span class="n">parts</span> <span class="o">=</span> <span class="n">publish_parts</span><span class="p">(</span>
+    <span class="n">content</span><span class="p">,</span>
+    <span class="n">writer_name</span><span class="o">=</span><span class="s1">&#39;blogwriter&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<p>docutils付属の html_writer を継承して・ほんの少しだけ修正した
+自作のblogwriter を使用しています． 変換された，htmlのタイトル(
+<code>parts['title']</code> )と，body部分 <code>parts['body']</code>
+を，以下のテンプレートにセットして</p>
+<div class="highlight"><pre><span></span>entrytemplate = u&#39;&#39;&#39;<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<span class="nt">&lt;entry</span> <span class="na">xmlns=</span><span class="s">&quot;http://purl.org/atom/ns#&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;title</span> <span class="na">mode=</span><span class="s">&quot;escaped&quot;</span> <span class="na">type=</span><span class="s">&quot;text/plain&quot;</span><span class="nt">&gt;</span>%(title)s<span class="nt">&lt;/title&gt;</span>
+ <span class="nt">&lt;published&gt;</span>%(published)s<span class="nt">&lt;/published&gt;</span>
+ <span class="nt">&lt;generator</span> <span class="na">url=</span><span class="s">&quot;http://www.yoursitesurlhere.com&quot;</span><span class="nt">&gt;</span>python<span class="nt">&lt;/generator&gt;</span>
+ <span class="nt">&lt;content</span> <span class="na">type=</span><span class="s">&quot;application/xhtml+xml&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;div</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+   %(content)s
+   <span class="nt">&lt;/div&gt;</span>
+ <span class="nt">&lt;/content&gt;</span>
+%(draft)s
+<span class="nt">&lt;/entry&gt;</span>&#39;&#39;&#39;
+</pre></div>
+
+
+<p>ATOM API で送れば，Blogの更新が行えます． これらの一連の作業を行う
+<code>myblogger.py</code> というPythonスクリプト を作成して使用しています．
+テキストファイルを入力として，コマンド一発でBlogエントリの新規作成・更新を行えます．
+以下のような感じです</p>
+<div class="highlight"><pre><span></span>myblogger.py merge 273.txt
+</pre></div>
+
+
+<p>書きなれた reStructuredText 形式で Blogを書けるのは快適です． ATOM API
+はほとんどのBlogサービスがサポートしているはずですので，
+もし将来Blogを引越しすることになっても，ローカルにあるテキストを全部再発行するだけですみます．</p>
+<p>TopCoder のコンテストでは，現在，使用できる言語はJava, C#, C++, VB
+の4つだけです． Pythonが使えるようにならないかなー．</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2005/2005marathon/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2005/200512tco/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

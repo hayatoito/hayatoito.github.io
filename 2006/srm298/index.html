@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SRM298 - ひとふで書き — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/2006/srm298/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      SRM298 - ひとふで書き
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2006-04-13">
+        2006-04-13
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p><a href="http://www.topcoder.com/stat?c=round_overview&amp;rd=9819">SRM298</a> に挑戦．</p>
+<p>Division1の問題です．</p>
+<h1 id="fibonaccipositioning-code"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6160&amp;rd=9819">FibonacciPositioning</a> (<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=248284&amp;rd=9819&amp;pm=6160&amp;cr=15632820">code</a>)</h1>
+<p>250点問題．
+フィボナッチ数列に関する問題ですが，なにも考えず実装して終わりです．</p>
+<h1 id="orderdoesmatter-code"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6157&amp;rd=9819">OrderDoesMatter</a> (<a href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=248284&amp;rd=9819&amp;pm=6157&amp;cr=15632820">code</a>)</h1>
+<p>500点問題． 行列が複数個あるとします．
+それぞれの行と列のサイズが与えられます．たとえば，以下の3個の行列が与えられたとします．</p>
+<blockquote>
+<p>A = 7 x 3, B = 3 x 7, C = 3 x 3</p>
+</blockquote>
+<p>これら行列を全て使用して掛け算を行い，最終的にできる行列の行と列をかけたものの最大値を求めなさい．
+という問題です. たとえば，このケースなら</p>
+<blockquote>
+<p>A * C * B = (7x3) * (3x3) * (3x7) = (7x7)</p>
+</blockquote>
+<p>で，49が最大です．
+全て使用した掛け算ができない場合は，-1を返します．たとえば</p>
+<blockquote>
+<p>A = 3 x 5, B = 5 x 2, C = 5 x 4</p>
+</blockquote>
+<p>だと，全て使用した掛け算ができないので，-1が答えになります．</p>
+<p>．．．うーん，間違って解いてしまいました． bipertite
+matchigでいけると思ったのですけど，私のコードでは，</p>
+<blockquote>
+<p>A = 1 x 2, B = 2 x 1, C = 3 x 4, D = 4 x 3</p>
+</blockquote>
+<p>のようなケースでも，-1を返しません．．根本的に間違っていました.</p>
+<p>これは，有向グラフを一筆書きできるかどうかって問題に落ち着くんですよね．
+グラフ理論的には， <a href="http://mathworld.wolfram.com/EulerPath.html">Euler
+Path</a> というそうです．</p>
+<h1 id="countingcommonsubsequences"><a href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6158&amp;rd=9819">CountingCommonSubsequences</a></h1>
+<p>1000点問題． 長さが50以下の文字列が3つ与えられます．
+この3つの文字列に対して，共通するユニークなsubsequenceの数を求めなさい．という問題です.</p>
+<p>subsequenceとは，文字列から任意個の文字を取り除いてできる残りの文字列です．</p>
+<p>たとえば，"call"，"accelerate"，"candle"ならば，答えは6です． "c", "a",
+"l", "al", "ca" ,"cl"が共通するsubsequenceです．</p>
+<p>ちなみに，</p>
+<ul>
+<li>"aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabb"</li>
+<li>"abababababababababababababababababababab"</li>
+<li>"aaaabbbbaaaabbbbaaaabbbbaaaabbbbaaaabbbb"</li>
+</ul>
+<p>なら，答えは，1725660です．</p>
+<p>30分ほど考えたんですが，できませんでした． SRM後に書いてみました.</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountingCommonSubsequences</span> <span class="o">{</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s1</span><span class="o">;</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s2</span><span class="o">;</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s3</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+  <span class="kt">long</span><span class="o">[][][]</span> <span class="n">memo</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">N</span><span class="o">][</span><span class="n">N</span><span class="o">][</span><span class="n">N</span><span class="o">];</span>
+  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">countCommonSubsequences</span><span class="o">(</span><span class="n">String</span> <span class="n">a</span><span class="o">,</span> <span class="n">String</span> <span class="n">b</span><span class="o">,</span> <span class="n">String</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s1</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s2</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s3</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">count</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">long</span> <span class="nf">count</span><span class="o">(</span><span class="kt">int</span> <span class="n">n1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">n1</span> <span class="o">&gt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">&gt;=</span> <span class="n">s2</span><span class="o">.</span><span class="na">length</span> <span class="o">||</span> <span class="n">n3</span> <span class="o">&gt;=</span> <span class="n">s3</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">];</span>
+
+      <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+<span class="nl">      nextchar:</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;z&#39;</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+              <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n2</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">s2</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s2</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">n3</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">s3</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s3</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                      <span class="n">res</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
+                      <span class="k">continue</span> <span class="n">nextchar</span><span class="o">;</span>
+                  <span class="o">}</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+
+
+<h1 id="_1">結果</h1>
+<p>System Testの結果です． ( <a href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=9819&amp;rm=248284">Room
+Statistics</a>
+)</p>
+<p><img alt="Room Statistics" src="http://static.flickr.com/44/127863126_219dc42588_o.png"></p>
+<p>今日は，だめだめでしたね．． レーティングは，1789-&gt;1775とやや低下．</p>
+  </div>
+</article>
+
+<ul class="pager">
+        <li class="previous"><a href="https://hayato.io/2006/200604rsdf/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="https://hayato.io/2006/srm293/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>
