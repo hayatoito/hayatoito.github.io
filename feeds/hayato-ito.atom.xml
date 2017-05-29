@@ -8,7 +8,7 @@
 &lt;p&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。あまり推敲しないで書きなぐっているところばかりですので、万人向けに読みやすいとは思いません。不適切な内容や表現等がありましたら教えてください。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-05-24 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-05-29 Mon]&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="contact-info"&gt;連絡先は？ (Contact Info)&lt;/h1&gt;
@@ -29,7 +29,7 @@
 &lt;p&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。あまり推敲しないで書きなぐっているところばかりですので、万人向けに読みやすいとは思いません。不適切な内容や表現等がありましたら教えてください。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-05-24 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-05-29 Mon]&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="contact-info"&gt;連絡先は？ (Contact Info)&lt;/h1&gt;
@@ -296,7 +296,7 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;p&gt;してました。だ、だけど、メインのお仕事じゃないからね！&lt;/p&gt;
 &lt;h1 id="google"&gt;Google ソフトウェアエンジニアの採用 &lt;a name="google-hiring"&gt;&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="google_1"&gt;今まで何人、Googleでソフトウェアエンジニアの面接（インタビュー）をしましたか？ &lt;a name="google-interview-number"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;150人以上です。すべて 1 : 1 での面接です。電話インタビューやインターンの面接も含みます。&lt;/p&gt;
+&lt;p&gt;150人以上です。すべて 1 : 1 での45分ほどの面接です。電話インタビューやインターンの面接も含みます。&lt;/p&gt;
 &lt;h2 id="_15"&gt;インタビューではどのようなことを聞くのでしょうか？ &lt;a name="google-interview"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Q. 「バスにゴルフボールはいくつ入るでしょうか？」&lt;/p&gt;
 &lt;p&gt;A. 「そんな問題はもはや聞いていないです。いまはゴルフボールにバスが何台はいるかを聞いています。」&lt;/p&gt;
@@ -342,7 +342,7 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;p&gt;TODO: 書きます。&lt;/p&gt;
 &lt;h2 id="2017"&gt;今年(2017年)も、インターンのホストをしますか？ &lt;a name="google-intern-rust"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;いい人がいれば。&lt;/p&gt;
-&lt;h2 id="google-step"&gt;Google STEP インターンについて質問があります &lt;a name="google-step-intern"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="google-step"&gt;Google STEP インターンではどのようなことを行うのですか？ &lt;a name="google-step-intern"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;TODO: 書きます。&lt;/p&gt;
 &lt;p&gt;当分の間、質問があればこちらに &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; どうぞ。&lt;/p&gt;
 &lt;h1 id="_16"&gt;競技プログラミング / レッドコーダー &lt;a name="competitive-programming"&gt;&lt;/a&gt;&lt;/h1&gt;
@@ -354,7 +354,7 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;/ol&gt;
 &lt;p&gt;1 と 2 で採用プロセスは基本変わらないです。&lt;/p&gt;
 &lt;p&gt;私は今はインタビューする側ですが、インタビュー中は 1 と 2 の違いを意識していません。&lt;/p&gt;
-&lt;p&gt;Google の採用担当の人が何度も熱心に声をかけた結果、ようやく面接にきていただいたとしても、
+&lt;p&gt;Google の採用担当の人が何度も熱心に声をかけた結果、ようやく面接にきていただいたにもかかわらず、
 エンジニアがインタビューした結果、思うような評価が得られなかった場合は、普通にお断りされてしまいます。&lt;/p&gt;
 &lt;h2 id="goolge"&gt;Goolge に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ &lt;a name="google-competitive-programming"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;これはよく聞かれる質問です。Google のソフトウェアエンジニアになるにあたって、レッドコーダーになることは必須ではありません。
@@ -412,7 +412,7 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://doc.rust-lang.org/book/ownership.html"&gt;Ownership&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/references-and-borrowing.html"&gt;Borrowing&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/lifetimes.html"&gt;Lifetimes&lt;/a&gt; の仕組み。メモリだけでなくネットワークコネクションなどのリソース管理全般に関するバグをコンパイル時に発見します。&lt;/li&gt;
 &lt;li&gt;安全性を重点をおきながら、同時に Zero-Cost Abstractions について妥協していません。安全性のチェックはコンパイル時に解決済みなので、実行時に余分なオーバーヘッドはありません。C++ と同等に速いです。Zero-Cost Abstractions を追求しないと、 C++ の置き換えにはなれないのでとても重要です。&lt;/li&gt;
-&lt;li&gt;モダンなプログラミング言語なら当然あってほしい機能（&lt;a href="https://doc.rust-lang.org/book/patterns.html"&gt;Pattern Matching&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/enums.html"&gt;Algebraic data type&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/traits.html"&gt;Traits&lt;/a&gt; 等）をちゃんと備えています。十分に高い抽象化レベルでコードを安全に書けます。&lt;/li&gt;
+&lt;li&gt;モダンなプログラミング言語なら当然あってほしい機能（&lt;a href="https://doc.rust-lang.org/book/patterns.html"&gt;Pattern Matching&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/enums.html"&gt;Algebraic data type&lt;/a&gt;, &lt;a href="https://doc.rust-lang.org/book/traits.html"&gt;Traits&lt;/a&gt; 等）をちゃんと備えています。Zero-Cost Abstraction を保ちつつ、十分に高い抽象化レベルでコードを安全に書けます。高い抽象度は高い生産性をもたらします。&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://doc.rust-lang.org/book/macros.html"&gt;Macro&lt;/a&gt; や Compiler Plugins があります。Macro は &lt;a href="https://en.wikipedia.org/wiki/Hygienic_macro"&gt;Hygienic macro&lt;/a&gt; です。identifier の衝突の心配はありません。&lt;/li&gt;
 &lt;li&gt;vtable が必要になる Dynamic Dispatch よりも、Static Dispatch (Parametric Polymorphism) が推奨されています。正しい。&lt;/li&gt;
 &lt;li&gt;コストがかかる処理を書くときはプログラマにちゃんと罪悪感を感じてもらうような API デザインが意図的に多く採用されています。
@@ -442,17 +442,16 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;p&gt;などについては「そんなのいりません。出直してきてくだい。」という感じで最初から入れる気がまったくないところが素敵です。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="rust_1"&gt;でも Rust って関数型プログラミング言語なんでしょ？ 難しそう。 &lt;a name="rust-is"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="rust_1"&gt;でも Rust って関数型プログラミング言語なんでしょ？ 難しそう。 &lt;a name="rust-learn"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Rust はあえていうなら「型クラス指向 (Type Class Oriented )」「Move Semantics Oriented」のプログラミング言語です。&lt;/p&gt;
 &lt;p&gt;Rust のことを関数型プログラミング言語と呼んでいる人がいたら、その人は Rust のことも関数型プログラミングのこともどちらもわかっていない可能性が高いです。
 「これは◯◯指向だ」「いや◯◯型言語だ」のような抽象的な議論はあまり生産的ではないので、個々の具体的な特徴についてその背景・意義・有用性についてきちんと学んだほうが生産的です。&lt;/p&gt;
-&lt;p&gt;Rust は学習コストが高いプログラミング言語と思われていますが、そもそも（ある程度大きな）「正しいプログラム」を書くこと自体が普通の人間には相当難しいことです。
-これまでの学習コストが低いといわれているプログラミング言語は、最初のほうだけちょっと助けてくれるだけであり、「正しいプログラム」を書くことについては何も助けてくれず、放置プレイです。
-Rust は「正しいプログラム」を人間が書けるようになるまでひたすら指摘してくるので学習コストが高くなっちゃいますが、それはどうせいずれは何らかの形で身につけなければいけないことなのでむしろ嬉しいことです。&lt;/p&gt;
-&lt;p&gt;大人になるとなぜか余計な知恵がついてしまって「xxx で十分。yyy は学習コストが高い。」と新しいことを学ぶのが億劫になってしまうのですが、
-「足し算だけで十分。掛け算の学習コストは高い。」と主張して「九九」の学習を拒否する意識の高い小学二年生はいなかったですよね？
-掛け算とか割り算とかあんな難しいものをどんどん吸収していった小学生のころのピュアな気持ちをもって疑うことなく学習すれば小学生並の学習スピードできっといけるはずです。&lt;/p&gt;
-&lt;p&gt;まあ、Rustに限った話ではないのですが...。:)&lt;/p&gt;
+&lt;p&gt;--&lt;/p&gt;
+&lt;p&gt;Rust は学習コストが高いプログラミング言語と思われていますが、そもそも（ある程度大規模な）「プログラムを正しく」書くこと自体が普通の人間には相当難しいことです。
+これまでの学習コストが低いとされているプログラミング言語は、最初のほうだけちょっと助けてくれるだけであり、「正しいプログラム」を書くことについては何も助けてくれず放置プレイです。
+Rust は「正しいプログラム」を人間が書けるようになるまでひたすら指摘してくるので学習コストが高くなってしまいますが、それらはどうせいずれは何らかの形で身につけなければいけないことなのでむしろありがたいことです。&lt;/p&gt;
+&lt;p&gt;Rustは「学習コストが高い」言語というよりは「プログラミングの学習コストを可視化してくれる」言語といったほうがいいかもしれません。
+これまで「雰囲気でプログラミング」してきた人にとって Rust の学習コストが高く感じるのは、きちんと可視化がうまくいっている結果です。&lt;/p&gt;
 &lt;h2 id="icfp-programming-contest"&gt;&lt;a href="http://www.icfpconference.org/contest.html"&gt;ICFP Programming Contest&lt;/a&gt; には何を使用して参加してますか？ &lt;a name="icfpc"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;2009 - 2015 は Scala で、2016 は  Rust で参加しました。&lt;/p&gt;
 &lt;ul&gt;
@@ -952,23 +951,8 @@ TAPL では OCaml が使用されていますが、自分の好きな言語で�
 &lt;p&gt;Google 社内で「テスト駆動開発」という単語が会話にでてくることはまずありません。
 テストを書くのは当たり前のことであり、わざわざそれが開発の「駆動」のもとになるとか、ちょっと意味がわかりません。&lt;/p&gt;
 &lt;p&gt;大事なのはきちんとテストを書くことであり、「テスト駆動」ではありません。&lt;/p&gt;
-&lt;h2 id="_33"&gt;エンジニアの採用を担当しています。優秀と思って採用したエンジニアが、まったくの期待はずれであることが多いです。よいソフトウェア・エンジニアをどうやって見分けているのですか？ &lt;a name="jirai"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;少なくとも以下の条件にあてはまる人はよいエンジニアじゃない可能性が大です。外から見ると一見「よさそう」にみえますが、たいていの場合中の人からはまったく評価されてないケースがほとんどです。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;「データサイエンティスト」という単語を含むツイートを1年に10回以上している。&lt;/li&gt;
-&lt;li&gt;「オブジェクト指向」という単語を含むツイートを1年に10回以上している。&lt;/li&gt;
-&lt;li&gt;「日本のエンジニア」という単語を含むツイートを1年に30回以上している。&lt;/li&gt;
-&lt;li&gt;「エンジニアの地位向上」という単語を含むツイートを1年に10回以上している。&lt;/li&gt;
-&lt;li&gt;「日本のIT業界」という単語を含むツイートを1年に10回以上している。&lt;/li&gt;
-&lt;li&gt;「シリコンバレー」という単語を含むツイートを1年に10回以上している。&lt;/li&gt;
-&lt;li&gt;「XXX入門」という本を書いているが、内容は公式ドキュメントの劣化コピー。&lt;/li&gt;
-&lt;li&gt;「はじめてのXXX」という本を書いているが、内容は公式ドキュメントの劣化コピー。&lt;/li&gt;
-&lt;li&gt;雑誌に自分がつくったわけではない他人がつくったプロダクトの解説記事を連載している。&lt;/li&gt;
-&lt;li&gt;その他、募集中です。 何か載せたいものがある場合は &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; の方にコメントお願いします。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;大事なのは、ちゃんと自社の組織やプロダクトにきっちり貢献する人だと思いますので（それだけじゃないけど...）、そこを重視するとよいと思います。派手じゃないけれど、大事な部分にしっかり貢献しているところをきちんと見てあげてください。&lt;/p&gt;
-&lt;h1 id="_34"&gt;その他 &lt;a name="misc"&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="_35"&gt;タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。&lt;a name="roppongi"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h1 id="_33"&gt;その他 &lt;a name="misc"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="_34"&gt;タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。&lt;a name="roppongi"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;ほんとそう思います。気にしているんですからそこは触れないでください。ほんとすいません。とある事情で...。&lt;/p&gt;</content></entry><entry><title>Simple timer application for the pomodoro technique</title><link href="https://hayato.io/2014/timer/" rel="alternate"></link><published>2014-02-02T00:00:00+09:00</published><updated>2014-02-02T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2014-02-02:/2014/timer/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; (2016-03-22 Tue): I have rewritten the timer application. This document is still using the old screen captures.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;I've created a simple &lt;a href="/timer/"&gt;timer application&lt;/a&gt; for &lt;a href="http://pomodorotechnique.com/"&gt;the pomodoro technique&lt;/a&gt;.
