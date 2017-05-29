@@ -442,14 +442,17 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;p&gt;などについては「そんなのいりません。出直してきてくだい。」という感じで最初から入れる気がまったくないところが素敵です。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="rust_1"&gt;でも Rust って関数型プログラミング言語なんでしょ？ 難しそう。 &lt;a name="rust-learn"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="rust_1"&gt;Rust って関数型プログラミング言語なんでしょ？ 難しそう。 &lt;a name="rust-is-functional-programming"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Rust はあえていうなら「型クラス指向 (Type Class Oriented )」「Move Semantics Oriented」のプログラミング言語です。&lt;/p&gt;
 &lt;p&gt;Rust のことを関数型プログラミング言語と呼んでいる人がいたら、その人は Rust のことも関数型プログラミングのこともどちらもわかっていない可能性が高いです。
 「これは◯◯指向だ」「いや◯◯型言語だ」のような抽象的な議論はあまり生産的ではないので、個々の具体的な特徴についてその背景・意義・有用性についてきちんと学んだほうが生産的です。&lt;/p&gt;
-&lt;hr&gt;
+&lt;h2 id="rust_2"&gt;Rust って学習コストが高いんですよね？ 難しそう。 &lt;a name="rust-is-hard"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Rust は学習コストが高いプログラミング言語と思われていますが、そもそも（ある程度大規模な）「プログラムを正しく」書くこと自体が普通の人間には相当難しいことです。
-これまでの学習コストが低いとされているプログラミング言語は、最初のほうだけちょっと助けてくれるだけであり、「正しいプログラム」を書くことについては何も助けてくれず放置プレイです。
-Rust は「正しいプログラム」を人間が書けるようになるまでひたすら指摘してくるので学習コストが高くなってしまいますが、それらはどうせいずれは何らかの形で身につけなければいけないことなのでむしろありがたいことです。&lt;/p&gt;
+これまでの学習コストが低いとされているプログラミング言語は、最初のほうだけ「（なんとなく）動いている」プログラムを書くのを助けてくれるだけであり、「正しいプログラム」を書くことについては何も助けてくれず放置プレイです。
+最終的にユーザーにすべての責任・負担がかかります。&lt;/p&gt;
+&lt;p&gt;Rust は「正しいプログラム」を人間が書けるようになるまでひたすら指摘してくるので学習コストが高くなってしまいますが、
+それらはいずれは何らかの形で身につけなければいけないことなのでむしろありがたいことです。
+これまでユーザーにかかっていた責任を、「コンパイラに押し付ける」ことができます。&lt;/p&gt;
 &lt;p&gt;Rustは「学習コストが高い」言語というよりは「プログラミングの学習コストを可視化してくれる」言語といったほうがいいかもしれません。
 これまで「雰囲気でプログラミング」してきた人にとって Rust の学習コストが高く感じるのは、きちんと可視化がうまくいっている結果です。&lt;/p&gt;
 &lt;h2 id="icfp-programming-contest"&gt;&lt;a href="http://www.icfpconference.org/contest.html"&gt;ICFP Programming Contest&lt;/a&gt; には何を使用して参加してますか？ &lt;a name="icfpc"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -517,7 +520,7 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 &lt;p&gt;いちサンプルとして、私は Python は10年以上、Rust は2年弱ほど使用していますが、小規模な使い捨て「スクリプト」を書くときも
 すでに私はほとんどのユースケースにおいて Rust で書くほうが生産性が上になっています。&lt;/p&gt;
 &lt;p&gt;ひとつの価値観にとらわれることなく、実際に自分で触れて経験して発見することはとても大事です。&lt;/p&gt;
-&lt;h2 id="rust_2"&gt;使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ &lt;a name="rust-as-scripting"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="rust_3"&gt;使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ &lt;a name="rust-as-scripting"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;そう思っていた時期がありました。しかし、Rust は &lt;code&gt;&amp;lt;create_root&amp;gt;/src/bin&lt;/code&gt; 以下に &lt;code&gt;*.rs&lt;/code&gt; ファイルをおいておくだけで、それぞれの &lt;code&gt;*.rs&lt;/code&gt; をビルドして別の実行ファイルをつくってくれます。
 たとえば my-hello-world "スクリプト" を書きたいと思ったら &lt;code&gt;&amp;lt;crate_root&amp;gt;/src/bin/my-hello-world.rs&lt;/code&gt; においておけば開発中は:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cargo run --bin my-hello-world [args...]
@@ -812,7 +815,7 @@ Emacs に標準で付属していない・自分でインストールしたパ�
 &lt;p&gt;ビルドツールである ninja や CMake は &lt;a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html"&gt;JSON Compilation Database Format Specification&lt;/a&gt; を出力できます。
 rtags はこの情報をもとにコードを解析するので、シンボル・ジャンプや補完がほぼ正確です。
 私も実際に Blink の開発で使用しています。&lt;/p&gt;
-&lt;h2 id="rust_3"&gt;Rust の開発環境は? &lt;a name="rust-dev"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="rust_4"&gt;Rust の開発環境は? &lt;a name="rust-dev"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Emacs (rust-mode, &lt;a href="https://github.com/phildawes/racer"&gt;racer&lt;/a&gt;, flycheck, company-mode)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/rust-lang-nursery/rustup.rs"&gt;rustup&lt;/a&gt;&lt;/li&gt;
@@ -937,7 +940,7 @@ TAPL では OCaml が使用されていますが、自分の好きな言語で�
 &lt;ul&gt;
 &lt;li&gt;TODO: 書きます。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="rust_4"&gt;Rust のオススメの勉強方法は?  &lt;a name="rust-study"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="rust_5"&gt;Rust のオススメの勉強方法は?  &lt;a name="rust-study"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;TODO: 落ち着いたら書きます。&lt;/li&gt;
 &lt;/ul&gt;
