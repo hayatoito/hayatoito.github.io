@@ -218,9 +218,16 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;h2 id="shadow-dom-spec"&gt;Shadow DOM の Spec の場所は? &lt;a name="shadowdom-spec"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;常に 最新の Editors Draft (&lt;a href="http://w3c.github.io/webcomponents/spec/shadow/"&gt;http://w3c.github.io/webcomponents/spec/shadow/&lt;/a&gt;) を参照あるいはリンクを貼るようにしてください。&lt;/p&gt;
 &lt;h2 id="_5"&gt;今のフロントエンドの現状についてどう思いますか？ &lt;a name="front-end"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;100人中99人が間違った方向を向いていて、その全員が同じ間違った方向を向いているため、自分が間違っていることにさえ気づいていない状態ですね。
-少なくともそのように考えてみることは重要です。
-長くなるので、直接会ったときに聞いてください。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;フロントエンドの人はなぜか自虐的なことばかりを言っている印象があるのですが、自虐からはなにも生まれないので、もっと誇りと自信をもってください。Web 大好きな人はいっぱいいます。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Web プラットフォームは天から降ってきて一方的に与えられるものでは決してなく、人間がつくっているものです。
+  自分には関係ないと思うよりは、もっとWeb そのものの進化に積極的に関わるようにするときっともっと面白いと思いますよ。
+  変えられないものなんてありません。いつでも大歓迎です。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="web"&gt;今後 Web で取り組みたいことは？  &lt;a name="future-plans"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;まだまだ Web Components / Shadow DOM についてはやることが山積みではあるのですが (HTML Modules 等も控えています)、
 &lt;a href="https://annevankesteren.nl/2016/04/html-components"&gt;Web プラットフォームの20年以上に渡る問題を解決した&lt;/a&gt;あとは、以下のことに取り組みたいです。&lt;/p&gt;
