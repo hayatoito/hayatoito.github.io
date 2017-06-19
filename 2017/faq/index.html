@@ -113,14 +113,25 @@
 <h2 id="google-tech-lead">Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ <a name="google-tech-lead"></a></h2>
 <p>Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼びます。
 数人から10名ほどのチームに、Tech Lead が１人います。
-私は Web Components プロジェクトの Tech Lead です。</p>
+私は Google Chrome の DOM Team と Web Components プロジェクトの Tech Lead です。</p>
 <h2 id="_1">普段、何をしていますか？ <a name="what"></a></h2>
 <p>主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。</p>
 <h2 id="_2">普段、どれくらいコードを書いていますか？ <a name="commits"></a></h2>
-<p>Blink はオープンソースです。Commits は公開されています =&gt; <a href="https://codereview.chromium.org/search?owner=hayato&amp;reviewer=&amp;cc=&amp;sort=modified&amp;limit=100">コミット一覧</a>。</p>
+<p>Blink はオープンソースです。Commits は公開されています:</p>
+<ul>
+<li><a href="https://codereview.chromium.org/search?owner=hayato&amp;reviewer=&amp;cc=&amp;sort=modified&amp;limit=100">- 2017 までのコミット</a></li>
+<li><a href="https://chromium-review.googlesource.com/q/owner:hayato%40chromium.org">2017 - のコミット</a></li>
+</ul>
 <p><a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/">DOM</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/shadow/">Shadow DOM</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/events/">Events</a> / <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/css/">CSS</a> あたりを触っていることが多いです。</p>
 <h2 id="_3">普段、どのようなコードを書いてますか？  <a name="code"></a></h2>
-<p>たとえば以下のパッチは、Google Chrome の Event Dispatching を400倍速くしたパッチです。</p>
+<p>代表的なCL (CLとは Change List の略で、主にGoogleで使用されている用語。いわゆる"パッチ"に相当します）</p>
+<p>2016-2017: Shadow DOM V1 の Distribution Engine 関係の CLs:</p>
+<ul>
+<li><a href="https://chromium-review.googlesource.com/c/535493/">Minimize the number of reattached nodes after updating distribution by 2D dynamic programming</a></li>
+<li><a href="https://chromium-review.googlesource.com/c/532734/">Rewrite Shadow DOM v1 distribution engine on the top of a new slotchange concept</a></li>
+<li><a href="https://codereview.chromium.org/1995203002/">Rewrite Shadow DOM distribution engine to support partial synchronous distribution for v1</a></li>
+</ul>
+<p>2014: Google Chrome の Event Dispatching を400倍速くした CL。</p>
 <ul>
 <li><a href="https://codereview.chromium.org/182683002">Lazy evaluation of event.path by numbering TreeScopes in DFS order for later O(1) queries</a></li>
 </ul>
@@ -166,6 +177,7 @@
 <li>私が仕様の策定をしているのは <a href="https://whatwg.org/">WHATWG</a> の <a href="https://dom.spec.whatwg.org/">DOM Living Standard</a> や <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a> です。そこには 「5」 のようなバージョンはありません。</li>
 <li>私も含めて Chrome の開発者が参考にするのは W3C HTML5仕様ではなく WHATWG の HTML Living Standard です。</li>
 <li>Chrome の バグトラッカー <a href="http://crbug.com/">crbug.com</a> 上でも、WHATWG の HTML Living Standard をベースに議論します。バグを報告をするときは、この辺りをぜひ理解しておいてくださいね。</li>
+<li>WHATWG DOM Standard と W3C DOM についても同じです。実際、私は W3C から W3C DOM の Editor になりませんか？といわれましたが、依頼を断りました。WHATWG DOM Standardのみにフォーカスしています。</li>
 </ul>
 <h1 id="web-components-shadow-dom">Web Components / Shadow DOM <a name="web-components-shadow-dom"></a></h1>
 <h2 id="web-components">Web Components とは? <a name="web-components"></a></h2>
@@ -422,9 +434,8 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 <p>TODO: 書きます。</p>
 <h2 id="2017">今年(2017年)も、インターンのホストをしますか？ <a name="google-intern-rust"></a></h2>
 <p>いい人がいれば。</p>
-<p>Rust を使用したインターンにもし興味があれば応募してみてください。「Rust 使えます！」と Resume でアピールしておいてください。
-そうじゃないと、ホストマッチングの際に、私の興味を引かない・または見落とす可能性があります。</p>
-<p>無事、インターンの選考に通過することを祈っています。</p>
+<p>（データ構造やアルゴリズムの基本は当たり前として）今年は特に Rust がひと通りできる かつ システムプログラミングを苦手にしない人に会えたらいいなー。どこかにいないかなー。［壁］д・)ﾁﾗｯ</p>
+<p>興味があればぜひ応募してくださいね。</p>
 <h2 id="google-step">Google STEP インターンではどのようなことを行うのですか？ <a name="google-step-intern"></a></h2>
 <p>TODO: 書きます。</p>
 <p>当分の間、質問があればこちらに <a href="https://github.com/hayatoito/hayatoito.github.io/issues">GitHub Issues</a> どうぞ。</p>

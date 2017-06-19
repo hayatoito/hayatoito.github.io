@@ -45,14 +45,25 @@
 &lt;h2 id="google-tech-lead"&gt;Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ &lt;a name="google-tech-lead"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼びます。
 数人から10名ほどのチームに、Tech Lead が１人います。
-私は Web Components プロジェクトの Tech Lead です。&lt;/p&gt;
+私は Google Chrome の DOM Team と Web Components プロジェクトの Tech Lead です。&lt;/p&gt;
 &lt;h2 id="_1"&gt;普段、何をしていますか？ &lt;a name="what"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。&lt;/p&gt;
 &lt;h2 id="_2"&gt;普段、どれくらいコードを書いていますか？ &lt;a name="commits"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Blink はオープンソースです。Commits は公開されています =&amp;gt; &lt;a href="https://codereview.chromium.org/search?owner=hayato&amp;amp;reviewer=&amp;amp;cc=&amp;amp;sort=modified&amp;amp;limit=100"&gt;コミット一覧&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;Blink はオープンソースです。Commits は公開されています:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://codereview.chromium.org/search?owner=hayato&amp;amp;reviewer=&amp;amp;cc=&amp;amp;sort=modified&amp;amp;limit=100"&gt;- 2017 までのコミット&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://chromium-review.googlesource.com/q/owner:hayato%40chromium.org"&gt;2017 - のコミット&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/"&gt;DOM&lt;/a&gt; / &lt;a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/dom/shadow/"&gt;Shadow DOM&lt;/a&gt; / &lt;a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/events/"&gt;Events&lt;/a&gt; / &lt;a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/css/"&gt;CSS&lt;/a&gt; あたりを触っていることが多いです。&lt;/p&gt;
 &lt;h2 id="_3"&gt;普段、どのようなコードを書いてますか？  &lt;a name="code"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;たとえば以下のパッチは、Google Chrome の Event Dispatching を400倍速くしたパッチです。&lt;/p&gt;
+&lt;p&gt;代表的なCL (CLとは Change List の略で、主にGoogleで使用されている用語。いわゆる"パッチ"に相当します）&lt;/p&gt;
+&lt;p&gt;2016-2017: Shadow DOM V1 の Distribution Engine 関係の CLs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://chromium-review.googlesource.com/c/535493/"&gt;Minimize the number of reattached nodes after updating distribution by 2D dynamic programming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://chromium-review.googlesource.com/c/532734/"&gt;Rewrite Shadow DOM v1 distribution engine on the top of a new slotchange concept&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://codereview.chromium.org/1995203002/"&gt;Rewrite Shadow DOM distribution engine to support partial synchronous distribution for v1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2014: Google Chrome の Event Dispatching を400倍速くした CL。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://codereview.chromium.org/182683002"&gt;Lazy evaluation of event.path by numbering TreeScopes in DFS order for later O(1) queries&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -98,6 +109,7 @@
 &lt;li&gt;私が仕様の策定をしているのは &lt;a href="https://whatwg.org/"&gt;WHATWG&lt;/a&gt; の &lt;a href="https://dom.spec.whatwg.org/"&gt;DOM Living Standard&lt;/a&gt; や &lt;a href="https://html.spec.whatwg.org/multipage/"&gt;HTML Living Standard&lt;/a&gt; です。そこには 「5」 のようなバージョンはありません。&lt;/li&gt;
 &lt;li&gt;私も含めて Chrome の開発者が参考にするのは W3C HTML5仕様ではなく WHATWG の HTML Living Standard です。&lt;/li&gt;
 &lt;li&gt;Chrome の バグトラッカー &lt;a href="http://crbug.com/"&gt;crbug.com&lt;/a&gt; 上でも、WHATWG の HTML Living Standard をベースに議論します。バグを報告をするときは、この辺りをぜひ理解しておいてくださいね。&lt;/li&gt;
+&lt;li&gt;WHATWG DOM Standard と W3C DOM についても同じです。実際、私は W3C から W3C DOM の Editor になりませんか？といわれましたが、依頼を断りました。WHATWG DOM Standardのみにフォーカスしています。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="web-components-shadow-dom"&gt;Web Components / Shadow DOM &lt;a name="web-components-shadow-dom"&gt;&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="web-components"&gt;Web Components とは? &lt;a name="web-components"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -354,9 +366,8 @@ Shadow DOM や Web Components はそのような世界を目指しています�
 &lt;p&gt;TODO: 書きます。&lt;/p&gt;
 &lt;h2 id="2017"&gt;今年(2017年)も、インターンのホストをしますか？ &lt;a name="google-intern-rust"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;いい人がいれば。&lt;/p&gt;
-&lt;p&gt;Rust を使用したインターンにもし興味があれば応募してみてください。「Rust 使えます！」と Resume でアピールしておいてください。
-そうじゃないと、ホストマッチングの際に、私の興味を引かない・または見落とす可能性があります。&lt;/p&gt;
-&lt;p&gt;無事、インターンの選考に通過することを祈っています。&lt;/p&gt;
+&lt;p&gt;（データ構造やアルゴリズムの基本は当たり前として）今年は特に Rust がひと通りできる かつ システムプログラミングを苦手にしない人に会えたらいいなー。どこかにいないかなー。［壁］д・)ﾁﾗｯ&lt;/p&gt;
+&lt;p&gt;興味があればぜひ応募してくださいね。&lt;/p&gt;
 &lt;h2 id="google-step"&gt;Google STEP インターンではどのようなことを行うのですか？ &lt;a name="google-step-intern"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;TODO: 書きます。&lt;/p&gt;
 &lt;p&gt;当分の間、質問があればこちらに &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; どうぞ。&lt;/p&gt;
