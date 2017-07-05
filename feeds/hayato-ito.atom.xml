@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io - Hayato Ito</title><link href="https://hayato.io/" rel="alternate"></link><link href="https://hayato.io/feeds/hayato-ito.atom.xml" rel="self"></link><id>https://hayato.io/</id><updated>2017-03-20T00:00:00+09:00</updated><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
-&lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-07-05 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
   答えられる範囲でできるだけ答えますね。&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。あまり推敲しないで書きなぐっているところばかりですので、万人向けに読みやすいとは思いません。不適切な内容や表現等がありましたら教えてください。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-06-29 Thu]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="contact-info"&gt;連絡先は？ (Contact Info)&lt;/h1&gt;
 &lt;ul&gt;
@@ -20,17 +20,18 @@
 &lt;li&gt;&lt;i class="fa fa-twitter"&gt;&lt;/i&gt; Twitter: &lt;a href="http://twitter.com/shadow_hayato"&gt;@shadow_hayato&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;i class="fa fa-slack"&gt;&lt;/i&gt; &lt;a href="https://freenode.net/"&gt;IRC freenode&lt;/a&gt;: hayato&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id="tech-lead"&gt;テックリード …&lt;/h1&gt;</summary><content type="html">&lt;ul&gt;
-&lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
+&lt;h1 id="tech-lead"&gt;テックリード (Tech Lead) &lt;a name="tech-lead"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="google-tech-lead"&gt;Google …&lt;/h2&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-07-05 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
   答えられる範囲でできるだけ答えますね。&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。あまり推敲しないで書きなぐっているところばかりですので、万人向けに読みやすいとは思いません。不適切な内容や表現等がありましたら教えてください。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-06-29 Thu]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;この記事は不定期にアップデートしてできるだけ最新の状態を反映させるようにしていますが、いくつか内容が古い可能性があります。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="contact-info"&gt;連絡先は？ (Contact Info)&lt;/h1&gt;
 &lt;ul&gt;
@@ -979,17 +980,18 @@ TAPL では OCaml が使用されていますが、自分の好きな言語で�
 &lt;li&gt;TODO: 落ち着いたら書きます。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="_30"&gt;ソフトウェア・エンジニアリング &lt;a name="software-engineering"&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="_31"&gt;オブジェクト指向って何ですか？ &lt;a name="object-oriented"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Google 社内で「オブジェクト指向」というい単語が会話にでてくることはまずありません。
-コードレビュー等では、もっと具体的な内容を指摘し合います。そのような曖昧な言葉がでてくる場面はほとんどないです。
-「ここはオブジェクト指向っぽくない」のようなレビューコメント見たことないです。レビューではもっと具体的に指摘します。&lt;/p&gt;
-&lt;p&gt;(... 質問に対する答えになっていないですね。ごめんなさい.)&lt;/p&gt;
-&lt;h2 id="_32"&gt;テスト駆動開発って何ですか？ &lt;a name="tdd"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Google 社内で「テスト駆動開発」という単語が会話にでてくることはまずありません。
-テストを書くのは当たり前のことであり、わざわざそれが開発の「駆動」のもとになるとか、ちょっと意味がわかりません。&lt;/p&gt;
-&lt;p&gt;大事なのはきちんとテストを書くことであり、「テスト駆動」ではありません。&lt;/p&gt;
-&lt;h1 id="_33"&gt;その他 &lt;a name="misc"&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="_34"&gt;タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。&lt;a name="roppongi"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="xxx-google"&gt;XXX を Google では行っていますか？ &lt;a name="xxx-at-google"&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;テスト駆動開発: 「テスト駆動開発」という言葉が普段の会話にでてくることはありません。テストを書くのは当たり前のことですが、わざわざ「テスト駆動開発」のような大袈裟な言い方はしません。&lt;/li&gt;
+&lt;li&gt;オブジェクト指向: 「オブジェクト指向」というい言葉が会話にでてくることはまずありません。「ここはオブジェクト指向っぽくない」のようなレビューコメントは見たことないです。レビューではもっと具体的に指摘します。&lt;/li&gt;
+&lt;li&gt;ペアプログラミング: している人ほぼいません。&lt;/li&gt;
+&lt;li&gt;LGTM画像: レビューで LGTM は使っていますが、LGTM のときに LGTM 画像を貼るような人はいません。そこに遊び心はいらないです。&lt;/li&gt;
+&lt;li&gt;みんなヨガ・瞑想をしている: してません。&lt;/li&gt;
+&lt;li&gt;PM (Product Manager): PMがいないチームで結果を出しているチームは多くあります。PMなしでうまくいくに越したことはありません。それが一番です。PMが必要になるケースはもちろんあります。&lt;/li&gt;
+&lt;li&gt;DDD: 聞いたことないです。なんですか、それ？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="_31"&gt;その他 &lt;a name="misc"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="_32"&gt;タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。&lt;a name="roppongi"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;ほんとそう思います。気にしているんですからそこは触れないでください。ほんとすいません。とある事情で...。&lt;/p&gt;</content></entry><entry><title>Simple timer application for the pomodoro technique</title><link href="https://hayato.io/2014/timer/" rel="alternate"></link><published>2014-02-02T00:00:00+09:00</published><updated>2014-02-02T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2014-02-02:/2014/timer/</id><summary type="html">&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; (2016-03-22 Tue): I have rewritten the timer application. This document is still using the old screen captures.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;I've created a simple &lt;a href="/timer/"&gt;timer application&lt;/a&gt; for &lt;a href="http://pomodorotechnique.com/"&gt;the pomodoro technique&lt;/a&gt;.
