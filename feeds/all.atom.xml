@@ -986,9 +986,10 @@ TAPL では OCaml が使用されていますが、自分の好きな言語で�
 &lt;li&gt;オブジェクト指向: 「オブジェクト指向」というい言葉が会話にでてくることはまずありません。「ここはオブジェクト指向っぽくない」のようなレビューコメントは見たことないです。レビューではもっと具体的に指摘します。&lt;/li&gt;
 &lt;li&gt;ペアプログラミング: している人ほぼいません。&lt;/li&gt;
 &lt;li&gt;LGTM画像: レビューで LGTM は使っていますが、LGTM のときに LGTM 画像を貼るような人はいません。そこに遊び心はいらないです。&lt;/li&gt;
-&lt;li&gt;みんなヨガ・瞑想をしている: してません。&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://diamond.jp/articles/-/91707"&gt;みんなヨガ・瞑想をしている&lt;/a&gt;: してません。&lt;/li&gt;
 &lt;li&gt;PM (Product Manager): PMがいないチームで結果を出しているチームは多くあります。PMなしでうまくいくに越したことはありません。それが一番です。PMが必要になるケースはもちろんあります。&lt;/li&gt;
-&lt;li&gt;DDD: 聞いたことないです。なんですか、それ？&lt;/li&gt;
+&lt;li&gt;バランスボール: 日常的に使用している人、見たことありません。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dot.asahi.com/dol/2017062600061.html"&gt;グーグル社員はなぜメールを使わないのか&lt;/a&gt;: 使います。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="_31"&gt;その他 &lt;a name="misc"&gt;&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="_32"&gt;タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。&lt;a name="roppongi"&gt;&lt;/a&gt;&lt;/h2&gt;
