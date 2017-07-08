@@ -105,7 +105,7 @@
 &lt;li&gt;&lt;a href="https://github.com/w3c/webcomponents/commits/gh-pages?author=hayatoito"&gt;Commits for Web Components&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="html-whatwg-html-standard-w3c-html5-chrome"&gt;HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ &lt;a name="whatwg-w3c"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;W3C の HTML5 仕様は見ていません。&lt;/p&gt;
+&lt;p&gt;WHATWGです。W3C の HTML5 仕様は見ていません。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;私が仕様の策定をしているのは &lt;a href="https://whatwg.org/"&gt;WHATWG&lt;/a&gt; の &lt;a href="https://dom.spec.whatwg.org/"&gt;DOM Living Standard&lt;/a&gt; や &lt;a href="https://html.spec.whatwg.org/multipage/"&gt;HTML Living Standard&lt;/a&gt; です。&lt;/li&gt;
 &lt;li&gt;私も含めて Chrome の開発者が参考にするのは W3C HTML5仕様ではなく WHATWG の HTML Living Standard です。&lt;/li&gt;
