@@ -107,10 +107,10 @@
 &lt;h2 id="html-whatwg-html-standard-w3c-html5-chrome"&gt;HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ &lt;a name="whatwg-w3c"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;私が仕様の策定をしているのは &lt;a href="https://whatwg.org/"&gt;WHATWG&lt;/a&gt; の &lt;a href="https://dom.spec.whatwg.org/"&gt;DOM Living Standard&lt;/a&gt; や &lt;a href="https://html.spec.whatwg.org/multipage/"&gt;HTML Living Standard&lt;/a&gt; です。&lt;/li&gt;
-&lt;li&gt;私も含めて Chrome の開発者が参考にするのは W3C HTML5仕様ではなく WHATWG の HTML Living Standard です。&lt;/li&gt;
+&lt;li&gt;私が仕様の策定をしているのは &lt;a href="https://whatwg.org/"&gt;WHATWG&lt;/a&gt; の &lt;a href="https://dom.spec.whatwg.org/"&gt;DOM Living Standard&lt;/a&gt; や &lt;a href="https://html.spec.whatwg.org/multipage/"&gt;HTML Living Standard&lt;/a&gt; です。
+  実際、私は W3C から W3C DOM の Editor になりませんか？といわれましたが、依頼を断りました。私は WHATWG DOM Standard のみにフォーカスしています。&lt;/li&gt;
+&lt;li&gt;私も含めて Chrome の開発者が実装の際、参考にしているのは W3C DOM 仕様や W3C HTML5仕様ではなく WHATWG の DOM Standard や HTML Standard です。&lt;/li&gt;
 &lt;li&gt;Chrome の バグトラッカー &lt;a href="http://crbug.com/"&gt;crbug.com&lt;/a&gt; 上でも、WHATWG の HTML Living Standard をベースに議論します。バグを報告をするときは、この辺りをぜひ理解しておいてください。&lt;/li&gt;
-&lt;li&gt;WHATWG DOM Standard と W3C DOM についても同じです。実際、私は W3C から W3C DOM の Editor になりませんか？といわれましたが、依頼を断りました。私は WHATWG DOM Standard のみにフォーカスしています。&lt;/li&gt;
 &lt;li&gt;私の知る限り、W3C HTML5 仕様の準拠を目指しているメジャーなブラウザはひとつもありません。Chrome, Safari, Firefox などすべてのメジャーなブラウザはWHATWG の DOM Standard / HTML Standard の準拠を目指しています。言い方を変えると、W3C HTML5仕様を参考にWebページをつくったところで、それをサポートしているメジャーブラウザは現在存在しませんし、今のところでてくる気配もありません。もし誰かがそのようなHTML5仕様に準拠したブラウザをつくったとしてもそのブラウザは、Chrome, Safari, Firefoxとのインターオペラビリティはありません。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="web-components-shadow-dom"&gt;Web Components / Shadow DOM &lt;a name="web-components-shadow-dom"&gt;&lt;/a&gt;&lt;/h1&gt;
