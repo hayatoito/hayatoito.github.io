@@ -46,7 +46,7 @@
 &lt;h2 id="google-tech-lead"&gt;Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ &lt;a name="google-tech-lead"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼びます。
 数人から10名ほどのチームに、Tech Lead が１人います。
-私は Google Chrome の DOM Team と Web Components プロジェクトの Tech Lead です。&lt;/p&gt;
+私は Google Chrome の DOM Team と Web Components Project の Tech Lead です。&lt;/p&gt;
 &lt;h2 id="_1"&gt;普段、何をしていますか？ &lt;a name="what"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。&lt;/p&gt;
 &lt;h2 id="_2"&gt;普段、どれくらいコードを書いていますか？ &lt;a name="commits"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -702,7 +702,7 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 &lt;h2 id="_25"&gt;おすすめのエディタは？ &lt;a name="recommended-editor"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;ないです。&lt;/p&gt;
 &lt;h2 id="_26"&gt;エディタは何を使用してますか？ &lt;a name="editor"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;（Scala 以外は） Emacs。&lt;/p&gt;
+&lt;p&gt;（Scala 以外は） Emacs。C++ は Eclipse CDT も使用します。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;ちなみに観測範囲においては Google のソフトウェアエンジニアは (Java や Objective-C を書く人を除くと）Emacs を使う人がほとんどです。Emacs ユーザーの割合は 80% を超えると思います。&lt;/p&gt;
 &lt;h2 id="emacs"&gt;Emacs で使用しているパッケージは？ &lt;a name="emacs"&gt;&lt;/a&gt;&lt;/h2&gt;
@@ -843,14 +843,25 @@ Emacs に標準で付属していない・自分でインストールしたパ�
 &lt;/ul&gt;
 &lt;h2 id="c"&gt;C++ の開発環境は? &lt;a name="cpp-dev"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Emacs (cc-mode, &lt;a href="https://github.com/Andersbakken/rtags"&gt;rtags&lt;/a&gt;, flycheck-rtags, company-rtags)&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://eclipse.org/cdt/"&gt;Eclipse CDT&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Build: &lt;a href="https://waf.io/"&gt;waf&lt;/a&gt; / make /  &lt;a href="https://chromium.googlesource.com/chromium/src/tools/gn/"&gt;gn&lt;/a&gt; + &lt;a href="https://ninja-build.org/"&gt;ninja&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;
+&lt;p&gt;Emacs (cc-mode, &lt;a href="https://github.com/Andersbakken/rtags"&gt;rtags&lt;/a&gt;, flycheck-rtags, company-rtags)&lt;/p&gt;
 &lt;p&gt;rtags はとてもオススメです。&lt;/p&gt;
 &lt;p&gt;ビルドツールである ninja や CMake は &lt;a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html"&gt;JSON Compilation Database Format Specification&lt;/a&gt; を出力できます。
 rtags はこの情報をもとにコードを解析するので、シンボル・ジャンプや補完がほぼ正確です。
 私も実際に Blink の開発で使用しています。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://eclipse.org/cdt/"&gt;Eclipse CDT&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;なぜかあまり有名でないけれど、Eclipse CDT も相当便利です。
+巨大なレポジトリに対して使用するにはちょっとしたコツがいるのですけど、
+Mozilla のドキュメント (&lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Eclipse/Eclipse_CDT"&gt;Eclipse CDT&lt;/a&gt;) や、
+Chromium のドキュメント (&lt;a href="https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_eclipse_dev.md"&gt;Linux Eclipse Dev&lt;/a&gt;)
+が参考になるかもです。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Build: &lt;a href="https://waf.io/"&gt;waf&lt;/a&gt; / make /  &lt;a href="https://chromium.googlesource.com/chromium/src/tools/gn/"&gt;gn&lt;/a&gt; + &lt;a href="https://ninja-build.org/"&gt;ninja&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="rust_4"&gt;Rust の開発環境は? &lt;a name="rust-dev"&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Emacs (rust-mode, &lt;a href="https://github.com/phildawes/racer"&gt;racer&lt;/a&gt;, flycheck, company-mode)&lt;/li&gt;

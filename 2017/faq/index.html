@@ -113,7 +113,7 @@
 <h2 id="google-tech-lead">Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ <a name="google-tech-lead"></a></h2>
 <p>Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼びます。
 数人から10名ほどのチームに、Tech Lead が１人います。
-私は Google Chrome の DOM Team と Web Components プロジェクトの Tech Lead です。</p>
+私は Google Chrome の DOM Team と Web Components Project の Tech Lead です。</p>
 <h2 id="_1">普段、何をしていますか？ <a name="what"></a></h2>
 <p>主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。</p>
 <h2 id="_2">普段、どれくらいコードを書いていますか？ <a name="commits"></a></h2>
@@ -769,7 +769,7 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 <h2 id="_25">おすすめのエディタは？ <a name="recommended-editor"></a></h2>
 <p>ないです。</p>
 <h2 id="_26">エディタは何を使用してますか？ <a name="editor"></a></h2>
-<p>（Scala 以外は） Emacs。</p>
+<p>（Scala 以外は） Emacs。C++ は Eclipse CDT も使用します。</p>
 <hr>
 <p>ちなみに観測範囲においては Google のソフトウェアエンジニアは (Java や Objective-C を書く人を除くと）Emacs を使う人がほとんどです。Emacs ユーザーの割合は 80% を超えると思います。</p>
 <h2 id="emacs">Emacs で使用しているパッケージは？ <a name="emacs"></a></h2>
@@ -910,14 +910,25 @@ Emacs に標準で付属していない・自分でインストールしたパ�
 </ul>
 <h2 id="c">C++ の開発環境は? <a name="cpp-dev"></a></h2>
 <ul>
-<li>Emacs (cc-mode, <a href="https://github.com/Andersbakken/rtags">rtags</a>, flycheck-rtags, company-rtags)</li>
-<li><a href="https://eclipse.org/cdt/">Eclipse CDT</a></li>
-<li>Build: <a href="https://waf.io/">waf</a> / make /  <a href="https://chromium.googlesource.com/chromium/src/tools/gn/">gn</a> + <a href="https://ninja-build.org/">ninja</a></li>
-</ul>
+<li>
+<p>Emacs (cc-mode, <a href="https://github.com/Andersbakken/rtags">rtags</a>, flycheck-rtags, company-rtags)</p>
 <p>rtags はとてもオススメです。</p>
 <p>ビルドツールである ninja や CMake は <a href="http://clang.llvm.org/docs/JSONCompilationDatabase.html">JSON Compilation Database Format Specification</a> を出力できます。
 rtags はこの情報をもとにコードを解析するので、シンボル・ジャンプや補完がほぼ正確です。
 私も実際に Blink の開発で使用しています。</p>
+</li>
+<li>
+<p><a href="https://eclipse.org/cdt/">Eclipse CDT</a></p>
+<p>なぜかあまり有名でないけれど、Eclipse CDT も相当便利です。
+巨大なレポジトリに対して使用するにはちょっとしたコツがいるのですけど、
+Mozilla のドキュメント (<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Eclipse/Eclipse_CDT">Eclipse CDT</a>) や、
+Chromium のドキュメント (<a href="https://chromium.googlesource.com/chromium/src/+/lkcr/docs/linux_eclipse_dev.md">Linux Eclipse Dev</a>)
+が参考になるかもです。</p>
+</li>
+<li>
+<p>Build: <a href="https://waf.io/">waf</a> / make /  <a href="https://chromium.googlesource.com/chromium/src/tools/gn/">gn</a> + <a href="https://ninja-build.org/">ninja</a></p>
+</li>
+</ul>
 <h2 id="rust_4">Rust の開発環境は? <a name="rust-dev"></a></h2>
 <ul>
 <li>Emacs (rust-mode, <a href="https://github.com/phildawes/racer">racer</a>, flycheck, company-mode)</li>
