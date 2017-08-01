@@ -624,7 +624,7 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 すでに私はほとんどのユースケースにおいて Rust で書くほうが生産性が上になっています。</p>
 <p>ひとつの価値観にとらわれることなく、実際に自分で触れて経験して発見することはとても大事です。</p>
 <h2 id="rust_3">使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ <a name="rust-as-scripting"></a></h2>
-<p>そう思っていた時期がありました。しかし、Rust は <code>&lt;create_root&gt;/src/bin</code> 以下に <code>*.rs</code> ファイルをおいておくだけで、それぞれの <code>*.rs</code> をビルドして別の実行ファイルをつくってくれます。
+<p>そう思っていた時期がありました。しかし、Rust は <code>&lt;crate_root&gt;/src/bin</code> 以下に <code>*.rs</code> ファイルをおいておくだけで、それぞれの <code>*.rs</code> をビルドして別の実行ファイルをつくってくれます。
 たとえば my-hello-world "スクリプト" を書きたいと思ったら <code>&lt;crate_root&gt;/src/bin/my-hello-world.rs</code> においておけば開発中は:</p>
 <div class="highlight"><pre><span></span>&gt; cargo run --bin my-hello-world [args...]
 </pre></div>

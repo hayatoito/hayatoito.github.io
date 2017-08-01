@@ -557,7 +557,7 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 すでに私はほとんどのユースケースにおいて Rust で書くほうが生産性が上になっています。&lt;/p&gt;
 &lt;p&gt;ひとつの価値観にとらわれることなく、実際に自分で触れて経験して発見することはとても大事です。&lt;/p&gt;
 &lt;h2 id="rust_3"&gt;使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ &lt;a name="rust-as-scripting"&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;そう思っていた時期がありました。しかし、Rust は &lt;code&gt;&amp;lt;create_root&amp;gt;/src/bin&lt;/code&gt; 以下に &lt;code&gt;*.rs&lt;/code&gt; ファイルをおいておくだけで、それぞれの &lt;code&gt;*.rs&lt;/code&gt; をビルドして別の実行ファイルをつくってくれます。
+&lt;p&gt;そう思っていた時期がありました。しかし、Rust は &lt;code&gt;&amp;lt;crate_root&amp;gt;/src/bin&lt;/code&gt; 以下に &lt;code&gt;*.rs&lt;/code&gt; ファイルをおいておくだけで、それぞれの &lt;code&gt;*.rs&lt;/code&gt; をビルドして別の実行ファイルをつくってくれます。
 たとえば my-hello-world "スクリプト" を書きたいと思ったら &lt;code&gt;&amp;lt;crate_root&amp;gt;/src/bin/my-hello-world.rs&lt;/code&gt; においておけば開発中は:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; cargo run --bin my-hello-world [args...]
 &lt;/pre&gt;&lt;/div&gt;
