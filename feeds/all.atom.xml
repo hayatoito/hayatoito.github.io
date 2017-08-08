@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io</title><link href="https://hayato.io/" rel="alternate"></link><link href="https://hayato.io/feeds/all.atom.xml" rel="self"></link><id>https://hayato.io/</id><updated>2017-03-20T00:00:00+09:00</updated><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-07-05 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-08-08 Tue]&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
@@ -23,7 +23,7 @@
 &lt;h1 id="tech-lead"&gt;テックリード (Tech Lead) &lt;a name="tech-lead"&gt;&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="google-tech-lead"&gt;Google …&lt;/h2&gt;</summary><content type="html">&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-07-05 Wed]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Last update date: &lt;code&gt;[2017-08-08 Tue]&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
@@ -537,8 +537,14 @@ Lisp っぽい言語を自分でつくって、それを GHC Program にコン�
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://icfpc2016.blogspot.jp/2016/08/task-description.html"&gt;2016&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Rust で参加。 &lt;a href="https://github.com/hayatoito/icfpc2016-origami/"&gt;Code&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Rust で参加。 &lt;a href="https://github.com/hayatoito/icfpc2016-origami/"&gt;Repository&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;入力としてすでに折った後の折り紙の形が与えられます。折り方を見つけてくださいという問題。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://icfpcontest2017.github.io/"&gt;2016&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2年連続 Rust で参加。 &lt;a href="https://github.com/hayatoito/icfp2017"&gt;Repository&lt;/a&gt;。&lt;a href="https://cdn.rawgit.com/hayatoito/icfp2017/6cb4a567/visualizer/index.html"&gt;Visualizer&lt;/a&gt;。&lt;a href="https://plus.google.com/+HayatoIto/posts/e1S3u7MQvqn"&gt;感想&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;Undirected-Graph の Edge をターン制でとっていくn人Game。
+いくつかのノードはラムダになっていて、ラムダから到達できるNodeごとにスコアが d * d 点加算。ただし、距離dは取っていないすべてのEdgeを使用して計算する。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="_21"&gt;動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? &lt;a name="dynamic-programming-language-is-dead"&gt;&lt;/a&gt;&lt;/h2&gt;
