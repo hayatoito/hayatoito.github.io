@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io - Hayato Ito</title><link href="https://hayato.io/" rel="alternate"></link><link href="https://hayato.io/feeds/hayato-ito.atom.xml" rel="self"></link><id>https://hayato.io/</id><updated>2017-03-20T00:00:00+09:00</updated><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-08-08 Tue]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
   答えられる範囲でできるだけ答えますね。&lt;/li&gt;
@@ -21,13 +16,8 @@
 &lt;li&gt;&lt;i class="fa fa-slack"&gt;&lt;/i&gt; &lt;a href="https://freenode.net/"&gt;IRC freenode&lt;/a&gt;: hayato&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="tech-lead"&gt;テックリード (Tech Lead) &lt;a name="tech-lead"&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="google-tech-lead"&gt;Google …&lt;/h2&gt;</summary><content type="html">&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-08-08 Tue]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
-&lt;/li&gt;
+&lt;h2 id="google-tech-lead"&gt;Google における Tech Lead (テックリード) とはどのようなお仕事ですか …&lt;/h2&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
   答えられる範囲でできるだけ答えますね。&lt;/li&gt;

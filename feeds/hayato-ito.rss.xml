@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Mon, 20 Mar 2017 00:00:00 +0900</lastBuildDate><item><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link>https://hayato.io/2017/faq/</link><description>&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Last update date: &lt;code&gt;[2017-08-08 Tue]&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Hayato Ito is a Software Engineer @ Google.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
   答えられる範囲でできるだけ答えますね。&lt;/li&gt;
@@ -21,7 +16,7 @@
 &lt;li&gt;&lt;i class="fa fa-slack"&gt;&lt;/i&gt; &lt;a href="https://freenode.net/"&gt;IRC freenode&lt;/a&gt;: hayato&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="tech-lead"&gt;テックリード (Tech Lead) &lt;a name="tech-lead"&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id="google-tech-lead"&gt;Google …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Mon, 20 Mar 2017 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2017-03-20:/2017/faq/</guid></item><item><title>Simple timer application for the pomodoro technique</title><link>https://hayato.io/2014/timer/</link><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; (2016-03-22 Tue): I have rewritten the timer application. This document is still using the old screen captures.&lt;/p&gt;
+&lt;h2 id="google-tech-lead"&gt;Google における Tech Lead (テックリード) とはどのようなお仕事ですか …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Mon, 20 Mar 2017 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2017-03-20:/2017/faq/</guid></item><item><title>Simple timer application for the pomodoro technique</title><link>https://hayato.io/2014/timer/</link><description>&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt; (2016-03-22 Tue): I have rewritten the timer application. This document is still using the old screen captures.&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;I've created a simple &lt;a href="/timer/"&gt;timer application&lt;/a&gt; for &lt;a href="http://pomodorotechnique.com/"&gt;the pomodoro technique&lt;/a&gt;.
 You can use the timer here, &lt;a href="http://hayato.io/timer/"&gt;http://hayato.io/timer/&lt;/a&gt;.&lt;/p&gt;
