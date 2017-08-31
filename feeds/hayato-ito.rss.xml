@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Mon, 20 Mar 2017 00:00:00 +0900</lastBuildDate><item><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link>https://hayato.io/2017/faq/</link><description>&lt;ul&gt;
+<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0900</lastBuildDate><item><title>Rustが最強のプログラミング言語である証明</title><link>https://hayato.io/2017/icfp-rust/</link><description>&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
+&lt;h1 id="icfp"&gt;ICFP プログラミングコンテスト&lt;/h1&gt;
+&lt;p&gt;ICFP プログラミングコンテストの説明については以下をご覧ください。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ICFP Programming Contest は「なんでもあり」が特徴の，他とは一線を画す特徴的なプログラミングコンテストです．ACM の関数型プログラミング言語の学会 ICFP (International Conference on Functional Programming) に伴って毎年開催されていまして (1) プログラミング言語自由 (2) 計算資源自由 (2) チーム人数制限なし (3) 72 時間勝負 (4) 問題の形式も毎年大きく変化，等の特徴があります．優勝者は「その年のプログラミング言語」を決めることとなっており「その年はその言語の文句は言えない」とか．&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class='text-right'&gt;
+引用元: &lt;a href=http://iwiwi.hatenablog.com/entry/20130927/1380255924&gt;http://iwiwi.hatenablog.com/entry/20130927/1380255924&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;コンテスト優勝チームが使用した言語は「優秀なハッカーに選ばれたプログラミング言語」として正式に認定されます …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Thu, 31 Aug 2017 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2017-08-31:/2017/icfp-rust/</guid></item><item><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link>https://hayato.io/2017/faq/</link><description>&lt;ul&gt;
 &lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
@@ -56,20 +67,4 @@ C++にスイッチするはずが、手元の環境の問題で、やむなくJa
 自己ベストは、2040ですので、あと一歩。
 このあたりのレーティングだと、ハードが解けなくても、
 コンスタントにEasyとMediumを解くことができれば、
-大抵レーティングは上昇しますね。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 06 Jan 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-01-06:/2008/srm386/</guid></item><item><title>SRM385</title><link>https://hayato.io/2007/srm385/</link><description>&lt;p&gt;SRM385 に挑戦。今年、最後のSRMです。&lt;/p&gt;
-&lt;p&gt;今回は、1100点問題は誰も解けないほどのハードな問題、
-250点問題と500点問題はとっても素直な問題なんですけど、
-500点問題はワーストケースのタイムアウトで落ちてしまいました。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mf"&gt;2.004&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;うーん。惜しい。0.004秒ほどオーバー。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;メモするところで、HashMapではなく、普通に配列使っとく&lt;/li&gt;
-&lt;li&gt;または、ゴールに達したらすぐ値を返す&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;でなんの問題なかったんですよね。 状態のサイズは、最大でも7 * 7 * 2\^14
-= 802,816 ですので、
-HashMap使ってもまあ楽勝で2秒以内だろ。と勝手に思い込んだ、私の負けです。
-ちゃんとTopCoderのシステム上で計測しとかないとだめですね。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Thu, 27 Dec 2007 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2007-12-27:/2007/srm385/</guid></item></channel></rss>
+大抵レーティングは上昇しますね。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 06 Jan 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-01-06:/2008/srm386/</guid></item></channel></rss>

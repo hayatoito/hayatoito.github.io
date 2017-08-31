@@ -12,6 +12,10 @@
   </url>
 
   <url>
+    <loc>https://hayato.io/2017/icfp-rust/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://hayato.io/2017/faq/</loc>
     <priority>1.0</priority>
   </url>

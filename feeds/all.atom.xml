@@ -1,5 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io</title><link href="https://hayato.io/" rel="alternate"></link><link href="https://hayato.io/feeds/all.atom.xml" rel="self"></link><id>https://hayato.io/</id><updated>2017-03-20T00:00:00+09:00</updated><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io</title><link href="https://hayato.io/" rel="alternate"></link><link href="https://hayato.io/feeds/all.atom.xml" rel="self"></link><id>https://hayato.io/</id><updated>2017-08-31T00:00:00+09:00</updated><entry><title>Rustが最強のプログラミング言語である証明</title><link href="https://hayato.io/2017/icfp-rust/" rel="alternate"></link><published>2017-08-31T00:00:00+09:00</published><updated>2017-08-31T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-08-31:/2017/icfp-rust/</id><summary type="html">&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
+&lt;h1 id="icfp"&gt;ICFP プログラミングコンテスト&lt;/h1&gt;
+&lt;p&gt;ICFP プログラミングコンテストの説明については以下をご覧ください。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ICFP Programming Contest は「なんでもあり」が特徴の，他とは一線を画す特徴的なプログラミングコンテストです．ACM の関数型プログラミング言語の学会 ICFP (International Conference on Functional Programming) に伴って毎年開催されていまして (1) プログラミング言語自由 (2) 計算資源自由 (2) チーム人数制限なし (3) 72 時間勝負 (4) 問題の形式も毎年大きく変化，等の特徴があります．優勝者は「その年のプログラミング言語」を決めることとなっており「その年はその言語の文句は言えない」とか．&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class='text-right'&gt;
+引用元: &lt;a href=http://iwiwi.hatenablog.com/entry/20130927/1380255924&gt;http://iwiwi.hatenablog.com/entry/20130927/1380255924&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;コンテスト優勝チームが使用した言語は「優秀なハッカーに選ばれたプログラミング言語」として正式に認定されます …&lt;/p&gt;</summary><content type="html">&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
+&lt;h1 id="icfp"&gt;ICFP プログラミングコンテスト&lt;/h1&gt;
+&lt;p&gt;ICFP プログラミングコンテストの説明については以下をご覧ください。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ICFP Programming Contest は「なんでもあり」が特徴の，他とは一線を画す特徴的なプログラミングコンテストです．ACM の関数型プログラミング言語の学会 ICFP (International Conference on Functional Programming) に伴って毎年開催されていまして (1) プログラミング言語自由 (2) 計算資源自由 (2) チーム人数制限なし (3) 72 時間勝負 (4) 問題の形式も毎年大きく変化，等の特徴があります．優勝者は「その年のプログラミング言語」を決めることとなっており「その年はその言語の文句は言えない」とか．&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class='text-right'&gt;
+引用元: &lt;a href=http://iwiwi.hatenablog.com/entry/20130927/1380255924&gt;http://iwiwi.hatenablog.com/entry/20130927/1380255924&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;コンテスト優勝チームが使用した言語は「優秀なハッカーに選ばれたプログラミング言語」として正式に認定されます。
+さらに優勝チームには「使用したプログラミング言語を一年間無制限に自慢してよい」という名誉ある権利が与えられます。&lt;/p&gt;
+&lt;p&gt;そのためICFPプログラミングコンテストは「最強のプログラミング言語を決める大会」という側面があります [&lt;a href="#footnote1"&gt;1&lt;/a&gt;]。&lt;/p&gt;
+&lt;p&gt;最近は以下のような風潮もあるようなのですが:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="ja" dir="ltr"&gt;実は最近のICFPContestに対する参加者の態度にやや疑問を持っているんだ…&lt;br&gt;最強言語認定を自分の好きな言語に与えるために勝利を目指すんだと思ってたんだけど、まず勝つこと先行でそのためには混成言語編成チームでもかまわないみたいなのは風情に欠けるんじゃないかって&lt;/p&gt;&amp;mdash; Noriyuki  OHKAWA (@notogawa) &lt;a href="https://twitter.com/notogawa/status/893421960813715456"&gt;August 4, 2017&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;それでも「自分の好きな言語に優勝させてやる！」という熱い思いをもった参加者が今年も大勢参加しました。&lt;/p&gt;
+&lt;p&gt;2017年、今年のコンテストを主催したのはオックスフォード大学です。&lt;/p&gt;
+&lt;h1 id="rust"&gt;Rustで参加&lt;/h1&gt;
+&lt;p&gt;私は昨年に引き続きRustで参加しました。8月4日から8月7日にかけての72時間です。&lt;/p&gt;
+&lt;h1 id="_1"&gt;今年の問題&lt;/h1&gt;
+&lt;p&gt;今年の問題を簡単にいうと「鉱山（λ）に道をつなげてより多くの都市（λから遠ければ遠いほど高得点）に到達しましょう。」という問題でした。
+実際のルールはもっと複雑です。興味がある方は、&lt;a href="https://icfpcontest2017.github.io/problem/"&gt;実際の問題仕様&lt;/a&gt;を見てください。&lt;/p&gt;
+&lt;p&gt;「百聞は一見にしかず」、以下の実際に行われた戦いの様子をご覧ください。私はチーム hayatox です。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="embed-responsive embed-responsive-4by3"&gt;
+  &lt;iframe class="embed-responsive-item" src="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full1/plain/randomMedium-ae0.json"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;(&lt;a href="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full1/plain/randomMedium-ae0.json"&gt;Link&lt;/a&gt;, その他の大きなマップでの戦い: Map: &lt;a href="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full2/futures-splurges/junction-c04.json"&gt;junction&lt;/a&gt;, Map: &lt;a href="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full2/futures/nara-c11.json"&gt;nara&lt;/a&gt;)&lt;/p&gt;
+&lt;h1 id="_2"&gt;結果&lt;/h1&gt;
+&lt;p&gt;参加者から提出されたプログラムをもとにした、コンテストの&lt;a href="https://icfpcontest2017.github.io/post/full-one/"&gt;1stラウンドの結果&lt;/a&gt;が今週発表されました。
+それによると参加チームは146チーム。そのうち26チームは提出したプログラムが仕様を満たしていないことが判明し参加不可能。残りの120チームの間で戦いが行われました。&lt;/p&gt;
+&lt;p&gt;果たしてどの言語が今年は最強の名を手にするのでしょうか？&lt;/p&gt;
+&lt;p&gt;各チームの使用した言語は現在のところコンテストのサイトでは明らかになっていません。そのため以下の条件で各言語を代表するチームを「独断と偏見」で選びました。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;GitHubを&lt;a href="https://github.com/search?utf8=%E2%9C%93&amp;amp;q=icfp+2017&amp;amp;type=Repositories"&gt;"icfp 2017"で検索&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;メインで使用した言語がほぼひとつであることをチェック(そうでなければスキップ）&lt;/li&gt;
+&lt;li&gt;チーム名がREADME等に記載されている&lt;/li&gt;
+&lt;li&gt;1stラウンドの結果にチーム名が載っている&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;各プログラミング言語とそれを使用したチームとその人数、そしてチームの獲得ポイントです [&lt;a href="#footnote2"&gt;2&lt;/a&gt;]。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;使用言語 （チーム名: 人数  [&lt;a href='#footnote3'&gt;3&lt;/a&gt;] ）&lt;/div&gt;
+  &lt;div class='col-md-8 text-center'&gt;獲得ポイント&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Rust (hayatox: &lt;a href='https://github.com/hayatoito/icfp2017/graphs/contributors'&gt;1&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 100.0%'&gt;
+        &lt;span&gt;109&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;C++ (GennAI: &lt;a href='https://github.com/nya3jp/icfpc2017/graphs/contributors'&gt;8&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 97.2%'&gt;
+        &lt;span&gt;106&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Haskell (Sampou: &lt;a href='https://github.com/nobsun/icfpc2017/graphs/contributors'&gt;7&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 99.1%'&gt;
+        &lt;span&gt;108&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Common Lisp (cvnm: &lt;a href='https://github.com/cybevnm/icfpc-2017/graphs/contributors'&gt;1&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 63.3%'&gt;
+        &lt;span&gt;69&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Clojure (drop table teams;: &lt;a href='https://github.com/candera/icfp-2017/graphs/contributors'&gt;2&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 34.9%'&gt;
+        &lt;span&gt;38&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Java (A Storm Of Minds: &lt;a href='https://github.com/jandreske/icfpc2017/graphs/contributors'&gt;2&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 100.0%'&gt;
+        &lt;span&gt;109&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Kotlin (Lambada Calculus: &lt;a href='https://github.com/PaulTaykalo/icfp-2017/graphs/contributors'&gt;9&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 78.9%'&gt;
+        &lt;span&gt;86&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Scala (codingteam: &lt;a href='https://github.com/codingteam/icfpc-2017/graphs/contributors'&gt;4&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 44.0%'&gt;
+        &lt;span&gt;48&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;C# (kontur.ru: &lt;a href='https://github.com/skbkontur/icfpc2017-kontur-ru/graphs/contributors'&gt;16&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 64.2%'&gt;
+        &lt;span&gt;70&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;F# (lambda-llama: &lt;a href='https://github.com/lambda-llama/icfpc2017/graphs/contributors'&gt;5&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 0.0%'&gt;
+        &lt;span&gt;0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Elixir (The Mikinators: &lt;a href='https://github.com/claytonflesher/punting/graphs/contributors'&gt;8&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 38.5%'&gt;
+        &lt;span&gt;42&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Python (Lambding Snakes vs Coding Monkeys: &lt;a href='https://github.com/pankdm/icfpc-2017/graphs/contributors'&gt;4&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 86.2%'&gt;
+        &lt;span&gt;94&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Go (MIPT Lambda: &lt;a href='https://github.com/ygorshenin/icfp2017/graphs/contributors'&gt;3&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar' style='width: 58.7%'&gt;
+        &lt;span&gt;64&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust十分強い。しかし最強という感じはまだ受けません。&lt;/li&gt;
+&lt;li&gt;ほとんどのチームは複数人で参加していることがわかりました。ひとりで参加している「ぼっちチーム」はRust以外はCommon Lispだけです。さすがLisp。孤高の存在。&lt;/li&gt;
+&lt;li&gt;特にC++を用いたチームGennAIは8人中7(?)人がGoogleのソフトウェアエンジニアです。&lt;/li&gt;
+&lt;li&gt;さらに特筆すべきはC#を用いたチーム&lt;a href="https://github.com/skbkontur/icfpc2017-kontur-ru"&gt;kontur.ru&lt;/a&gt;。なんと16人チーム！もはや数の暴力です。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="_3"&gt;正規化&lt;/h1&gt;
+&lt;p&gt;数の暴力にはこちらも理不尽な理論で対抗するしかありません。「各チームの獲得ポイント」を「チームの人数」で割ってやりましょう [&lt;a href="#footnote4"&gt;4&lt;/a&gt;]。
+正規化した結果は以下のようになります。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Rust (hayatox: &lt;a href='https://github.com/hayatoito/icfp2017/graphs/contributors'&gt;1&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 100.0%'&gt;
+        &lt;span&gt;109.0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;C++ (GennAI: &lt;a href='https://github.com/nya3jp/icfpc2017/graphs/contributors'&gt;8&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 12.2%'&gt;
+        &lt;span&gt;13.2&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Haskell (Sampou: &lt;a href='https://github.com/nobsun/icfpc2017/graphs/contributors'&gt;7&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 14.2%'&gt;
+        &lt;span&gt;15.4&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Common Lisp (cvnm: &lt;a href='https://github.com/cybevnm/icfpc-2017/graphs/contributors'&gt;1&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 63.3%'&gt;
+        &lt;span&gt;69.0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Clojure (drop table teams;: &lt;a href='https://github.com/candera/icfp-2017/graphs/contributors'&gt;2&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 17.4%'&gt;
+        &lt;span&gt;19.0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Java (A Storm Of Minds: &lt;a href='https://github.com/jandreske/icfpc2017/graphs/contributors'&gt;2&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 50.0%'&gt;
+        &lt;span&gt;54.5&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Kotlin (Lambada Calculus: &lt;a href='https://github.com/PaulTaykalo/icfp-2017/graphs/contributors'&gt;9&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 8.8%'&gt;
+        &lt;span&gt;9.6&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Scala (codingteam: &lt;a href='https://github.com/codingteam/icfpc-2017/graphs/contributors'&gt;4&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 11.0%'&gt;
+        &lt;span&gt;12.0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;C# (kontur.ru: &lt;a href='https://github.com/skbkontur/icfpc2017-kontur-ru/graphs/contributors'&gt;16&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 4.0%'&gt;
+        &lt;span&gt;4.4&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;F# (lambda-llama: &lt;a href='https://github.com/lambda-llama/icfpc2017/graphs/contributors'&gt;5&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 0.0%'&gt;
+        &lt;span&gt;0.0&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Elixir (The Mikinators: &lt;a href='https://github.com/claytonflesher/punting/graphs/contributors'&gt;8&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 4.8%'&gt;
+        &lt;span&gt;5.2&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Python (Lambding Snakes vs Coding Monkeys: &lt;a href='https://github.com/pankdm/icfpc-2017/graphs/contributors'&gt;4&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 21.6%'&gt;
+        &lt;span&gt;23.5&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class='row'&gt;
+  &lt;div class='col-md-4 text-right'&gt;Go (MIPT Lambda: &lt;a href='https://github.com/ygorshenin/icfp2017/graphs/contributors'&gt;3&lt;/a&gt;)&lt;/div&gt;
+  &lt;div class='col-md-8'&gt;
+    &lt;div class='progress'&gt;
+      &lt;div class='progress-bar progress-bar-success' style='width: 19.6%'&gt;
+        &lt;span&gt;21.3&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;以上によりRustが最強であることが示されました [&lt;a href="#footnote5"&gt;5&lt;/a&gt;]。証明終わり。&lt;/p&gt;
+&lt;h1 id="_4"&gt;おまけ&lt;/h1&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="ja" dir="ltr"&gt;RustでICFPCに参加した同僚「コンパイラがチームメイトみたいなもんでしたよ」&lt;/p&gt;&amp;mdash; いもす (@imos) &lt;a href="https://twitter.com/imos/status/894884305998036992"&gt;August 8, 2017&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;そういえばコンテストの翌日にオフィスで会った時そんなこといった気がします。:)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;コンパイラのちからを信じましょう。Compile-Driven-Development。&lt;/li&gt;
+&lt;li&gt;実際、私は大したことはしておらず、すべてはRustという素晴らしい言語を作成したコアチームと、&lt;a href="http://crates.io"&gt;create.io&lt;/a&gt; という素晴らしいパッケージ・エコシステムのおかげです。コンテスト中にはじめて使用したライブラリがいくつかありますが、苦労することなく使用することができました。私は巨人の肩に乗っかっただけです。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="_5"&gt;来年に向けて&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;「私の愛するJavaScriptがRustごときに負けるはずがない。」&lt;/li&gt;
+&lt;li&gt;「はっはっはっ。自称最強Ruby使いであるこの私が出場していない大会で良い成績をとることに何の意味があるというのか？かわいいやつらめ。」&lt;/li&gt;
+&lt;li&gt;「その証明には誤りがあります。なぜなら....」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;もっともなご意見でございます。しかしながら、参加しない人に反論する権利はまったく与えられないのがこのICFPプログラミングコンテストです。&lt;/p&gt;
+&lt;p&gt;唯一の正しい反論の方法は「机上の空論を展開」することではなく、実際に「愛するXXX言語を勝たせてやる」ことです。
+ぜひ来年のICFPプログラミングコンテスト2018に参加してみてください。&lt;/p&gt;
+&lt;p&gt;興味をもった方は雰囲気をつかむため過去の問題に挑戦してみるとよいかもしれません。
+特に2006年カーネギーメロン大学が主催した「古代文明が作ったコンピュータの仕様とその上で動くプログラムを記した古文書」を巡るコンテストは「&lt;a href="http://www.boundvariable.org/"&gt;神回&lt;/a&gt;」として伝説になっています [&lt;a href="#footnote6"&gt;6&lt;/a&gt;]。
+ぜひ挑戦してみてくださいね。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;footnotes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a name="footnote1"&gt;&lt;/a&gt;[1]: ICFP学会としては、コンテストを通じて「関数型プログラミングの優位性」を示したいという思いがあったはずなのですが、コンテストでは必ずしもHaskellのような「いわゆる関数型プログラミング言語」が優勝するとは限りません。主催者かわいそう。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote1"&gt;&lt;/a&gt;[2]: 1st Roundの結果のみを使用しています。最終結果はICFP（学会の方）当日、現地オックスフォードで発表されます。最終結果が発表される前のタイミングでないとこのような記事は書けません。:)&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote2"&gt;&lt;/a&gt;[3]: 各チームの人数は、レポジトリのREADMEにメンバーが記載されている場合はそこから、記載されていない場合は実際にレポジトリに貢献した人数で判断しています。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote3"&gt;&lt;/a&gt;[4]: 参考にした理論: &lt;a href="https://dic.pixiv.net/a/%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%BA%E3%83%9E%E3%83%B3%E7%90%86%E8%AB%96"&gt;ウォーズマン理論&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote4"&gt;&lt;/a&gt;[5]: Common Lispが2位ですが、Lispは神が作った神言語なので妥当な結果といえるでしょう。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote4"&gt;&lt;/a&gt;[6]: 2006年のICFPコンテストはその内容があまりに濃かったため、参加者の間で「これ、もう主催者側が優勝でいいんじゃね？」と言われていたそうです。&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
 &lt;li&gt;ご意見やご質問 あるいは Typo 等を見つけたときは &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issues&lt;/a&gt; にお願いします。
@@ -2262,20 +2657,4 @@ C++にスイッチするはずが、手元の環境の問題で、やむなくJa
  エレガントな解法はもうあきらめてBrute-force的に解いてみる。
 コンテスト中は解法として正しいかどうか証明できなかったので、自信がなかったんですけど、Passしました。
 ちょっと驚き。&lt;/p&gt;
-&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</content></entry><entry><title>SRM386</title><link href="https://hayato.io/2008/srm386/" rel="alternate"></link><published>2008-01-06T00:00:00+09:00</published><updated>2008-01-06T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2008-01-06:/2008/srm386/</id><summary type="html">&lt;p&gt;2008年あけましておめでとう。今年最初のSRM、
-&lt;a href="http://www.topcoder.com/stat?c=round_overview&amp;amp;rd=11120"&gt;SRM386&lt;/a&gt;
-に挑戦。
-今回も、ハード問題は解いた人が一人だけというスーパーハードでした。&lt;/p&gt;
-&lt;p&gt;レーティングは、1918 -&amp;gt; 2009と上昇。
-自己ベストは、2040ですので、あと一歩。
-このあたりのレーティングだと、ハードが解けなくても、
-コンスタントにEasyとMediumを解くことができれば、
-大抵レーティングは上昇しますね。&lt;/p&gt;</summary><content type="html">&lt;p&gt;2008年あけましておめでとう。今年最初のSRM、
-&lt;a href="http://www.topcoder.com/stat?c=round_overview&amp;amp;rd=11120"&gt;SRM386&lt;/a&gt;
-に挑戦。
-今回も、ハード問題は解いた人が一人だけというスーパーハードでした。&lt;/p&gt;
-&lt;p&gt;レーティングは、1918 -&amp;gt; 2009と上昇。
-自己ベストは、2040ですので、あと一歩。
-このあたりのレーティングだと、ハードが解けなくても、
-コンスタントにEasyとMediumを解くことができれば、
-大抵レーティングは上昇しますね。&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</content></entry></feed>
