@@ -56,10 +56,10 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;各プログラミング言語とそれを使用したチームとその人数、そしてチームの獲得ポイント [&lt;a href="#footnote2"&gt;2&lt;/a&gt;] です 。&lt;/p&gt;
+&lt;p&gt;各プログラミング言語とそれを使用したチーム [&lt;a href="#footnote2"&gt;2&lt;/a&gt;] とその人数 [&lt;a href="#footnote3"&gt;3&lt;/a&gt;]、そしてチームの獲得ポイント [&lt;a href="#footnote4"&gt;4&lt;/a&gt;] です 。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;div class='row'&gt;
-  &lt;div class='col-md-4 text-right'&gt;使用言語 （チーム名: 人数  [&lt;a href='#footnote3'&gt;3&lt;/a&gt;] ）&lt;/div&gt;
+  &lt;div class='col-md-4 text-right'&gt;使用言語 （チーム名: 人数 ）&lt;/div&gt;
   &lt;div class='col-md-8 text-center'&gt;獲得ポイント&lt;/div&gt;
 &lt;/div&gt;
 
@@ -215,7 +215,7 @@
 &lt;li&gt;さらに特筆すべきはC#を用いたチーム&lt;a href="https://github.com/skbkontur/icfpc2017-kontur-ru"&gt;kontur.ru&lt;/a&gt;。なんと16人チーム！もはや数の暴力です。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="_3"&gt;正規化&lt;/h1&gt;
-&lt;p&gt;数の暴力にはこちらも理不尽な理論で対抗するしかありません。「獲得ポイント」を「チームの人数」で割ってやりましょう [&lt;a href="#footnote4"&gt;4&lt;/a&gt;]。
+&lt;p&gt;数の暴力にはこちらも理不尽な理論で対抗するしかありません。「獲得ポイント」を「チームの人数」で割ってやりましょう [&lt;a href="#footnote5"&gt;5&lt;/a&gt;]。
 正規化した結果は以下のようになります。&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;div class='row'&gt;
@@ -362,14 +362,14 @@
 &lt;/div&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;以上によりRustが最強であることが示されました [&lt;a href="#footnote5"&gt;5&lt;/a&gt;]。証明終わり。&lt;/p&gt;
+&lt;p&gt;以上によりRustが最強であることが示されました [&lt;a href="#footnote6"&gt;6&lt;/a&gt;]。証明終わり。&lt;/p&gt;
 &lt;h1 id="_4"&gt;おまけ&lt;/h1&gt;
 &lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="ja" dir="ltr"&gt;RustでICFPCに参加した同僚「コンパイラがチームメイトみたいなもんでしたよ」&lt;/p&gt;&amp;mdash; いもす (@imos) &lt;a href="https://twitter.com/imos/status/894884305998036992"&gt;August 8, 2017&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 
 &lt;p&gt;そういえばコンテストの翌日にオフィスで会った時そんなこといった気がします。:)&lt;/p&gt;
-&lt;p&gt;実際、私は大したことはしていません。合計で12時間くらいしか参加しておらず、仕様もすべては実装していません。それにもかかわらず最低限動くプログラムを完成・提出できたのは、すべてはRustという素晴らしい言語を作成したコアチームと、&lt;a href="http://crates.io"&gt;crates.io&lt;/a&gt; という素晴らしいパッケージ・エコシステムのおかげです。今回のコンテストではじめて使用したライブラリがいくつかありますが、すべて苦労することなく使用することができました。私は巨人の肩に乗っかっただけです。&lt;/p&gt;
+&lt;p&gt;実際、私は大したことはしていません。今回は合計で12時間くらいしか参加しておらず、仕様もすべては実装していません [&lt;a href="#footnote7"&gt;7&lt;/a&gt;]。それにもかかわらず最低限動くプログラムを完成・提出できたのは、すべてはRustという素晴らしい言語を作成したコアチームと、&lt;a href="http://crates.io"&gt;crates.io&lt;/a&gt; という素晴らしいパッケージ・エコシステムのおかげです。今回のコンテストではじめて使用したライブラリがいくつかありますが、すべて苦労することなく使用することができました。私は巨人の肩に乗っかっただけです。&lt;/p&gt;
 &lt;h1 id="_5"&gt;来年に向けて&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;「私の愛するJavaScriptがRustごときに負けるはずがない。」&lt;/li&gt;
@@ -380,17 +380,19 @@
 &lt;p&gt;唯一の正しい反論の方法は「机上の空論を展開」することではなく、実際に「愛するXXX言語を勝たせてやる」ことです。
 ぜひ来年のICFPプログラミングコンテスト2018に参加してみてください。&lt;/p&gt;
 &lt;p&gt;興味をもった方は雰囲気をつかむため過去の問題に挑戦してみるとよいかもしれません。
-特に2006年カーネギーメロン大学が主催した「古代文明が作ったコンピュータの仕様とその上で動くプログラムを記した古文書」を巡るコンテストは「&lt;a href="http://www.boundvariable.org/"&gt;神回&lt;/a&gt;」として伝説になっています [&lt;a href="#footnote6"&gt;6&lt;/a&gt;]。
+特に2006年カーネギーメロン大学が主催した「古代文明が作ったコンピュータの仕様とその上で動くプログラムを記した古文書」を巡るコンテストは「&lt;a href="http://www.boundvariable.org/"&gt;神回&lt;/a&gt;」として伝説になっています [&lt;a href="#footnote8"&gt;8&lt;/a&gt;]。
 ぜひ挑戦してみてくださいね。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;footnotes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a name="footnote1"&gt;&lt;/a&gt;[1]: ICFP学会としては、コンテストを通じて「関数型プログラミングの優位性」を示したいという思いがあったはずなのですが、コンテストでは必ずしもHaskellのような「いわゆる関数型プログラミング言語」が優勝するとは限りません。主催者かわいそう。&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote1"&gt;&lt;/a&gt;[2]: チーム名をここに記載すべきかどうか迷ったのですが、各言語のコードを見ることは読者にとっても有益だと思い、リンクと共に載せています。特にC#チームとF#チームのREADMEは非常によく書けていて勉強になります。獲得ポイントは1st Roundの結果のみを使用しています。最終結果はICFP（学会の方）当日、現地オックスフォードで発表されます。最終結果が発表される前のタイミングでないとこのような方向性の記事は書けません。:)&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote2"&gt;&lt;/a&gt;[3]: 各チームの人数は、レポジトリのREADMEにメンバーが記載されている場合はそこから、記載されていない場合は実際にレポジトリに貢献した人数で判断しています。&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote3"&gt;&lt;/a&gt;[4]: 参考にした理論: &lt;a href="https://dic.pixiv.net/a/%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%BA%E3%83%9E%E3%83%B3%E7%90%86%E8%AB%96"&gt;ウォーズマン理論&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote4"&gt;&lt;/a&gt;[5]: Common Lispが2位ですが、Lispは神が作った神言語なので妥当な結果といえるでしょう。&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote4"&gt;&lt;/a&gt;[6]: 2006年のICFPコンテストはその内容があまりに濃かったため、参加者の間で「これ、もう主催者側が優勝でいいんじゃね？」と言われていたそうです。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote2"&gt;&lt;/a&gt;[2]: チーム名をここに記載すべきかどうか迷ったのですが、各言語のコードを見ることは読者にとっても有益だと思い、リンクと共に載せています。特にC#チームとF#チームのREADMEは非常によく書けていて勉強になります。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote3"&gt;&lt;/a&gt;[3]: 各チームの人数は、レポジトリのREADMEにメンバーが記載されている場合はそこから、記載されていない場合は実際にレポジトリに貢献した人数で判断しています。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote4"&gt;&lt;/a&gt;[4]: 獲得ポイントは1st Roundの結果のみを使用しています。最終結果はICFP（学会の方）当日、現地オックスフォードで発表されます。最終結果が発表される前のタイミングでないとこのような方向性の記事は書けません。:)&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote5"&gt;&lt;/a&gt;[5]: 参考にした理論: &lt;a href="https://dic.pixiv.net/a/%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%BA%E3%83%9E%E3%83%B3%E7%90%86%E8%AB%96"&gt;ウォーズマン理論&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote6"&gt;&lt;/a&gt;[6]: Common Lispが2位ですが、Lispは神が作った神言語なので妥当な結果といえるでしょう。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote7"&gt;&lt;/a&gt;[7]: 特にoptionという使用すれば絶対有利になる仕様を利用していません。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote8"&gt;&lt;/a&gt;[8]: 2006年のICFPコンテストはその内容があまりに濃かったため、参加者の間で「これ、もう主催者側が優勝でいいんじゃね？」と言われていたそうです。&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
