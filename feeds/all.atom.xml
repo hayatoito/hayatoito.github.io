@@ -377,10 +377,10 @@
 &lt;li&gt;「その証明には致命的な誤りがあります。どこが間違っているかというと....」&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;もっともなご意見でございます。しかしながら、参加しない人に反論する権利はまったく与えられないのがこのICFPプログラミングコンテストです。&lt;/p&gt;
-&lt;p&gt;唯一の正しい反論の方法は「机上の空論を展開」することではなく、実際に「愛するXXX言語を勝たせてやる」ことです。
+&lt;p&gt;唯一の正しい反論の方法は「机上の空論を展開」することではなく、実際に「愛するXXX言語を勝たせてやる」ことです [&lt;a href="#footnote8"&gt;8&lt;/a&gt;]。
 ぜひ来年のICFPプログラミングコンテスト2018に参加してみてください。&lt;/p&gt;
 &lt;p&gt;興味をもった方は雰囲気をつかむため過去の問題に挑戦してみるとよいかもしれません。
-特に2006年カーネギーメロン大学が主催した「古代文明が作ったコンピュータの仕様とその上で動くプログラムを記した古文書」を巡るコンテストは「&lt;a href="http://www.boundvariable.org/"&gt;神回&lt;/a&gt;」として伝説になっています [&lt;a href="#footnote8"&gt;8&lt;/a&gt;]。
+特に2006年カーネギーメロン大学が主催した「古代文明が作ったコンピュータの仕様とその上で動くプログラムを記した古文書」を巡るコンテストは「&lt;a href="http://www.boundvariable.org/"&gt;神回&lt;/a&gt;」として伝説になっています [&lt;a href="#footnote9"&gt;9&lt;/a&gt;]。
 ぜひ挑戦してみてくださいね。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;footnotes:&lt;/p&gt;
@@ -392,7 +392,8 @@
 &lt;li&gt;&lt;a name="footnote5"&gt;&lt;/a&gt;[5]: 参考にした理論: &lt;a href="https://dic.pixiv.net/a/%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%BA%E3%83%9E%E3%83%B3%E7%90%86%E8%AB%96"&gt;ウォーズマン理論&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a name="footnote6"&gt;&lt;/a&gt;[6]: Common Lispが2位ですが、Lispは神が作った神言語なので妥当な結果といえるでしょう。&lt;/li&gt;
 &lt;li&gt;&lt;a name="footnote7"&gt;&lt;/a&gt;[7]: 特にoptionという使用すれば絶対有利になる仕様を利用していません。&lt;/li&gt;
-&lt;li&gt;&lt;a name="footnote8"&gt;&lt;/a&gt;[8]: 2006年のICFPコンテストはその内容があまりに濃かったため、参加者の間で「これ、もう主催者側が優勝でいいんじゃね？」と言われていたそうです。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote7"&gt;&lt;/a&gt;[8]: もちろんチーム内で複数言語を用いるというのもありです。人数の制限がないのも含めて「なんでもあり」なところがこのコンテストの魅力です。&lt;/li&gt;
+&lt;li&gt;&lt;a name="footnote8"&gt;&lt;/a&gt;[9]: 2006年のICFPコンテストはその内容があまりに濃かったため、参加者の間で「これ、もう主催者側が優勝でいいんじゃね？」と言われていたそうです。&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)</title><link href="https://hayato.io/2017/faq/" rel="alternate"></link><published>2017-03-20T00:00:00+09:00</published><updated>2017-03-20T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-03-20:/2017/faq/</id><summary type="html">&lt;ul&gt;
 &lt;li&gt;Hayato Ito is a Software Engineer @ Google.&lt;/li&gt;
 &lt;li&gt;グーグルではたらくソフトウェアエンジニアです。&lt;/li&gt;
