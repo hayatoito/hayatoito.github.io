@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0900</lastBuildDate><item><title>Rustが最強のプログラミング言語である証明</title><link>https://hayato.io/2017/icfp-rust/</link><description>&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
+<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Sun, 24 Dec 2017 00:00:00 +0900</lastBuildDate><item><title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM</title><link>https://hayato.io/2017/dom/</link><description>&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 24 日目の記事です。&lt;/p&gt;
+&lt;p&gt;内容の一部は Chromium の Git レポジトリの &lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/"&gt;Source/core/dom&lt;/a&gt; フォルダの
+&lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md"&gt;README ファイル&lt;/a&gt;
+（英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記事の想定読者は一般の Web 開発者です。
+この記事の一部は README ファイルに還元（バックポート）する予定です。&lt;/p&gt;
+&lt;p&gt;この記事は詳細な API の使用方法などには深入りしません。雰囲気で理解するのを目的としています。
+記事には読者への課題がいくつか含まれていますが雰囲気で理解するにあたって必須ではありません。&lt;/p&gt;
+&lt;p&gt;課題への解答・記事へのフィードバック・Typo などを発見しましたら &lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues"&gt;GitHub Issue&lt;/a&gt; の方へお願いします。&lt;/p&gt;
+&lt;h1 id="dom"&gt;DOM&lt;/h1&gt;
+&lt;p&gt;DOM は Web の基本です。いってみれば Web …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 24 Dec 2017 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2017-12-24:/2017/dom/</guid></item><item><title>Rustが最強のプログラミング言語である証明</title><link>https://hayato.io/2017/icfp-rust/</link><description>&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
 &lt;h1 id="icfp"&gt;ICFP プログラミングコンテスト&lt;/h1&gt;
 &lt;p&gt;ICFP プログラミングコンテストの説明については以下をご覧ください。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -59,12 +68,4 @@ C++にスイッチするはずが、手元の環境の問題で、やむなくJa
  エレガントな解法はもうあきらめてBrute-force的に解いてみる。
 コンテスト中は解法として正しいかどうか証明できなかったので、自信がなかったんですけど、Passしました。
 ちょっと驚き。&lt;/p&gt;
-&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 15 Jun 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-06-15:/2008/srm405/</guid></item><item><title>SRM386</title><link>https://hayato.io/2008/srm386/</link><description>&lt;p&gt;2008年あけましておめでとう。今年最初のSRM、
-&lt;a href="http://www.topcoder.com/stat?c=round_overview&amp;amp;rd=11120"&gt;SRM386&lt;/a&gt;
-に挑戦。
-今回も、ハード問題は解いた人が一人だけというスーパーハードでした。&lt;/p&gt;
-&lt;p&gt;レーティングは、1918 -&amp;gt; 2009と上昇。
-自己ベストは、2040ですので、あと一歩。
-このあたりのレーティングだと、ハードが解けなくても、
-コンスタントにEasyとMediumを解くことができれば、
-大抵レーティングは上昇しますね。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 06 Jan 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-01-06:/2008/srm386/</guid></item></channel></rss>
+&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 15 Jun 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-06-15:/2008/srm405/</guid></item></channel></rss>
