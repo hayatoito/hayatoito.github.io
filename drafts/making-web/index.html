@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/drafts/making-web/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2017-12-25">
+        2017-12-25
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>この記事は <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a> 25日目の記事です。</p>
+<p>この記事では、実際に行われているソフトウェア・エンジニアリングを通じて上流工程 (Web標準の策定) から下流工程 (ブラウザの開発)まで Web のつくりかたを雰囲気で理解するのを目的としています。</p>
+<p>この記事の想定読者は一般の Web 開発者です。</p>
+<p>記事へのフィードバック・Typo 等を発見しましたら、<a href="https://github.com/hayatoito/hayatoito.github.io/issues?q=is%3Aopen+is%3Aissue">GitHub Issue</a> の方へお願いします。</p>
+<h1 id="web">Web プラットフォーム</h1>
+<p>Web プラットフォームは極めてユーザー数が多いプラットフォームです。
+Webで情報を得ている人や、Webで情報を発信を行っている人などもユーザーとみなせば、極端な言い方をすれば地球上のほぼ全員がこのプラットフォームのエコシステムの一員です。</p>
+<p><img alt="web triangle" src="/assets/2017/web-triangle.svg"></p>
+<p>Web 開発者の数はユーザーの数と比べればぐっと少ないです。さらにブラウザをつくっている人はもっと少ないです。</p>
+<h1 id="web-web-standards">Web 標準 (Web Standards)</h1>
+<p>Web プラットフォームは仕様と実装がわかれています。
+さらに仕様に対して複数の実装（ブラウザ）があるのが大きな特徴のひとつです。</p>
+<p>Webがどう動くべきかを記した「仕様」は「Web Standards」(Web 標準) と呼ばれています
+有名なところでは HTML の仕様である <a href="https://html.spec.whatwg.org/">HTML Standard</a>、
+DOM の仕様である <a href="https://dom.spec.whatwg.org/">DOM Standard</a> などが挙げられます。</p>
+<h1 id="browser-vendor">ブラウザベンダ (Browser Vendor)</h1>
+<p>Web 標準にもとづいて、その実装としてのブラウザをつくる組織・企業のことをブラウザベンダといいます。</p>
+<p>メジャーなブラウザとしては、Chrome, Safari, Firefox, Edge などがあります。それぞれ、Google, Apple, Mozzila, Microsoft 等がつくっています。</p>
+<p>実装が複数あることはほとんどの Web 開発者にとっては「わずらわしい」と考えていると思いますが、
+複数の実装があることこそが何より Web を Web 足らしめている大きな特徴です。
+ブラウザベンダ間の健全な競争こそがプラットフォームを進化させます。</p>
+<h1 id="web-web">Web のつくりかた: Web 標準編</h1>
+<p>Web 標準のつくりかたを説明します。</p>
+<p>ここでは私が主に関わっている DOM Standard (Shadow DOM を含む) と HTML Standard に絞ります。DOM Standard, HTML Standard ともに GitHub 上で管理されています。</p>
+<h1 id="dom-standard">DOM Standard</h1>
+<ul>
+<li>DOM仕様: <a href="https://dom.spec.whatwg.org/">DOM Standard</a><ul>
+<li>GitHub: <a href="https://github.com/whatwg/dom">whatwg/dom</a></li>
+<li>Issues: <a href="https://github.com/whatwg/dom/issues">Open Issues</a></li>
+<li>コミット: <a href="https://github.com/whatwg/dom/commits">whatawg/dom/commits</a></li>
+<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/dom">web-platform-tests/dom</a></li>
+<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/shadow-dom">web-platform-tests/shadow-dom</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="html-standard">HTML Standard</h1>
+<ul>
+<li>HTML 仕様: <a href="https://html.spec.whatwg.org/">HTML Standard</a><ul>
+<li>GitHub: <a href="https://github.com/whatwg/html">whatwg/dom</a></li>
+<li>Issues: <a href="https://github.com/whatwg/html/issues">Open Issues</a></li>
+<li>コミット: <a href="https://github.com/whatwg/html/commits">whatawg/dom/commits</a></li>
+<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/html">web-platform-tests/dom</a></li>
+</ul>
+</li>
+</ul>
+<div class="article-info">
+Web 標準によって文化やプロセスが異なります。たとえば CSS はどちらかといえば伝統的な W3C のプロセスを重視している傾向が残っています。DOM や HTML は WHATWG のブラウザベンダの代表者による話し合いと同意を重視しており極めて実践的です。
+</div>
+
+<h1 id="web_1">Web 標準の更新のしかた</h1>
+<p>基本的な流れは以下のとおりです。</p>
+<ol>
+<li>GitHub 上で Issue をあげる。</li>
+<li>Issee 上で議論をし関係者間で同意をとる。</li>
+<li>PR (Pull Request) を送る。</li>
+<li>必要に応じて テスト (Web Platorm Test) も書く。</li>
+<li>レビューを受けて Editor に Mergeされる。</li>
+</ol>
+<p>通常のソフトウェア開発プロジェクトと大きな違いはありません。</p>
+<h1 id="close-issue">Close されやすい Issue</h1>
+<p>Web 標準に貢献しているのはブラウザベンダの関係者が多いですが、基本的には誰でも参加できます。
+メジャーな JavaScript のフレームワーク・ライブラリの開発者たちが新しいアイデアや要望を出してくることも多いです。</p>
+<p>ただし、以下のような Issue は 取り込まれることなくそのままノー・アクションで Close される可能性が高いでしょう。</p>
+<ul>
+<li>
+<p>具体的ではない</p>
+<p>例: 「新しいDOM APIが欲しいです」</p>
+<p>このような Issue は、「This issue lacks a concrete proposal.」とより具体的な案を求められるでしょう。具体的が案がないと Close されることでしょう。</p>
+</li>
+<li>
+<p>ブラウザ・ベンダが実装に関心がない</p>
+<p>実装されることのない仕様をつくっても負債になるだけですので、このような Issue も Close されます。
+ブラウザ・ベンダが思わず実装したくなるような仕様を提案するとよいです。</p>
+</li>
+<li>
+<p>Web を壊す</p>
+<p>残念ながらほとんどの提案が後方互換性に壊すような提案です。
+ブラウザ・ベンダは後方互換性を壊すような提案には極めて慎重であり、よほどのことがないと反対されるでしょう。
+というのは、そのような仕様を実装するのは、とても大変であり、あとで苦労するのは、なりより自分たちだからです。</p>
+</li>
+<li>
+<p>実装が困難</p>
+<p>現実的に実装が可能なアイデアでないと Close されるでしょう。</p>
+</li>
+<li>
+<p>最初だけ議論が盛り上がる</p>
+<p>これもよくあるパターンです。新しい Issue が上がった直後は、議論が活発になるけど、その後、まったく関心がなくなるというのは、結局、誰も困っていないということが多いです。
+2週間もすると途中からみんなの関心がなくなる。そして3ヶ月くらいなんの更新もなくなる。
+だれかリードする人がいないと、結局他人事になりがちです。</p>
+</li>
+</ul>
+<div class="article-info">
+「いきなり、Issue を上げるのはちょっと..」「そんなに具体的じゃないけど、いいアイデアを思いついた」。
+そんなときは、直接、Standard に Issue をあげるのではなく、WICG () をオススメします。
+</div>
+
+<h1 id="_1">ブラウザ・ベンダが気にするところ</h1>
+<p>すべてのブラウザベンダの同意をとるのはとってもとっても大変です。
+簡単な修正は特に問題なく通ります。
+大きめな変更はブラウザベンダの各分野の担当者の同意をとる必要があります。</p>
+<p>私も含めてかんたんには説得されません。実装者が仕様の詳細を決めるにあたって特に気にするところは以下のところです。</p>
+<ul>
+<li>
+<p>本当に Web プラットフォームでネイティブにサポートする必要があるか</p>
+<p>新しいプリミティブとしてプラットフォームに追加する価値があるかどうかを問います。
+JavaScript のレイヤーで簡単に実現可能なマイナーなものに関しては、まず通らないでしょう。
+逆に今までは JavaScript のレイヤーで行っていたものの、プラットフォームに追加することによって、大幅にパフォーマンスが改善されることが期待されるならば、通りやすいでしょう。</p>
+</li>
+<li>
+<p>ユースケースがクリアかどうか</p>
+<p>間違いなくユースケースについては聞かれます。実際に Web 開発者が抱えている問題が解決される？</p>
+</li>
+</ul>
+<p>実際のところ、ほんとによい仕様かどうかは自身がなく、実際にC++で実装してみないとわからないという部分も多々あります。また最初から完璧にできるわけではなく、実装してみて使用してもらってフィードバックを受けて改善していくといったフィードバック・ループはとても大事です。</p>
+<h2 id="slotchange">例: slotchange イベント</h2>
+<p>例: slotchange events</p>
+<h1 id="web-plaform-test">テスト: Web Plaform Test</h1>
+<p>最近は Web 標準を変更するときはテスト (Web Platform Test) も同時に書くことも要求されます。
+テストは各ブラウザで共有されます。以下のようなメリットがあります。</p>
+<ul>
+<li>
+<p>ブラウザ間の互換性の向上</p>
+</li>
+<li>
+<p>ブラウザ・ベンダの負担の軽減</p>
+<p>各ブラウザ・ベンダが独自にテストを書く必要性がなくなります。</p>
+</li>
+<li>
+<p>生きた仕様書</p>
+<p>仕様書を読んでもどういう挙動かわかりにくいということは多々あります。はっきりとあるべき動作が定義されたテストはコミュニケーション・ツールとしての役割も話します。実際、仕様の議論中で「具体的な動作がいまいちピンとこないので、実際にテストを書いてみてくれない？」とお願いされることは多いでしょう。</p>
+</li>
+</ul>
+<p>詳しくは <a href="https://github.com/w3c/web-platform-tests">web-platform-tests</a> を参照ください。
+「いきなり Web 標準に貢献するのはちょっと...」という人でも、まずはテストから貢献するとよいでしょう。</p>
+<h1 id="_2">名前の衝突 / 後方互換製を壊す恐れ</h1>
+<p>新しい Web API やタグを入れるときは、その名前がすでに Web 広く使用されていないかどうか「Web を grep」してチェックします。</p>
+<p>例えば、私は、Declarative Shadow DOM (宣言的 Shadow DOM) を httparvhice</p>
+<div class="article-info">
+TODO node.root を
+- node.getRoot
+
+TODO <code>shadowdom</code>
+</div>
+
+<h1 id="_3">いつまでたっても実装されない仕様の取り扱い</h1>
+<p>仕様から削除します。「今の所、ship しているブラウザがゼロ。さらにどのブラウザベンダも実装する予定がない。これ消してよくないですか？」という流れでどんどん消していきます。
+消す前に各ブラウザベンダの状況や意思は当然確認します。</p>
+<p>逆に2つ以上のブラウザですでに実装されているものは削除したくてもしずらいです。
+ですが、実はどちらも削除したがっているということも少なくなく、「これ、削除したいんだけど、どう？」と聞くと「あー、実は削除したかったんだよね。なーんだ、そう思っていたんだ。削除しましょう。」となることもあります。そのときは歩調を合わせて削除に向かいます。</p>
+<h1 id="living-standard">「Living Standard」</h1>
+<p>よく誤解されることですが、W3C が策定している HTML 5 (HTML5.1, HTML5.2 など) 仕様への準拠を目指しているメジャーブラウザは現在ひとつも存在しません。
+実際、我々の普段の日常会話では HTML5 という言葉は全く登場しません。HTML の仕様といえば、HTML Standard のことを指します。</p>
+<p>実は、今月、WHATWG が IPR を更新したため、ようやく Microsoft が WHATWG におおっぴらに参加できるようになりました。
+これまで、「HTML 5 の仕様なんで誰も見てないでしょ？」とはっきりいえなかった理由は、Microsoft が WHATWG に参加できなかったのが主な理由でした。Microsoft に遠慮してたんですね。</p>
+<h1 id="web_2">Web のつくりかた: ブラウザ編</h1>
+<p>さて Web 標準についてはもう十分でしょう。ここからは楽しい実装の話にうつりましょう。
+どんなに素晴らしい仕様も実装がなければなんの意味もありません。</p>
+<p>この記事では Chrome のレンダリングエンジンである Blink における実装の話をします。</p>
+<h1 id="web-api">新機能の実装 / 新しい Web API をプラットフォームに追加する</h1>
+<p>基本的な流れは以下のようになります。</p>
+<ol>
+<li>
+<p>公開 ML (blink-dev) に "Intent to implement: XXX" メールを出す</p>
+<p>「XXX 機能を実装する意思があること」を宣言します。この ML は他のブラウザベンダの人たちも見ていて、意見をくれたりします。
+ 実装することが本当に Web のためになるのか？実装の方針はどうか？他のブラウザでの実装具合などを話し合います。</p>
+</li>
+<li>
+<p>実装する</p>
+<p>後ほど説明します。</p>
+</li>
+<li>
+<p>公開 ML (blink-dev) に "Intent to ship: XXX" メールを出す</p>
+<p>XXX機能を実際に有効にすることを宣言します。実際に有効にするには、API Owners からの LGTM が必要です。</p>
+</li>
+<li>
+<p>Ship it: 機能を世に出す。Chrome の特定のマイルストーンから有効になります。</p>
+</li>
+</ol>
+<h1 id="web-api_1">機能の削除 / 既存の Web API をプラットフォームから削除する</h1>
+<p>「機能を追加する」というのは華やかで目立ちますが、それと同じくらいプラットフォームにとって大事なことは「機能を削除する」ことです。</p>
+<p>特に Web プラットフォームでは非常に多数の Web サイトが「分散」しており、協調が極めて困難なプラットフォームです。</p>
+<div class="article-info">
+例えば Googleは内部は「単一レポジトリ」を採用しているのは有名な話です。この場合は、単純な API の名前の変更でしたら、まとめて「全部リネーム」するひとつのパッチをアトミックにコミットすれば変更が可能です。
+これは単一レポジトリの大きな利点です。
+
+Web プラットフォームではこの戦略が使えません。
+</div>
+
+<div class="article-info">
+機能を削除するのはとても泥臭い仕事であり、基本、Web 開発者から嫌われる仕事です。
+たとえば /deep/ コンビネータを削除することを考えてみましょう。
+
+</div>
+
+<ol>
+<li>
+<p>公開 ML (blink-dev) に "Intent to deprecate: XXX" メールを出す</p>
+<p>「XXX 機能を非推奨にする」と宣言します。ただし、あくまで非推奨にするだけで、この時点では削除されません。非推奨とし、警告メッセージを出すことによって、Web 開発者に該当 API の使用をやめてもらうのが主な目的です。</p>
+<p>非推奨となった機能を使用すると、DevTools Console 上に Deprecation Warning がでるようになります。</p>
+</li>
+<li>
+<p>使用率が下がるのをまつ</p>
+<p>コミュニケーション</p>
+<p>実際に Web で非推奨となった機能がどれほどしようされているかをトラッキングする仕組みとして</p>
+<p><a href="">Use counters</a> があります。たとえば、現時点で、 <code>/deep/</code> コンビネータは、0.00%です。</p>
+</li>
+<li>
+<p>公開 ML (blink-dev) に "Intent to remove: XXX" メールを出す</p>
+<p>実際に削除します。</p>
+</li>
+</ol>
+<div class="article-info">
+削除したい機能があったら、以下のようにsleep入れるのがもっとも有効だ。
+
+もちろん冗談です。
+
+function iWantToRemoveThisFeature() {
+  sleep(1000);
+  // ...
+}
+</div>
+
+<h1 id="chrome-status">Chrome Status</h1>
+<h1 id="use-counters">Use counters</h1>
+<h1 id="_4">開発スタイル / ソフトウェア・エンジニアリング</h1>
+<p>Chrome の開発は既存のツールでは対応不可能なスケールに対応するため、一部は独自に発展した開発インフラを使用しています。GitHub 上で PR を送るといったスタイルではありません。</p>
+<p>開発に必要なのは、C++力、キレイなコードを書く能力、技術的コミュニケーション力等、ソフトウェアエンジニアとしての基本的な力があれば十分でしょう。最初はよいメンターやレビューアーに恵まれることも大事です。</p>
+<p>開発インフラについては過去の記事等でも説明されていますので、ここではコメントとともに軽く触れます。</p>
+<h1 id="_5">ビルド</h1>
+<p><a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/README.md">GN</a> と <a href="https://ninja-build.org/">Ninja</a> を使用しています。
+Ninja のほうは最近は Chrome 以外の他のプロジェクトでも使用されることが増えてきましたね。</p>
+<h1 id="_6">クラウドコンパイル</h1>
+<p>Chrome はコンパイル対象のファイルが数万あります。普通にビルドを行うと時間がかかるでしょう。</p>
+<p>Google の人は Goma (クラウド分散コンパイル)のインフラを使用することができます。私の環境だと "-j 1024"（並列度: 1024) のフルビルドで3分ほどです。</p>
+<p>インクリメンタルビルドだと10秒以下です。</p>
+<p>Opera の人たちは社内で分散コンパイルのインフラ (distcc) を使用しているそうです。</p>
+<h1 id="_7">開発環境</h1>
+<p>Linux 上で開発している人が多いです。Windows 上の Visual Studio で開発している人もいます。</p>
+<h1 id="clang-format">自動フォーマット / clang-format</h1>
+<p>Presubmit （パッチをレビューにおくる前）のタイミングで、ソースコードが正しくフォーマットされているか、チェックされます。私はエディタでファイルをセーブするたびに自動的に <code>clang-format</code> でフォーマットするようにしています。</p>
+<p>clang-formatとその設定もChrome のレポジトリに入っています。</p>
+<h1 id="_8">ビルドの再現性</h1>
+<p>ビルドの再現性を高めるために、なるべく開発ツールそのものも Chrome の関連レポジトリに一式いれるようにしています。たとえば、clang (C++ コンパイラ）自身もレポジトリに入っており、それをチェックアウトして使用します。</p>
+<h1 id="_9">デバッグ</h1>
+<p>gdb や print デバッグ等が主流です。Windows を使う人の主な理由は、Visual Studio 上でデバッグできることだそうです。そのほか、<a href="http://valgrind.org/">valgrind</a>, <a href="https://github.com/google/sanitizers/wiki/AddressSanitizer">ASAN</a>(AddressSanitizer) なども使用しています。</p>
+<h1 id="git">バージョン管理: Git</h1>
+<p>Gitを使用していますが、直接リモートレポジトリに push することはありません。
+すべて コミット・キュー経由でコミットします。コミット・ヒストリーはほぼ直線です。</p>
+<p>ブランチはリリース・ブランチを除いて基本的に使用しません。
+もちろん、各開発者はローカルでは git のブランチを使用します。</p>
+<h1 id="always-on-tot">Always on TOT (常に先端に載っておく）</h1>
+<p>Chrome のようにコミットが非常に多いプロジェクト (1日あたり数百) では、新機能の開発を下手にサーバー・ブランチを切ってその上で行うと、さまざまなデメリットがあります</p>
+<ul>
+<li>
+<p>「もう一生、マージできないので」は、Chrome はコミットの頻度が高いです。1日あたり数百のコミットがあります。</p>
+</li>
+<li>
+<p>ToT ブランチ上で起きている様々なリファクタリングの恩恵を受けることができなくなります。別のブランチのコードは対象外です。</p>
+</li>
+</ul>
+<p>そのため、サーバー・ブランチをきることはほぼありません。そのかわり無効にしておきたい開発中の機能は、ランタイム・フラグをもちいて無効にしておきます。</p>
+<h1 id="bug-tracking">Bug Tracking</h1>
+<p>Chrome のバグは <a href="https://crbug.com/">crbug.com</a> で管理されています。
+誰でもバグの報告が行えます。「Chrome のバグ？」と思える挙動にであったときはここで検索しましょう。</p>
+<h1 id="cl">CL</h1>
+<p>Chrome ではパッチ等のコミットの単位を CL (Change List)と読んでいます。
+これはもともと Google内部のバージョン管理システムで使用されていた用語であり、そのまま伝統的に使用されています。</p>
+<h1 id="_10">レビュー</h1>
+<p>レビューは <a href="https://chromium-review.googlesource.com/">Gerrit</a> を使用しています。</p>
+<p>レビューアーを見つけるには:</p>
+<ul>
+<li>自分が変更している付近のコードをよく最近変更している人を見つける。git blame, git log 等からわかります。</li>
+<li>OWNERS ファイルに名前が載っている人 （Owner システムについては後に説明します）</li>
+</ul>
+<p>レビューでよく使用される略語:</p>
+<ul>
+<li>LGTM: これは今では有名になりました。ちなみに LGTM の際に LGTM 画像を使用している人はいません。歓迎されないと思います。</li>
+<li>Nit: わりとどうでもいいこと。</li>
+<li>Ditto: 同じように。</li>
+</ul>
+<h1 id="owner">Owner システム</h1>
+<p>レビューでは一人以上の Owner から LGTM を受ける必要があります。
+Owner は各フォルダの OWNERS ファイルに記載されています。
+Owner システムはもともとは Google 内部で使用されていた仕組みですが、最近はいろいろな大規模プロジェクトにも輸出されていますね。Chromium でも採用されています。</p>
+<p>例: core/dom/OWNERS</p>
+<h1 id="_11">テスト</h1>
+<ul>
+<li>C++ で書くユニットテスト (<a href="https://github.com/google/googletest">Google Test</a> を使用）</li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/testing/layout_tests.md">Layout Tests</a>: エンジンの挙動のリグレッションテスト</li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_platform_tests.md">Web Platform Test</a>: ブラウザベンダ間で共有されるテスト</li>
+<li>パフォーマンステスト: パフォーマンスのリグレッションテスト</li>
+</ul>
+<p>等があります。それぞれ役割が異なるので使い分けましょう。挙動を変える CL ではまず間違いなくテストを書くことが求められます。</p>
+<h1 id="bots-ci">Bots (ボット) / CI (継続的インテグレーション)</h1>
+<p>Chrome は Windows, Linux, Mac, Android の各バージョン、さらにそれぞれ32bit, 64bit等、多くのプラットフォームをサポートしています。
+それぞれのプラットフォームごとに専用 Bot がいて、継続的インゲグレーションテストを行っています。</p>
+<p><img alt="waterfall" src="/assets/2017/waterfall.png"></p>
+<p>ビルド・継続的インゲグレーションテストはさまざまなステップがあり時間がかかります。そのため Chrome の1コミットごとに1サイクルを回すことができません。</p>
+<h1 id="build-sherriff">Build Sherriff</h1>
+<p>Google のコミッターには、当番制でビルドやリグレッション等を見張る仕事が回ってきます。これを シェリフ といいます。
+ToT でビルドが失敗するといって問題が起きたときは、「Tree Close」といって、問題が解決するまで、コミットができなくなります。</p>
+<h1 id="fuzzer">Fuzzer</h1>
+<p>Fuzzing のテクニックはまだ比較的マイナーかもしれませんが、確実に広がっています。</p>
+<p>Fuzzer がどういうものか理解するには例を見るのが一番早いでしょう。</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xmlns:xsi</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+<span class="o">*</span><span class="p">{</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-play-state</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">max-width</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="n">pointer-events</span><span class="p">:</span><span class="n">visiblePainted</span><span class="p">;</span><span class="n">text-underline-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">solid</span><span class="p">;</span><span class="k">background-origin</span><span class="p">:</span><span class="k">padding</span><span class="p">;</span><span class="n">image-rendering</span><span class="p">:</span><span class="bp">-webkit-</span><span class="n">positioned</span><span class="p">;</span><span class="k">font-size</span><span class="p">:</span><span class="kc">xx-small</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS0</span><span class="p">{</span><span class="n">box-pack</span><span class="p">:</span><span class="kc">end</span><span class="p">;</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">blue</span> <span class="kc">dotted</span><span class="p">;</span><span class="n">background-position-x</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span><span class="k">mask</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">appearance</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="kc">inherit</span> <span class="cp">!important</span><span class="p">;</span><span class="k">border-top</span><span class="p">:</span><span class="kc">outset</span> <span class="mh">#824098</span><span class="p">;</span><span class="k">counter-reset</span><span class="p">:</span><span class="n">counter_4</span> <span class="mi">000000000000000000000000000000002480000000000000000</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">border-before-color</span><span class="p">:</span><span class="kc">silver</span><span class="p">;</span><span class="k">column-width</span><span class="p">:</span><span class="bp">-webkit-</span><span class="nb">calc</span><span class="p">(</span><span class="mi">7</span><span class="kt">in</span><span class="p">);}</span>
+<span class="p">.</span><span class="nc">CLASS1</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">writing-mode</span><span class="p">:</span><span class="n">lr</span><span class="p">;</span><span class="k">min-width</span><span class="p">:</span><span class="mi">0000184467440737095516230000</span><span class="kt">em</span><span class="p">;</span><span class="k">border-right-style</span><span class="p">:</span><span class="kc">solid</span><span class="p">;</span><span class="n">background-position-y</span><span class="p">:</span><span class="kc">bottom</span><span class="p">;</span><span class="k">display</span><span class="p">:</span><span class="kc">list-item</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">nbsp-mode</span><span class="p">:</span><span class="kc">space</span><span class="p">;</span><span class="k">float</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="k">transition-duration</span><span class="p">:</span><span class="mf">7.8</span><span class="kt">ms</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS2</span><span class="p">{</span><span class="k">outline-width</span><span class="p">:</span><span class="kc">medium</span><span class="p">;</span><span class="k">position</span><span class="p">:</span><span class="nf">running</span><span class="p">(</span><span class="n">element_3</span><span class="p">);</span><span class="kp">-webkit-</span><span class="k">appearance</span><span class="p">:</span><span class="kc">normal</span><span class="p">;</span><span class="n">line-stacking-ruby</span><span class="p">:</span><span class="n">include-ruby</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">column-break-inside</span><span class="p">:</span><span class="kc">avoid</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">column-count</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="k">caption-side</span><span class="p">:</span><span class="kc">top</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">justify</span> <span class="s2">&quot;R*hg8jb\\&amp;=C75%OIAn:f;3dC[J 4\DQ=/O8\\/\AQU}4;,Ib9n,#xY4@\A e7pQWQ$ejn\90/\(Qer._ wg\)\)qM\9tSdIS,:LoeqW#Uo&lt;&amp;C,=u4Qj&#39;-&lt;vHa.KH2,\\{&#39;[?&quot;</span><span class="p">;</span><span class="k">counter-increment</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="k">counter-reset</span><span class="p">:</span><span class="n">counter_1</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS3</span><span class="p">{</span><span class="k">font-variant</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">text-line-through-mode</span><span class="p">:</span><span class="n">skip-white-space</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">step-end</span><span class="p">;</span><span class="k">font</span><span class="p">:</span><span class="kc">icon</span><span class="p">;</span><span class="k">word-wrap</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">display</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">wrap-through</span><span class="p">:</span><span class="kc">wrap</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">pointer-events</span><span class="p">:</span><span class="n">visibleStroke</span><span class="p">;</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS4</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">columns</span><span class="p">:</span><span class="kc">auto</span> <span class="mi">32768</span><span class="p">;</span><span class="k">content</span><span class="p">:</span><span class="n">inhibit</span><span class="p">;</span><span class="k">clear</span><span class="p">:</span><span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span><span class="k">margin-top</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">left</span><span class="p">:</span><span class="mf">0.0000000004656612871205812690186753891551357104061636960068426561</span><span class="kt">%</span><span class="p">;</span><span class="k">counter-reset</span><span class="p">:</span><span class="n">counter_2</span><span class="p">;</span><span class="k">column-rule-style</span><span class="p">:</span><span class="kc">dotted</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">column-span</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span><span class="k">transform-origin</span><span class="p">:</span><span class="mf">3.5</span><span class="kt">%</span> <span class="kc">bottom</span><span class="p">;</span><span class="k">vertical-align</span><span class="p">:</span><span class="kc">text</span><span class="o">-</span><span class="kc">bottom</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS5</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">animation-fill-mode</span><span class="p">:</span><span class="kc">running</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphens</span><span class="p">:</span><span class="kc">manual</span><span class="p">;</span><span class="k">font-size</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">font-weight</span><span class="p">:</span><span class="mi">300</span><span class="p">;</span><span class="k">word-break</span><span class="p">:</span><span class="n">break-all</span><span class="p">;</span><span class="k">font</span><span class="p">:</span><span class="kc">status-bar</span><span class="p">;</span><span class="k">right</span><span class="p">:</span><span class="n">read-only</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="n">visual</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS6</span><span class="p">{</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-play-state</span><span class="p">:</span><span class="kc">running</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="kc">content-box</span><span class="p">;</span><span class="k">background-origin</span><span class="p">:</span><span class="kc">border-box</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-position</span><span class="p">:</span><span class="kc">over</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">font-smoothing</span><span class="p">:</span><span class="n">antialiased</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">ease-in-out</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-align</span><span class="p">:</span><span class="kc">edges</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS7</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">font-variant-ligatures</span><span class="p">:</span><span class="n">historical-ligatures</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">appearance</span><span class="p">:</span><span class="n">searchfield</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-feature-settings</span><span class="p">:</span><span class="kc">on</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">preserve-3d</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">border-fit</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transition-timing-function</span><span class="p">:</span><span class="kc">ease-in</span><span class="p">;</span><span class="k">font-stretch</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">left</span><span class="p">:</span><span class="kc">fast</span><span class="p">;</span><span class="k">right</span><span class="p">:</span><span class="n">slide</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS8</span><span class="p">{</span><span class="k">clear</span><span class="p">:</span><span class="kc">right</span><span class="p">;</span><span class="k">hyphenate-character</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="k">animation</span><span class="p">:</span><span class="mi">9</span><span class="kt">s</span><span class="p">;</span><span class="k">counter-increment</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">appearance</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">pointer-events</span><span class="p">:</span><span class="n">visibleFill</span><span class="p">;</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">repeat-x</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">ease</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="kc">hidden</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS9</span><span class="p">{</span><span class="kp">-webkit-</span><span class="n">user-modify</span><span class="p">:</span><span class="n">read-write</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transition-delay</span><span class="p">:</span><span class="mf">-9.7</span><span class="kt">ms</span><span class="p">;</span><span class="k">padding-top</span><span class="p">:</span><span class="mf">3.0</span><span class="kt">%</span><span class="p">;</span><span class="k">top</span><span class="p">:</span><span class="mf">112.6376286521287823916281922720372676849365234375</span><span class="kt">px</span><span class="p">;</span><span class="k">margin</span><span class="p">:</span><span class="mf">4.26814254151829697292441778699867427349090576171875</span><span class="kt">%</span> <span class="cp">!important</span><span class="p">;</span><span class="k">counter-increment</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">border-image</span><span class="p">:</span><span class="kc">none</span> <span class="mf">0.0000610356958614947697804378745622955193539382889866828918457031</span> <span class="kc">round</span><span class="p">;</span><span class="k">overflow-x</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="k">border-bottom</span><span class="p">:</span><span class="kc">dotted</span><span class="p">;</span><span class="k">counter-reset</span><span class="p">:</span><span class="kc">none</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS10</span><span class="p">{</span><span class="k">list-style-type</span><span class="p">:</span><span class="n">ethiopic-halehame-ti-er</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="kc">always</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">clear</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">cursor</span><span class="p">:</span><span class="kc">row-resize</span><span class="p">;</span><span class="k">font-stretch</span><span class="p">:</span><span class="kc">wider</span><span class="p">;</span><span class="k">font-weight</span><span class="p">:</span><span class="mi">300</span><span class="p">;</span><span class="n">image-rendering</span><span class="p">:</span><span class="n">optimizeQuality</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS11</span><span class="p">{</span><span class="kp">-webkit-</span><span class="n">font-smoothing</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="kc">contain</span><span class="p">;</span><span class="k">right</span><span class="p">:</span><span class="kc">alternate</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-feature-settings</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">vertical-align</span><span class="p">:</span><span class="kc">text</span><span class="o">-</span><span class="kc">top</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">text-overflow</span><span class="p">:</span><span class="kc">clip</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="k">border</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="kc">column-reverse</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS12</span><span class="p">{</span><span class="n">zoom</span><span class="p">:</span><span class="n">document</span><span class="p">;</span><span class="k">font-stretch</span><span class="p">:</span><span class="kc">narrower</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="n">visual</span><span class="p">;</span><span class="k">background-origin</span><span class="p">:</span><span class="k">border</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-position</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">text-line-through-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-variant-ligatures</span><span class="p">:</span><span class="n">no-discretionary-ligatures</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="n">touch</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphenate-limit-lines</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">initial</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS13</span><span class="p">{</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">repeat</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphens</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">outside</span><span class="p">;</span><span class="k">font-stretch</span><span class="p">:</span><span class="kc">serif</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">inline</span><span class="o">-</span><span class="n">box</span><span class="p">;</span><span class="k">font-size</span><span class="p">:</span><span class="kc">smaller</span><span class="p">;</span><span class="n">text-overline-mode</span><span class="p">:</span><span class="n">skip-white-space</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-variant-ligatures</span><span class="p">:</span><span class="n">common-ligatures</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS14</span><span class="p">{</span><span class="k">text-overflow</span><span class="p">:</span><span class="n">discard</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-position</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">direction</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">step-end</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-feature-settings</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="k">padding</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transition-timing-function</span><span class="p">:</span><span class="kc">ease-out</span><span class="p">;</span><span class="k">right</span><span class="p">:</span><span class="kc">slow</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-orientation</span><span class="p">:</span><span class="kc">upright</span><span class="p">;</span><span class="k">font-weight</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="o">*</span><span class="p">:</span><span class="nd">target</span><span class="p">{</span><span class="k">vertical-align</span><span class="p">:</span><span class="kc">top</span><span class="p">;</span><span class="k">counter-increment</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="n">text-autospace</span><span class="p">:</span><span class="n">ideograph-alpha</span> <span class="n">ideograph-parenthesis</span><span class="p">;</span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="kt">%</span><span class="p">;</span><span class="n">fill</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">counter-reset</span><span class="p">:</span><span class="n">counter_0</span><span class="p">;</span><span class="k">display</span><span class="p">:</span><span class="kc">inline-table</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">color-correction</span><span class="p">:</span><span class="n">sRGB</span><span class="p">;</span><span class="k">width</span><span class="p">:</span><span class="bp">-webkit-</span><span class="nf">min</span><span class="p">(</span><span class="mf">+9.7</span><span class="kt">mm</span><span class="p">,</span><span class="mf">-6.9</span><span class="n">gr</span><span class="p">);</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">blink</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS0</span><span class="p">:</span><span class="nd">visited</span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="kc">inline</span> <span class="s2">&quot; &quot;</span> <span class="p">;</span><span class="kp">-webkit-</span><span class="k">column-span</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span><span class="n">text-rendering</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">mask-size</span><span class="p">:</span><span class="kc">contain</span><span class="p">;</span><span class="k">column-rule-style</span><span class="p">:</span><span class="kc">dotted</span><span class="p">;</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">backface-visibility</span><span class="p">:</span><span class="kc">visible</span><span class="p">;</span><span class="k">min-height</span><span class="p">:</span><span class="mf">000000000000000000000000000000002.35445494484197936913005833048373460769653320312500000000000000000000000000000000</span><span class="kt">%</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="kc">inherit</span> <span class="mh">#DdCf10</span><span class="p">;</span><span class="n">stroke-miterlimit</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS1</span><span class="p">:</span><span class="nd">valid</span><span class="p">{</span><span class="k">border-image</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">filter</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">region-overflow</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">font-size</span><span class="p">:</span><span class="kc">smaller</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-position</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">repeat</span><span class="p">;</span><span class="k">display</span><span class="p">:</span><span class="kc">compact</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="n">image-rendering</span><span class="p">:</span><span class="bp">-webkit-</span><span class="n">optimize-contrast</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS2</span><span class="p">::</span><span class="nd">outside</span><span class="o">(</span><span class="nt">3</span><span class="o">)</span><span class="p">{</span><span class="kp">-webkit-</span><span class="n">line-clamp</span><span class="p">:</span><span class="mi">0</span><span class="kt">%</span><span class="p">;</span><span class="k">vertical-align</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="p">;</span><span class="n">box-direction</span><span class="p">:</span><span class="kc">normal</span><span class="p">;</span><span class="k">column-span</span><span class="p">:</span><span class="kc">all</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">block</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">border-radius</span><span class="p">:</span><span class="mi">1</span><span class="kt">%</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="kc">inherit</span> <span class="kc">inherit</span> <span class="n">Background</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-iteration-count</span><span class="p">:</span><span class="mf">3.3</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">border-top-left-radius</span><span class="p">:</span><span class="mi">0000000000000000000000000000000085899345929</span><span class="kt">%</span> <span class="mf">4.134128640439836743780688266269862651824951171875</span><span class="kt">em</span><span class="p">;</span><span class="k">text-wrap</span><span class="p">:</span><span class="kc">none</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS3</span><span class="p">:</span><span class="nd">above-level</span><span class="p">{</span><span class="kp">-ms-</span><span class="k">transform-origin</span><span class="p">:</span><span class="nf">min</span><span class="p">(</span><span class="mi">6</span><span class="kt">in</span><span class="p">,</span><span class="mf">3.6</span><span class="kt">rem</span><span class="p">);</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">margin-top</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">box-flex-group</span><span class="p">:</span><span class="mf">0.58194816685618488971698525347164832055568695068359375</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mf">8.3</span><span class="kt">vh</span><span class="p">;</span><span class="k">glyph-orientation-vertical</span><span class="p">:</span><span class="mf">1.2</span><span class="kt">grad</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">text-decorations-in-effect</span><span class="p">:</span><span class="kc">underline</span> <span class="kc">line-through</span> <span class="kc">blink</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">column-span</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">border-start-style</span><span class="p">:</span><span class="kc">solid</span><span class="p">;</span><span class="k">outline</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS4</span><span class="p">:</span><span class="nd">read-only</span><span class="p">{</span><span class="n">text-underline-mode</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">font-weight</span><span class="p">:</span><span class="kc">normal</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">font</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">region-overflow</span><span class="p">:</span><span class="n">break</span><span class="p">;</span><span class="k">right</span><span class="p">:</span><span class="kc">alternate</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphenate-limit-lines</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">preserve-3d</span><span class="p">;</span><span class="k">font-stretch</span><span class="p">:</span><span class="kc">expanded</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS5</span><span class="p">::</span><span class="nd">footnote-marker</span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="kc">xx-small</span><span class="p">;</span><span class="n">text-line-through-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-style</span><span class="p">:</span><span class="kc">triangle</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="kc">border-box</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">list-style-type</span><span class="p">:</span><span class="n">malayalam</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">step-start</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="n">ahead</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="kc">center</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS6</span><span class="p">:</span><span class="nd">lang</span><span class="o">(</span><span class="nt">nl-nl</span><span class="o">)</span><span class="p">{</span><span class="n">color-rendering</span><span class="p">:</span><span class="kc">optimizeSpeed</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">column-count</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">nbsp-mode</span><span class="p">:</span><span class="kc">normal</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">margin-collapse</span><span class="p">:</span><span class="kc">inherit</span> <span class="n">discard</span><span class="p">;</span><span class="k">marquee-style</span><span class="p">:</span><span class="kc">alternate</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">mask-repeat-y</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;</span><span class="k">nav-down</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="n">target-position</span><span class="p">:</span><span class="kc">behind</span><span class="p">;</span><span class="k">opacity</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">content</span><span class="p">:</span><span class="kc">none</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS7</span><span class="p">::</span><span class="nd">outside</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span> <span class="p">::</span><span class="nd">selection</span><span class="p">{</span><span class="n">image-rendering</span><span class="p">:</span><span class="n">evenodd</span><span class="p">;</span><span class="n">text-rendering</span><span class="p">:</span><span class="n">exact</span><span class="p">;</span><span class="k">cursor</span><span class="p">:</span><span class="kc">w-resize</span><span class="p">;</span><span class="k">word-wrap</span><span class="p">:</span><span class="kc">break-word</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-fill-mode</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">border-image</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">wrap-through</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">appearance</span><span class="p">:</span><span class="kc">progress</span><span class="o">-</span><span class="n">bar</span><span class="p">;</span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bolder</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">flat</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS8</span><span class="p">::</span><span class="nd">outside</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">preserve-3d</span><span class="p">;</span><span class="k">visibility</span><span class="p">:</span><span class="kc">avoid</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-play-state</span><span class="p">:</span><span class="kc">running</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="k">border</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-style</span><span class="p">:</span><span class="n">farthest-corner</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphens</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="bp">-webkit-</span><span class="kc">right</span><span class="p">;</span><span class="k">cursor</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">list-style-type</span><span class="p">:</span><span class="n">ethiopic-halehame-aa-et</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS9</span><span class="p">:</span><span class="nd">above-level</span><span class="p">{</span><span class="k">left</span><span class="p">:</span><span class="n">read-only</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">linear</span><span class="p">;</span><span class="n">text-underline-mode</span><span class="p">:</span><span class="n">skip-white-space</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">font-variant-ligatures</span><span class="p">:</span><span class="n">discretionary-ligatures</span><span class="p">;</span><span class="n">text-line-through-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-direction</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">repeat-x</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="kc">initial</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS10</span><span class="p">::</span><span class="nd">marker</span><span class="p">{</span><span class="k">vertical-align</span><span class="p">:</span><span class="kc">super</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-play-state</span><span class="p">:</span><span class="kc">running</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">background-composite</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">background-clip</span><span class="p">:</span><span class="kc">border-box</span><span class="p">;</span><span class="k">font-variant</span><span class="p">:</span><span class="kc">small-caps</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">flat</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">border-fit</span><span class="p">:</span><span class="n">lines</span><span class="p">;</span><span class="k">min-width</span><span class="p">:</span><span class="n">intrinsic</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">hyphens</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">text-overflow</span><span class="p">:</span><span class="kc">ellipsis</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS11</span><span class="p">::</span><span class="nd">footnote-marker</span><span class="p">{</span><span class="k">text-align</span><span class="p">:</span><span class="bp">-webkit-</span><span class="kc">match-parent</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">font-smoothing</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">text-transform</span><span class="p">:</span><span class="kc">uppercase</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">step-end</span><span class="p">;</span><span class="n">text-line-through-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="n">text-overline-mode</span><span class="p">:</span><span class="kc">continuous</span><span class="p">;</span><span class="k">font</span><span class="p">:</span><span class="kc">small</span><span class="o">-</span><span class="n">caption</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">text-emphasis-style</span><span class="p">:</span><span class="kc">triangle</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="n">visual</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">wrap-through</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS12</span><span class="p">:</span><span class="nd">below-level</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">hyphens</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">font-size</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">line-box-contain</span><span class="p">:</span><span class="n">replaced</span><span class="p">;</span><span class="k">text-overflow</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">outside</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">wrap-through</span><span class="p">:</span><span class="kc">wrap</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">background-composite</span><span class="p">:</span><span class="n">destination-out</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-play-state</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">image-rendering</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-direction</span><span class="p">:</span><span class="kc">initial</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS13</span><span class="p">:</span><span class="nd">read-only</span><span class="p">{</span><span class="kp">-webkit-</span><span class="k">transform-style</span><span class="p">:</span><span class="kc">flat</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">filter</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="n">text-rendering</span><span class="p">:</span><span class="n">economy</span><span class="p">;</span><span class="k">width</span><span class="p">:</span><span class="n">min-intrinsic</span><span class="p">;</span><span class="k">text-align</span><span class="p">:</span><span class="bp">-webkit-</span><span class="kc">auto</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">ease-out</span><span class="p">;</span><span class="k">cursor</span><span class="p">:</span><span class="kc">wait</span><span class="p">;</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">solid</span><span class="p">;</span><span class="k">max-width</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">list-style-position</span><span class="p">:</span><span class="kc">outside</span><span class="p">;}</span>
+<span class="p">.</span><span class="nc">CLASS14</span><span class="p">::</span><span class="nd">marker</span><span class="p">{</span><span class="k">font-style</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">border-fit</span><span class="p">:</span><span class="n">lines</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">background-composite</span><span class="p">:</span><span class="k">clear</span><span class="p">;</span><span class="k">text-overflow</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="k">background-size</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">region-overflow</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">filter</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;</span><span class="k">outline-style</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="kp">-webkit-</span><span class="k">animation-fill-mode</span><span class="p">:</span><span class="kc">initial</span><span class="p">;</span><span class="kp">-webkit-</span><span class="n">overflow-scrolling</span><span class="p">:</span><span class="kc">inherit</span><span class="p">;}</span>
+
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;ltr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">object</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;AxBxC B&quot;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;ltr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">kbd</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS3 CLASS8&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c&quot;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;ltr&quot;</span><span class="p">&gt;</span>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ruby</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS12&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">rb</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS12&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AxBxC&quot;</span><span class="p">&gt;</span>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+<span class="p">&lt;/</span><span class="nt">rb</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">rtc</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS11 CLASS1&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">rt</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS7 CLASS3&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">rbspan</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">select</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS8 CLASS13&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;b&quot;</span> <span class="na">multiple</span><span class="o">=</span><span class="s">&quot;multiple&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS2&quot;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;rtl&quot;</span><span class="p">&gt;</span>
+AxBxC AxBxC
+<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">rt</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">rtc</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ruby</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">object</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS8 CLASS7&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS9 CLASS3&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;nl&quot;</span> <span class="na">frame</span><span class="o">=</span><span class="s">&quot;hsides&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">caption</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS4 CLASS9&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;C b&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;nl&quot;</span><span class="p">&gt;</span>
+AxBxC AxBxC
+<span class="p">&lt;/</span><span class="nt">caption</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">col</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS4&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&quot;rtl&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">tbody</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;CLASS11 CLASS10&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span> <span class="na">xml:lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">xml:space</span><span class="o">=</span><span class="s">&quot;preserve&quot;</span><span class="p">&gt;</span>
+var aoScriptElements = document.getElementsByTagName(&quot;script&quot;);
+for(var i = 0; i <span class="p">&lt;</span> <span class="nt">aoScriptElements.length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+  <span class="na">aoScriptElements</span><span class="err">[</span><span class="na">i</span><span class="err">].</span><span class="na">parentNode</span><span class="err">.</span><span class="na">removeChild</span><span class="err">(</span><span class="na">aoScriptElements</span><span class="err">[</span><span class="na">i</span><span class="err">]);</span>
+<span class="err">}</span>
+<span class="na">if</span><span class="err">(</span><span class="na">window</span><span class="err">.</span><span class="na">layoutTestController</span><span class="err">){</span>
+  <span class="na">layoutTestController</span><span class="err">.</span><span class="na">waitUntilDone</span><span class="err">();</span>
+  <span class="na">layoutTestController</span><span class="err">.</span><span class="na">setCanOpenWindows</span><span class="err">(</span><span class="na">true</span><span class="err">);</span>
+<span class="err">}</span>
+<span class="na">function</span> <span class="na">cleanup</span><span class="err">()</span> <span class="err">{</span>
+  <span class="na">var</span> <span class="na">iCleanup </span><span class="o">=</span> <span class="s">setInterval(function(){</span>
+    <span class="na">var</span> <span class="na">oe </span><span class="o">=</span> <span class="s">document.getElementsByTagName(&quot;*&quot;);</span>
+    <span class="na">if</span> <span class="err">(</span><span class="na">oe</span><span class="err">.</span><span class="na">length</span> <span class="err">&lt;=</span> <span class="na">1</span><span class="err">)</span> <span class="err">{</span>
+      <span class="na">clearInterval</span><span class="err">(</span><span class="na">iCleanup</span><span class="err">);</span>
+      <span class="na">try</span><span class="err">{(</span><span class="na">opener</span> <span class="err">||</span> <span class="na">top</span><span class="err">).</span><span class="na">done</span><span class="err">()}</span><span class="na">catch</span><span class="err">(</span><span class="na">e</span><span class="err">){}</span>
+      <span class="na">if</span><span class="err">(</span><span class="na">window</span><span class="err">.</span><span class="na">layoutTestController</span><span class="err">)</span><span class="na">layoutTestController</span><span class="err">.</span><span class="na">notifyDone</span><span class="err">();</span>
+      <span class="na">return</span><span class="err">;</span>
+    <span class="err">}</span>
+    <span class="na">for</span> <span class="err">(</span><span class="na">var</span> <span class="na">i </span><span class="o">=</span> <span class="s">0;</span> <span class="na">i</span> <span class="err">&lt;</span> <span class="na">oe</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+      <span class="na">var</span> <span class="na">o </span><span class="o">=</span> <span class="s">oe.item(i);</span>
+      <span class="na">if</span> <span class="err">(!</span><span class="na">o</span><span class="err">.</span><span class="na">firstElementChild</span> <span class="err">&amp;&amp;</span> <span class="na">o</span> <span class="err">!=</span> <span class="na">document</span><span class="err">.</span><span class="na">documentElement</span><span class="err">)</span> <span class="err">{</span>
+        <span class="na">o</span><span class="err">.</span><span class="na">offsetTop</span><span class="err">;</span>
+        <span class="na">var</span> <span class="na">c </span><span class="o">=</span> <span class="s">o,</span> <span class="na">p </span><span class="o">=</span> <span class="s">o.parentNode;</span>
+        <span class="na">try</span><span class="err">{</span><span class="na">p</span><span class="err">.</span><span class="na">replaceChild</span><span class="err">(</span><span class="na">document</span><span class="err">.</span><span class="na">createTextNode</span><span class="err">(&quot;&lt;&quot;+</span><span class="na">o</span><span class="err">.</span><span class="na">tagName</span><span class="err">+&quot;</span><span class="p">&gt;</span>&quot;+o.textContent+&quot;<span class="err">&lt;</span>/&quot;+o.tagName+&quot;&gt;&quot;), o)}
+        catch(e){}
+      }
+    }
+    window.resizeBy(1,1);
+  }, 100);
+}
+var event_handler_C3_webkitAnimationStart_active = false;
+var event_handler_C3_webkitAnimationStart_fired_count = 0;
+function event_handler_C3_webkitAnimationStart() {
+  if (event_handler_C3_webkitAnimationStart_active) return ;
+  event_handler_C3_webkitAnimationStart_fired_count++;
+  if (event_handler_C3_webkitAnimationStart_fired_count &gt;= 20) return;
+  event_handler_C3_webkitAnimationStart_active = true;
+  var oElement = event.srcElement;
+  var oSelection=window.getSelection();
+  if (!oSelection.rangeCount) {
+  document.execCommand(&quot;SelectAll&quot;, false, false)
+  }
+  try{oSelection.modify(&#39;move&#39;, &#39;backward&#39;, &#39;paragraph&#39;)}
+  catch(e){}
+  var oSelection=window.getSelection();
+  if (!oSelection.rangeCount) {
+  document.execCommand(&quot;SelectAll&quot;, false, false)
+  }
+  var oRange = oSelection.rangeCount ? oSelection.getRangeAt(78 % oSelection.rangeCount) : null;
+  if (oRange) oSelection.addRange(oRange.cloneRange());
+  var oRange = oSelection.rangeCount ? oSelection.getRangeAt(27 % oSelection.rangeCount) : null;
+  if (oRange) oRange.detach();
+  try{oSelection.deleteFromDocument()}
+  catch(e){}
+  var oSelection=window.getSelection();
+  if (!oSelection.rangeCount) {
+  document.execCommand(&quot;SelectAll&quot;, false, false)
+  }
+  var oRange = oSelection.rangeCount ? oSelection.getRangeAt(72 % oSelection.rangeCount) : null;
+  if (oRange) oRange.detach();
+  try{oSelection.deleteFromDocument()}
+  catch(e){}
+  document.execCommand(&#39;RemoveFormat&#39;,false,false);
+  var oSelection=window.getSelection();
+  if (!oSelection.rangeCount) {
+  document.execCommand(&quot;SelectAll&quot;, false, false)
+  }
+  try{oSelection.collapseToEnd()}
+  catch(e){}
+  try{oSelection.modify(&#39;move&#39;, &#39;forward&#39;, &#39;lineboundary&#39;)}
+  catch(e){}
+  var oRange = oSelection.rangeCount ? oSelection.getRangeAt(46 % oSelection.rangeCount) : null;
+  if (oRange) {
+    var oInsertedElement = (function(){
+    var aoElements = document.getElementsByTagName(&quot;*&quot;);
+    if (aoElements.length) return aoElements[57 % aoElements.length];
+    var oNewElement = document.createElementNS(&#39;http://www.w3.org/2000/svg&#39;, &#39;feBlend&#39;);
+    if (oNewElement) {
+      try{document.appendChild(oNewElement)}
+      catch(e){}
+    }
+    return oNewElement;
+  })();
+    if (oInsertedElement) {
+      try{oRange.insertNode(oInsertedElement)}
+  catch(e){}
+    }
+  }
+  event_handler_C3_webkitAnimationStart_active = false;
+}
+document.addEventListener(&quot;webkitAnimationStart&quot;, event_handler_C3_webkitAnimationStart, true);
+var event_handler_C4_DOMFocusIn_active = false;
+var event_handler_C4_DOMFocusIn_fired_count = 0;
+</pre></div>
+
+
+<p>このような一見 "ランダム" な HTML・JavaScript をひたすら生成して、ブラウザがクラッシュする入力を見つけるプログラムのことを Fuzzer といい、そのようなテクニックを <a href="https://en.wikipedia.org/wiki/Fuzzing">Fuzzing</a> といいます。</p>
+<p>このようにランダムに生成するだけで、ブラウザがクラッシュするようなHTMLが本当に見つかるかどうか疑問に思われるかもしれませんが、ものの見事に人間ではまず思いもつかないようなHTMLを生成してエンジンの秘孔をついてくることがあり、ブラウザのセキュリティ・安定性向上のため役にたっています。</p>
+<p>また Fuzzing は最近では外部の攻撃者やセキュリティ研究者が脆弱性を発見する補助ツールとしても使用されています。
+たとえば昨年の例ですが世界的に有名なポーランドのセキュリティ研究者 Mariusz Mlynski が報告してきた Universal XSS 脆弱性 はもともとは Fuzzing で見つけたクラッシュを利用しており、まさに秘孔をついてきました。</p>
+<p>興味のある方は <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870">crbug.com/630870</a> を参照してください。では報告者と私の間での生々しいやり取りが見れます。この脆弱性発見の報告には、賞金 $7,500 が支払われました。もちろん直した私には1ドルもでません。:)</p>
+<h1 id="okrs">OKRs</h1>
+<p>OKR は最近は Google の外でも有名になりました。Chrome でも各チームは Quarter ごとに OKR を設定しています。
+私は DOM / HTML Team の OKRs を設定しています。今のところ非公開ですが透明性を高めるためには公開してもよいかもしれませんね。</p>
+<h1 id="_12">最後に</h1>
+<p>Web プラットフォームを支えるソフトウェアエンジニアリングといっても派手なものはありません。
+正しい「ソフトウェアエンジニアリング」をひたすら積み重ねるという当たり前のことをきちんと行うだけなのです。
+その積み重ねが人類の歴史上もっとも巨大なエコシステムである「Web プラットフォーム」そしてその実装である「ブラウザを支えていることが雰囲気で理解できたかと思います。</p>
+<p>このような巨大なスケールのソフトウェアを人間の共同体がまがりなりにも「開発できている」という事実は非常に興味深いですし、夢のある話です。
+人類の知性・共同作業・エンジニアリングがどこまで通用するのか、その限界がどこにあるのか、これからも Web プラットフォームをみなさんで支えていきましょう。</p>
+  </div>
+</article>
+
+          <footer class="base-footer text-center">
+            <small>
+              <a href="/">Home</a> | &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+            <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>

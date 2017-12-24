@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="https://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="https://hayato.io/favicon.ico" rel="shortcut icon">
+
+    <link href="https://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/">
+      <rdf:Description rdf:about="https://hayato.io/drafts/dom/">
+        <foaf:maker rdf:parseType="Resource">
+          <foaf:holdsAccount>
+            <foaf:OnlineAccount foaf:accountName="hayatoito1">
+              <foaf:accountServiceHomepage rdf:resource="http://www.hatena.ne.jp/" />
+            </foaf:OnlineAccount>
+          </foaf:holdsAccount>
+        </foaf:maker>
+      </rdf:Description>
+    </rdf:RDF>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- http://afeld.github.io/bootstrap-toc/ -->
+  <body data-spy="scroll" data-target="#toc">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="https://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="https://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM
+    </h1>
+    <div class="text-right">
+      Hayato Ito
+    </div>
+    <div class="text-right">
+      <time datetime="2017-12-24">
+        2017-12-24
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p>この記事は <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a> 24 日目の記事です。</p>
+<p>内容の一部は Chromium の Git レポジトリの <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/">Source/core/dom</a> フォルダの
+<a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md">README ファイル</a>
+（英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記事の想定読者は一般の Web 開発者です。
+この記事の一部は README ファイルに還元（バックポート）する予定です。</p>
+<p>この記事は詳細な API の使用方法などには深入りしません。雰囲気で理解するのを目的としています。
+記事には読者への課題がいくつか含まれていますが雰囲気で理解するにあたって必須ではありません。</p>
+<p>課題への解答・記事へのフィードバック・Typo などを発見しましたら <a href="https://github.com/hayatoito/hayatoito.github.io/issues">GitHub Issue</a> の方へお願いします。</p>
+<h1 id="dom">DOM</h1>
+<p>DOM は Web の基本です。いってみれば Web を構成する原子のようなものです。</p>
+<p><img alt="dom" src="/assets/2017/dom.svg"></p>
+<p>個々の DOM オブジェクトは一般にノード (Node) と呼ばれます。
+たとえばみなさんが今現在見ているこの記事に対して、ブラウザは約 700 個の DOM ノードを生成します。大規模な Web サイトはより多くのノードから構成されています。例えば <a href="https://www.youtube.com/">YouTube</a> のトップページは現在 約 3,000 個のノードから構成されています。</p>
+<p><img alt="many dom" src="/assets/2017/many-dom.svg"></p>
+<p>各 Web サイトが何個のノードからできているのかを確認するには <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll">querySelectorAll</a> などの API が使用できます。
+ブラウザの <a href="https://developers.google.com/web/tools/chrome-devtools/console/">DevTools Console</a> 上で以下のコードを貼り付けて実行してみましょう。ノードが何個あるかわかります。</p>
+<div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">);</span>
+</pre></div>
+
+
+<div class="article-info">
+注意: 正確にはこの方法ではすべてのノードが取得できません。ブラウザ内には「隠れた」DOM が存在します。後ほど説明します。
+</div>
+
+<p>DOM はばらばらに存在していません。ブラウザ内部ではノードは木構造 (ツリー: Tree) を構成します。DOM ノードから構成される木のことをノードツリー (Node Tree) と呼びます。</p>
+<p><img alt="node tree" src="/assets/2017/node-tree.svg"></p>
+<h2 id="html">例: HTML とノードツリー</h2>
+<p>たとえば以下のような HTML</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">style</span><span class="o">=</span><span class="s">&#39;hello.css&#39;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>hello<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>world<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>を読み込んだ結果、ブラウザは以下のようなノードツリーを内部に構築します。</p>
+<p><img alt="node tree example" src="/assets/2017/node-tree-example.svg"></p>
+<h1 id="chrome">Chrome におけるノードツリーの実装</h1>
+<p>ツリー (<a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">Tree</a>) はコンピュータサイエンスにおいて頻出するデータ構造です。ツリーをどのように実装するかは状況によって異なります。例えば:</p>
+<ul>
+<li>子ノードから親ノードへは辿る必要がないため、親ノードへのポインタはもたない</li>
+<li>親ノードにはすべての子ノードへのポインタを持たせる</li>
+</ul>
+<p>などの選択肢があるでしょう。</p>
+<p>Chrome のノードツリーの実装は以下のようになっています。</p>
+<p>1. 各ノードは親ノードへのポインタ <code>parent</code> をもっています。</p>
+<p><img alt="parent" src="/assets/2017/parent.svg"></p>
+<p>2. 各ノードはすべての子ノードへのポインタはもっていません。もっているのは 2 つだけ、<code>firstChild</code> (最初の子供)・ <code>lastChild</code> (最後の子供）へのポインタをもっています。</p>
+<p><img alt="firstChild and lastChild" src="/assets/2017/first-child.svg"></p>
+<p>3. その代わり各ノードは兄弟 (Sibling) ノードへのポインタ <code>previous</code> と <code>next</code> をもっています。つまり兄弟ノードは Linked List (連結リスト）として実装されています。</p>
+<p><img alt="next sibling and previous sibling" src="/assets/2017/next-sibling.svg"></p>
+<p>合計すると各ノードには 5 つ (<code>parent</code>, <code>firstChild</code>, <code>lastChild</code>, <code>previous</code>, <code>next</code>) のポインタがあります。</p>
+<p>このツリーの表現により Web で標準で利用できる多くの DOM API は定数時間 O(1) で実装が可能です。</p>
+<div class="article-danger">
+<p>
+課題 1: あなたが Chrome の開発者になったとしましょう。以下の DOM を操作する API:
+</p>
+<ul>
+<li><a href=https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append>ParentNode.append(node)</a>: node を parentNode の lastChild として追加
+<li><a href=https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before>CildNode.before(node)</a>: node を childNode の前 (previous として) に挿入
+<li><a href=https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove>ChildNode.remove()</a>: node を Tree から削除
+</ul>
+<p>
+をそれぞれどのように実装しますか？ どのノードのどのポインタの更新が必要になるでしょうか？ それぞれの API の動作はリンク先の MDN のドキュメントを参照してください。
+</p>
+<p>
+ここでは実際に実装する必要はありません。擬似コードで十分です。
+</p>
+</div>
+
+<div class="article-danger">
+課題 2: 以下の JavaScript の関数 <code>countNodes</code> は「手作業」でノードツリーをトラバースしてツリーにに含まれるノードの個数を数えます。
+ツリーに含まれるノード数を N とした場合、<code>countNodes(document)</code> は実行時間が O(N)ではなく O(N^2) 時間がかかる可能性があります。それはなぜでしょうか？
+<a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>Node.childNodes</a> の動作についてはリンク先の <a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>MDN</a> のドキュメントを参照してください。
+</div>
+
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">countNodes</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">++</span><span class="nx">count</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">child</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="nx">count</span> <span class="o">+=</span> <span class="nx">countNodes</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">countNodes</span><span class="p">(</span><span class="nb">document</span><span class="p">));</span>
+</pre></div>
+
+
+<div class="article-danger">
+課題 3: <code>countNodes(document)</code> の結果、得られるノード数は <code>querySelectorAll(*).length</code> で得られる結果と同じでしょうか？ もし大きな違いがあるならそれはなぜでしょうか？ （注: これは少し意地悪な問題です。思いつかないときは飛ばしてかまいません）
+</div>
+
+<div class="article-danger">
+課題 4: あなたが Chrome の開発者になったとしましょう。<a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>Node.childNodes</a> をどのように実装しますか？思いついた実装のメリットとデメリットをそれぞれあげてください。特にメモリ消費量への影響について考えてみましょう。
+</div>
+
+<div class="article-danger">
+課題 5: <code>countNodes()</code> を改良しましょう。<code>node.childNodes</code> を使用することなく「確実に」実行時間 O(N) でツリーをトラバースする関数に修正してください。
+必要に応じて <a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/>Node の Web API</a> を参照してください。
+</div>
+
+<div class="article-danger">
+課題 6: 再帰を使用しないでノード数を手作業でカウントする関数を JavaScript で書いてください。
+</div>
+
+<div class="article-info">
+<p><b>この記事を読むかもしれない Chrome 開発者へ</b></p>
+Blink 内部では C++ でこのように手作業でツリーをトラバースする必要はありません。Source/core/dom 内の NodeTraversal, ElementTraversal に用意されている抽象化された C++11 の Range-Based for loop を使用しましょう。
+手作業でツリーをトラバースする場合と比較して余分なオーバーヘッドはありません（ゼロコスト抽象化）。
+詳しくは、<a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md#c_11-range_based-for-loops-for-traversing-a-tree">README 内の説明</a>、
+またはこの <a href="https://codereview.chromium.org/642973003">CL</a> の Description を参照してください。
+</div>
+
+<div class="article-info">
+<p><b>Microsoft Edge について</b></p>
+今日のほとんどのモダンブラウザでは DOM はブラウザ内部ではツリーで表現されます。
+しかし Microsoft Edge はそうではありませんでした。Edge は歴史的な理由により Microsoft Word などのいわゆるドキュメントビューアで採用されることの多いデータ構造を採用していました。
+このデータ構造では近年の DOM の進化、特に Shadow DOM に対応することが難しく、Edge はそのためここ数年大幅なアーキテクチャの変更に取り組んでいました。
+詳しくは <a href="https://blogs.windows.com/msedgedev/2017/04/19/modernizing-dom-tree-microsoft-edge/">Modernizing the DOM tree in Microsoft Edge</a> を御覧ください。
+</div>
+
+<h1 id="hash-map">Hash Map (ハッシュマップ: 連想配列)</h1>
+<p>ブラウザはユーザーからのクエリに素早く答えるためツリーに関するさまざまな「情報」を別途もっています。</p>
+<p>たとえば <a href="https://dom.spec.whatwg.org/#interface-nonelementparentnode">getElementById()</a> は指定された id を持つノード（正確にはエレメント）を返す DOM API です。</p>
+<p>例: 属性 id=foo をもつエレメントを返す</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="nx">foo</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;...</span>
+</pre></div>
+
+
+<p>ブラウザはこの DOM API が呼ばれるたびに該当 id をもつエレメントを見つけるために毎回ツリーをトラバースしているわけではありません。
+ブラウザは id とノードの対応表を別途持っています。そのため <code>document.getElementById()</code> は定数時間 O(1) で応答可能です。</p>
+<p><img alt="id to element mapping" src="/assets/2017/id2element.svg"></p>
+<p>これはほんの一例です。その他にもたくさんのツリーに関する情報を「キャッシュ」として持っています。
+ただしいたずらになんでもデータ構造を用意すればよいというものではありません。時間と空間のトレードオフについては常に慎重に検討しなければいけません。</p>
+<div class="article-danger">
+課題 7: このページに含まれる全ノードのうち id 属性がついているものはいくつありますか？
+必要であれば <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute">Element.getAttribute()</a> を参照してください。
+</div>
+
+<div class="article-danger">
+課題 8: <code>document.getElementById(id)</code> に相当する JavaScript の関数 myGetElementById(root, id) を自分で作成してください。
+その際、普通に JavaScript の Object をハッシュマップとして使用してもよいですが、比較的新しい API である
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> を使用してもよいでしょう。
+</div>
+
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">myGetElementById</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nx">myGetElementById</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
+</pre></div>
+
+
+<div class="article-info">
+<p><b>同じ id が複数ある場合</b></p>
+同じ id をもつエレメントがツリー内に複数ある場合は <a href="https://dom.spec.whatwg.org/#concept-tree-order">Tree Order</a> の順番で最初に見つかるものが優先されます。
+そのため Chrome 内部では id とエレメントの対応表は単純な HashMap ではなく
+<a href="https://chromium.googlesource.com/chromium/src/+blame/master/third_party/WebKit/Source/core/dom/TreeOrderedMap.h">TreeOrderedMap</a> で管理しています。
+</div>
+
+<p><img alt="tree order" src="/assets/2017/tree-order.svg"></p>
+<div class="article-danger">
+課題 9: このページには id が重複しているノードがあるでしょうか？
+</div>
+
+<p>この記事はほぼ静的ページです。最初に記事が読み込まれた後はツリーの構造は一部を除いて変化しません。
+それに対して多くの Web ページの内容は動的に更新されます。つまりブラウザ内部で保持しているノードツリーの構造は常にアップデートされています。
+そのためツリーに関する情報もなんらかのタイミングでアップデートする必要があります。ユーザーに古い情報にもどついた間違った結果を返すことは許されません。</p>
+<div class="article-danger">
+課題 10 (やや難): ノードツリーが更新されると、先ほどの課題8 で自分で作成した id と エレメントの対応表は古くなるでしょう。なんらかの方法で最新の状態を反映する必要があります。
+どのタイミングでどのように更新するのがよいでしょうか？考えてみましょう。どうすれば更新のコストを抑えることができますか？そのためには何が必要になるでしょうか？
+</div>
+
+<h1 id="super-tree">Super Tree (スーパーツリー)</h1>
+<p>ここまでは従来の Web でした。この状況は <a href="https://w3c.github.io/webcomponents/spec/shadow/">Shadow DOM</a> の出現とともに様子を変えることになります。</p>
+<p>Shadow DOM の詳細はこの記事ではカバーしません。ここではできるだけ簡潔に述べます。</p>
+<p>（一定の条件を満たす）すべてのエレメントはエレメント「内部」に別のノードツリーを「ホスト」できるようになりました。
+いままで Web の世界を構成する最小構成単位であった エレメント（原子）はその内部にもうひとつの世界をもつことができます。</p>
+<p><img alt="shadow tree" src="/assets/2017/shadow-tree.svg"></p>
+<p>ホスト側（外側）のツリーは Light Tree (光のツリー)、ホストされる側のツリーは Shadow Tree (影のツリー）と呼ばれます。</p>
+<p>外側の世界と内側の世界は本質的な違いは存在しません。つまり Shadow Tree は同時に Light Tree にもなります。光と影はあくまで相対的な概念です。
+外側の世界と同様に、内側の世界の各エレメントもそれぞれ内部にもうひとつの世界をもつことができます。この世界は何段にもネストできます。</p>
+<p><img alt="super tree" src="/assets/2017/super-tree.svg"></p>
+<p>モダン Web においては世界はノードのツリーから構成されるのではなく「ノードツリーのツリー」(= Super Tree) から構成されます。
+あなたが見ている世界・つくっている世界は実は上の世界を構成するほんの一部分にしかすぎないかもしれませんし、あなたが利用しているエレメントの内部には膨大な世界が広がっているかもしれません。</p>
+<div class="article-info">
+<p><b>Shadow DOM の実装状況</b></p>
+
+Chrome と Safari はすでに実装済み。Firefox も現在実装中です。Edge も DOM のアーキテクチャの刷新後に実装開始予定です。
+</div>
+
+<h2 id="chrome_1">例: Chrome での利用例</h2>
+<p>動画の再生に使用する <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> エレメントは Chrome は Shadow DOM を使用して実装しています。Web 開発者は <code>&lt;video&gt;</code> エレメントの中にもうひとつの世界が広がっていることを知る必要はありません。むしろ「知らなかった」という事実はうまくカプセル化が成功している証拠です。</p>
+<p>他にも <code>&lt;input&gt;</code> エレメントなど多くのエレメントは Chrome 内部では Shadow Tree を使って実装されています。</p>
+<p><img alt="video element" src="/assets/2017/video-element.svg"></p>
+<div class="article-info">
+実際の <code>video</code> エレメントが絵のように実装されているとは限りません。Shadow Tree 内の変更は Web 開発者に影響を与えません。Web を壊すことなく Chrome はいつでも実装を変更できます。
+</div>
+
+<h2 id="divide-and-conquer">Divide and Conquer (分割統治)</h2>
+<p>さきほど出てきた id とエレメントの対応表はそれぞれのノードツリーごとに存在します。
+そのほか、たとえば各ノードツリー内に定義された CSS のルールなどもそれぞれのノードツリー単位で独立に管理されます。
+これらのルールの適用範囲ははそれぞれのノードツリーのみであるため、サーチやマッチングの対象を大幅に限定できます。</p>
+<p><img alt="tree scope" src="/assets/2017/tree-scope.svg"></p>
+<div class="article-info">
+<p><b>この記事を読むかもしれない Chrome 開発者へ</b></p>
+Chrome 内部ではノードツリーのルートである <code>Document クラス</code>と <code>ShadowRoot</code> クラスが共通の <code>TreeScope</code> を実装しています。多重継承です。<code>TreeScope</code> がツリーに関する情報をもっています。
+</div>
+
+<p>CSS の話がでてきたので次は CSS セレクタのデータ構造とマッチングアルゴリズムについて簡単に説明します。</p>
+<h1 id="css">CSS</h1>
+<p>少しの間 CSS に話を脱線しましょう。CSS の 各セレクタは Chrome では Linked List として表現しています。たとえば以下の CSS のルール:</p>
+<div class="highlight"><pre><span></span><span class="nt">a</span> <span class="nt">b</span> <span class="p">.</span><span class="nc">foo</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>内に含まれる CSS セレクタ "<code>a b .foo</code>" は以下のように表現されます。</p>
+<p><img alt="css selector" src="/assets/2017/css-selector.svg"></p>
+<p>CSS ルール上では一番右に表記される <code>.foo</code> がリストの先頭であることに注意してください。Chrome 内部では CSS セレクタは Right-to-Left (右から左）の順番で Linked List として表現されます。
+双方向リストではなく片方向リストです。</p>
+<div class="article-info">
+<p><b>この記事を読むかもしれないChrome開発者へ</b></p>
+
+CSS セレクタは最終的には Linked List として表現されますが、データの局所性を高めるため（CPUキャッシュに載りやすくするため）、なるべく隣接するノードは近くのメモリ領域にアロケートされるように CSS をパースするときに工夫しています。CSS をパースするのは一回ですがその後のセレクタマッチングは何回も起きうるためこれらは十分割に合う最適化です。
+</div>
+
+<h2 id="css_1">CSS セレクタマッチング</h2>
+<p>一部の特別な CSS ルールを除いてマッチングの処理はそれぞれのノードツリーで独立に行えます。</p>
+<p>それぞれのノードツリーにおいて CSS セレクタとエレメントのマッチングは:</p>
+<ul>
+<li>CSS セレクタは Right-to-Left</li>
+<li>ツリー内のエレメントは (基本的には) Bottom-to-Top</li>
+</ul>
+<p>の順序で行います。</p>
+<p>例:</p>
+<p><img alt="css selector matching" src="/assets/2017/css-selector-matching.svg"></p>
+<p>このように愚直にマッチングしていると Backtracking (バックトラッキング) が何度も発生してマッチングにかかる時間が O(2^N) (指数関数時間) になると思われるかもしれませんが、
+実際は数々の最適化・ヒューリスティクルールにより現実時間で終わるようになっています。</p>
+<p>そのうちのひとつ Bloom Filter をここでは紹介します。</p>
+<h2 id="bloom-filter">例: Bloom Filter (ブルームフィルタ)</h2>
+<p>ブルームフィルタは確率的データ構造です。ある程度の False Positive (偽陽性）を受け入れることで極めて省スペースで「存在するかしないか」をチェックすることが可能です。
+詳しい説明はここでは省きます。<a href="https://en.wikipedia.org/wiki/Bloom_filter">Wikipedia</a> を参照してください。</p>
+<p>Chrome では  CSS セレクタフィルタ <a href="https://cs.chromium.org/chromium/src/third_party/WebKit/Source/core/css/SelectorFilter.h">core/css/SelectorFilter</a> 内でブルームフィルタを使用しています。</p>
+<p>例えば id 属性を使用してフィルタを行う場合は、セレクタ内に登場する id をもつエレメントがツリーの先祖に「存在するかしないか」のチェックにブルームフィルタが使用できます。
+多くのケースでは「存在しない」ことが確実にわかるため早期にセレクタマッチングを終了することが可能です。False Positive (偽陽性）レートは、仮にユニークな id が 100 あるとして 12 bits のスロットを使用することで、0.2% まで落とすことができます。</p>
+<p>ブルームフィルタは Chrome では CSS セレクタマッチング以外にもマルウェアサイトの検出などでも使用しています。</p>
+<div class="article-danger">
+課題 11: 以下のような CSS セレクタマッチングを実現する関数を JavaScript で擬似的に実装してください。<code>selector</code> としてどのようなものが指定可能かはおまかせします。
+まずは例のように タグネームの配列のみでやってみましょう。
+</div>
+
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">selectorMatch</span><span class="p">(</span><span class="nx">selector</span><span class="p">,</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">selectorMatch</span><span class="p">([</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)));</span>
+</pre></div>
+
+
+<div class="article-danger">
+課題 12: 先ほど作成した自作セレクタマッチングはどのような入力のときに時間がかかりますか？悪意のある入力を考えてみましょう。
+</div>
+
+<div class="article-danger">
+課題 13 (やや難): Bloom Filter を課題 11 に組み込んでください。マッチングの実行時間は改善されますか？
+</div>
+
+<div class="article-danger">
+課題 14: ブラウザの CSS エンジンの裏を書いてみましょう。Chrome が固まるような悪意のあるノードツリーと CSS ルールの組み合わせをつくることは可能でしょうか？ノード数 100、スタイルシートのサイズ 1KB という条件で可能でしょうか？
+</div>
+
+<h1 id="event">Event (イベント)</h1>
+<p>Super Tree に戻りましょう。一部の <a href="https://dom.spec.whatwg.org/#events">DOM Event</a> (イベント) は Super Tree を駆け抜けてディスパッチされます。
+たとえば下図のノード <code>1</code> がクリックされたとしましょう。</p>
+<p><img alt="event dispatch" src="/assets/2017/event-dispatch.svg"></p>
+<p>このとき、イベントの Bubbling フェーズでは:</p>
+<ol>
+<li>緑のノードツリー: <code>1</code> -&gt; <code>2</code> -&gt; <code>3</code> の順</li>
+<li>（その後）水色のノードツリー: <code>4</code> -&gt; <code>5</code> -&gt; <code>6</code> の順</li>
+<li>（その後）一番上のノードツリー: <code>7</code> -&gt; <code>8</code> -&gt; <code>9</code> の順</li>
+</ol>
+<p>イベントがディスパッチされます。
+この際、カプセル化を壊さないようにイベントが下の世界（Shadow Tree)で起きたとしても、あたかも自分の世界 (Light Tree) で起きたかのようにブラウザはイベントを「書き換えます」。
+たとえば、水色のノードツリーではあたかもノード <code>4</code> がクリックされたかのようにユーザーからは見えます（ <code>event.target</code> の値が ノード <code>4</code> にアジャストされます）。</p>
+<h2 id="tweet">例: Tweet 埋め込み</h2>
+<p>Twitter が提供するツイートを埋め込みためのコードは、内部で Shadow DOM を使用しています。ツイート埋め込みコードは<code>&lt;twitterwidget&gt;</code> エレメントを生成しますが、実際の表示はすべて shadow tree 上で行われます。</p>
+<p><img alt="tweett" src="/assets/2017/twitter.svg"></p>
+<p><code>&lt;twitterwidget&gt;</code> がホストする shadow tree 内のどこかのノードがクリックされたとしましょう。このとき:</p>
+<ul>
+<li><code>&lt;twitterwidget&gt;</code> エレメントの実装者（つまりここでは Twitterのエンジニアのことです）はクリックされたのが「RTボタン」かあるいは「Like」ボタンかどうかを知りたいでしょう。</li>
+<li><code>&lt;twitterwidget&gt;</code>エレメントのユーザー（つまりツイートを埋め込みたいページの作者）から見た場合はそこまでの詳細は興味がないです。他の普通のエレメントと同様に <code>&lt;twitterwidget&gt;</code> エレメントそのものがクリックされたことだけ知ることができれば十分でしょう。</li>
+</ul>
+<p>もし詳細が知りたいのであればクリックイベントといったローレベルなものを通じて知るのは極めてよくない API デザインです。必要に応じて抽象的できちんと定義されたインターフェース（たとえばカスタムイベント）を通じて伝えるべきです。</p>
+<p>一部のイベントはそもそも上の世界に伝える必要がありません。たとえばページを訪れているユーザーがマウスを shadow tree 内のあるノード A からあるノード B に動かしたとします。
+このとき <code>&lt;twitterwidget&gt;</code> エレメントの実装者はこの <code>mousemove</code> イベントを拾いたいと思うかもしれません。
+一方 <code>&lt;twitterwidget&gt;</code> エレメントのユーザーから見た場合マウスはエレメントの内部を移動しているだけです。イベントは上の世界に伝える必要はありません。</p>
+<div class="article-info">
+Event がどのような「パス」を通ってきたかを知るには <a href="https://dom.spec.whatwg.org/#dom-event-composedpath"><code>Event.composedPath()</code></a> API が使用できます。
+</div>
+
+<h2 id="relatedtarget">例: 関連ターゲット (relatedTarget) をもつイベント</h2>
+<p>下の図でマウスポインタがノード <code>A</code> から ノード <code>B</code> に移動したとしましょう。</p>
+<p><img alt="event related" src="/assets/2017/event-dispatch-related.svg"></p>
+<p>このときは以下のように <code>mousemove</code> 関連のイベント はディスパッチされます。</p>
+<ol>
+<li>
+<p>緑のノードツリー: <code>B</code> -&gt; <code>2</code> -&gt; <code>3</code> の順。このときイベントのプロパティ:</p>
+<ul>
+<li><code>event.relatedTarget</code> は <code>A</code> ではなく <code>C</code></li>
+<li><code>event.target</code> は <code>B</code></li>
+</ul>
+<p>すわわちこのノードツリーではマウスが <code>C</code> から <code>B</code> に移動したとみなされます。</p>
+</li>
+<li>
+<p>（その後）水色のノードツリー: <code>4</code> -&gt; <code>5</code> -&gt; <code>6</code> の順。このときイベントのプロパティ:</p>
+<ul>
+<li><code>event.relatedTarget</code> は <code>A</code> ではなく <code>C</code></li>
+<li><code>event.target</code> は <code>4</code></li>
+</ul>
+<p>すなわちこのノードツリーではマウスが <code>C</code> から <code>4</code> に移動したとみなされます。</p>
+</li>
+<li>
+<p>（その後）一番上のノードツリー: イベントはティスパッチされません。</p>
+</li>
+</ol>
+<div class="article-info">
+内側のノードツリーから外側のノードツリー内のノードが「見える」のは一般には OK です。これは Shadow DOM のデザイン原則のひとつです。
+これは一般のプログラミング言語における原則、たとえば「インナークラス」が「アウタークラス」のフィールドにアクセスできるとの同様です。
+</div>
+
+<h2 id="event-re-targeting">Event Re-Targeting (イベントリターゲティング） / ノード間の関係の判断</h2>
+<p>このようにブラウザはイベントをあたかも自分のノードツリー内だけで起きたかのようにユーザーに見せるためさまざまなアジャストをおこないます。
+これをリターゲティングと呼びます。イベントディスパッチの際にリターゲティングを素早く行うためにはツリー上でのノードの先祖・子孫関係 (Ancestor-Descendant relationships) を何度も判断する必要がでてきます。</p>
+<p>例として次のようなノードツリーに対しては:</p>
+<p><img alt="ancestor" src="/assets/2017/ancestor.svg"></p>
+<ul>
+<li>A は B の先祖 ? -&gt; Yes</li>
+<li>B は A の先祖 ? -&gt; No</li>
+<li>A は D の先祖 ? -&gt; Yes</li>
+<li>B は F の先祖 ? -&gt; No</li>
+</ul>
+<p>等が成り立ちます。</p>
+<div class="article-danger">
+課題 15: ノード間の先祖・子孫関係を判断する以下の JavaScript 関数を実装してください。
+</div>
+
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">isAncestorOf</span><span class="p">(</span><span class="nx">ancestor</span><span class="p">,</span> <span class="nx">descendant</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isAncestorOf</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">))</span> <span class="c1">// -&gt; true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isAncestorOf</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">))</span> <span class="c1">// -&gt; false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isAncestorOf</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">d</span><span class="p">))</span> <span class="c1">// -&gt; true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isAncestorOf</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">f</span><span class="p">))</span> <span class="c1">// -&gt; false</span>
+</pre></div>
+
+
+<div class="article-info">
+課題ではノードツリー上のノード間の関係を判断していますが、実際の Chrome は イベント・ディスパッチの際は Super Tree 上でのツリー同士の関係で判断しています。
+Super Tree を使用することで大幅に計算量を削減できます。
+</div>
+
+<p><code>isAncestorOf</code> は素直に実装すると O(N) かかることでしょう。</p>
+<h2 id="o1">ノード間の関係の判断 / O(1)</h2>
+<p><code>isAncestorOf</code> は少しの工夫で定数時間 O(1) で答えることができるようになります。ただし以下の条件が必要です。</p>
+<ul>
+<li>イベントの開始前に事前にツリーを 1 回だけトラバースしてもよい</li>
+<li>一時的に O(N) のメモリを消費してもよい</li>
+</ul>
+<p>イベントディスパッチの開始前にツリーをトラバースして各ノードに以下のように2つの番号をつけることにしましょう。</p>
+<p><img alt="pre post order" src="/assets/2017/pre-post-order.svg"></p>
+<p>これらの 2 つの番号 (<code>pre</code> と <code>post</code>) を利用すれば「A は B の先祖でしょうか？」 という問いには、</p>
+<div class="highlight"><pre><span></span>A.pre &lt; B.pre &amp;&amp; B.pose &lt; A.post
+</pre></div>
+
+
+<p>の条件をチェックするだけで済みます。これは定数時間 O(1) で判断できます。</p>
+<div class="article-danger">
+課題 16: 先ほど実装した <code>isAncestorOf</code> を 実行時間が O(1) になるように改良してください。メモリはいくら使用してかまいません。どれくらい速度が改善したか計測してください？もし速度が改善しないようならなにが原因が考えてみましょう。
+</div>
+
+<div class="article-info">
+<p><b>最適化するべき？</b></p>
+
+<p>
+最適化の教訓として有名なものに「時期尚早な最適化は諸悪の根源である」があります。
+この文は残念なことに文脈から切り離されて使用されることが多いです。
+
+幸いなことに Chrome はユーザー数が多いため、最適化のための人的コストをかけてもよい場面が多々あります。
+
+例として、さきほどのイベントディスパッチを早くする実際の <a href="https://codereview.chromium.org/182683002">CL</a> を見てみましょう。平均的なツリーに対しては 1 イベントあたり 0.1 ms ほどしか早くなりません。たかだが 0.1 ms 早くすることにソフトウェアエンジニアが数時間をかける価値はあるでしょうか？
+</p>
+<p>
+大雑把に最適化の効果を計算してみましょう。
+</p>
+<ul>
+<li>Chrome のアクティブユーザー数: 1,000,000,000 (= a)
+<li>1 ユーザーあたりの1日あたりの平均 Web サイト閲覧数: 100 / day (= b)
+<li>1 Webサイトあたりの重みを考慮した平均発生イベント数: 1,500 (= c)
+<li>1 イベントあたり節約できた時間: 0.1 ms (= d)
+</ul>
+<p>
+合計すると 1 年あたり a * b * c * d * 365 = 5475 兆 (ms)。
+すなわち地球上から毎年 5475 兆 ms (== 約 15 億時間) を節約できたことになります。
+その分バッテリーの消費も少なくなり二酸化炭素の排出量も少なくなるでしょう。十分に価値があるといえます。
+ブラウザのレンダリングエンジンは Chrome だけではなく WebView あるいは Visual Studio Code や Atom などの Electron アプリでも使用されていますので、この数字はもっと大きいかもしれません。
+</p>
+</div>
+
+<h1 id="_1">レンダリング</h1>
+<p>Super Tree はそのままではレンダリングできません。
+「ツリーのツリー」 をひとつの「ツリー」に合成する必要があります。そのことを 「Flattening （平らにすること）」と呼んでいます。レイアウトのために平らになったツリーは Flat Tree （フラットツリー）と呼ばれます。</p>
+<p><img alt="pre post order" src="/assets/2017/flat-tree.svg"></p>
+<p>Flattening のための詳細なデータ構造とアルゴリズムについては・・・もう十分でしょう。魔法すぎるので省きましょう。</p>
+<p>ひとついえることは現在 Chrome は Flat Tree はメモリ上には物理的に保持していません。Flat Tree はあくまでコンセプト上に存在する仮想的なツリーであり、レイアウト時に仮想的に作成されます。</p>
+<div class="article-info">
+<p><b>Incremental Shadow DOM</b></p>
+
+現在、Flat Tree のつくりかたを根本的に改善する新しい魔法 (<a href="https://docs.google.com/document/d/1R9J8CVaSub_nbaVQwwm3NjCoZye4feJ7ft7tVe5QerM/edit?usp=sharing">Incremental Shadow DOM</a>) を開発中です。そのため現代の魔法は古の魔法になってしまうでしょう。
+</div>
+
+<h1 id="_2">まとめ</h1>
+<p>この記事は主にデータ構造とアルゴリズムを通じて DOM と Shadow DOM を雰囲気で理解することを目的にしました。
+課題に実際に挑戦してみた人は「エンジンの外側」の環境である JavaScript で問題を解く際に何かと不便に感じることが多かったと思います。
+「エンジン内部の情報やエンジンがもっているデータ構造を利用できればはるかにいろいろなことができるのでは？」と感じたかもしれません。それはとても正しいことです。それこそがエンジン内部をハックする動機です。</p>
+<p>明日の <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a> 最終日は実際のソフトウェアエンジニアリングにフォーカスした「Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた」です。お楽しみに。</p>
+  </div>
+</article>
+
+          <footer class="base-footer text-center">
+            <small>
+              <a href="/">Home</a> | &copy; 2005-2017 hayato.io
+            </small>
+          </footer>
+        </div>
+        <div class="col-md-3">
+            <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://hayato.io/theme/site-bundle.js"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+  </body>
+</html>
