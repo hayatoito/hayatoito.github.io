@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Sun, 24 Dec 2017 00:00:00 +0900</lastBuildDate><item><title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM</title><link>https://hayato.io/2017/dom/</link><description>&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 24 日目の記事です。&lt;/p&gt;
+<rss version="2.0"><channel><title>hayato.io - Hayato Ito</title><link>https://hayato.io/</link><description></description><lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0900</lastBuildDate><item><title>Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた</title><link>https://hayato.io/2017/making-web/</link><description>&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 25 日目の記事です。&lt;/p&gt;
+&lt;p&gt;昨日の&lt;a href="/2017/dom/"&gt;記事&lt;/a&gt;では主にデータ構造とアルゴリズムに注目しましたが、
+この記事では、実際に行われているソフトウェアエンジニアリングを通じて上流工程 (Web標準の策定) から下流工程 (ブラウザの開発)まで Web のつくりかたを雰囲気で理解するのを目的としています。&lt;/p&gt;
+&lt;p&gt;この記事の想定読者は一般の Web 開発者やソフトウェアエンジニアです。&lt;/p&gt;
+&lt;p&gt;記事へのフィードバック・Typo などを発見しましたら、&lt;a href="https://github.com/hayatoito/hayatoito.github.io/issues?q=is%3Aopen+is%3Aissue"&gt;GitHub Issue&lt;/a&gt; の方へお願いします。&lt;/p&gt;
+&lt;h1 id="web"&gt;Web プラットフォーム&lt;/h1&gt;
+&lt;p&gt;Web プラットフォームは極めてユーザー数が多いプラットフォームです。Web で情報を得ている人や Web で情報を発信をしている人などもユーザーとみなせば、極端な言い方をすれば地球上のほぼ全員がこのプラットフォームのエコシステムの一員です。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="web triangle" src="/assets/2017/web-triangle.svg"&gt;&lt;/p&gt;
+&lt;p&gt;Web 開発者の数はユーザーの数と比べればぐっと少ないです。ブラウザをつくっている人はもっと少ないです。&lt;/p&gt;
+&lt;h2 id="web-web-standards"&gt;Web 標準 (Web Standards)&lt;/h2&gt;
+&lt;p&gt;Web プラットフォームは仕様と実装がわかれています。仕様に対して複数の実装（ブラウザ）があるのが大きな特徴のひとつです。&lt;/p&gt;
+&lt;p&gt;Web がどう動くべきかを記した「仕様 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Mon, 25 Dec 2017 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2017-12-25:/2017/making-web/</guid></item><item><title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM</title><link>https://hayato.io/2017/dom/</link><description>&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 24 日目の記事です。&lt;/p&gt;
 &lt;p&gt;内容の一部は Chromium の Git レポジトリの &lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/"&gt;Source/core/dom&lt;/a&gt; フォルダの
 &lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md"&gt;README ファイル&lt;/a&gt;
 （英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記事の想定読者は一般の Web 開発者です。
@@ -62,10 +73,4 @@ You can use the timer here, &lt;a href="http://hayato.io/timer/"&gt;http://hayat
 6ヶ月以上、参戦してないと、ランキングから除外されるんですねー。&lt;/p&gt;
 &lt;p&gt;今までは、ThinkPad + Linux (もち、Gentoo Linux) + Eclipse + Javaという環境でやってたんですが、ThinkPadが壊れてからは、なかなか環境を整えることをしないまま、時間がたってしまいました。&lt;/p&gt;
 &lt;p&gt;今回は、Macbook Pro + Eclipse + Javaという環境で、久しぶりに参戦してみました。
-レーティングが下がるフラグがたちまくりの状態だったんですが、 結果は、250 Passed, 500 Passed, 4 successful challengesで、レーティングは2121 -&amp;gt; 2220と上昇。ようやくRedになりました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Wed, 07 Jan 2009 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2009-01-07:/2009/srm432/</guid></item><item><title>SRM405</title><link>https://hayato.io/2008/srm405/</link><description>&lt;p&gt;久しぶりのSRM。実に5ヶ月ぶりですよ。
-C++にスイッチするはずが、手元の環境の問題で、やむなくJavaで参加してみる。&lt;/p&gt;
-&lt;p&gt;250はやるだけの問題。 500はいい解法がなかなか思いつかないまま、時間がなくなってきたので
- エレガントな解法はもうあきらめてBrute-force的に解いてみる。
-コンテスト中は解法として正しいかどうか証明できなかったので、自信がなかったんですけど、Passしました。
-ちょっと驚き。&lt;/p&gt;
-&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Sun, 15 Jun 2008 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2008-06-15:/2008/srm405/</guid></item></channel></rss>
+レーティングが下がるフラグがたちまくりの状態だったんですが、 結果は、250 Passed, 500 Passed, 4 successful challengesで、レーティングは2121 -&amp;gt; 2220と上昇。ようやくRedになりました。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Hayato Ito</dc:creator><pubDate>Wed, 07 Jan 2009 00:00:00 +0900</pubDate><guid isPermaLink="false">tag:hayato.io,2009-01-07:/2009/srm432/</guid></item></channel></rss>

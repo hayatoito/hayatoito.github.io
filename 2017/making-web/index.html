@@ -35,7 +35,7 @@
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:foaf="http://xmlns.com/foaf/0.1/">
-      <rdf:Description rdf:about="https://hayato.io/drafts/making-web/">
+      <rdf:Description rdf:about="https://hayato.io/2017/making-web/">
         <foaf:maker rdf:parseType="Resource">
           <foaf:holdsAccount>
             <foaf:OnlineAccount foaf:accountName="hayatoito1">
@@ -88,310 +88,296 @@
     </div>
   </header>
   <div class="article-content">
-    <p>この記事は <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a> 25日目の記事です。</p>
-<p>この記事では、実際に行われているソフトウェア・エンジニアリングを通じて上流工程 (Web標準の策定) から下流工程 (ブラウザの開発)まで Web のつくりかたを雰囲気で理解するのを目的としています。</p>
-<p>この記事の想定読者は一般の Web 開発者です。</p>
-<p>記事へのフィードバック・Typo 等を発見しましたら、<a href="https://github.com/hayatoito/hayatoito.github.io/issues?q=is%3Aopen+is%3Aissue">GitHub Issue</a> の方へお願いします。</p>
+    <p>この記事は <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a> 25 日目の記事です。</p>
+<p>昨日の<a href="/2017/dom/">記事</a>では主にデータ構造とアルゴリズムに注目しましたが、
+この記事では、実際に行われているソフトウェアエンジニアリングを通じて上流工程 (Web標準の策定) から下流工程 (ブラウザの開発)まで Web のつくりかたを雰囲気で理解するのを目的としています。</p>
+<p>この記事の想定読者は一般の Web 開発者やソフトウェアエンジニアです。</p>
+<p>記事へのフィードバック・Typo などを発見しましたら、<a href="https://github.com/hayatoito/hayatoito.github.io/issues?q=is%3Aopen+is%3Aissue">GitHub Issue</a> の方へお願いします。</p>
 <h1 id="web">Web プラットフォーム</h1>
-<p>Web プラットフォームは極めてユーザー数が多いプラットフォームです。
-Webで情報を得ている人や、Webで情報を発信を行っている人などもユーザーとみなせば、極端な言い方をすれば地球上のほぼ全員がこのプラットフォームのエコシステムの一員です。</p>
+<p>Web プラットフォームは極めてユーザー数が多いプラットフォームです。Web で情報を得ている人や Web で情報を発信をしている人などもユーザーとみなせば、極端な言い方をすれば地球上のほぼ全員がこのプラットフォームのエコシステムの一員です。</p>
 <p><img alt="web triangle" src="/assets/2017/web-triangle.svg"></p>
-<p>Web 開発者の数はユーザーの数と比べればぐっと少ないです。さらにブラウザをつくっている人はもっと少ないです。</p>
-<h1 id="web-web-standards">Web 標準 (Web Standards)</h1>
-<p>Web プラットフォームは仕様と実装がわかれています。
-さらに仕様に対して複数の実装（ブラウザ）があるのが大きな特徴のひとつです。</p>
-<p>Webがどう動くべきかを記した「仕様」は「Web Standards」(Web 標準) と呼ばれています
-有名なところでは HTML の仕様である <a href="https://html.spec.whatwg.org/">HTML Standard</a>、
-DOM の仕様である <a href="https://dom.spec.whatwg.org/">DOM Standard</a> などが挙げられます。</p>
-<h1 id="browser-vendor">ブラウザベンダ (Browser Vendor)</h1>
+<p>Web 開発者の数はユーザーの数と比べればぐっと少ないです。ブラウザをつくっている人はもっと少ないです。</p>
+<h2 id="web-web-standards">Web 標準 (Web Standards)</h2>
+<p>Web プラットフォームは仕様と実装がわかれています。仕様に対して複数の実装（ブラウザ）があるのが大きな特徴のひとつです。</p>
+<p>Web がどう動くべきかを記した「仕様」は「Web Standard」(Web 標準) と呼ばれています
+有名なところでは HTML の仕様である <a href="https://html.spec.whatwg.org/">HTML Standard</a>、DOM の仕様である <a href="https://dom.spec.whatwg.org/">DOM Standard</a> などが挙げられます。</p>
+<h2 id="browser-vendor">ブラウザベンダ (Browser Vendor)</h2>
 <p>Web 標準にもとづいて、その実装としてのブラウザをつくる組織・企業のことをブラウザベンダといいます。</p>
-<p>メジャーなブラウザとしては、Chrome, Safari, Firefox, Edge などがあります。それぞれ、Google, Apple, Mozzila, Microsoft 等がつくっています。</p>
-<p>実装が複数あることはほとんどの Web 開発者にとっては「わずらわしい」と考えていると思いますが、
+<p>メジャーなブラウザとしては、Chrome、Safari、Firefox、Edge などがあります。それぞれ、Google、Apple、Mozzila、Microsoft が主に開発しています。</p>
+<p>Web 開発者は「実装が複数あることはわずらわしい」と考えるかもしれませんが、
 複数の実装があることこそが何より Web を Web 足らしめている大きな特徴です。
 ブラウザベンダ間の健全な競争こそがプラットフォームを進化させます。</p>
 <h1 id="web-web">Web のつくりかた: Web 標準編</h1>
-<p>Web 標準のつくりかたを説明します。</p>
-<p>ここでは私が主に関わっている DOM Standard (Shadow DOM を含む) と HTML Standard に絞ります。DOM Standard, HTML Standard ともに GitHub 上で管理されています。</p>
-<h1 id="dom-standard">DOM Standard</h1>
+<p>ここでは私が主に関わっている DOM Standard (Shadow DOM を含む) と HTML Standard に絞ります。DOM Standard、HTML Standard ともに GitHub 上で管理されています。</p>
+<h2 id="dom-standard">DOM Standard</h2>
 <ul>
-<li>DOM仕様: <a href="https://dom.spec.whatwg.org/">DOM Standard</a><ul>
+<li>DOM 仕様: <a href="https://dom.spec.whatwg.org/">DOM Standard</a><ul>
 <li>GitHub: <a href="https://github.com/whatwg/dom">whatwg/dom</a></li>
 <li>Issues: <a href="https://github.com/whatwg/dom/issues">Open Issues</a></li>
 <li>コミット: <a href="https://github.com/whatwg/dom/commits">whatawg/dom/commits</a></li>
-<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/dom">web-platform-tests/dom</a></li>
-<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/shadow-dom">web-platform-tests/shadow-dom</a></li>
+<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/dom">web-platform-tests/dom</a>、<a href="https://github.com/w3c/web-platform-tests/tree/master/shadow-dom">web-platform-tests/shadow-dom</a></li>
 </ul>
 </li>
 </ul>
-<h1 id="html-standard">HTML Standard</h1>
+<h2 id="html-standard">HTML Standard</h2>
 <ul>
 <li>HTML 仕様: <a href="https://html.spec.whatwg.org/">HTML Standard</a><ul>
 <li>GitHub: <a href="https://github.com/whatwg/html">whatwg/dom</a></li>
 <li>Issues: <a href="https://github.com/whatwg/html/issues">Open Issues</a></li>
 <li>コミット: <a href="https://github.com/whatwg/html/commits">whatawg/dom/commits</a></li>
-<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/html">web-platform-tests/dom</a></li>
+<li>テスト: <a href="https://github.com/w3c/web-platform-tests/tree/master/html">web-platform-tests/html</a></li>
 </ul>
 </li>
 </ul>
 <div class="article-info">
-Web 標準によって文化やプロセスが異なります。たとえば CSS はどちらかといえば伝統的な W3C のプロセスを重視している傾向が残っています。DOM や HTML は WHATWG のブラウザベンダの代表者による話し合いと同意を重視しており極めて実践的です。
+Web 標準によって文化やプロセスが異なります。たとえば CSS は比較的伝統的な W3C のプロセスを重視している傾向が残っています。DOM や HTML は 主に WHATWG のブラウザベンダの代表者による話し合いと同意を重視しており極めて実践的です。
 </div>
 
-<h1 id="web_1">Web 標準の更新のしかた</h1>
+<h2 id="web_1">Web 標準の更新のしかた</h2>
 <p>基本的な流れは以下のとおりです。</p>
 <ol>
-<li>GitHub 上で Issue をあげる。</li>
-<li>Issee 上で議論をし関係者間で同意をとる。</li>
-<li>PR (Pull Request) を送る。</li>
-<li>必要に応じて テスト (Web Platorm Test) も書く。</li>
-<li>レビューを受けて Editor に Mergeされる。</li>
+<li>GitHub 上で Issue をあげる</li>
+<li>Issee 上で議論をし関係者間で同意をとる</li>
+<li>PR (Pull Request) を送る</li>
+<li>必要に応じて テスト (Web Platorm Test) を書く</li>
+<li>レビューを受けて Editor に Merge される</li>
 </ol>
 <p>通常のソフトウェア開発プロジェクトと大きな違いはありません。</p>
-<h1 id="close-issue">Close されやすい Issue</h1>
+<h2 id="wontfix-close-issue">WONTFIX / Close されやすい Issue</h2>
 <p>Web 標準に貢献しているのはブラウザベンダの関係者が多いですが、基本的には誰でも参加できます。
 メジャーな JavaScript のフレームワーク・ライブラリの開発者たちが新しいアイデアや要望を出してくることも多いです。</p>
-<p>ただし、以下のような Issue は 取り込まれることなくそのままノー・アクションで Close される可能性が高いでしょう。</p>
+<p>ただし、以下のような Issue は 取り込まれることなくそのまま WONTFIX で Close される可能性が高いでしょう。</p>
 <ul>
 <li>
 <p>具体的ではない</p>
-<p>例: 「新しいDOM APIが欲しいです」</p>
-<p>このような Issue は、「This issue lacks a concrete proposal.」とより具体的な案を求められるでしょう。具体的が案がないと Close されることでしょう。</p>
+<p>例: 「XX ができたらいいなー」</p>
+<p>このような Issue は「具体的なアイデアは？」と求められるでしょう。またアイデアだけでは十分ではなく、具体的なプロセシング・モデルがきちんと定義されているのが望ましいです。議論が生産的になります。</p>
 </li>
 <li>
-<p>ブラウザ・ベンダが実装に関心がない</p>
-<p>実装されることのない仕様をつくっても負債になるだけですので、このような Issue も Close されます。
-ブラウザ・ベンダが思わず実装したくなるような仕様を提案するとよいです。</p>
+<p>ブラウザベンダが実装に関心がない</p>
+<p>実装されることのない仕様は負債になります。このような Issue も Close されてしまうでしょう。
+ブラウザベンダが思わず実装したくなるような仕様を提案するとよいです。</p>
 </li>
 <li>
 <p>Web を壊す</p>
-<p>残念ながらほとんどの提案が後方互換性に壊すような提案です。
-ブラウザ・ベンダは後方互換性を壊すような提案には極めて慎重であり、よほどのことがないと反対されるでしょう。
-というのは、そのような仕様を実装するのは、とても大変であり、あとで苦労するのは、なりより自分たちだからです。</p>
+<p>残念ながらほとんどの提案が後方互換性を壊すような提案です。
+ブラウザベンダは後方互換性を壊すような提案には極めて慎重です。よほどのことがないと反対されるでしょう。</p>
 </li>
 <li>
 <p>実装が困難</p>
-<p>現実的に実装が可能なアイデアでないと Close されるでしょう。</p>
+<p>現実的に実装が可能なアイデアでないと Close されるでしょう。これについてはブラウザベンダの人に聞くのがよいでしょう。</p>
 </li>
 <li>
 <p>最初だけ議論が盛り上がる</p>
-<p>これもよくあるパターンです。新しい Issue が上がった直後は、議論が活発になるけど、その後、まったく関心がなくなるというのは、結局、誰も困っていないということが多いです。
-2週間もすると途中からみんなの関心がなくなる。そして3ヶ月くらいなんの更新もなくなる。
-だれかリードする人がいないと、結局他人事になりがちです。</p>
+<p>これもよくあるパターンです。新しい Issue が上がった直後は議論が活発におこなわれますが、その後まったく関心がなくなるというのは、結局その問題を本当に解決したいとは誰も思っていないのです。</p>
 </li>
 </ul>
-<div class="article-info">
-「いきなり、Issue を上げるのはちょっと..」「そんなに具体的じゃないけど、いいアイデアを思いついた」。
-そんなときは、直接、Standard に Issue をあげるのではなく、WICG () をオススメします。
-</div>
-
-<h1 id="_1">ブラウザ・ベンダが気にするところ</h1>
-<p>すべてのブラウザベンダの同意をとるのはとってもとっても大変です。
-簡単な修正は特に問題なく通ります。
-大きめな変更はブラウザベンダの各分野の担当者の同意をとる必要があります。</p>
-<p>私も含めてかんたんには説得されません。実装者が仕様の詳細を決めるにあたって特に気にするところは以下のところです。</p>
+<p>「いきなり、Issue を上げるのはちょっと..」「そんなに具体的じゃないけど、いいアイデアを思いついた」
+そのようなときは直接 Web 標準 の GitHub に Issue をあげるのではなく、<a href="https://discourse.wicg.io/">WICG</a> (Web Platform Incubator Community Group) をオススメします。
+こちらはより「よちよち歩き」なアイデアを議論するための場所です。</p>
+<h2 id="_1">ブラウザベンダが気にするところ</h2>
+<p>すべてのブラウザベンダの同意をとるのは大変です。簡単な修正は特に問題なく通ります。しかし、大きめな変更はブラウザベンダのその分野の代表者の同意をとる必要があります。
+私も含めてかんたんには説得されません。実装者が仕様の詳細を決めるにあたって気にすることを以下にあげます。</p>
 <ul>
 <li>
-<p>本当に Web プラットフォームでネイティブにサポートする必要があるか</p>
-<p>新しいプリミティブとしてプラットフォームに追加する価値があるかどうかを問います。
-JavaScript のレイヤーで簡単に実現可能なマイナーなものに関しては、まず通らないでしょう。
-逆に今までは JavaScript のレイヤーで行っていたものの、プラットフォームに追加することによって、大幅にパフォーマンスが改善されることが期待されるならば、通りやすいでしょう。</p>
+<p>本当に Web プラットフォームでネイティブにサポートする必要があるかどうか</p>
+<p>新しいプリミティブとしてプラットフォームに追加する価値があるかどうかが問われます。
+JavaScript のレイヤーで簡単に実現可能なマイナーなものに関してはまず通らないでしょう。
+逆に今まで JavaScript のレイヤーで行っていたものの、プラットフォームに追加することによって大幅にパフォーマンスが改善されることが期待されるならば通りやすいでしょう。
+ブラウザベンダはプラットフォームの速度のボトルネックとなっている古い API を追放したがっています。</p>
 </li>
 <li>
 <p>ユースケースがクリアかどうか</p>
 <p>間違いなくユースケースについては聞かれます。実際に Web 開発者が抱えている問題が解決される？</p>
 </li>
 </ul>
-<p>実際のところ、ほんとによい仕様かどうかは自身がなく、実際にC++で実装してみないとわからないという部分も多々あります。また最初から完璧にできるわけではなく、実装してみて使用してもらってフィードバックを受けて改善していくといったフィードバック・ループはとても大事です。</p>
-<h2 id="slotchange">例: slotchange イベント</h2>
-<p>例: slotchange events</p>
-<h1 id="web-plaform-test">テスト: Web Plaform Test</h1>
-<p>最近は Web 標準を変更するときはテスト (Web Platform Test) も同時に書くことも要求されます。
-テストは各ブラウザで共有されます。以下のようなメリットがあります。</p>
+<p>また誰もが最初からほんとによい仕様かどうかは 100% 自信があるわけではありません。
+実際にブラウザ上で C++ で実装してみないとなんともいえない場合もよくあります。
+「とりあえず」実装してみてユーザーに使用してもらい、フィードバックを受けて改善していくといったフィードバックループはとても大事です。</p>
+<h2 id="web-web-plaform-test">Web プラットフォームテスト (Web Plaform Test)</h2>
+<p>Web 標準を変更するときは同時にテスト (Web Platform Test) も書くことも要求されます。
+詳しくは <a href="https://github.com/w3c/web-platform-tests">web-platform-tests</a> を参照ください。
+テストは各ブラウザで共有されます。次のようなメリットがあります。</p>
 <ul>
 <li>
 <p>ブラウザ間の互換性の向上</p>
 </li>
 <li>
-<p>ブラウザ・ベンダの負担の軽減</p>
-<p>各ブラウザ・ベンダが独自にテストを書く必要性がなくなります。</p>
+<p>ブラウザベンダの負担の軽減。各ブラウザベンダが独自にテストを書く必要性がなくなります。</p>
 </li>
 <li>
 <p>生きた仕様書</p>
-<p>仕様書を読んでもどういう挙動かわかりにくいということは多々あります。はっきりとあるべき動作が定義されたテストはコミュニケーション・ツールとしての役割も話します。実際、仕様の議論中で「具体的な動作がいまいちピンとこないので、実際にテストを書いてみてくれない？」とお願いされることは多いでしょう。</p>
+<p>Web の仕様書を読んでも「いったいなにをいっているのかわからない」ということは多いでしょう。はっきりと動作が定義されたテストはコミュニケーションツールとしての役割を果たします。仕様の議論においても「具体的な動作がいまいちピンとこないです。ちょっとテストを書いてみてくれない？」とお願いされることは多いでしょう。</p>
 </li>
 </ul>
-<p>詳しくは <a href="https://github.com/w3c/web-platform-tests">web-platform-tests</a> を参照ください。
-「いきなり Web 標準に貢献するのはちょっと...」という人でも、まずはテストから貢献するとよいでしょう。</p>
-<h1 id="_2">名前の衝突 / 後方互換製を壊す恐れ</h1>
-<p>新しい Web API やタグを入れるときは、その名前がすでに Web 広く使用されていないかどうか「Web を grep」してチェックします。</p>
-<p>例えば、私は、Declarative Shadow DOM (宣言的 Shadow DOM) を httparvhice</p>
-<div class="article-info">
-TODO node.root を
-- node.getRoot
+<p>「いきなり Web 標準に貢献するのはちょっと...」という人でもまずはテストから貢献するとよいでしょう。</p>
+<h2 id="_2">名前の衝突 / 後方互換製を壊す恐れ</h2>
+<p>新しい Web API や新しいエレメントを Web に入れるときは、その名前がすでに Web 上で広く使用されていないかどうかチェックする必要があります。たとえ「衝突する恐れのある名前を勝手に使用している行儀の悪い Web サイト」であろうと、既存の Web サイトを壊すわけにはいかないからです。</p>
+<p>「Web を grep」 するには <a href="http://httparchive.org/">httparchive</a> などが使用できます。Top 1,000,000 サイトのアーカイブから検索できます。</p>
+<p>例 (<a href="https://github.com/whatwg/dom/issues/510#issuecomment-330486945">whatwg/dom/issues/510</a>):</p>
+<div class="highlight"><pre><span></span> <span class="k">SELECT</span> <span class="n">page</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+ <span class="k">FROM</span> <span class="p">[</span><span class="n">httparchive</span><span class="p">:</span><span class="n">har</span><span class="p">.</span><span class="mi">2017</span><span class="n">_09_01_chrome_requests_bodies</span><span class="p">]</span>
+ <span class="k">WHERE</span> <span class="n">REGEXP_MATCH</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">r</span><span class="s1">&#39;&lt;shadowroot&gt;&#39;</span><span class="p">)</span>
+ <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">page</span>
+</pre></div>
 
-TODO <code>shadowdom</code>
+
+<h2 id="_3">いつまでたっても実装されない仕様の取り扱い</h2>
+<p>仕様から削除します。仕様にアルゴリズムが載ったものの 10年 たってもどこのブラウザも実装していないのなら、それは勇気をもって削除するべきです。削除の前に各ブラウザベンダの状況や意思は確認します。</p>
+<p>逆に 2 つ以上のブラウザですでに実装されている API については削除したくてもしずらいです。
+しかし実はどちらも削除したがっているということも少なくなく「これ削除したいんだけど、どう？」と聞くと「あー、実は削除したかったんだよね。なーんだ、そう思っていたんだ。早くいってくれればいいのに！削除しましょう！」となることもあります。そのときは歩調を合わせて削除に向かいます。</p>
+<h2 id="whatwg">WHATWG</h2>
+<p>今月 WHATWG が <a href="https://blog.whatwg.org/working-mode-changes">IPR を更新</a> したため、ようやく Microsoft が WHATWG に参加できる見通しになりました。
+メジャーなブラウザベンダのなかではこれまで Microsoft だけが今まで特許ポリシーのため WHATWG に参加できませんでしたが、これでようやくすべてのメジャーブラウザが DOM や HTML については WHATWG で一緒に仕事をすることができるようになります。</p>
+<p>個人的には Microsoft のためだけに DOM Standard とは別にメンテナンスしていた「<a href="https://w3c.github.io/webcomponents/spec/shadow/">Shadow DOM 仕様</a>」をこれで削除することが可能になりとても負担が減ります。</p>
+<div class="article-info">
+我々は W3C の DOM 仕様や HTML5 (HTML 5.1, HTML 5.2 など) 仕様には一切関わっていません。実際、私は W3C の DOM 仕様が Shadow DOM を取り入れようとしたとき、一時的に W3C DOM の Editor になってほしいと依頼されましたが、WHATWG にフォーカスするため丁重に依頼を断りました。
+
+HTML 5 仕様の意義については、W3C に尋ねてください。
 </div>
 
-<h1 id="_3">いつまでたっても実装されない仕様の取り扱い</h1>
-<p>仕様から削除します。「今の所、ship しているブラウザがゼロ。さらにどのブラウザベンダも実装する予定がない。これ消してよくないですか？」という流れでどんどん消していきます。
-消す前に各ブラウザベンダの状況や意思は当然確認します。</p>
-<p>逆に2つ以上のブラウザですでに実装されているものは削除したくてもしずらいです。
-ですが、実はどちらも削除したがっているということも少なくなく、「これ、削除したいんだけど、どう？」と聞くと「あー、実は削除したかったんだよね。なーんだ、そう思っていたんだ。削除しましょう。」となることもあります。そのときは歩調を合わせて削除に向かいます。</p>
-<h1 id="living-standard">「Living Standard」</h1>
-<p>よく誤解されることですが、W3C が策定している HTML 5 (HTML5.1, HTML5.2 など) 仕様への準拠を目指しているメジャーブラウザは現在ひとつも存在しません。
-実際、我々の普段の日常会話では HTML5 という言葉は全く登場しません。HTML の仕様といえば、HTML Standard のことを指します。</p>
-<p>実は、今月、WHATWG が IPR を更新したため、ようやく Microsoft が WHATWG におおっぴらに参加できるようになりました。
-これまで、「HTML 5 の仕様なんで誰も見てないでしょ？」とはっきりいえなかった理由は、Microsoft が WHATWG に参加できなかったのが主な理由でした。Microsoft に遠慮してたんですね。</p>
 <h1 id="web_2">Web のつくりかた: ブラウザ編</h1>
 <p>さて Web 標準についてはもう十分でしょう。ここからは楽しい実装の話にうつりましょう。
 どんなに素晴らしい仕様も実装がなければなんの意味もありません。</p>
 <p>この記事では Chrome のレンダリングエンジンである Blink における実装の話をします。</p>
-<h1 id="web-api">新機能の実装 / 新しい Web API をプラットフォームに追加する</h1>
+<h2 id="web-api">新機能の実装 / 新しい Web API をプラットフォームに追加する</h2>
 <p>基本的な流れは以下のようになります。</p>
 <ol>
 <li>
-<p>公開 ML (blink-dev) に "Intent to implement: XXX" メールを出す</p>
-<p>「XXX 機能を実装する意思があること」を宣言します。この ML は他のブラウザベンダの人たちも見ていて、意見をくれたりします。
- 実装することが本当に Web のためになるのか？実装の方針はどうか？他のブラウザでの実装具合などを話し合います。</p>
+<p>公開 ML (<a href="https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev">blink-dev</a>) に "Intent to implement: XXX" メールを出す （例: <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/Ez2cuT0KmQo/eUpSsU-uAgAJ">Shadow DOM v1</a> の場合）</p>
+<p>「機能を実装する意思があること」を ML 上で宣言します。この ML は他のブラウザベンダの人たちも見ていて意見を交換することもあります。
+ 実装することが本当に Web のためになるのか？他のブラウザベンダの状況・実装の方針はどうか？などを話し合います。</p>
 </li>
 <li>
 <p>実装する</p>
-<p>後ほど説明します。</p>
+<p>実装に時間がかる大きめな機能は、ランタイムフラグを使用して機能を「デフォルトではオフ」の状態で開発を進めます。</p>
 </li>
 <li>
-<p>公開 ML (blink-dev) に "Intent to ship: XXX" メールを出す</p>
-<p>XXX機能を実際に有効にすることを宣言します。実際に有効にするには、API Owners からの LGTM が必要です。</p>
-</li>
-<li>
-<p>Ship it: 機能を世に出す。Chrome の特定のマイルストーンから有効になります。</p>
+<p>公開 ML (blink-dev) に "Intent to ship: XXX" メールを出す (例: <a href="https://groups.google.com/a/chromium.org/d/msg/blink-dev/zrZRD2ls5tw/ibbjD3cQAQAJ">Shadow DOM v1</a> の場合)</p>
+<p>ship (シップ) というのは、実際にその機能をデフォルトで有効にすることを指します。
+ ランタイムフラグで用いて開発を進めていた場合は、ランタイムフラグを「オン」にするだけです。
+ ship には 3 人以上の API Owners からの LGTM が必要です。</p>
 </li>
 </ol>
-<h1 id="web-api_1">機能の削除 / 既存の Web API をプラットフォームから削除する</h1>
-<p>「機能を追加する」というのは華やかで目立ちますが、それと同じくらいプラットフォームにとって大事なことは「機能を削除する」ことです。</p>
-<p>特に Web プラットフォームでは非常に多数の Web サイトが「分散」しており、協調が極めて困難なプラットフォームです。</p>
+<h2 id="web-api_1">既存の機能の削除 / 既存の Web API をプラットフォームから削除する</h2>
+<p>「あたらしい API を追加する」のと同じくらいプラットフォームにとって大事なことは「現在すでに使用されている API をプラットフォームから削除する」ことです。
+特に Web プラットフォームでは多くの Web サイトが「分散」しており、プラットフォームの作成者が直接コントロールできるわけではありません。「削除」はとても大変な道のりになりがちです。</p>
 <div class="article-info">
-例えば Googleは内部は「単一レポジトリ」を採用しているのは有名な話です。この場合は、単純な API の名前の変更でしたら、まとめて「全部リネーム」するひとつのパッチをアトミックにコミットすれば変更が可能です。
+Google は内部で「単一レポジトリ」を採用しているのは有名な話です。この場合は API の名前の変更などは全部まとめて「リネーム」するひとつのパッチをアトミックにコミットすれば変更が可能です。
 これは単一レポジトリの大きな利点です。
 
-Web プラットフォームではこの戦略が使えません。
+Web プラットフォームではこの戦略が使えません。どうしても伝わるまで時間がかかってしまいます。
 </div>
 
-<div class="article-info">
-機能を削除するのはとても泥臭い仕事であり、基本、Web 開発者から嫌われる仕事です。
-たとえば /deep/ コンビネータを削除することを考えてみましょう。
-
-</div>
-
+<p>既存の機能を削除する基本的な流れは以下のようになります。</p>
 <ol>
 <li>
-<p>公開 ML (blink-dev) に "Intent to deprecate: XXX" メールを出す</p>
-<p>「XXX 機能を非推奨にする」と宣言します。ただし、あくまで非推奨にするだけで、この時点では削除されません。非推奨とし、警告メッセージを出すことによって、Web 開発者に該当 API の使用をやめてもらうのが主な目的です。</p>
-<p>非推奨となった機能を使用すると、DevTools Console 上に Deprecation Warning がでるようになります。</p>
+<p>公開 ML (blink-dev) に "Intent to deprecate: XXX" メールを出す（例: <a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/68qSZM5QMRQ/pT2YCqZSomAJ">/deep/</a> の場合)</p>
+<p>「XXX 機能を非推奨にする」と宣言します。あくまで非推奨にするだけでこの時点では削除されません。
+ Web 開発者が非推奨となった API を使用した場合、DevTool の Console 上に警告メッセージがでることでしょう。</p>
 </li>
 <li>
 <p>使用率が下がるのをまつ</p>
-<p>コミュニケーション</p>
-<p>実際に Web で非推奨となった機能がどれほどしようされているかをトラッキングする仕組みとして</p>
-<p><a href="">Use counters</a> があります。たとえば、現時点で、 <code>/deep/</code> コンビネータは、0.00%です。</p>
+<p>個々の機能・API の実際の Web における使用率をトラッキングしています (例: <a href="https://www.chromestatus.com/metrics/feature/timeline/popularity/1375">/deep/ and ::shadow</a> の場合)。
+ 一定のしきい値を下回るまで待ちます。</p>
 </li>
 <li>
-<p>公開 ML (blink-dev) に "Intent to remove: XXX" メールを出す</p>
-<p>実際に削除します。</p>
+<p>公開 ML (blink-dev) に "Intent to remove: XXX" メールを出 (例: <a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HX5Y8Ykr5Ns">/deep/</a> の場合)。</p>
+<p>実際に削除することを宣言します。LGTM が必要です。</p>
 </li>
 </ol>
-<div class="article-info">
-削除したい機能があったら、以下のようにsleep入れるのがもっとも有効だ。
-
-もちろん冗談です。
-
-function iWantToRemoveThisFeature() {
-  sleep(1000);
-  // ...
-}
-</div>
-
-<h1 id="chrome-status">Chrome Status</h1>
-<h1 id="use-counters">Use counters</h1>
-<h1 id="_4">開発スタイル / ソフトウェア・エンジニアリング</h1>
-<p>Chrome の開発は既存のツールでは対応不可能なスケールに対応するため、一部は独自に発展した開発インフラを使用しています。GitHub 上で PR を送るといったスタイルではありません。</p>
-<p>開発に必要なのは、C++力、キレイなコードを書く能力、技術的コミュニケーション力等、ソフトウェアエンジニアとしての基本的な力があれば十分でしょう。最初はよいメンターやレビューアーに恵まれることも大事です。</p>
-<p>開発インフラについては過去の記事等でも説明されていますので、ここではコメントとともに軽く触れます。</p>
-<h1 id="_5">ビルド</h1>
+<p>これらはあくまで基本的なルールにすぎません。実際は各ケースに応じて柔軟に判断することが多いです。
+なにより大事なのは Web サイトのオーナーとのコミュニケーションです。</p>
+<h1 id="_4">開発ツール・インフラ</h1>
+<p>Chrome の開発はそのスケールのため、既存のツールをそのまま使用するのが難しいケースが多いです。そのため独自に発展した開発インフラを一部に使用しています。GitHub 上で PR を送るといったスタイルではありません。</p>
+<p>開発インフラについては過去の記事などでも説明されていますので、ここではコメントとともに軽く触れます。</p>
+<h2 id="cl">CL</h2>
+<p>Chrome ではパッチなどのコミットの単位を CL (Change List: チェンジリスト)と呼んでいます。
+これはもともと Google 内部のバージョン管理システムで使用されていた用語であり、そのまま伝統的に使用されています。</p>
+<h2 id="_5">ビルド</h2>
 <p><a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/README.md">GN</a> と <a href="https://ninja-build.org/">Ninja</a> を使用しています。
 Ninja のほうは最近は Chrome 以外の他のプロジェクトでも使用されることが増えてきましたね。</p>
-<h1 id="_6">クラウドコンパイル</h1>
-<p>Chrome はコンパイル対象のファイルが数万あります。普通にビルドを行うと時間がかかるでしょう。</p>
-<p>Google の人は Goma (クラウド分散コンパイル)のインフラを使用することができます。私の環境だと "-j 1024"（並列度: 1024) のフルビルドで3分ほどです。</p>
-<p>インクリメンタルビルドだと10秒以下です。</p>
+<h2 id="_6">クラウドコンパイル</h2>
+<p>Chrome はコンパイル対象のファイルが数万あります。普通にビルドするとかなりの時間がかかるでしょう。</p>
+<p>Google の人は Goma (クラウド分散コンパイル)のインフラを使用することができます。私の環境だと "-j 1024"（並列度: 1024) のフルビルドで 3 分ほどです。インクリメンタルビルドだと 10 秒以下です。</p>
 <p>Opera の人たちは社内で分散コンパイルのインフラ (distcc) を使用しているそうです。</p>
-<h1 id="_7">開発環境</h1>
+<h2 id="_7">開発環境</h2>
 <p>Linux 上で開発している人が多いです。Windows 上の Visual Studio で開発している人もいます。</p>
-<h1 id="clang-format">自動フォーマット / clang-format</h1>
-<p>Presubmit （パッチをレビューにおくる前）のタイミングで、ソースコードが正しくフォーマットされているか、チェックされます。私はエディタでファイルをセーブするたびに自動的に <code>clang-format</code> でフォーマットするようにしています。</p>
-<p>clang-formatとその設定もChrome のレポジトリに入っています。</p>
-<h1 id="_8">ビルドの再現性</h1>
-<p>ビルドの再現性を高めるために、なるべく開発ツールそのものも Chrome の関連レポジトリに一式いれるようにしています。たとえば、clang (C++ コンパイラ）自身もレポジトリに入っており、それをチェックアウトして使用します。</p>
-<h1 id="_9">デバッグ</h1>
-<p>gdb や print デバッグ等が主流です。Windows を使う人の主な理由は、Visual Studio 上でデバッグできることだそうです。そのほか、<a href="http://valgrind.org/">valgrind</a>, <a href="https://github.com/google/sanitizers/wiki/AddressSanitizer">ASAN</a>(AddressSanitizer) なども使用しています。</p>
-<h1 id="git">バージョン管理: Git</h1>
-<p>Gitを使用していますが、直接リモートレポジトリに push することはありません。
-すべて コミット・キュー経由でコミットします。コミット・ヒストリーはほぼ直線です。</p>
-<p>ブランチはリリース・ブランチを除いて基本的に使用しません。
-もちろん、各開発者はローカルでは git のブランチを使用します。</p>
-<h1 id="always-on-tot">Always on TOT (常に先端に載っておく）</h1>
-<p>Chrome のようにコミットが非常に多いプロジェクト (1日あたり数百) では、新機能の開発を下手にサーバー・ブランチを切ってその上で行うと、さまざまなデメリットがあります</p>
-<ul>
-<li>
-<p>「もう一生、マージできないので」は、Chrome はコミットの頻度が高いです。1日あたり数百のコミットがあります。</p>
-</li>
-<li>
-<p>ToT ブランチ上で起きている様々なリファクタリングの恩恵を受けることができなくなります。別のブランチのコードは対象外です。</p>
-</li>
-</ul>
-<p>そのため、サーバー・ブランチをきることはほぼありません。そのかわり無効にしておきたい開発中の機能は、ランタイム・フラグをもちいて無効にしておきます。</p>
-<h1 id="bug-tracking">Bug Tracking</h1>
+<h2 id="_8">デバッグ</h2>
+<p>gdb や print デバッグなどが主流です。Windows を使う人の主な理由は、Visual Studio 上でデバッグできることだそうです。そのほか、<a href="http://valgrind.org/">valgrind</a>、<a href="https://github.com/google/sanitizers/wiki/AddressSanitizer">ASAN</a> (AddressSanitizer) なども使用しています。</p>
+<h2 id="git">バージョン管理: Git</h2>
+<p>Git を使用していますが、直接リモートレポジトリに push することはありません。
+コミットキュー経由でコミットします。コミットのヒストリーは直線です。</p>
+<p>ブランチはリリースブランチを除いて基本的に使用しません。</p>
+<p>もちろん各開発者はローカルでは git のブランチを使用します。それぞれの CL ごとにローカルではブランチをつくります。<code>git merge</code>、<code>git rebase</code> などもローカルでは行いますが、サーバ上のブランチにたいして行うことはまずありません。</p>
+<h2 id="bug-tracking">Bug Tracking</h2>
 <p>Chrome のバグは <a href="https://crbug.com/">crbug.com</a> で管理されています。
 誰でもバグの報告が行えます。「Chrome のバグ？」と思える挙動にであったときはここで検索しましょう。</p>
-<h1 id="cl">CL</h1>
-<p>Chrome ではパッチ等のコミットの単位を CL (Change List)と読んでいます。
-これはもともと Google内部のバージョン管理システムで使用されていた用語であり、そのまま伝統的に使用されています。</p>
-<h1 id="_10">レビュー</h1>
+<h2 id="_9">レビュー</h2>
 <p>レビューは <a href="https://chromium-review.googlesource.com/">Gerrit</a> を使用しています。</p>
-<p>レビューアーを見つけるには:</p>
+<h1 id="_10">ソフトウェアエンジニアリング / 実践しているプラクティス</h1>
+<p>Chrome の開発に必要な「スキル」は C++ 力、キレイなコードを書く能力、技術的コミュニケーション力、レビュー力など、ソフトウェアエンジニアとしての基本的な力があれば十分でしょう。</p>
+<p>最初はよいメンターやレビューアーに恵まれることも大事です。</p>
+<p>以下は一般的ではないかもしれませんが Chrome の開発文化で採用されている「よいプラクティス」です。</p>
+<h2 id="always-on-tot">Always on ToT (常に先端に載っておく）</h2>
+<p>ToT とは 「Tip of Tree」の略で、メインブランチの先端のことを指します。
+リリースに対する緊急 Fix などを除いては、通常のコミットは常に ToT に対して行います。</p>
+<p>Chrome のようにコミットが多いプロジェクト (1日あたり数百) では、新機能の開発を下手にサーバ側でブランチを切って ToT 以外で行ってしまうと、さまざまなデメリットがあります。</p>
 <ul>
-<li>自分が変更している付近のコードをよく最近変更している人を見つける。git blame, git log 等からわかります。</li>
-<li>OWNERS ファイルに名前が載っている人 （Owner システムについては後に説明します）</li>
+<li>
+<p>「このブランチ一生マージできないのでは」問題。</p>
+</li>
+<li>
+<p>ToT ブランチ上で起きているさまざまなリファクタリングの恩恵を受けることができなくなります。ToT で開発を続けているなら、他の開発者が自分の担当している箇所もどんどん変更していってくれますが、別ブランチを切ると全部自分で面倒を見なければいけません。</p>
+</li>
 </ul>
-<p>レビューでよく使用される略語:</p>
+<p>これらのデメリットがあるためサーバ側でブランチをきることはほぼありません。そのかわり無効にしておきたい開発中の機能などはランタイムフラグを使用してデフォルトではオフにしておきながら開発を進めます。</p>
+<p>矛盾に聞こえるかもしれませんが、「Always on ToT」 は大規模なソフトウェアプロジェクトだからこそ重要であり、最近は、多くのプロジェクトで特にブランチを切ることなく、常にメインブランチに対して開発を進める方法が主流になっていると思います。</p>
+<h2 id="_11">炭鉱のカナリア</h2>
+<p>Chrome は Canary、Dev、Stable の 3 つのチャネルがあります。
+Canary 版とはいわゆる「ナイトリービルド」であり、小鳥の「カナリア」から名前がつけられています。昔は炭鉱などの危険な場所にはカナリアの入った鳥かごをもっていったそうです。
+カナリアは人間よりも有毒ガスに敏感であるため危険を早期に察知できます。
+Chrome も多くの人が使用する Stable 版まで「被害」が及ぶまえに Canary 版で早期に危険を察知するようにしています。</p>
+<h2 id="_12">短いリリースサイクル</h2>
+<p>Chrome はほぼ 6 週間ごとに Stable 版をリリースするという比較的短いリリースサイクルです。</p>
+<p>このモデルは Chrome のみならず最近多くのソフトウェアプロジェクトで取り入られるようになりました。
+Rust のようなプログラミング言語でもこのリリースモデルを採用しています。</p>
+<p>リリースサイクルが短いことのメリットのひとつは開発者に与える心理です。
+「どうしてもこのマイルストーンに間に合わせたい！」と無理をすることがなくなります。
+「このマイルストーンを逃したとしてもまあ次は 6 週間後だから。そんなに大した問題ではない」と考えることができるようになります。</p>
+<h2 id="_13">ビルドの再現性</h2>
+<p>ビルドの再現性を高めるために、なるべく開発ツールそのものも Chrome の関連レポジトリに一式いれるようにしています。たとえば、clang (C++ コンパイラ）自身もレポジトリに入っており、それをチェックアウトして使用します。</p>
+<h2 id="presubmit">presubmit チェック / コーディングスタイル / コードフォーマットツール</h2>
+<p>CL をレビューに送る前に、さまざまな presubmit チェックを行うスクリプトが走ります。
+ソースコードのスタイルもチェック対象のひとつです。</p>
+<p>Chromium では C++ については以下のスタイルガイドにそってチェックが行われます。</p>
 <ul>
-<li>LGTM: これは今では有名になりました。ちなみに LGTM の際に LGTM 画像を使用している人はいません。歓迎されないと思います。</li>
-<li>Nit: わりとどうでもいいこと。</li>
-<li>Ditto: 同じように。</li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/styleguide/c++/c++.md">Chromium C++ style guide</a></li>
 </ul>
-<h1 id="owner">Owner システム</h1>
-<p>レビューでは一人以上の Owner から LGTM を受ける必要があります。
-Owner は各フォルダの OWNERS ファイルに記載されています。
-Owner システムはもともとは Google 内部で使用されていた仕組みですが、最近はいろいろな大規模プロジェクトにも輸出されていますね。Chromium でも採用されています。</p>
-<p>例: core/dom/OWNERS</p>
-<h1 id="_11">テスト</h1>
+<p>また、<code>clang-format</code> というソースコードフォーマットツールとそのプロジェクト設定ファイルもレポジトリに含まれています。ルールとして「clang-format でフォーマットされたコードのスタイルに対しては、レビューアーは一切文句をいってはいけません」があります。これにはデメリットもありますが、なによりレビュー上で起きがちな無駄なコミュニケーションコストを大幅に削減できるというメリットのほうがプロジェクト全体では大きいと思います。</p>
+<h2 id="owner">Owner システム</h2>
+<p>レビューでは CL の修正箇所に応じた 「Owner」 から LGTM を受ける必要があります。
+Owner は各フォルダの OWNERS ファイルに記載されています（例: <a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/OWNERS">core/dom/OWNERS</a>）。
+Owner システムはもともとは Google 内部で使用されていた仕組みですが、最近はいろいろな大規模プロジェクトにも輸出されていますね。</p>
+<h2 id="_14">テスト</h2>
 <ul>
 <li>C++ で書くユニットテスト (<a href="https://github.com/google/googletest">Google Test</a> を使用）</li>
 <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/testing/layout_tests.md">Layout Tests</a>: エンジンの挙動のリグレッションテスト</li>
 <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/testing/web_platform_tests.md">Web Platform Test</a>: ブラウザベンダ間で共有されるテスト</li>
-<li>パフォーマンステスト: パフォーマンスのリグレッションテスト</li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/lkcr/docs/speed/benchmark_harnesses/blink_perf.md">パフォーマンステスト</a>: パフォーマンスのリグレッションテスト</li>
 </ul>
 <p>等があります。それぞれ役割が異なるので使い分けましょう。挙動を変える CL ではまず間違いなくテストを書くことが求められます。</p>
-<h1 id="bots-ci">Bots (ボット) / CI (継続的インテグレーション)</h1>
-<p>Chrome は Windows, Linux, Mac, Android の各バージョン、さらにそれぞれ32bit, 64bit等、多くのプラットフォームをサポートしています。
-それぞれのプラットフォームごとに専用 Bot がいて、継続的インゲグレーションテストを行っています。</p>
+<h2 id="bots-ci">Bots (ボット) / CI (継続的インテグレーション)</h2>
+<p>Chrome は Windows、Linux、Mac、Android の各バージョン、さらにそれぞれについて 32 bit, 64 bit など多くのプラットフォームをサポートしています。それぞれのプラットフォームごとに専用 Bot がいて、継続的インゲグレーションテストをしています。</p>
 <p><img alt="waterfall" src="/assets/2017/waterfall.png"></p>
-<p>ビルド・継続的インゲグレーションテストはさまざまなステップがあり時間がかかります。そのため Chrome の1コミットごとに1サイクルを回すことができません。</p>
-<h1 id="build-sherriff">Build Sherriff</h1>
-<p>Google のコミッターには、当番制でビルドやリグレッション等を見張る仕事が回ってきます。これを シェリフ といいます。
-ToT でビルドが失敗するといって問題が起きたときは、「Tree Close」といって、問題が解決するまで、コミットができなくなります。</p>
-<h1 id="fuzzer">Fuzzer</h1>
-<p>Fuzzing のテクニックはまだ比較的マイナーかもしれませんが、確実に広がっています。</p>
-<p>Fuzzer がどういうものか理解するには例を見るのが一番早いでしょう。</p>
+<p>ビルド・継続的インゲグレーションテストはさまざまなステップがあり時間がかかります。そのため Chrome の1コミットごとに1サイクルを回すことができません。通常 1 サイクルには複数のコミットが含まれます。</p>
+<p>コミットする前の CL に対しても Bots は利用できます。開発者は作成中の CL を「Try Bots に投げる」だけで自分の CL に対して全プラットフォーム上でビルド・テストが通るかを確認できます。</p>
+<h2 id="sherriff">Sherriff (シェリフ: 保安官)</h2>
+<p>Googler かつ Chromium のコミッターの人は、ビルドの不具合やメモリやパフォーマンスのリグレッションなどを見張る仕事を当番制で行っています。この仕事のことを シェリフ（保安官） と呼んでいます。</p>
+<p>ビルドの失敗やリグレッションの解決は、時間がたてばたつほど難しくなります。またどうしても機械的には判断できない場面があります。そのため問題を早期に解決するファーストアクションの責任を当番制で分担しています。シェリフの種類にもよりますが、2 クォーターごとに 1 回（2 日）ほどの頻度です。</p>
+<p>Chrome の開発は世界中で 24 時間おこなわれているため、シェリフはそれぞれのタイムゾーンことに存在します。</p>
+<h2 id="fuzzer">Fuzzer</h2>
+<p>Fuzzer がどういうものか理解するには実際の例を見るのが早いでしょう。</p>
 <div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xmlns:xsi</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
@@ -555,20 +541,44 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 </pre></div>
 
 
-<p>このような一見 "ランダム" な HTML・JavaScript をひたすら生成して、ブラウザがクラッシュする入力を見つけるプログラムのことを Fuzzer といい、そのようなテクニックを <a href="https://en.wikipedia.org/wiki/Fuzzing">Fuzzing</a> といいます。</p>
-<p>このようにランダムに生成するだけで、ブラウザがクラッシュするようなHTMLが本当に見つかるかどうか疑問に思われるかもしれませんが、ものの見事に人間ではまず思いもつかないようなHTMLを生成してエンジンの秘孔をついてくることがあり、ブラウザのセキュリティ・安定性向上のため役にたっています。</p>
+<p>このような一見「ランダム」な HTML・JavaScript をひたすら生成して、ブラウザがクラッシュする入力を見つけるプログラムのことを Fuzzer といい、そのテクニックを <a href="https://en.wikipedia.org/wiki/Fuzzing">Fuzzing</a> といいます。</p>
+<p>このようにランダムに生成するだけで、ブラウザがクラッシュするようなHTMLが本当に見つかるかどうか疑問に思われるかもしれませんが、ものの見事に人間ではまず思いもつかないようなHTMLを生成してエンジンの秘孔をついてくることがあり、ブラウザのセキュリティ・安定性向上のため役にたっています。Chromium プロジェクトではクラスタ上で Fuzzer を走らせており (ClusterFuzz)、クラッシュが見つかるたびにバグが自動的にファイルされます。</p>
 <p>また Fuzzing は最近では外部の攻撃者やセキュリティ研究者が脆弱性を発見する補助ツールとしても使用されています。
 たとえば昨年の例ですが世界的に有名なポーランドのセキュリティ研究者 Mariusz Mlynski が報告してきた Universal XSS 脆弱性 はもともとは Fuzzing で見つけたクラッシュを利用しており、まさに秘孔をついてきました。</p>
-<p>興味のある方は <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870">crbug.com/630870</a> を参照してください。では報告者と私の間での生々しいやり取りが見れます。この脆弱性発見の報告には、賞金 $7,500 が支払われました。もちろん直した私には1ドルもでません。:)</p>
-<h1 id="okrs">OKRs</h1>
-<p>OKR は最近は Google の外でも有名になりました。Chrome でも各チームは Quarter ごとに OKR を設定しています。
-私は DOM / HTML Team の OKRs を設定しています。今のところ非公開ですが透明性を高めるためには公開してもよいかもしれませんね。</p>
-<h1 id="_12">最後に</h1>
+<p>興味のある方は <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870">crbug.com/630870</a> を参照してください。では報告者と私の間での生々しいやり取りが見れます。この脆弱性発見の報告には、賞金 $7,500 が支払われました。もちろん直した私には 1 ドルもでません。:)</p>
+<h2 id="okrs">OKRs</h2>
+<p>OKRs は最近は Google の外でも有名になりました。Chrome でも各チームは Quarter ごとに OKR を設定しています。私は DOM / HTML Team の OKRs を設定しています。</p>
+<h2 id="_15">やっていないこと / ほとんど流行っていないこと / そんな言葉はだれも使っていない</h2>
+<ul>
+<li>
+<p>ペアプログラミング</p>
+<p>日常的にやっている人はみたことがありません。
+「ペアプログラミングのかわり」としての「レビュー」はこの業界でほぼ定着しましたが、
+その一方ペアプログラミングはほぼ絶滅していると思います。</p>
+<p>「ペアプログラミングを導入しましょう」というととおそらく 9 割以上の人が反対すると思いますが、逆に「レビューを廃止しましょう」というと賛成する人は 1 割もいないでしょう。</p>
+</li>
+<li>
+<p>テスト駆動開発</p>
+<p>テストを書くのは大事ですが「テストだけ」が開発を駆動することはありません。
+現代はむしろ「レビュー駆動開発」といったほうが多くの人にとってはしっくりくると思います。
+レビューについてはこのテーマだけで記事が 1 つ、または本が 1 冊書けるほど現代のソフトウェアエンジニアリングにおいて重要ですが、またの機会ということでこの記事では詳細には触れません。</p>
+</li>
+<li>
+<p>オブジェクト指向</p>
+<p>よいソフトウェアデザインを追求することは、レビューなどでも指摘する大事な項目のひとつですが、
+「オブジェクト指向」という言葉がレビューや日常会話で登場することはまずありません。
+レビューでは具体的に指摘します。</p>
+</li>
+<li>
+<p>DDD (ドメイン駆動設計)</p>
+<p>誰もその話題はしていません。</p>
+</li>
+</ul>
+<h1 id="_16">最後に</h1>
 <p>Web プラットフォームを支えるソフトウェアエンジニアリングといっても派手なものはありません。
-正しい「ソフトウェアエンジニアリング」をひたすら積み重ねるという当たり前のことをきちんと行うだけなのです。
-その積み重ねが人類の歴史上もっとも巨大なエコシステムである「Web プラットフォーム」そしてその実装である「ブラウザを支えていることが雰囲気で理解できたかと思います。</p>
-<p>このような巨大なスケールのソフトウェアを人間の共同体がまがりなりにも「開発できている」という事実は非常に興味深いですし、夢のある話です。
-人類の知性・共同作業・エンジニアリングがどこまで通用するのか、その限界がどこにあるのか、これからも Web プラットフォームをみなさんで支えていきましょう。</p>
+正しい「ソフトウェアエンジニアリング」をひたすら積み重ねるという当たり前のことをきちんと行うだけです。
+その積み重ねが人類の歴史上もっとも広がったエコシステムである「Web プラットフォーム」そしてその実装である「ブラウザ」を支えていることが雰囲気で理解できたかと思います。</p>
+<p>このような巨大なスケールのプロットフォーム・ソフトウェアを人間の共同体がまがりなりにも「開発できている」という事実は非常に興味深いですし、人類やエンジニアリングににとっては夢のある話です。</p>
   </div>
 </article>
 

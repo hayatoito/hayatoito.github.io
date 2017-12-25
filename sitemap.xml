@@ -12,6 +12,10 @@
   </url>
 
   <url>
+    <loc>https://hayato.io/2017/making-web/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://hayato.io/2017/dom/</loc>
     <priority>1.0</priority>
   </url>
