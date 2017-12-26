@@ -204,7 +204,7 @@ Web プラットフォームではこの戦略が使えません。どうして�
  一定のしきい値を下回るまで待ちます。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;公開 ML (blink-dev) に "Intent to remove: XXX" メールを出 (例: &lt;a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HX5Y8Ykr5Ns"&gt;/deep/&lt;/a&gt; の場合)。&lt;/p&gt;
+&lt;p&gt;公開 ML (blink-dev) に "Intent to remove: XXX" メールを出す (例: &lt;a href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HX5Y8Ykr5Ns"&gt;/deep/&lt;/a&gt; の場合)。&lt;/p&gt;
 &lt;p&gt;実際に削除することを宣言します。LGTM が必要です。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -467,7 +467,7 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 &lt;p&gt;このようにランダムに生成するだけで、ブラウザがクラッシュするようなHTMLが本当に見つかるかどうか疑問に思われるかもしれませんが、ものの見事に人間ではまず思いもつかないようなHTMLを生成してエンジンの秘孔をついてくることがあり、ブラウザのセキュリティ・安定性向上のため役にたっています。Chromium プロジェクトではクラスタ上で Fuzzer を走らせており (ClusterFuzz)、クラッシュが見つかるたびにバグが自動的にファイルされます。&lt;/p&gt;
 &lt;p&gt;また Fuzzing は最近では外部の攻撃者やセキュリティ研究者が脆弱性を発見する補助ツールとしても使用されています。
 たとえば昨年の例ですが世界的に有名なポーランドのセキュリティ研究者 Mariusz Mlynski が報告してきた Universal XSS 脆弱性 はもともとは Fuzzing で見つけたクラッシュを利用しており、まさに秘孔をついてきました。&lt;/p&gt;
-&lt;p&gt;興味のある方は &lt;a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870"&gt;crbug.com/630870&lt;/a&gt; を参照してください。では報告者と私の間での生々しいやり取りが見れます。この脆弱性発見の報告には、賞金 $7,500 が支払われました。もちろん直した私には 1 ドルもでません。:)&lt;/p&gt;
+&lt;p&gt;興味のある方は &lt;a href="https://bugs.chromium.org/p/chromium/issues/detail?id=630870"&gt;crbug.com/630870&lt;/a&gt; を参照してください。報告者と私の間での生々しいやり取りが見れます。この脆弱性発見の報告には、賞金 $7,500 が支払われました。もちろん直した私には 1 ドルもでません。:)&lt;/p&gt;
 &lt;h2 id="okrs"&gt;OKRs&lt;/h2&gt;
 &lt;p&gt;OKRs は最近は Google の外でも有名になりました。Chrome でも各チームは Quarter ごとに OKR を設定しています。私は DOM / HTML Team の OKRs を設定しています。&lt;/p&gt;
 &lt;h2 id="_15"&gt;やっていないこと / ほとんど流行っていないこと / そんな言葉はだれも使っていない&lt;/h2&gt;
@@ -500,7 +500,7 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 &lt;p&gt;Web プラットフォームを支えるソフトウェアエンジニアリングといっても派手なものはありません。
 正しい「ソフトウェアエンジニアリング」をひたすら積み重ねるという当たり前のことをきちんと行うだけです。
 その積み重ねが人類の歴史上もっとも広がったエコシステムである「Web プラットフォーム」そしてその実装である「ブラウザ」を支えていることが雰囲気で理解できたかと思います。&lt;/p&gt;
-&lt;p&gt;このような巨大なスケールのプロットフォーム・ソフトウェアを人間の共同体がまがりなりにも「開発できている」という事実は非常に興味深いですし、人類やエンジニアリングにとっては夢のある話です。&lt;/p&gt;</content></entry><entry><title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM</title><link href="https://hayato.io/2017/dom/" rel="alternate"></link><published>2017-12-24T00:00:00+09:00</published><updated>2017-12-24T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-12-24:/2017/dom/</id><summary type="html">&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 24 日目の記事です。&lt;/p&gt;
+&lt;p&gt;このような巨大なスケールのプラットフォーム・ソフトウェアを人間の共同体がまがりなりにも「開発できている」という事実は非常に興味深いですし、人類やエンジニアリングにとっては夢のある話です。&lt;/p&gt;</content></entry><entry><title>ブラウザのしくみ: データ構造とアルゴリズムと雰囲気で理解する DOM と Shadow DOM</title><link href="https://hayato.io/2017/dom/" rel="alternate"></link><published>2017-12-24T00:00:00+09:00</published><updated>2017-12-24T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-12-24:/2017/dom/</id><summary type="html">&lt;p&gt;この記事は &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 24 日目の記事です。&lt;/p&gt;
 &lt;p&gt;内容の一部は Chromium の Git レポジトリの &lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/"&gt;Source/core/dom&lt;/a&gt; フォルダの
 &lt;a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md"&gt;README ファイル&lt;/a&gt;
 （英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記事の想定読者は一般の Web 開発者です。
