@@ -944,7 +944,7 @@ Super Tree を使用することで大幅に計算量を削減できます。
 &lt;p&gt;この記事は主にデータ構造とアルゴリズムを通じて DOM と Shadow DOM を雰囲気で理解することを目的にしました。
 課題に実際に挑戦してみた人は「エンジンの外側」の環境である JavaScript で問題を解く際に何かと不便に感じることが多かったと思います。
 「エンジン内部の情報やエンジンがもっているデータ構造を利用できればはるかにいろいろなことができるのでは？」と感じたかもしれません。それはとても正しいことです。それこそがエンジン内部をハックする動機です。&lt;/p&gt;
-&lt;p&gt;明日の &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 最終日は実際のソフトウェアエンジニアリングにフォーカスした「Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた」です。お楽しみに。&lt;/p&gt;</content></entry><entry><title>Rustが最強のプログラミング言語である証明</title><link href="https://hayato.io/2017/icfp-rust/" rel="alternate"></link><published>2017-08-31T00:00:00+09:00</published><updated>2017-08-31T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-08-31:/2017/icfp-rust/</id><summary type="html">&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
+&lt;p&gt;明日の &lt;a href="https://qiita.com/advent-calendar/2017/chromium"&gt;Chromium Browser アドベントカレンダー&lt;/a&gt; 最終日は実際のソフトウェアエンジニアリングにフォーカスした&lt;a href="/2017/making-web/"&gt;「Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた」&lt;/a&gt;です。お楽しみに。&lt;/p&gt;</content></entry><entry><title>Rustが最強のプログラミング言語である証明</title><link href="https://hayato.io/2017/icfp-rust/" rel="alternate"></link><published>2017-08-31T00:00:00+09:00</published><updated>2017-08-31T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2017-08-31:/2017/icfp-rust/</id><summary type="html">&lt;p&gt;2017年現在、Rustが最強のプログラミング言語である証明を以下に示します。&lt;/p&gt;
 &lt;h1 id="icfp"&gt;ICFP プログラミングコンテスト&lt;/h1&gt;
 &lt;p&gt;ICFP プログラミングコンテストの説明については以下をご覧ください。&lt;/p&gt;
 &lt;blockquote&gt;
