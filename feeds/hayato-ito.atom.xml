@@ -25,7 +25,7 @@
 有名なところでは HTML の仕様である &lt;a href="https://html.spec.whatwg.org/"&gt;HTML Standard&lt;/a&gt;、DOM の仕様である &lt;a href="https://dom.spec.whatwg.org/"&gt;DOM Standard&lt;/a&gt; などが挙げられます。&lt;/p&gt;
 &lt;h2 id="browser-vendor"&gt;ブラウザベンダ (Browser Vendor)&lt;/h2&gt;
 &lt;p&gt;Web 標準にもとづいて、その実装としてのブラウザをつくる組織・企業のことをブラウザベンダといいます。&lt;/p&gt;
-&lt;p&gt;メジャーなブラウザとしては、Chrome、Safari、Firefox、Edge などがあります。それぞれ、Google、Apple、Mozzila、Microsoft が主に開発しています。&lt;/p&gt;
+&lt;p&gt;メジャーなブラウザとしては、Chrome、Safari、Firefox、Edge などがあります。それぞれ、Google、Apple、Mozilla、Microsoft が主に開発しています。&lt;/p&gt;
 &lt;p&gt;Web 開発者は「実装が複数あることはわずらわしい」と考えるかもしれませんが、
 複数の実装があることこそが何より Web を Web 足らしめている大きな特徴です。
 ブラウザベンダ間の健全な競争こそがプラットフォームを進化させます。&lt;/p&gt;
@@ -44,9 +44,9 @@
 &lt;h2 id="html-standard"&gt;HTML Standard&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;HTML 仕様: &lt;a href="https://html.spec.whatwg.org/"&gt;HTML Standard&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;GitHub: &lt;a href="https://github.com/whatwg/html"&gt;whatwg/dom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GitHub: &lt;a href="https://github.com/whatwg/html"&gt;whatwg/html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Issues: &lt;a href="https://github.com/whatwg/html/issues"&gt;Open Issues&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;コミット: &lt;a href="https://github.com/whatwg/html/commits"&gt;whatawg/dom/commits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;コミット: &lt;a href="https://github.com/whatwg/html/commits"&gt;whatawg/html/commits&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;テスト: &lt;a href="https://github.com/w3c/web-platform-tests/tree/master/html"&gt;web-platform-tests/html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
