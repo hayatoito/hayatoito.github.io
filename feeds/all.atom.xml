@@ -585,7 +585,7 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 &lt;/div&gt;
 
 &lt;div class="article-danger"&gt;
-課題 2: 以下の JavaScript の関数 &lt;code&gt;countNodes&lt;/code&gt; は「手作業」でノードツリーをトラバースしてツリーにに含まれるノードの個数を数えます。
+課題 2: 以下の JavaScript の関数 &lt;code&gt;countNodes&lt;/code&gt; は「手作業」でノードツリーをトラバースしてツリーに含まれるノードの個数を数えます。
 ツリーに含まれるノード数を N とした場合、&lt;code&gt;countNodes(document)&lt;/code&gt; は実行時間が O(N)ではなく O(N^2) 時間がかかる可能性があります。それはなぜでしょうか？
 &lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes&gt;Node.childNodes&lt;/a&gt; の動作についてはリンク先の &lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes&gt;MDN&lt;/a&gt; のドキュメントを参照してください。
 &lt;/div&gt;
