@@ -573,7 +573,7 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append&gt;ParentNode.append(node)&lt;/a&gt;: node を parentNode の lastChild として追加
-&lt;li&gt;&lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before&gt;CildNode.before(node)&lt;/a&gt;: node を childNode の前 (previous として) に挿入
+&lt;li&gt;&lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/before&gt;ChildNode.before(node)&lt;/a&gt;: node を childNode の前 (previous として) に挿入
 &lt;li&gt;&lt;a href=https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove&gt;ChildNode.remove()&lt;/a&gt;: node を Tree から削除
 &lt;/ul&gt;
 &lt;p&gt;
