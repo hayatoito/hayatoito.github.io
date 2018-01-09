@@ -719,7 +719,7 @@ Chrome と Safari はすでに実装済み。Firefox も現在実装中です。
 &lt;h2 id="divide-and-conquer"&gt;Divide and Conquer (分割統治)&lt;/h2&gt;
 &lt;p&gt;さきほど出てきた id とエレメントの対応表はそれぞれのノードツリーごとに存在します。
 そのほか、たとえば各ノードツリー内に定義された CSS のルールなどもそれぞれのノードツリー単位で独立に管理されます。
-これらのルールの適用範囲ははそれぞれのノードツリーのみであるため、サーチやマッチングの対象を大幅に限定できます。&lt;/p&gt;
+これらのルールの適用範囲はそれぞれのノードツリーのみであるため、サーチやマッチングの対象を大幅に限定できます。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="tree scope" src="/assets/2017/tree-scope.svg"&gt;&lt;/p&gt;
 &lt;div class="article-info"&gt;
 &lt;p&gt;&lt;b&gt;この記事を読むかもしれない Chrome 開発者へ&lt;/b&gt;&lt;/p&gt;
