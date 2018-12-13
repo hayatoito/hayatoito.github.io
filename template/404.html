@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>404 Not Found - {{ site_name|striptags }}</title>
+    <link href="{{ site_url }}/favicon.ico" rel="shortcut icon">
+    {% if google_analytics_tracking_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_tracking_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ google_analytics_tracking_id }}');
+    </script>
+    {% endif %}
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    404 Not Found.  ( ・∀・)つ <a href='{{ site_url }}/archive/'>hayato.io/archive/</a>
+  </body>
+</html>

@@ -1,0 +1,201 @@
+body {
+  padding-bottom: 1rem;
+}
+
+.navbar {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.page-header {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* My own class. borrowed from bootstrap's document */
+.article-info, .article-danger {
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    margin-top: -5px;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.article-info {
+    border-left-color: #1b809e;
+}
+.article-danger {
+    border-left-color: #ce4844;
+}
+
+/* for pages and articles */
+.page-header {
+  border-bottom: 0;
+}
+
+article > header .post-date {
+  color: gray;
+}
+
+article .site-article-title, .site-page .site-page-title {
+  border-bottom: 0;
+  font-size: 2rem;
+  padding-top: 0;
+}
+
+article h1, .site-page > h1 {
+  padding-top: 1.5em;
+  font-size: 1.8rem;
+}
+
+article h2, .site-page h2 {
+  padding-top: 0.5rem;
+  font-size: 1.4rem;
+}
+
+article h1, .site-page > h1, article h2, .site-page h2 {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eee;
+}
+
+.base-footer {
+  color: gray;
+}
+
+blockquote p {
+  font-size: 14px;
+}
+
+.social {
+  margin-top: 3rem;
+}
+
+.site-footnote-title {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #23527c;
+  text-decoration: underline;
+}
+
+blockquote {
+  background-color: #f4f8fa;
+  padding: 1rem;
+  border-left: 5px solid #eeeeee;
+}
+
+/* General Fix for bootstrap4 */
+code {
+  background-color: #f0f0f0;
+  color: #337ab7;
+}
+
+.highlight {
+  border: 1px solid #ccc;
+  padding: .5rem;
+  background-color: #f0f0f0;
+  margin-bottom: .5rem;
+}
+
+pre {
+  margin-bottom: 0;
+}
+
+/* For my-site */
+/* From .highlight */
+pre {
+  border: 1px solid #ccc;
+  padding: .5rem;
+  background-color: #f0f0f0;
+  margin-bottom: .5rem;
+}
+
+/* For my-site */
+/* From th: user agent stylesheet */
+thead > tr > td {
+  font-weight: bold;
+
+}
+
+h1 > a.self-link, h2 > a.self-link {
+  color: black;
+}
+
+h1 > a.self-link:hover, h2 > a.self-link:hover {
+  text-decoration: none;
+}
+
+h1 > a.self-link:hover::after, h2 > a.self-link:hover::after {
+  content: '\2002\00a7\2002';
+}
+
+/*
+ * ref. http://afeld.github.io/bootstrap-toc/
+ */
+#toc {
+  position: fixed;
+}
+
+#toc {
+  margin-top: 1rem;
+}
+
+#toc nav {
+  padding: 0;
+}
+
+/* toc item */
+#toc a {
+  border-radius: 0;
+  padding: 4px;
+  color: #99979c;
+  font-size: 0.8rem;
+  background-color: #fff;
+  border-left: 1px solid #eee;
+}
+
+#toc a.active,
+#toc a:hover,
+#toc a:focus {
+  color: #337ab7 !important;
+}
+
+#toc a.active {
+  font-weight: bold;
+  border-left: 2px solid #337ab7 !important
+}
+
+/* 1st level toc item */
+#toc > nav > a {
+  padding-left: 16px;
+}
+
+#toc > nav > a.active {
+  padding-left: 15px;
+}
+
+/* 2nd level toc item */
+#toc > nav > nav > a {
+  padding-left: 32px;
+}
+
+#toc > nav > nav > a.active {
+  padding-left: 31px;
+}
+
+/* 2nd level (shown on .active) */
+#toc nav nav {
+  display: none;  /* Hide by default, but at >768px, show it */
+}
+
+/* Show 2nd level when 1st level is active */
+#toc a.active + nav {
+  display: block;
+}

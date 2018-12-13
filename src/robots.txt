@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /draft/
+Disallow: /page/
+Disallow: /hayato.io.staging/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site_url }}/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{{ site_url }}/archive/</loc>
+    <priority>1.0</priority>
+  </url>
+{% for article in articles %}
+  <url>
+    <loc>{{ site_url }}/{{ article.url }}</loc>
+    <priority>1.0</priority>
+  </url>
+{% endfor %}
+</urlset>

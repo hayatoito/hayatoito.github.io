@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title|striptags }} — {{ super() }}{% endblock %}
+{% block og_title %}{{ article.title|striptags }} — {{ super() }}{% endblock %}
+
+{% block content %}
+<article>
+  <header class="page-header">
+    <h1 id="top" class="site-article-title">
+      {% if articles_page %}
+      <a href="{{ site_url }}/{{ article.url }}"
+         rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">
+        {{ article.title|striptags }}
+      </a>
+      {% else %}
+      {{ article.title|striptags }}
+      {% endif %}
+    </h1>
+    {% if article.author %}
+    <div class="text-right">
+      {{ article.author }}
+    </div>
+    {% endif %}
+    {% if not article.hide_date %}
+    <div class="text-right">
+      <time datetime="{{ article.date }}">
+        {{ article.date }}
+      </time>
+    </div>
+    {% endif %}
+    {% if article.update_date %}
+      <div class="text-right">
+        (Last Update:
+      <time datetime="{{ article.update_date }}">
+        {{ article.update_date }}
+      </time>
+      )
+    </div>
+    {% endif %}
+  </header>
+  <div class="article-content">
+    {{ article.content }}
+  </div>
+</article>
+
+{% endblock content %}
