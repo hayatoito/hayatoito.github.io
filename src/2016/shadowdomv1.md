@@ -1,6 +1,5 @@
 <!--
 title: What's New in Shadow DOM v1 (by examples)
-slug: shadowdomv1
 date: 2016-06-22
 toc: true
 -->

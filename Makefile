@@ -19,11 +19,10 @@ clean:
 clean-publish:
 	[[ -d $(output_publish) ]] && rm -rf $(output_publish)
 
-ghp-import: clean-publish build-publish
-	: # Use 'staging' branch, instead of 'master' branch, because 'master' will inherit from origin/master, unfortunately.
-	: # git branch -D publish
-	python3 ./ghp-import/ghp_import.py -b publish $(output_publish)
-	: # python3 ./ghp-import/ghp_import.py -b release $(output_publish)
+staging: clean-publish build-publish
+	python3 ./ghp-import/ghp_import.py -b staging $(output_publish)
 
-publish: ghp-import
+publish: staging
+	: # git branch -D publish
+	python3 ./ghp-import/ghp_import.py -b publish $(output_publish) && \
 	git push --force origin 'publish:master'

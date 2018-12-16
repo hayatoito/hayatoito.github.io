@@ -1,7 +1,7 @@
 <!--
 title: hayato.io (4topcoder)
 date: 2014-01-04
-slug: hayato.io
+slug: hayato.io/
 -->
 
 [hayato.io] にコンテンツを集約させていきますね。

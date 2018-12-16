@@ -1,7 +1,6 @@
 <!--
-date: 2006-05-15
-slug: 200605javaworld
 title: JavaWorldに寄稿しました
+date: 2006-05-15
 -->
 
 [月刊 JavaWorld 2006 年 7 月号](http://www.amazon.co.jp/gp/product/B000EHSMVI/249-5731243-6151547)

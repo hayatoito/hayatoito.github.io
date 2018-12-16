@@ -1,7 +1,6 @@
 <!--
-date: 2007-03-27
-slug: 2007suffixarray
 title: Suffix Array
+date: 2007-03-27
 -->
 
 TopCoder SRM187、

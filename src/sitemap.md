@@ -1,5 +1,6 @@
+<!--
 page: true
 title: sitemap
-slug: sitemap
+slug: sitemap.xml
 template: sitemap
-save_as: sitemap.xml
+-->

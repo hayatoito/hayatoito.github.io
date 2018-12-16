@@ -1,6 +1,5 @@
 <!--
 title: Imperative Shadow DOM Distribution API
-slug: imperative-shadow-dom-distribution-api
 date: 2018-03-08
 -->
 

@@ -1,7 +1,6 @@
 <!--
-date: 2007-07-24
-slug: 2007newlanguage
 title: New Launguage - 新言語追加の予定?
+date: 2007-07-24
 -->
 
 現在、TopCoder のアルゴリズム・マッチで使用できる言語は、 C++, C\#, Java, VB の

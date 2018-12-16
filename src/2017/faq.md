@@ -2,7 +2,6 @@
 title: 六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)
 date: 2017-03-20
 update_date: 2017-09-04
-slug: faq
 toc: true
 -->
 
@@ -152,7 +151,7 @@ WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 ```html
 <html>
   <head>
-     <link rel="import" href="gmail-app.html">
+    <link rel="import" href="gmail-app.html" />
   </head>
   <body>
     <google-header></google-header>
@@ -436,13 +435,13 @@ Twitter 公式アカウントは、[@kingsviking](https://twitter.com/kingsvikin
   Chrome の Universal XSS 脆弱性についてその原因の調査・修正したり
   ([crbug.com/630870](https://bugs.chromium.org/p/chromium/issues/detail?id=630870))
 
-  (この脆弱性の報告には 賞金 $7,500 が支払われました。報告してくれた人には賞金が
-  でたのに、直した私は 1 ドルももらえません （当たり前））
+  (この脆弱性の報告には 賞金 \$7,500 が支払われました。報告してくれた人には賞金
+  がでたのに、直した私は 1 ドルももらえません （当たり前））
 
   引用:
   [https://chromereleases.googleblog.com/2016/12/stable-channel-update-for-desktop.html](https://chromereleases.googleblog.com/2016/12/stable-channel-update-for-desktop.html)
 
-  > [$7500][630870] High CVE-2016-5204: Universal XSS in Blink. Credit to
+  > [\$7500][630870] High CVE-2016-5204: Universal XSS in Blink. Credit to
   > Mariusz Mlynski
 
 - Rust の iron (Web サーバ）で使用される staticfile crate に脆弱性を見つけたので

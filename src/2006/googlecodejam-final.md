@@ -1,7 +1,6 @@
 <!--
-date: 2006-10-31
-slug: 200610googlecodejam-final
 title: Google Code Jam 2006 - Championship Round
+date: 2006-10-31
 -->
 
 Google Code Jam 2006、Championship Round が開催されました。オンラインラウンドを

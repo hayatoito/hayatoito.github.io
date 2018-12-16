@@ -1,6 +1,5 @@
 <!-- prettier-ignore -->
 page: true
 title: feed-old
-slug: feed-old
+slug: feeds/all.atom.xml
 template: feed
-save_as: feeds/all.atom.xml

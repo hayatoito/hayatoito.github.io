@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="twitter:card"  content="summary" />
     <meta property="twitter:title" content="{% block og_title %}{{ site_name|striptags }}{% endblock %}"/>
+    {% if article %}
+    <link rel="canonical" href="{{ site_url }}/{{ article.url }}"/>
+    {% elif page %}
+    <link rel="canonical" href="{{ site_url }}/{{ page.url }}"/>
+    {% endif %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="author" href="http://www.hatena.ne.jp/{{ hatena_id }}/" />

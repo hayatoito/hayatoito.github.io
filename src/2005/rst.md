@@ -1,7 +1,6 @@
 <!--
-date: 2005-12-16
-slug: 2005rst
 title: reStructuredTextでblogger
+date: 2005-12-16
 -->
 
 この Blog は， もともとは

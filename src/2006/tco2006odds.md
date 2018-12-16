@@ -1,7 +1,6 @@
 <!--
-date: 2006-03-03
-slug: tco2006odds
 title: 2006 TopCoder Open - Odds発表
+date: 2006-03-03
 -->
 
 予選通過のお知らせメールがきました．

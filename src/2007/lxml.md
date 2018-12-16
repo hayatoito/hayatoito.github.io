@@ -1,7 +1,6 @@
 <!--
-date: 2007-07-19
-slug: 2007lxml
 title: lxmlでHTMLスクレーピング
+date: 2007-07-19
 -->
 
 たまには Python で TopCoder の問題を解いてみようと思ってはみたものの，書いたコー

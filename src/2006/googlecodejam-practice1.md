@@ -1,7 +1,6 @@
 <!--
-date: 2006-08-16
-slug: 200608googlecodejam-practice1
 title: Google Code Jam 2006 - Practice1
+date: 2006-08-16
 -->
 
 Google Code Jam 2006 、練習部屋が用意されていたので早速練習してみました。

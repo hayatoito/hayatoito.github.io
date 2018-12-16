@@ -1,7 +1,6 @@
 <!--
-date: 2006-09-06
-slug: 200609googlecodejam-qualification
 title: Google Code Jam 2006 - Qualification Roundに挑戦
+date: 2006-09-06
 -->
 
 いよいよ始まりました Google Code Jam 2006。予選に挑戦です。 5 つあるセットのうち

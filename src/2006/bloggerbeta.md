@@ -1,7 +1,6 @@
 <!--
-date: 2006-10-30
-slug: 200610bloggerbeta
 title: Blogger Beta に移行
+date: 2006-10-30
 -->
 
 Blogger Beta に移行してみました。大きな変更点としては

@@ -1,6 +1,5 @@
 <!--
 title: Google にソフトウェアエンジニアとして入社して 10 年と 10 日がたちました
-slug: 10th-anniversary
 date: 2018-01-11
 -->
 

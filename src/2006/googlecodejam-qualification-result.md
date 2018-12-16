@@ -1,7 +1,6 @@
 <!--
-date: 2006-09-09
-slug: 200609googlecodejam-qualification-result
 title: Google Code Jam 2006 - Qualification Round通過
+date: 2006-09-09
 -->
 
 予選通過のメールがきました。

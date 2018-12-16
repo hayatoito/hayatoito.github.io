@@ -1,6 +1,5 @@
 <!--
 title: "Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた"
-slug: making-web
 date: 2017-12-25
 toc: true
 -->
@@ -699,7 +698,7 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
 興味のある方は
 [crbug.com/630870](https://bugs.chromium.org/p/chromium/issues/detail?id=630870)
 を参照してください。報告者と私の間での生々しいやり取りが見れます。この脆弱性発見
-の報告には、賞金 $7,500 が支払われました。もちろん直した私には 1 ドルもでません
+の報告には、賞金 \$7,500 が支払われました。もちろん直した私には 1 ドルもでません
 。:)
 
 ## OKRs

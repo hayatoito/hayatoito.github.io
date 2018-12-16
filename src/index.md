@@ -1,7 +1,6 @@
 <!--
 page: true
 title: About Me
-slug: ''
 template: index
 -->
 

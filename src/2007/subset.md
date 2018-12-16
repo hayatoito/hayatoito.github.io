@@ -1,7 +1,6 @@
 <!--
-date: 2007-03-02
-slug: 2007subset
 title: Subset の生成
+date: 2007-03-02
 -->
 
 いままで、あるビットマスク superset のサブセットをすべて生成するには、

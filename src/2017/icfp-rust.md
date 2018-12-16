@@ -1,7 +1,6 @@
 <!--
 title: Rustが最強のプログラミング言語である証明
 date: 2017-08-31
-slug: icfp-rust
 toc: true
 -->
 
