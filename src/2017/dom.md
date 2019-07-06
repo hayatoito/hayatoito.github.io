@@ -9,9 +9,9 @@ toc: true
 24 日目の記事です。
 
 内容の一部は Chromium の Git レポジトリの
-[Source/core/dom](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/)
+[Source/core/dom](https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/)
 フォルダの
-[README ファイル](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md)
+[README ファイル](https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/README.md)
 （英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記
 事の想定読者は一般の Web 開発者です。この記事の一部は README ファイルに還元（バ
 ックポート）する予定です。
@@ -23,6 +23,11 @@ toc: true
 課題への解答・記事へのフィードバック・Typo などを発見しましたら
 [GitHub Issue](https://github.com/hayatoito/hayatoito.github.io/issues) の方へお
 願いします。
+
+更新:
+
+- [2019-07-06 Sat]: Link が切れていた URL を修正
+  ([issue #23](https://github.com/hayatoito/hayatoito.github.io/issues/23))
 
 # DOM
 
@@ -171,7 +176,7 @@ console.log(countNodes(document));
 <p><b>この記事を読むかもしれない Chrome 開発者へ</b></p>
 Blink 内部では C++ でこのように手作業でツリーをトラバースする必要はありません。Source/core/dom 内の NodeTraversal, ElementTraversal に用意されている抽象化された C++11 の Range-Based for loop を使用しましょう。
 手作業でツリーをトラバースする場合と比較して余分なオーバーヘッドはありません（ゼロコスト抽象化）。
-詳しくは、<a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/core/dom/README.md#c_11-range_based-for-loops-for-traversing-a-tree">README 内の説明</a>、
+詳しくは、<a href="https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/README.md#c_11-range_based-for-loops-for-traversing-a-tree">README 内の説明</a>、
 またはこの <a href="https://codereview.chromium.org/642973003">CL</a> の Description を参照してください。
 </div>
 
@@ -234,7 +239,7 @@ myGetElementById(document, id);
 <p><b>同じ id が複数ある場合</b></p>
 同じ id をもつエレメントがツリー内に複数ある場合は <a href="https://dom.spec.whatwg.org/#concept-tree-order">Tree Order</a> の順番で最初に見つかるものが優先されます。
 そのため Chrome 内部では id とエレメントの対応表は単純な HashMap ではなく
-<a href="https://chromium.googlesource.com/chromium/src/+blame/master/third_party/WebKit/Source/core/dom/TreeOrderedMap.h">TreeOrderedMap</a> で管理しています。
+<a href="https://cs.chromium.org/chromium/src/third_party/blink/renderer/core/dom/tree_ordered_map.h">TreeOrderedMap</a> で管理しています。
 </div>
 
 ![tree order](./tree-order.svg)
@@ -387,7 +392,7 @@ CSS セレクタは最終的には Linked List として表現されますが、
 。[Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter) を参照してください。
 
 Chrome では CSS セレクタフィルタ
-[core/css/SelectorFilter](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/core/css/SelectorFilter.h)
+[core/css/SelectorFilter](https://cs.chromium.org/chromium/src/third_party/blink/renderer/core/css/selector_filter.h)
 内でブルームフィルタを使用しています。
 
 例えば id 属性を使用してフィルタを行う場合は、セレクタ内に登場する id をもつエレ
@@ -449,8 +454,8 @@ Super Tree に戻りましょう。一部の
 ## 例: Tweet 埋め込み
 
 Twitter が提供するツイートを埋め込むためのコードは、内部で Shadow DOM を使用して
-います。ツイート埋め込みのコードは`<twitterwidget>` エレメントを生成しますが、実際
-の表示はすべて shadow tree 上で行われます。
+います。ツイート埋め込みのコードは`<twitterwidget>` エレメントを生成しますが、実
+際の表示はすべて shadow tree 上で行われます。
 
 ![tweett](./twitter.svg)
 
