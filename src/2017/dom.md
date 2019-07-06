@@ -9,7 +9,7 @@ toc: true
 24 日目の記事です。
 
 内容の一部は Chromium の Git レポジトリの
-[Source/core/dom](https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/)
+[renderer/core/dom](https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/)
 フォルダの
 [README ファイル](https://chromium.googlesource.com/chromium/src/+/master/third_party/blink/renderer/core/dom/README.md)
 （英語）が元になっています。README の想定読者は Chrome の開発者でしたが、この記
