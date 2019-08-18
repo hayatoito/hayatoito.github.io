@@ -1,28 +1,37 @@
-program ?= site
 options ?= -v
-output_base ?= $(HOME)/src/build/hayato.io
-output_local ?= $(output_base)/local
-output_publish ?= $(output_base)/publish
+output ?= $(HOME)/src/build/hayatoito.github.io
+output_debug ?= $(output)/debug
+output_release ?= $(output)/release
 
 build:
-	$(program) $(options) build --root-dir . --config=config-local.toml --out-dir $(output_local)
+	site $(options) build --root-dir . --config=config.toml --out-dir $(output_debug)
 
-build-publish:
-	$(program) $(options) build --root-dir . --config=config.toml --out-dir $(output_publish)
+build-release:
+	site $(options) build --root-dir . --config=config-release.toml --out-dir $(output_release)
+
+watch:
+	watchexec --watch src --watch template make build
 
 serve:
-	cd $(output_local) && browser-sync start --port 8000 --server --files='*'
+	cd $(output_debug) && browser-sync start --port 8000 --server --files='*'
 
 clean:
-	[[ -d $(output_local) ]] && rm -rf $(output_local)
+	[[ -d $(output_debug) ]] && rm -rf $(output_debug) || true
 
-clean-publish:
-	[[ -d $(output_publish) ]] && rm -rf $(output_publish)
+clean-release:
+	[[ -d $(output_release) ]] && rm -rf $(output_release) || true
 
-staging: clean-publish build-publish
-	python3 ./ghp-import/ghp_import.py -b staging $(output_publish)
+staging: clean-release build-release
+	python3 ./ghp-import/ghp_import.py -b staging $(output_release)
 
-publish: staging
-	: # git branch -D publish
-	python3 ./ghp-import/ghp_import.py -b publish $(output_publish) && \
-	git push --force origin 'publish:master'
+update-master: clean-release build-release staging
+	python3 ./ghp-import/ghp_import.py -b master $(output_release)
+
+publish: update-master
+	git push origin 'master:master'
+
+# publish-force-with-new-master: staging
+# 	git push --force origin 'master:master'
+
+push-source:
+	git push -u origin source

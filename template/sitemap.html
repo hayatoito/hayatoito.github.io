@@ -5,13 +5,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>{{ site_url }}/archive/</loc>
+    <loc>{{ site_url }}/timeline/</loc>
     <priority>1.0</priority>
   </url>
-{% for article in articles %}
+  {% for article in articles %}
   <url>
     <loc>{{ site_url }}/{{ article.url }}</loc>
     <priority>1.0</priority>
   </url>
-{% endfor %}
+  {% endfor %}
 </urlset>

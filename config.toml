@@ -1,5 +1,6 @@
-site_name = "hayato.io"
-site_url = "https://hayato.io"
+site_name = "[Dev] hayato"
+site_url = ""
 author = "Hayato Ito"
+output_draft_article = "Yes"
 hatena_id = "hayatoito1"
 google_analytics_tracking_id = "UA-195971-6"

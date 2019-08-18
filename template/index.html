@@ -3,26 +3,6 @@
 
 {% block content %}
 <section id="content" class="content site-page">
-  <header>
-    <h1 class="page-header site-page-title">
-      Feed
-      <small><a href="{{ site_url }}/feed.xml"><i class="fa fa-rss"></i></a></small>
-    </h1>
-  </header>
-
-  {% for a in year_articles %}
-  {% if a.year >= 2014 %}
-  <h4>{{ a.year }}</h4>
-  <ul>
-    {% for article in a.articles %}
-    <li><a href="{{ site_url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% endfor %}
-
-  ... <a href="{{ site_url }}/archive/">more</a>
-
   <h1>{{page.title|striptags }}</h1>
   {{ page.content }}
 </section>

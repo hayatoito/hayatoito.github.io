@@ -1,4 +1,4 @@
 <!-- prettier-ignore -->
 page: true
-title: Archive
-template: archive
+title: Timeline
+template: timeline

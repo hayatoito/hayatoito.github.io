@@ -72,9 +72,9 @@ date: 2014-01-05
 
 ![pirates5](./pirates5.png)
 
-結果は、<i class="fa fa-user"></i>海賊 1 は死亡。<i class="fa fa-user"></i>海賊
-2 は金貨 70 枚、<i class="fa fa-user"></i>海賊 5 は金貨 30 枚
-。<i class="fa fa-user"></i>海賊 3 と<i class="fa fa-user"></i>海賊 4 は金貨 0
+結果は、<i class="fas fa-user"></i>海賊 1 は死亡。<i class="fas fa-user"></i>海
+賊 2 は金貨 70 枚、<i class="fas fa-user"></i>海賊 5 は金貨 30 枚
+。<i class="fas fa-user"></i>海賊 3 と<i class="fa fa-user"></i>海賊 4 は金貨 0
 枚ですが、幸いなことに命だけは助かっています。
 
 さらに必要な設定として、それぞれの海賊は、以下のルールに従って行動するとします。

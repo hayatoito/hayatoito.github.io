@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.title|striptags }} — {{ super() }}{% endblock %}
-{% block og_title %}{{ page.title|striptags }} — {{ super() }}{% endblock %}
+{% block title %}{{ page.title|striptags }} - {{ super() }}{% endblock %}
+{% block og_title %}{{ page.title|striptags }} - {{ super() }}{% endblock %}
 {% block content %}
 <section id="content" class="content site-page">
   <header><h1 class="page-header site-page-title">{{ page.title|striptags }}</h1></header>

@@ -8,12 +8,12 @@
     <name>{{ author }}</name>
   </author>
   <id>{{ site_url }}/</id>
-{% for article in articles %}
+  {% for article in articles %}
   <entry>
     <title>{{ article.title }}</title>
     <link href="{{ site_url }}/{{ article.url }}"/>
     <id>{{ site_url }}/{{ article.url }}</id>
     <updated>{{ article.date }}T00:00:00+09:00</updated>
   </entry>
-{% endfor %}
+  {% endfor %}
 </feed>
