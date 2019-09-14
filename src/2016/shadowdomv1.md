@@ -179,7 +179,6 @@ children by CSS query selector.
 
 <!-- prettier-ignore -->
 ```html
-jojo
 <!-- <my-host>'s shadow tree -->
 <div>
   <content id="i1" select=".foo"></content>

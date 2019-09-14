@@ -1,10 +1,59 @@
 body {
   padding-bottom: 1rem;
+  color: #fff;
+  background-color: #222;
+}
+
+.bg-dark {
+  background-color: #333 !important;
+}
+
+tbody {
+}
+.table {
+  color: #fff;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+
+.table td,
+.table th {
+  /* border-top: 1px solid #666; */
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.table thead th {
+  /* border-bottom: 1px solid #666; */
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #333;
 }
 
 .navbar {
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
+  padding: 0rem 1rem;
+}
+
+.nav-link {
+  color: #ccc !important;
+}
+
+a.nav-link:hover,
+a.nav-link:focus {
+  color: #63b8ff !important;
+}
+
+.nav-item a {
+  border-bottom: 2px solid #333;
+}
+
+.nav-item.active a {
+  color: #63b8ff !important;
+  border-bottom: 2px solid #63b8ff;
 }
 
 .page-header {
@@ -12,12 +61,16 @@ body {
   margin-bottom: 1rem;
 }
 
+article img[src$=".svg"] {
+  background-color: #fff;
+}
+
 /* My own class. borrowed from bootstrap's document */
 .article-info,
 .article-danger {
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px;
+  background-color: #333;
+  border: 1px solid #666;
+  border-left-width: 3px;
   margin-top: -5px;
   margin: 20px 0;
   padding: 20px;
@@ -63,11 +116,11 @@ article h1,
 article h2,
 .site-page h2 {
   padding-bottom: 0.3rem;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #666; */
 }
 
 .base-footer {
-  color: gray;
+  color: #ccc;
 }
 
 blockquote p {
@@ -83,44 +136,47 @@ blockquote p {
 }
 
 a {
-  color: #337ab7;
+  color: #63b8ff;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #63b8ff;
   text-decoration: underline;
 }
 
 blockquote {
-  background-color: #f4f8fa;
-  padding: 1rem;
-  border-left: 5px solid #eeeeee;
+  background-color: #333;
+  border: 1px solid #666;
+  padding: 1rem 1rem 0;
+  border-left: 2px solid khaki;
 }
 
-/* General Fix for bootstrap4 */
 code {
-  background-color: #f0f0f0;
-  color: #337ab7;
-}
-
-.highlight {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  background-color: #f0f0f0;
-  margin-bottom: 0.5rem;
+  color: #20c997;
 }
 
 pre {
   margin-bottom: 0;
 }
 
+pre code {
+  color: #fff;
+}
+
+.highlight {
+  border: 1px solid #666;
+  padding: 0.5rem;
+  background-color: #333;
+  margin-bottom: 0.5rem;
+}
+
 /* For my-site */
 /* From .highlight */
 pre {
-  border: 1px solid #ccc;
+  border: 1px solid #666;
   padding: 0.5rem;
-  background-color: #f0f0f0;
+  background-color: #333;
   margin-bottom: 0.5rem;
 }
 
@@ -132,7 +188,7 @@ thead > tr > td {
 
 h1 > a.self-link,
 h2 > a.self-link {
-  color: black;
+  color: white;
 }
 
 h1 > a.self-link:hover,
@@ -142,11 +198,11 @@ h2 > a.self-link:hover {
 
 h1 > a.self-link:hover::after,
 h2 > a.self-link:hover::after {
-  content: '\2002\00a7\2002';
+  content: "\2002\00a7\2002";
 }
 
 /*
- * ref. http://afeld.github.io/bootstrap-toc/
+ * Table of Contents
  */
 #toc {
   position: fixed;
@@ -164,21 +220,21 @@ h2 > a.self-link:hover::after {
 #toc a {
   border-radius: 0;
   padding: 4px;
-  color: #99979c;
+  color: #ccc;
   font-size: 0.8rem;
-  background-color: #fff;
-  border-left: 1px solid #eee;
+  background-color: #333;
+  border-left: 1px solid #666;
 }
 
 #toc a.active,
 #toc a:hover,
 #toc a:focus {
-  color: #337ab7 !important;
+  color: #63b8ff !important;
 }
 
 #toc a.active {
   font-weight: bold;
-  border-left: 2px solid #337ab7 !important;
+  border-left: 2px solid #63b8ff !important;
 }
 
 /* 1st level toc item */
@@ -207,4 +263,144 @@ h2 > a.self-link:hover::after {
 /* Show 2nd level when 1st level is active */
 #toc a.active + nav {
   display: block;
+}
+
+/* progress-bar */
+.progress {
+  background-color: #333;
+}
+.progress-bar {
+  color: #fff;
+  background-color: #63b8ff;
+}
+
+/* Used with prettify.js.  */
+/* Borrows from  Doxy: https://raw.githack.com/google/code-prettify/master/styles/index.html  */
+/* string - burlywood */
+pre .str,
+code .str {
+  color: #deb887;
+}
+/* keyword - LightCyan3 */
+pre .kwd,
+code .kwd {
+  color: #b4cdcd;
+}
+/* comment - PaleGreen */
+pre .com,
+code .com {
+  color: #98fb98;
+}
+/* type - aquamarine */
+pre .typ,
+code .typ {
+  color: #7fffd4;
+}
+/* literal - MediumPurple1 */
+pre .lit,
+code .lit {
+  color: #ab82ff;
+}
+/* punctuation - lemon chiffon4  */
+pre .pun,
+code .pun {
+  color: #ccc;
+}
+/* plaintext - white */
+pre .pln,
+code .pln {
+  color: #fff;
+}
+/* html/xml tag  - bluey */
+pre .tag,
+code .tag {
+  color: #9c9cff;
+}
+/* html tag - bluey */
+pre .htm,
+code .htm {
+  color: #9c9cff;
+}
+/* xslt tag  light purply*/
+pre .xsl,
+code .xsl {
+  color: #d0a0d0;
+}
+/* html/xml attribute name  - pink */
+pre .atn,
+code .atn {
+  color: #ffc0cb;
+}
+/* html/xml attribute value - burlywood */
+pre .atv,
+code .atv {
+  color: #deb887;
+}
+/* decimal - blue */
+pre .dec,
+code .dec {
+  color: #3387cc;
+}
+
+/* print is mostly unchanged from default at present  */
+@media print {
+  pre.prettyprint,
+  code.prettyprint {
+    background-color: #fff;
+  }
+  pre .str,
+  code .str {
+    color: #088;
+  }
+  pre .kwd,
+  code .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+  pre .com,
+  code .com {
+    color: #0c3;
+  }
+  pre .typ,
+  code .typ {
+    color: #404;
+    font-weight: bold;
+  }
+  pre .lit,
+  code .lit {
+    color: #044;
+  }
+  pre .pun,
+  code .pun {
+    color: #440;
+  }
+  pre .pln,
+  code .pln {
+    color: #000;
+  }
+  pre .tag,
+  code .tag {
+    color: #b66ff7;
+    font-weight: bold;
+  }
+  pre .htm,
+  code .htm {
+    color: #606;
+    font-weight: bold;
+  }
+  pre .xsl,
+  code .xsl {
+    color: #606;
+    font-weight: bold;
+  }
+  pre .atn,
+  code .atn {
+    color: #c71585;
+    font-weight: normal;
+  }
+  pre .atv,
+  code .atv {
+    color: #088;
+    font-weight: normal;
+  }
 }

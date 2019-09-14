@@ -31,24 +31,22 @@
   </head>
   <body data-spy="scroll" data-target="#toc" data-offset="50">
     {% block body_content %}
-    <nav class="navbar navbar-expand navbar-light bg-light" style="background-color: #fff !important;">
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item active" >
-            <a class="nav-link" href="{{ site_url }}/timeline/">Timeline</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <small><a href="{{ site_url }}/feed.xml"><i class="fas fa-rss"></i></a></small>
-          </li>
-        </ul>
-      </div>
+    <nav class="navbar navbar-expand navbar-dark bg-dark" style="">
+      <ul class="navbar-nav">
+        <li class="nav-item {% block nav_home_active %}{% endblock %}">
+          <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item {% block nav_timeline_active %}{% endblock %}">
+          <a class="nav-link" href="{{ site_url }}/timeline/">Timeline</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <small><a href="{{ site_url }}/feed.xml"><i class="fas fa-rss"></i></a></small>
+        </li>
+      </ul>
     </nav>
     <div class="container">
       <div class="row">
