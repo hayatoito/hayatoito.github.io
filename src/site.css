@@ -149,11 +149,11 @@ blockquote {
   background-color: #333;
   border: 1px solid #666;
   padding: 1rem 1rem 0;
-  border-left: 2px solid khaki;
+  border-left: 2px solid #deb887;
 }
 
 code {
-  color: #20c997;
+  color: #ffc0cb;
 }
 
 pre {
@@ -171,7 +171,7 @@ pre code {
   margin-bottom: 0.5rem;
 }
 
-/* For my-site */
+/* For site */
 /* From .highlight */
 pre {
   border: 1px solid #666;
@@ -180,7 +180,7 @@ pre {
   margin-bottom: 0.5rem;
 }
 
-/* For my-site */
+/* For site */
 /* From th: user agent stylesheet */
 thead > tr > td {
   font-weight: bold;
@@ -271,7 +271,7 @@ h2 > a.self-link:hover::after {
 }
 .progress-bar {
   color: #fff;
-  background-color: #63b8ff;
+  background-color: #3387cc;
 }
 
 /* Used with prettify.js.  */
