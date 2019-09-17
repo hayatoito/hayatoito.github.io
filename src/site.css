@@ -274,133 +274,82 @@ h2 > a.self-link:hover::after {
   background-color: #3387cc;
 }
 
-/* Used with prettify.js.  */
-/* Borrows from  Doxy: https://raw.githack.com/google/code-prettify/master/styles/index.html  */
-/* string - burlywood */
-pre .str,
-code .str {
-  color: #deb887;
-}
-/* keyword - LightCyan3 */
-pre .kwd,
-code .kwd {
-  color: #b4cdcd;
-}
-/* comment - PaleGreen */
-pre .com,
-code .com {
-  color: #98fb98;
-}
-/* type - aquamarine */
-pre .typ,
-code .typ {
-  color: #7fffd4;
-}
-/* literal - MediumPurple1 */
-pre .lit,
-code .lit {
-  color: #ab82ff;
-}
-/* punctuation - lemon chiffon4  */
-pre .pun,
-code .pun {
-  color: #ccc;
-}
-/* plaintext - white */
-pre .pln,
-code .pln {
-  color: #fff;
-}
-/* html/xml tag  - bluey */
-pre .tag,
-code .tag {
-  color: #9c9cff;
-}
-/* html tag - bluey */
-pre .htm,
-code .htm {
-  color: #9c9cff;
-}
-/* xslt tag  light purply*/
-pre .xsl,
-code .xsl {
-  color: #d0a0d0;
-}
-/* html/xml attribute name  - pink */
-pre .atn,
-code .atn {
-  color: #ffc0cb;
-}
-/* html/xml attribute value - burlywood */
-pre .atv,
-code .atv {
-  color: #deb887;
-}
-/* decimal - blue */
-pre .dec,
-code .dec {
-  color: #3387cc;
+//* highlight.js */
+/* https://github.com/highlightjs/highlight.js/blob/master/src/styles/rainbow.css */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
 }
 
-/* print is mostly unchanged from default at present  */
-@media print {
-  pre.prettyprint,
-  code.prettyprint {
-    background-color: #fff;
-  }
-  pre .str,
-  code .str {
-    color: #088;
-  }
-  pre .kwd,
-  code .kwd {
-    color: #006;
-    font-weight: bold;
-  }
-  pre .com,
-  code .com {
-    color: #0c3;
-  }
-  pre .typ,
-  code .typ {
-    color: #404;
-    font-weight: bold;
-  }
-  pre .lit,
-  code .lit {
-    color: #044;
-  }
-  pre .pun,
-  code .pun {
-    color: #440;
-  }
-  pre .pln,
-  code .pln {
-    color: #000;
-  }
-  pre .tag,
-  code .tag {
-    color: #b66ff7;
-    font-weight: bold;
-  }
-  pre .htm,
-  code .htm {
-    color: #606;
-    font-weight: bold;
-  }
-  pre .xsl,
-  code .xsl {
-    color: #606;
-    font-weight: bold;
-  }
-  pre .atn,
-  code .atn {
-    color: #c71585;
-    font-weight: normal;
-  }
-  pre .atv,
-  code .atv {
-    color: #088;
-    font-weight: normal;
-  }
+.hljs-built_in,
+.hljs-deletion {
+  color: #ff6a6a;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-meta,
+.hljs-subst,
+.hljs-symbol,
+.hljs-link {
+  color: #04f97f;
+}
+
+.hljs-doctag {
+  color: #f0e68c;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-section {
+  color: #63b8ff;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #ab82ff;
+}
+
+.hljs-type {
+  color: #7fffd4;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #98fb98;
+}
+
+.hljs-string,
+.hljs-regexp {
+  color: #deb887;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-id,
+.hljs-class .hljs-title,
+.hljs-attr,
+.hljs-attribute {
+   color: #ffc0cb;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: #b4cdcd;
+}
+
+.hljs-formula {
+  background: #eee8d5;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
 }
