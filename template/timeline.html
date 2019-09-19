@@ -7,7 +7,7 @@
 {% block content %}
 <section id="content" class="content site-page">
   {% for a in year_articles %}
-  <h4>{{ a.year }}</h4>
+  <h1 class="timeline-year">{{ a.year }}</h4>
   <ul>
     {% for article in a.articles %}
     <li>

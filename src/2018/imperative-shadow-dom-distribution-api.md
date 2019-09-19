@@ -49,9 +49,9 @@ read the value directly.
 
 # Changes to HTML Standard
 
-## HTMLSltoElement
+## HTMLSlotElement
 
-```webidl
+```
 partial interface HTMLSlotElement {
   ...
   void assign(sequence<Node> nodes)
@@ -78,7 +78,7 @@ where [assigned nodes] are constructed.
 
 ## ShadowRootInit
 
-```webidl
+```
 ShadowRootInit {
    ...
    (optional) sloting: 'manual'|'auto' //  (if omitted, it is 'auto');
@@ -130,7 +130,7 @@ Note: This change implies:
 
 ## Example 1: How imperative slotting API works in slotting=manual.
 
-```text
+``` text
 host
 ├──/shadowroot (slotting=manual)
 │   ├── slot1
@@ -139,7 +139,7 @@ host
 └── B
 ```
 
-```javascript
+``` javascript
 // '==' means ArrayEquals.
 assert(slot1.assignedNodes() == []);
 assert(slot2.assignedNodes() == []);

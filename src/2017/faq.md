@@ -883,16 +883,22 @@ Rust は「学習コストが高い」言語というよりは「プログラミ
 ルをつくってくれます。たとえば my-hello-world "スクリプト" を書きたいと思ったら
 `<crate_root>/src/bin/my-hello-world.rs` においておけば開発中は:
 
-    > cargo run --bin my-hello-world [args...]
+```shell
+% cargo run --bin my-hello-world [args...]
+```
 
 ですぐにテスト実行できます。 `<crate_root>/target/release` に PATH を通しておけ
 ば
 
-    > cargo build --release
+```shell
+% cargo build --release
+```
 
 と必要に応じてまとめてビルドしておくだけで、普段は
 
-    > my-hello-world
+```shell
+% my-hello-world
+```
 
 で普通に呼び出せるので完全にスクリプト感覚で使用できます。
 `<crate_root>/src/bin` の仕組みがなかったら、普段使いの"スクリプト"言語として
@@ -1123,7 +1129,7 @@ Objective-C を書く人を除くと）Emacs を使う人がほとんどです�
 `<2016-12-15 Thu>` 数えてみたところ、たったの 5,000 行でした。
 
 ```shell
-$ wc emacs/*.el
+% wc emacs/*.el
      330    1412   17854 emacs/custom.el
      471    1166   13912 emacs/emacs.el
       17      52     459 emacs/my-ace-window.el
