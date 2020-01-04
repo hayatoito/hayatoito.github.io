@@ -11,11 +11,13 @@
         {{ article.title|striptags }}
       </a>
     </h1>
-    {% if article.author %}
     <div class="text-right">
-      {{ article.author }}
+      {% if article.author %}
+	{{ article.author }}
+      {% else %}
+	{{ author }}
+      {% endif %}
     </div>
-    {% endif %}
     {% if not article.hide_date %}
     <div class="text-right">
       <time datetime="{{ article.date }}">

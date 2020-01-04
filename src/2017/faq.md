@@ -5,7 +5,6 @@ update_date: 2017-09-04
 toc: true
 -->
 
-- Hayato Ito is a Software Engineer @ Google.
 - グーグルではたらくソフトウェアエンジニアです。
 - ご意見やご質問 あるいは Typo 等を見つけたときは
   [GitHub Issues](https://github.com/hayatoito/hayatoito.github.io/issues) にお
