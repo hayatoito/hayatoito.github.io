@@ -46,6 +46,7 @@ toc: false
 - [2020-01-05 Sun] Fix Typo (債権 => 債券)。
 - [2020-01-05 Sun] Fix Typo (25,00円 => 25,000円) (via [PR #26](https://github.com/hayatoito/hayatoito.github.io/pull/26)),
   [PR #28](https://github.com/hayatoito/hayatoito.github.io/pull/28),
+  [PR #31](https://github.com/hayatoito/hayatoito.github.io/pull/31),
   スタイル修正 ([PR #29](https://github.com/hayatoito/hayatoito.github.io/pull/29),
   [PR #30](https://github.com/hayatoito/hayatoito.github.io/pull/30))
 
