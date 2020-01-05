@@ -44,7 +44,7 @@ toc: false
 - [2020-01-04 Sat] 公開
 - [2020-01-05 Sun] 誤解を防ぐため、お得度を「点数」ではなく「相対的な数字」と表記
 - [2020-01-05 Sun] Fix Typo (債権 => 債券)。
-- [2020-01-05 Sun] Fix Typo (25,00円 => 25,000円) (via [PR #26](https://github.com/hayatoito/hayatoito.github.io/pull/26))
+- [2020-01-05 Sun] Fix Typo (25,00円 => 25,000円) (via [PR #26](https://github.com/hayatoito/hayatoito.github.io/pull/26)), [PR #28](https://github.com/hayatoito/hayatoito.github.io/pull/28)
 
 ---
 
