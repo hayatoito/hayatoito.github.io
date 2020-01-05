@@ -44,7 +44,9 @@ toc: false
 - [2020-01-04 Sat] 公開
 - [2020-01-05 Sun] 誤解を防ぐため、お得度を「点数」ではなく「相対的な数字」と表記
 - [2020-01-05 Sun] Fix Typo (債権 => 債券)。
-- [2020-01-05 Sun] Fix Typo (25,00円 => 25,000円) (via [PR #26](https://github.com/hayatoito/hayatoito.github.io/pull/26))
+- [2020-01-05 Sun] Fix Typo (25,00円 => 25,000円) (via [PR #26](https://github.com/hayatoito/hayatoito.github.io/pull/26)),
+  [PR #28](https://github.com/hayatoito/hayatoito.github.io/pull/28),
+  スタイル修正 ([PR #29](https://github.com/hayatoito/hayatoito.github.io/pull/29))
 
 ---
 
@@ -916,7 +918,7 @@ A さんのリスク許容度はいぜんとして、現金:リスク資産 = 50
 
 # いつ売却すればよいのでしょうか？ここまでの説明だと買うことばかりで、いったいいつ売却（利益確定）すればよいのかわかりません。
 
-ここまでの説明で「いつ売却ばよいのか？」の説明も実はすんでいます。 :)
+ここまでの説明で「いつ売却すればよいのか？」の説明も実はすんでいます。 :)
 
 > 5. 定期的に（年に 1 回、あるいは数年に 1 回）、アセットアロケーションについて
 >    見直しましょう。
