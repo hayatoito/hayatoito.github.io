@@ -190,6 +190,11 @@ article h2,
   margin-bottom: 1rem;
 }
 
+article img {
+  max-width: 100%;
+  height: auto;
+}
+
 article img[src$=".svg"] {
   background-color: #fff;
 }
