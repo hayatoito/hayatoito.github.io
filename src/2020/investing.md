@@ -472,7 +472,7 @@ A) リターン 5%, リスク 5% の場合: ([html](./return-5-risk-5-pdf.html))
 
 ![return-5-risk-5-pdf](./return-5-risk-5-pdf.png)
 
-B) リターン 5%, リスク 20% の場合: ([html](./return-5-risk-20-var.html))
+B) リターン 5%, リスク 20% の場合: ([html](./return-5-risk-20-pdf.html))
 
 ![return-5-risk-20-pdf](./return-5-risk-20-pdf.png)
 
@@ -495,7 +495,7 @@ A) リターン 5%, リスク 5% の場合 ([html](./return-5-risk-5-var.html)):
 
 ![return-5-risk-5-var](./return-5-risk-5-var.png)
 
-B) リターン 5%, リスク 20% の場合 ([html](./return-5-risk-20-vaar.html)):
+B) リターン 5%, リスク 20% の場合 ([html](./return-5-risk-20-var.html)):
 
 ![return-5-risk-20-var](./return-5-risk-20-var.png)
 
