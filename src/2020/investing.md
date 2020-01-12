@@ -51,7 +51,7 @@ toc: false
   [PR #31](https://github.com/hayatoito/hayatoito.github.io/pull/31),
   スタイル修正 ([PR #29](https://github.com/hayatoito/hayatoito.github.io/pull/29),
   [PR #30](https://github.com/hayatoito/hayatoito.github.io/pull/30))
-- [2020-01-05 Sun] 誤解を防ぐため、お得度を「点数」ではなく「相対的な数字」と表記
+- [2020-01-05 Sun] お得度を「点数」ではなく「相対的な数字」と表記
 - [2020-01-05 Sun] Fix Typo (債権 => 債券)。
 - [2020-01-04 Sat] 公開
 
@@ -473,11 +473,11 @@ A、B どちらもリターンは同じ 5%ですが、A の方はリスクが 5%
 
 ## リターンの分布 (x 軸: 成績, y 軸: 確率密度)
 
-A) リターン 5%, リスク 5% の場合: ([html](./return-5-risk-5-pdf.html))
+A) リターン 5%, リスク 5% の場合: (<a href="./return-5-risk-5-pdf.html" rel="nofollow">html</a>)
 
 ![return-5-risk-5-pdf](./return-5-risk-5-pdf.png)
 
-B) リターン 5%, リスク 20% の場合: ([html](./return-5-risk-20-pdf.html))
+B) リターン 5%, リスク 20% の場合: (<a href="./return-5-risk-20-pdf.html" rel="nofollow">html</a>)
 
 ![return-5-risk-20-pdf](./return-5-risk-20-pdf.png)
 
@@ -496,11 +496,11 @@ B) リターン 5%, リスク 20% の場合: ([html](./return-5-risk-20-pdf.html
 
 ## 期待リターン(mean), 中央値(median; μ)、中央値 ± 標準偏差 (x1, x2) のチャート (x 軸: 年数, y 軸: 成績 (対数))
 
-A) リターン 5%, リスク 5% の場合 ([html](./return-5-risk-5-var.html)):
+A) リターン 5%, リスク 5% の場合: (<a href="./return-5-risk-5-var.html" rel="nofollow">html</a>)
 
 ![return-5-risk-5-var](./return-5-risk-5-var.png)
 
-B) リターン 5%, リスク 20% の場合 ([html](./return-5-risk-20-var.html)):
+B) リターン 5%, リスク 20% の場合: (<a href="./return-5-risk-20-var.html" rel="nofollow">html</a>)
 
 ![return-5-risk-20-var](./return-5-risk-20-var.png)
 
