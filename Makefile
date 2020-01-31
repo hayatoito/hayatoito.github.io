@@ -21,15 +21,12 @@ clean:
 clean-release:
 	[[ -d $(output_release) ]] && rm -rf $(output_release) || true
 
-staging: clean-release build-release
-	python3 ./ghp-import/ghp_import.py -b staging $(output_release)
-
 # Note: ghp-import resets a given {branch} to origin/{branch}, then
 # creates a new commit on the top of it.
-update-master: clean-release build-release staging
+deploy-to-master: clean-release build-release
 	python3 ./ghp-import/ghp_import.py -b master $(output_release)
 
-publish: update-master
+publish: deploy-to-master
 	git push origin master
 
 squash-master-history:
@@ -37,7 +34,7 @@ squash-master-history:
 	: # Reset origin/master to a previous commit
 	git update-ref refs/remotes/origin/master <revision>
 	: # Make a new commit on the top of origin/master
-	make update-master
+	make deploy-to-master
 	: # '--force' is required because remote's master is discarded.
 	git push --force origin master
 
