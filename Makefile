@@ -1,5 +1,5 @@
 options ?= -v
-output ?= $(HOME)/src/build/hayatoito.github.io
+output ?= ./build
 output_debug ?= $(output)/debug
 output_release ?= $(output)/release
 

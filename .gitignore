@@ -1,2 +1,5 @@
-/output
-/draft
+.log
+build
+draft
+node_modules
+Makefile.private
