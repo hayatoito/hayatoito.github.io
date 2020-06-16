@@ -40,3 +40,5 @@ squash-master-history:
 
 push-source:
 	git push -u origin source
+
+.PHONY: build
