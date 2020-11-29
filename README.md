@@ -14,8 +14,8 @@
 
 # Build via GitHub Action
 
-The GitHub Action ([build.yml](./.github/workflows/build.yml)) is available
-to build and deploy automatially.
+The GitHub Action ([build.yml](./.github/workflows/build.yml)) is available to
+build and deploy automatially.
 
-- `source` branch (Source)
-- `master` branch (GitHub Pages)
+- `main` branch (Source)
+- `gh-pages` branch (GitHub Pages)

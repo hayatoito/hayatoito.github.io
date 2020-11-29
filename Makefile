@@ -23,22 +23,19 @@ clean-release:
 
 # Note: ghp-import resets a given {branch} to origin/{branch}, then
 # creates a new commit on the top of it.
-deploy-to-master: clean-release build-release
-	python3 ./ghp-import/ghp_import.py -b master $(output_release)
+deploy-to-gh-pages: clean-release build-release
+	python3 ./ghp-import/ghp_import.py -b gh-pages $(output_release)
 
-publish: deploy-to-master
-	git push origin master
+publish: deploy-to-gh-pages
+	git push origin gh-pages
 
-squash-master-history:
+squash-gh-pages-history:
 	exit 1  # To avoid accidental update
 	: # Reset origin/master to a previous commit
-	git update-ref refs/remotes/origin/master <revision>
+	git update-ref refs/remotes/origin/gh-pages <revision>
 	: # Make a new commit on the top of origin/master
-	make deploy-to-master
-	: # '--force' is required because remote's master is discarded.
-	git push --force origin master
-
-push-source:
-	git push -u origin source
+	make deploy-to-gh-pages
+	: # '--force' is required because remote's gh-pages is discarded.
+	git push --force origin gh-pages
 
 .PHONY: build
