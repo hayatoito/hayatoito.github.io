@@ -1,5 +1,5 @@
 options ?= -v
-output ?= ./build
+output ?= ./out
 output_debug ?= $(output)/debug
 output_release ?= $(output)/release
 
