@@ -2,10 +2,10 @@ name: build
 on:
   push:
     branches:
-      - source
+      - main
   pull_request:
     branches:
-      - source
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,5 +36,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: master
+          PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./out
