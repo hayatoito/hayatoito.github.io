@@ -14,7 +14,7 @@ build_release() {
 }
 
 watch() {
-  watchexec --watch src --watch template zsh Makefile.zsh build
+  watchexec --watch src --watch template zsh Make.zsh build
 }
 
 serve() {

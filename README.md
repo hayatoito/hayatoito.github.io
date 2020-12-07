@@ -10,7 +10,7 @@
 
   `cargo install site`
 
-- See [Makefile.zsh](./Makefile.zsh) for the usage.
+- See [Make.zsh](./Make.zsh) for the usage.
 
 # Build via GitHub Action
 
