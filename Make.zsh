@@ -3,6 +3,9 @@
 out_debug=out/debug
 out_release=out/release
 
+# Assuming `site`, `watchexec`, and `ghp-import` are installed.
+# They all are optional if you use GitHub Action to build.
+
 build() {
   local site_options=${1:--v}
   site ${site_options} build --root-dir . --config=config.toml --out-dir ${out_debug}
@@ -34,7 +37,7 @@ clean_release() {
 deploy_to_gh_pages() {
   clean_release
   build_release
-  python3 ./ghp-import/ghp_import.py -b gh-pages ${out_release}
+  ghp-import -b gh-pages ${out_release}
 }
 
 publish() {
