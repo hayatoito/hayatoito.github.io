@@ -1,17 +1,19 @@
 #!/bin/zsh
 
-out_debug=out/debug
-out_release=out/release
+out_debug=~/src/var/site/debug
+out_release=~/src/var/site/release
 
 # Assuming `site`, `watchexec`, and `ghp-import` are installed.
 # They all are optional if you use GitHub Action to build.
 
 build() {
+  mkdir -p ${out_debug}
   local site_options=${1:--v}
   site ${site_options} build --root-dir . --config=config.toml --out-dir ${out_debug}
 }
 
 build_release() {
+  mkdir -p ${out_release}
   local site_options=${1:--v}
   site ${site_options} build --root-dir . --config=config-release.toml --out-dir ${out_release}
 }
