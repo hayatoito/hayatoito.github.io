@@ -10,6 +10,11 @@
   </url>
   
   <url>
+    <loc>https://hayatoito.github.io/2021/content-addressable-bundles/</loc>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
     <loc>https://hayatoito.github.io/2020/investing/</loc>
     <priority>1.0</priority>
   </url>

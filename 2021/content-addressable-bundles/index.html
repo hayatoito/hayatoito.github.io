@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resource loading with Content Addressable Bundles - hayato</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="twitter:card"  content="summary" />
+    <meta property="twitter:title" content="Resource loading with Content Addressable Bundles - hayato"/>
+    <meta property="og:image" content="https://hayatoito.github.io/favicon.png">
+    
+    <link rel="canonical" href="https://hayatoito.github.io/2021/content-addressable-bundles/"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="author" href="http://www.hatena.ne.jp/hayatoito1/" />
+    <link href="https://hayatoito.github.io/site.css" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/png" href="https://hayatoito.github.io/favicon.png" >
+    <link href="https://hayatoito.github.io/feed.xml" rel="alternate"
+          title="hayato" type="application/atom+xml">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-195971-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-195971-6');
+    </script>
+    
+  </head>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+    
+    <nav class="navbar navbar-expand">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="https://hayatoito.github.io/">hayato</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="https://hayatoito.github.io/timeline/">Timeline</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <small><a href="https://hayatoito.github.io/feed.xml"><i class="fas fa-rss"></i></a></small>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+	<li class="dropdown">
+	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <i class="fas fa-paint-brush"></i>
+	  </button>
+	  <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="dropdownMenuButton">
+	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
+	    <button id="theme-dark" class="dropdown-item" href="#">Dark</button>
+	  </div>
+	</li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col">
+        
+          
+<article>
+  <header class="page-header">
+    <h1 id="top" class="site-article-title">
+      <a href="https://hayatoito.github.io/2021/content-addressable-bundles/" class="self-link">
+        Resource loading with Content Addressable Bundles
+      </a>
+    </h1>
+    <div class="text-right">
+      
+	Hayato Ito (hayato@google.com)
+      
+    </div>
+    
+    <div class="text-right">
+      <time datetime="2021-03-12">
+        2021-03-12
+      </time>
+    </div>
+    
+    
+  </header>
+  <div class="article-content">
+    <p>This is a strawperson proposal at very early stage, aiming to load multiple
+resources efficiently, using a Content-Addressable Bundle, which can link to
+other bundles.</p>
+<p>This proposal was merged into
+<a href="https://github.com/WICG/webpackage/blob/main/explainers/content-addressable-bundles.md">wicg/webpackage</a> repo.</p>
+<h1 id="participate"><a class="self-link" href="#participate">Participate</a></h1>
+<ul>
+<li><a href="https://github.com/WICG/webpackage/issues">WICG/webpackage</a></li>
+</ul>
+<!-- TOC -->
+<h2 id="table-of-contents"><a class="self-link" href="#table-of-contents">Table of Contents</a></h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#goals">Goals</a></li>
+<li><a href="#non-goals">Non-Goals</a></li>
+<li><a href="#web-bundle-format">Web Bundle format</a></li>
+<li><a href="#web-apis">Web APIs</a>
+<ul>
+<li><a href="#declarative-form">Declarative form</a>
+<ul>
+<li><a href="#example">Example</a></li>
+</ul>
+</li>
+<li><a href="#how-to-load">How to Load</a></li>
+<li><a href="#navigate-to-a-bundle">Navigate to a bundle.</a></li>
+</ul>
+</li>
+<li><a href="#cache-strategy">Cache strategy</a></li>
+<li><a href="#considered-alternatives">Considered alternatives</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#stakeholder-feedback--opposition">Stakeholder Feedback / Opposition</a></li>
+<li><a href="#references--acknowledgements">References &amp; acknowledgements</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="introduction"><a class="self-link" href="#introduction">Introduction</a></h1>
+<ul>
+<li>
+<p>Loading many unbundled resources is still slower in 2021. We concluded that
+<a href="https://v8.dev/features/modules#bundle">bundling was necessary in 2018</a>, and
+our latest local measurement still suggests that.</p>
+</li>
+<li>
+<p>The output of JS bundlers (e.g. webpack) doesn't interact well with the HTTP
+cache. They are pretty good tools but configuring them to work in an optimal
+way is tough, and sometimes they're also incompatible with new requirements
+like
+<a href="https://github.com/azukaru/progressivef-fetching/blob/master/docs/dynamic-bundling/index.md">dynamic bundling</a>
+(e.g. small edit with tree shaking could invalidate everything).</p>
+</li>
+<li>
+<p>With JS bundlers, execution needs to wait for the full bytes to come. Ideally
+loading multiple subresources should be able to utilize full streaming and
+parallelization, but that's not possible if all resources are bundled as one
+javascript. (For JS modules execution still needs to be waited for the entire
+tree due to the current
+<a href="https://docs.google.com/document/d/1MJK0zigKbH4WFCKcHsWwFAzpU_DZppEAOpYJlIW7M7E/edit#heading=h.5652gd5ks5id">deterministic execution model</a>)</p>
+</li>
+</ul>
+<p>There is a proposal which aims to address the above issues, called <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource
+loading with Web Bundles</a>, a new way to load a large number of resources
+efficiently using a format that allows multiple resources to be bundled, e.g.
+<a href="https://web.dev/web-bundles/">Web Bundles</a>.</p>
+<p>With the <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource loading with Web Bundles</a> proposal, developers will write</p>
+<pre><code class="language-html prettyprint">&lt;link
+  rel=&quot;webbundle&quot;
+  href=&quot;https://example.com/dir/subresources.wbn&quot;
+  resources=&quot;https://example.com/dir/a.js https://example.com/dir/b.js https://example.com/dir/c.png&quot;
+/&gt;
+</code></pre>
+<p>to tell the browser that subresources specified in <code>resources</code> attribute can be
+found within the <code>https://example.com/dir/subresources.wbn</code> bundle. The browsers
+will fetch a bundle, and load resources from the bundle.</p>
+<p>However, currently, there is no mechanism to fetch the partial content of the
+bundle. Browsers will fetch the entire bundle even if only one of the resources
+in the bundle is updated in a server side.</p>
+<p>This explainer proposes a new approach on the top of <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource loading with
+Web Bundles</a>, aiming to achieve build reproducibility and more flexible
+cache-ability as well as load multiple resources efficiently, using a
+Content-Addressable Bundle, which can link to other bundles.</p>
+<h1 id="goals"><a class="self-link" href="#goals">Goals</a></h1>
+<ul>
+<li>
+<p>The proposal aims to treat resources as <em>immutable</em>. If a bundle's URL doesn't
+change, we assume the bundle's contents are <em>exactly</em> same. This is not an
+effort by a convention. The proposal aims to <em>force</em> immutability by
+introducing a Content-Addressable Hash, which is conceptually similar to a
+<a href="https://git-scm.com/">Git</a>'s commit ID you might be familiar with. Content-Addressability gives us
+reproducible builds and gives a browser an opportunity to improve their cache
+efficiency.</p>
+</li>
+<li>
+<p>Non-opinionated about bundle granularity. There are trade-offs how a site
+composes their resources into bundles in order to balance various factors like
+total bytes transferred, loading latency, or cache granularity. Instead of a
+<em>all-or-nothing</em> bundle, this proposal aims to provide a way to express a
+dependency graph of bundles. The use of bundlers is an established practice in
+Web development. Bundlers, such as webpack, skypack, would know much about how
+related resources are grouped as a bundle, and might want to express their
+intent as a dependency graph of bundles, considering various trade-offs. They
+wouldn't want to lose this information in building an all-or-nothing bundle.</p>
+</li>
+<li>
+<p>Bundles can be served from a static content server. The proposal doesn't
+require any smart server, such as dynamically assembling resources into a
+bundle. Bundles should be statistically generated by a bundler and can be
+copied to a static content server.</p>
+</li>
+</ul>
+<h1 id="non-goals"><a class="self-link" href="#non-goals">Non-Goals</a></h1>
+<ul>
+<li>
+<p>Although this proposal aims to give a browser an opportunity to improve cache
+efficiency by utilizing immutable nature and a dependency graph of bundles,
+this proposal doesn't define any normative procedure how a browser should
+cache resources. That's up-to a browser, as of now.</p>
+</li>
+<li>
+<p>This proposal's current scope is to serve static contents which don't contain
+any personal information. Although nothing prevents us from including such
+personal information, this proposal currently assumes every resources are
+publicly viewable ones.</p>
+</li>
+</ul>
+<h1 id="web-bundle-format"><a class="self-link" href="#web-bundle-format">Web Bundle format</a></h1>
+<p>TODO(hayato): Define a format using <a href="https://datatracker.ietf.org/doc/html/rfc8610">CDDL</a>. For a while, this section explains a
+non-normative <em>conceptual</em> format.</p>
+<p>Bundle's URL should be <code>&lt;main-resource-url&gt;.&lt;hash&gt;.wbn</code>.</p>
+<ul>
+<li>Example: <code>https://example.com/app/index.js.abcd.wbn</code></li>
+<li>We'll explain how a hash is calculated later.</li>
+</ul>
+<p>This proposal extends the <a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html">WebBundle Format</a> with a new version
+number. The bundle should have the following fields:</p>
+<ol>
+<li>
+<p>bundle's hash: <code>abcd</code></p>
+<p>Note: This proposal has not decided which hash functions we should use. This
+section writes down a hash as just 4 characters, however, a hash would be
+much longer in real cases, like 40 characters used in a Git commit ID.</p>
+</li>
+<li>
+<p>bundle's main-resource URL: <code>https://example.com/app/index.js</code></p>
+<p>Note: The current WebBundle format also defines a main-resource URL. Now, a
+main resource URL must be a part of the bundle's URL,
+&quot;<code>&lt;main-resource-url&gt;.&lt;hash&gt;.wbn</code>&quot;.</p>
+</li>
+<li>
+<p>Resources section, which is conceptually as follows:</p>
+</li>
+</ol>
+<table class="table table-striped"><thead><tr><th> URL                                           </th><th> type     </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
+<tr><td> ./index.js                                    </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> b0b0 </td></tr>
+<tr><td> ./foo.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> c0c0 </td></tr>
+<tr><td> ./bar.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> d0d0 </td></tr>
+<tr><td> https://cdn.example.com/date-util.js.f1f2.wbn </td><td> external </td><td> NA                          </td><td> NA       </td><td> f1f2 </td></tr>
+</tbody></table>
+<ul>
+<li>
+<p>A resource's URL is either relative or absolute. If a URL is relative, we call
+it an <em>inline resource</em>. If a URL is absolute, we call it an <em>external
+resource</em>.</p>
+</li>
+<li>
+<p>A relative URL must be resolved with base of <code>&lt;main-resource-url&gt;</code>. e.g.</p>
+<p><code>./foo.js</code> is resolved as <code>https://example.com/app/foo.js</code>.</p>
+<p>Note: The motivation of using a relative URL for inline resources is to make
+it clear that
+<a href="https://w3c.github.io/ServiceWorker/#path-restriction">path restriction</a> is
+always met.</p>
+</li>
+<li>
+<p>Inline resources must have <em>response headers</em> and <em>body</em>.</p>
+</li>
+<li>
+<p>External resources must not have <em>response headers</em> nor <em>body</em> (Marked as <code>NA</code>
+in the table).</p>
+</li>
+<li>
+<p>Each resource must have a <em>hash</em>.</p>
+</li>
+<li>
+<p>Bundle's main resource must be there and must be an inline resource.</p>
+</li>
+<li>
+<p>External resource's URL must be formatted as
+<code>&lt;external-main-resource&gt;.&lt;hash&gt;.wbn</code>, which is pointing to an external
+bundle.</p>
+<p>Note that an external resource entry tells a browser that an external resource
+can be found in a linked external bundle. In the example,
+<code>https://cdn.example.com/date-util.js</code> can be loaded from
+<code>https://cdn.example.com/date-util.js.f1f2.wbn</code>.</p>
+</li>
+<li>
+<p>An external resource's URL can be cross-origin to the containing bundle.</p>
+</li>
+<li>
+<p>A bundle can have any number of inline resources and any number of external
+resource entries.</p>
+</li>
+</ul>
+<p>A <em>hash</em> must be calculated as follows:</p>
+<ul>
+<li>
+<p>For an inline resource:</p>
+<pre><code>resource's hash := hash(hash(`&lt;resource-url&gt;`) + hash(`&lt;canonicalized response headers&gt;`) + hash(`&lt;body&gt;`))
+</code></pre>
+</li>
+<li>
+<p>For an external resource:</p>
+<pre><code>resource's hash := external bundle's hash
+</code></pre>
+</li>
+<li>
+<p>For a bundle:</p>
+<pre><code>bundle's hash := hash(main-resource-hash + resource0-hash + resource1-hash + ... (for every resources in a bundle))
+</code></pre>
+<p>(This implies we calculate a hash recursively if a bundle contains an external
+resource)</p>
+<p>Note: A hash should be changed if a main resource is changed.</p>
+</li>
+</ul>
+<p>We call a bundle which satisfies the above requirements, <strong>Content Addressable
+Bundles</strong> ; In short, <strong>CAB</strong>.</p>
+<p>These requirements imply that a dependency graph of bundles forms a DAG
+(directed acyclic graph). If it has a <em>cycle</em>, a hash can't be calculated.</p>
+<h1 id="web-apis"><a class="self-link" href="#web-apis">Web APIs</a></h1>
+<h2 id="declarative-form"><a class="self-link" href="#declarative-form">Declarative form</a></h2>
+<p>Note: Declarative syntax is tentative. We borrow
+<a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md#link-based-api">&lt;link&gt;-based API</a>
+from <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource loading with web bundles</a> proposal for the purpose of the
+explanation.</p>
+<h3 id="example"><a class="self-link" href="#example">Example</a></h3>
+<p>The page (<code>https://example.com/app/index.html</code>):</p>
+<pre><code class="language-html prettyprint">&lt;link rel=webbundle
+      href=https://example.com/app/index.js.abcd.wbn
+      resources=&quot;index.js foo.js bar.js https://cdn.example.com/date.js.f1f2.wbn&quot; &gt;
+
+&lt;script type=&quot;module&quot; src=&quot;index.js&quot; /&gt;
+</code></pre>
+<p>The bundle (<code>https://example.com/app/index.js.abcd.wbn</code>):</p>
+<table class="table table-striped"><thead><tr><th> URL                                           </th><th> type     </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
+<tr><td> ./index.js                                    </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> b0b0 </td></tr>
+<tr><td> ./foo.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> c0c0 </td></tr>
+<tr><td> ./bar.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> d0d0 </td></tr>
+<tr><td> https://cdn.example.com/date-util.js.f1f2.wbn </td><td> external </td><td> NA                          </td><td> NA       </td><td> f1f2 </td></tr>
+</tbody></table>
+<p>Another bundle (<code>https://cdn.example.com/date-util.js.f1f2.wbn</code>) (which is
+linked from the <code>index.js.abcd.wbn</code>):</p>
+<table class="table table-striped"><thead><tr><th> URL              </th><th> type   </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
+<tr><td> ./date-util.js   </td><td> inline </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0808 </td></tr>
+<tr><td> ./string-util.js </td><td> inline </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0909 </td></tr>
+</tbody></table>
+<h2 id="how-to-load"><a class="self-link" href="#how-to-load">How to Load</a></h2>
+<ol>
+<li>
+<p>When the HTML page is parsed, a browser records that <code>index.js</code>, <code>foo.js</code>,
+<code>bar.js</code>, and <code>https://cdn.example.com/date-util.js</code> can be loaded from the
+bundle.</p>
+<p>Note a relative URL is resolved based on the bundle's URL. For an external
+resource, we use a file-name convention. If the URL ends with
+&quot;<code>.&lt;hash&gt;.wbn</code>&quot;, the browser removes this suffix and then record the URL.</p>
+</li>
+<li>
+<p>The browser fetches <code>https://example.com/app/index.js.abcd.wbn</code>.</p>
+</li>
+<li>
+<p>The browser sees <code>&lt;script type=&quot;module&quot; src=&quot;index.js&quot; /&gt;</code> tag. Since
+<code>index.js</code> is already noted, the browser must load it from the bundle.</p>
+</li>
+<li>
+<p>Suppose that <code>index.js</code>, which is an inline resource in the bundle, has the
+following content:</p>
+<pre><code class="language-js prettyprint">import * as foo from &quot;./foo.js&quot;;
+import * as bar from &quot;./bar.js&quot;;
+...
+</code></pre>
+<p>The browser must load <code>./foo.js</code> and <code>./bar.js</code> from the bundle.</p>
+</li>
+<li>
+<p>Suppose that <code>foo.js</code>, which is an line resource in the bundle, has the
+following content:</p>
+<pre><code class="language-js prettyprint">import * as date from &quot;https://cdn.example.com/date-util.js&quot;;
+...
+</code></pre>
+<p>The browser knows <code>https://cdn.example.com/date-util.js</code> is an external
+resource and it should be loaded from
+<code>https://cdn.example.com/date-util.js.f1f2.wbn</code>. The browser must start to
+fetch <code>https://cdn.example.com/date-util.js.f1f2.wbn</code>.</p>
+</li>
+<li>
+<p>The browser must parse the index section of the bundle, and record a list of
+resource's URLs.</p>
+</li>
+<li>
+<p>After recorded, the browser loads the main resource, <code>date-util.js</code>, from the
+bundle. If <code>date-util.js</code> depends on <code>./string-util.js</code>, <code>./string-util.js</code>
+is loaded from the bundle.</p>
+</li>
+<li>
+<p>Continue processing...</p>
+</li>
+</ol>
+<p>Notes:</p>
+<ul>
+<li>The browser must validate a fetched bundle's hash integrity, and let a
+resource loading fail if the bundle is invalid.</li>
+<li>The browser can cache a bundle by its Content-Addressable hash, and free to
+load a bundle from the cache, instead of from the network.</li>
+<li>The browser may prefetch an external resource bundle as long as a semantics
+doesn't change. The browser should be careful not to record resource entries
+listed in a prefetched bundle too early.</li>
+</ul>
+<h2 id="navigate-to-a-bundle"><a class="self-link" href="#navigate-to-a-bundle">Navigate to a bundle</a></h2>
+<p>In the previous example, we use <code>&lt;link&gt;</code>-based API to declare a starting <em>node</em>
+and its index information, as a <em>bootstrap</em>, however, if a browser supports
+<em>Navigate to a bundle</em> feature, we don't need such a declarative form in HTML.</p>
+<p>For example, given that a bundle, <code>https://example.com/app/index.html.0101.wbn</code>,
+whose main resource is HTML file:</p>
+<table class="table table-striped"><thead><tr><th> URL                                           </th><th> type     </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
+<tr><td> ./index.html (main-resource)                  </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0101 </td></tr>
+<tr><td> ./index.js                                    </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> b0b0 </td></tr>
+<tr><td> ./foo.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> c0c0 </td></tr>
+<tr><td> ./bar.js                                      </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> d0d0 </td></tr>
+<tr><td> https://cdn.example.com/date-util.js.f1f2.wbn </td><td> external </td><td> NA                          </td><td> NA       </td><td> f1f2 </td></tr>
+</tbody></table>
+<p>If a browser supports entering <code>https://example.com/app/index.html.0101.wbn</code> URL
+<em>directly</em> in its address bar, <code>./index.html</code> doesn't have to declare resources.
+The browser can know them from the bundle's index section, before starting to
+parse <code>index.html</code> file.</p>
+<h1 id="cache-strategy"><a class="self-link" href="#cache-strategy">Cache strategy</a></h1>
+<p>It's up-to browsers how to cache bundles. This explainer doesn't define any
+formal procedure, however, there are several possible approaches:</p>
+<ul>
+<li>
+<p>The browser might want to store a dependency graph of bundles in its cache
+storage, using some preferable data structures so that the browser can
+traverse a DAG efficiently.</p>
+</li>
+<li>
+<p>If the browser wants to prefetch external resource bundles, the browser can
+traverse a DAG and start to prefetch a missing <em>node</em>.</p>
+<p>For example, when the page declares a <code>bundle-A</code>, the browser can know its
+hash immediately, and start to traverse a DAG, starting <code>bunble-A</code> node, which
+can be looked up by its hash in the browsers' cache storage.</p>
+<p>For example, if the browser has the following DAG, the browser starts to
+prefetch <code>bundle-D</code> immediately.</p>
+<pre><code>bundle-A
+├── bundle-B
+└── bundle-C
+    ├── bundle-D  (missing in the cache storage)
+    └── bundle-E
+</code></pre>
+</li>
+<li>
+<p>If the browser wants to save the cache storage space, the browser might want
+to store only index sections of bundles, which are good enough to traverse
+DAG, and doesn't store the bodies of inline resources because <em>body</em> might be
+space-consuming.</p>
+<p>For example, given that browser has the following dependency graph of bundles,
+where the bodies of <code>bundle-C</code>, <code>bundle-D</code>, <code>bundle-E</code> are missing, the
+browser can start to fetch them again, possibly in parallel, without waiting
+fetching <code>bundle-C</code>.</p>
+<pre><code>bundle-A
+├── bundle-B
+└── bundle-C (body is missing)
+    ├── bundle-D (body is missing)
+    └── bundle-E (body is missing)
+</code></pre>
+</li>
+<li>
+<p>Individual inline resources in a bundle must not interfere a browser's HTTP
+Cache of its resolved URL.</p>
+<p>For example, an inline resource, <code>./index.js</code>, in the bundle,
+<code>https://example.com/app/index.js.abcd.wbn</code>, and
+<code>https://example.com/app/index.js</code> must be treated separately, in terms of
+caching.</p>
+</li>
+</ul>
+<h1 id="considered-alternatives"><a class="self-link" href="#considered-alternatives">Considered alternatives</a></h1>
+<p>TODO(hayato): Add pros and cons</p>
+<ul>
+<li><a href="https://github.com/WICG/resource-bundles">Resource Bundles</a></li>
+<li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit">Dynamic bundle serving with Web Bundles</a></li>
+</ul>
+<h1 id="faq"><a class="self-link" href="#faq">FAQ</a></h1>
+<p>TODO(hayato): Add FAQ</p>
+<h1 id="stakeholder-feedback-opposition"><a class="self-link" href="#stakeholder-feedback-opposition">Stakeholder Feedback / Opposition</a></h1>
+<p>Not yet.</p>
+<h1 id="references-acknowledgements"><a class="self-link" href="#references-acknowledgements">References &amp; acknowledgements</a></h1>
+<ul>
+<li><a href="https://web.dev/web-bundles/">Get started with Web Bundles</a></li>
+<li><a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html">Web Bundles</a></li>
+<li><a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource Loading with Web Bundles</a></li>
+<li><a href="https://github.com/WICG/resource-bundles">Resource Bundles</a></li>
+<li><a href="https://lowentropy.net/posts/bundles/">Bundling for the Web</a></li>
+<li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit">Dynamic bundle serving with Web Bundles</a></li>
+<li><a href="https://nixos.org/">NixOS</a></li>
+<li><a href="https://doc.rust-lang.org/cargo/">Cargo</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+          
+          <footer class="base-footer text-center">
+            <small>
+              <a href="/">Home</a>
+	      | &copy; 2005-2021 hayato
+	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="fab fa-github"></i> GitHub</a>
+            </small>
+          </footer>
+          
+        </div>
+        
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://hayatoito.github.io/site.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/rust.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
