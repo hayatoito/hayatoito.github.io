@@ -86,14 +86,20 @@
     
   </header>
   <div class="article-content">
-    <p>This is a strawperson proposal at very early stage, aiming to load multiple
+    <p>This proposal was merged into
+<a href="https://github.com/WICG/webpackage/blob/main/explainers/content-addressable-bundles.md">wicg/webpackage</a> repo.</p>
+<p>Last update: Mar 2021</p>
+<p>This is a strawperson proposal at very early stage, aiming to load multiple
 resources efficiently, using a Content-Addressable Bundle, which can link to
 other bundles.</p>
-<p>This proposal was merged into
-<a href="https://github.com/WICG/webpackage/blob/main/explainers/content-addressable-bundles.md">wicg/webpackage</a> repo.</p>
-<h1 id="participate"><a class="self-link" href="#participate">Participate</a></h1>
+<h2 id="authors"><a class="self-link" href="#authors">Authors</a></h2>
 <ul>
-<li><a href="https://github.com/WICG/webpackage/issues">WICG/webpackage</a></li>
+<li>Hayato Ito (hayato@google.com)</li>
+</ul>
+<h2 id="participate"><a class="self-link" href="#participate">Participate</a></h2>
+<ul>
+<li><a href="https://github.com/WICG/webpackage/">WICG/webpackage</a>
+(<a href="https://github.com/WICG/webpackage/issues/638">#638</a>)</li>
 </ul>
 <!-- TOC -->
 <h2 id="table-of-contents"><a class="self-link" href="#table-of-contents">Table of Contents</a></h2>
@@ -110,17 +116,22 @@ other bundles.</p>
 </ul>
 </li>
 <li><a href="#how-to-load">How to Load</a></li>
-<li><a href="#navigate-to-a-bundle">Navigate to a bundle.</a></li>
+<li><a href="#navigate-to-a-bundle">Navigate to a bundle</a></li>
 </ul>
 </li>
 <li><a href="#cache-strategy">Cache strategy</a></li>
-<li><a href="#considered-alternatives">Considered alternatives</a></li>
+<li><a href="#key-scenarios">Key scenarios</a></li>
+<li><a href="#considered-alternatives">Considered alternatives</a>
+<ul>
+<li><a href="#resource-bundles">Resource Bundles</a></li>
+</ul>
+</li>
 <li><a href="#faq">FAQ</a></li>
 <li><a href="#stakeholder-feedback--opposition">Stakeholder Feedback / Opposition</a></li>
 <li><a href="#references--acknowledgements">References &amp; acknowledgements</a></li>
 </ul>
 <!-- /TOC -->
-<h1 id="introduction"><a class="self-link" href="#introduction">Introduction</a></h1>
+<h2 id="introduction"><a class="self-link" href="#introduction">Introduction</a></h2>
 <ul>
 <li>
 <p>Loading many unbundled resources is still slower in 2021. We concluded that
@@ -128,19 +139,11 @@ other bundles.</p>
 our latest local measurement still suggests that.</p>
 </li>
 <li>
-<p>The output of JS bundlers (e.g. webpack) doesn't interact well with the HTTP
-cache. They are pretty good tools but configuring them to work in an optimal
-way is tough, and sometimes they're also incompatible with new requirements
-like
-<a href="https://github.com/azukaru/progressivef-fetching/blob/master/docs/dynamic-bundling/index.md">dynamic bundling</a>
-(e.g. small edit with tree shaking could invalidate everything).</p>
-</li>
-<li>
-<p>With JS bundlers, execution needs to wait for the full bytes to come. Ideally
-loading multiple subresources should be able to utilize full streaming and
-parallelization, but that's not possible if all resources are bundled as one
-javascript. (For JS modules execution still needs to be waited for the entire
-tree due to the current
+<p>With JS bundlers (e.g. <a href="https://webpack.js.org/">webpack</a>), execution needs to wait for the full bytes
+to come. Ideally loading multiple subresources should be able to utilize full
+streaming and parallelization, but that's not possible if all resources are
+bundled as one javascript. (For JS modules execution still needs to be waited
+for the entire tree due to the current
 <a href="https://docs.google.com/document/d/1MJK0zigKbH4WFCKcHsWwFAzpU_DZppEAOpYJlIW7M7E/edit#heading=h.5652gd5ks5id">deterministic execution model</a>)</p>
 </li>
 </ul>
@@ -162,19 +165,17 @@ will fetch a bundle, and load resources from the bundle.</p>
 bundle. Browsers will fetch the entire bundle even if only one of the resources
 in the bundle is updated in a server side.</p>
 <p>This explainer proposes a new approach on the top of <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource loading with
-Web Bundles</a>, aiming to achieve build reproducibility and more flexible
-cache-ability as well as load multiple resources efficiently, using a
-Content-Addressable Bundle, which can link to other bundles.</p>
-<h1 id="goals"><a class="self-link" href="#goals">Goals</a></h1>
+Web Bundles</a>, aiming more flexibility of how resources are grouped together as
+bundles. This allows web developers to split code into various bundles which can
+then be loaded on demand or in parallel, and also provide a new capability to
+express a dependency between bundles, which can be used for a browser to improve
+a loading performance.</p>
+<h2 id="goals"><a class="self-link" href="#goals">Goals</a></h2>
 <ul>
 <li>
-<p>The proposal aims to treat resources as <em>immutable</em>. If a bundle's URL doesn't
-change, we assume the bundle's contents are <em>exactly</em> same. This is not an
-effort by a convention. The proposal aims to <em>force</em> immutability by
-introducing a Content-Addressable Hash, which is conceptually similar to a
-<a href="https://git-scm.com/">Git</a>'s commit ID you might be familiar with. Content-Addressability gives us
-reproducible builds and gives a browser an opportunity to improve their cache
-efficiency.</p>
+<p>This proposal aims to support <a href="https://webpack.js.org/guides/code-splitting/">Code Splitting</a>, as <a href="https://webpack.js.org/">webpack</a> or other bundlers
+already support as a user-land solution. Smaller bundles, if used correctly,
+can have a major impact on load time.</p>
 </li>
 <li>
 <p>Non-opinionated about bundle granularity. There are trade-offs how a site
@@ -182,25 +183,44 @@ composes their resources into bundles in order to balance various factors like
 total bytes transferred, loading latency, or cache granularity. Instead of a
 <em>all-or-nothing</em> bundle, this proposal aims to provide a way to express a
 dependency graph of bundles. The use of bundlers is an established practice in
-Web development. Bundlers, such as webpack, skypack, would know much about how
-related resources are grouped as a bundle, and might want to express their
+Web development. Bundlers, such as <a href="https://webpack.js.org/">webpack</a>, <a href="https://www.skypack.dev/">skypack</a>, would know much about
+which resources should be grouped as a bundle, and might want to express their
 intent as a dependency graph of bundles, considering various trade-offs. They
-wouldn't want to lose this information in building an all-or-nothing bundle.</p>
+wouldn't want to lose this information in building an all-or-nothing bundle,
+and a browser wants to know it to improve a loading performance.</p>
 </li>
 <li>
 <p>Bundles can be served from a static content server. The proposal doesn't
 require any smart server, such as dynamically assembling resources into a
 bundle. Bundles should be statistically generated by a bundler and can be
-copied to a static content server.</p>
+copied to a static content server. This proposals assumes that this is an
+important for a wide adoption.</p>
+</li>
+<li>
+<p>The proposal aims to give a browser an opportunity to improve their cache
+efficiency by introducing <em>immutability</em> to a bundle. If a bundle's URL
+doesn't change, we assume the bundle's contents are <em>exactly</em> same. This is
+not an effort by a convention. The proposal aims to <em>force</em> immutability by
+introducing a Content-Addressable Hash, which is conceptually similar to a
+<a href="https://git-scm.com/">Git</a>'s commit ID you might be familiar with. Content-Addressability gives web
+developers reproducible builds as well as giving a browser an opportunity to
+improve their cache efficiency.</p>
+</li>
+<li>
+<p>URL integrity. Brave
+<a href="https://brave.com/webbundles-harmful-to-content-blocking-security-tools-and-the-open-web/">raised the concern</a>
+that bundling systems could be used in a way where URLs are &quot;rotated&quot; between
+different requests, making URLs less meaningful/stable. Content-Addressability
+prevents this kind of undesired behaviors.</p>
 </li>
 </ul>
-<h1 id="non-goals"><a class="self-link" href="#non-goals">Non-Goals</a></h1>
+<h2 id="non-goals"><a class="self-link" href="#non-goals">Non-Goals</a></h2>
 <ul>
 <li>
 <p>Although this proposal aims to give a browser an opportunity to improve cache
-efficiency by utilizing immutable nature and a dependency graph of bundles,
-this proposal doesn't define any normative procedure how a browser should
-cache resources. That's up-to a browser, as of now.</p>
+efficiency by utilizing immutability and a dependency graph of bundles, this
+proposal doesn't define any normative procedure how a browser should cache
+resources. That's up-to a browser, as of now.</p>
 </li>
 <li>
 <p>This proposal's current scope is to serve static contents which don't contain
@@ -208,8 +228,20 @@ any personal information. Although nothing prevents us from including such
 personal information, this proposal currently assumes every resources are
 publicly viewable ones.</p>
 </li>
+<li>
+<p><a href="https://github.com/azukaru/progressive-fetching/blob/master/docs/dynamic-bundling/index.md">Dynamic bundling</a>
+use case. This use case requires a server side support. That's out of scope in
+this proposal.</p>
+</li>
+<li>
+<p>A fine-grained cache control for each individual resource in a bundle. That's
+out of scope in this proposal. This proposal assumes that a granularity of a
+cache can be controlled by a granularity of bundles, if used correctly, at
+some level. If you want a fine-grained cache control for an individual
+resource in a bundle, this proposal doesn't meet your requirements.</p>
+</li>
 </ul>
-<h1 id="web-bundle-format"><a class="self-link" href="#web-bundle-format">Web Bundle format</a></h1>
+<h2 id="web-bundle-format"><a class="self-link" href="#web-bundle-format">Web Bundle format</a></h2>
 <p>TODO(hayato): Define a format using <a href="https://datatracker.ietf.org/doc/html/rfc8610">CDDL</a>. For a while, this section explains a
 non-normative <em>conceptual</em> format.</p>
 <p>Bundle's URL should be <code>&lt;main-resource-url&gt;.&lt;hash&gt;.wbn</code>.</p>
@@ -311,17 +343,21 @@ resource)</p>
 Bundles</strong> ; In short, <strong>CAB</strong>.</p>
 <p>These requirements imply that a dependency graph of bundles forms a DAG
 (directed acyclic graph). If it has a <em>cycle</em>, a hash can't be calculated.</p>
-<h1 id="web-apis"><a class="self-link" href="#web-apis">Web APIs</a></h1>
-<h2 id="declarative-form"><a class="self-link" href="#declarative-form">Declarative form</a></h2>
+<p>To distinguish CAB and other existing Web Bundles which are not CAB, we may call
+the former <em>immutable</em> bundles, and the latter <em>mutable</em> bundles in order to
+make the difference clear in some contexts. Unless otherwise noted, a bundle
+means a CAB, an <em>immutable</em> bundle, in this proposal.</p>
+<h2 id="web-apis"><a class="self-link" href="#web-apis">Web APIs</a></h2>
+<h3 id="declarative-form"><a class="self-link" href="#declarative-form">Declarative form</a></h3>
 <p>Note: Declarative syntax is tentative. We borrow
 <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md#link-based-api">&lt;link&gt;-based API</a>
 from <a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource loading with web bundles</a> proposal for the purpose of the
 explanation.</p>
-<h3 id="example"><a class="self-link" href="#example">Example</a></h3>
+<h4 id="example"><a class="self-link" href="#example">Example</a></h4>
 <p>The page (<code>https://example.com/app/index.html</code>):</p>
 <pre><code class="language-html prettyprint">&lt;link rel=webbundle
       href=https://example.com/app/index.js.abcd.wbn
-      resources=&quot;index.js foo.js bar.js https://cdn.example.com/date.js.f1f2.wbn&quot; &gt;
+      resources=&quot;index.js&quot; &gt;
 
 &lt;script type=&quot;module&quot; src=&quot;index.js&quot; /&gt;
 </code></pre>
@@ -334,22 +370,52 @@ explanation.</p>
 </tbody></table>
 <p>Another bundle (<code>https://cdn.example.com/date-util.js.f1f2.wbn</code>) (which is
 linked from the <code>index.js.abcd.wbn</code>):</p>
-<table class="table table-striped"><thead><tr><th> URL              </th><th> type   </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
-<tr><td> ./date-util.js   </td><td> inline </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0808 </td></tr>
-<tr><td> ./string-util.js </td><td> inline </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0909 </td></tr>
+<table class="table table-striped"><thead><tr><th> URL                                             </th><th> type     </th><th> response headers            </th><th> body     </th><th> hash </th></tr></thead><tbody>
+<tr><td> ./date-util.js                                  </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0808 </td></tr>
+<tr><td> ./string-util.js                                </td><td> inline   </td><td> &lt;encoded response header&gt; </td><td> &lt;body&gt; </td><td> 0909 </td></tr>
+<tr><td> https://cdn.example.com/common-util.js.3b3b.wbn </td><td> external </td><td> NA                          </td><td> NA       </td><td> 3b3b </td></tr>
 </tbody></table>
-<h2 id="how-to-load"><a class="self-link" href="#how-to-load">How to Load</a></h2>
+<p>For illustration purposes, the dependency graph of resources is:</p>
+<pre><code>toppage
+└── index.js
+    ├── foo.js
+    │   └── https://cdn.example.com/date-util.js
+    │       ├── string-util.js
+    │       └── https://cdn.example.com/common-util.js
+    │           └── ...
+    └── bar.js
+
+</code></pre>
+<p>These resources are bundled into three bundles, as follows:</p>
+<pre><code>toppage
+└── https://example.com/app/index.js.abcd.wbn
+    ├── index.js (main-resurce)
+    ├── foo.js
+    ├── bar.js
+    └── https://cdn.example.com/date-util.js.f1f2.wbn
+        ├── date-util.js (main-resurce)
+        ├── string-util.js
+        └── https://cdn.example.com/common-util.3b3b.js
+            ├── commons-util.js (main-resource)
+            └── ...
+</code></pre>
+<h3 id="how-to-load"><a class="self-link" href="#how-to-load">How to Load</a></h3>
 <ol>
 <li>
-<p>When the HTML page is parsed, a browser records that <code>index.js</code>, <code>foo.js</code>,
-<code>bar.js</code>, and <code>https://cdn.example.com/date-util.js</code> can be loaded from the
-bundle.</p>
-<p>Note a relative URL is resolved based on the bundle's URL. For an external
-resource, we use a file-name convention. If the URL ends with
-&quot;<code>.&lt;hash&gt;.wbn</code>&quot;, the browser removes this suffix and then record the URL.</p>
+<p>When the HTML page is parsed, a browser records that <code>index.js</code> can be loaded
+from the bundle, <code>https://example.com/app/index.js.abcd.wbn</code>.</p>
 </li>
 <li>
-<p>The browser fetches <code>https://example.com/app/index.js.abcd.wbn</code>.</p>
+<p>The browser starts to fetch <code>https://example.com/app/index.js.abcd.wbn</code>.</p>
+<ol>
+<li>(This is asynchronously done) The browser must parse the index section of
+the fetched bundle, and record a list of resource's URLs, <code>foo.js</code>,
+<code>bar.js</code>, and <code>https://cdn.example.com/date-util.js</code>, as resources which
+must be loaded from the bundle.</li>
+</ol>
+<p>Note a relative URL is resolved based on the bundle's URL. For an external
+resource, we use a filename convention. If the URL ends with &quot;<code>.&lt;hash&gt;.wbn</code>&quot;,
+the browser removes this suffix and then record the URL.</p>
 </li>
 <li>
 <p>The browser sees <code>&lt;script type=&quot;module&quot; src=&quot;index.js&quot; /&gt;</code> tag. Since
@@ -362,10 +428,11 @@ following content:</p>
 import * as bar from &quot;./bar.js&quot;;
 ...
 </code></pre>
-<p>The browser must load <code>./foo.js</code> and <code>./bar.js</code> from the bundle.</p>
+<p>The browser must load <code>./foo.js</code> and <code>./bar.js</code> from the bundle since these
+resources are already recorded.</p>
 </li>
 <li>
-<p>Suppose that <code>foo.js</code>, which is an line resource in the bundle, has the
+<p>Suppose that <code>foo.js</code>, which is an inline resource in the bundle, has the
 following content:</p>
 <pre><code class="language-js prettyprint">import * as date from &quot;https://cdn.example.com/date-util.js&quot;;
 ...
@@ -376,13 +443,14 @@ resource and it should be loaded from
 fetch <code>https://cdn.example.com/date-util.js.f1f2.wbn</code>.</p>
 </li>
 <li>
-<p>The browser must parse the index section of the bundle, and record a list of
-resource's URLs.</p>
+<p>The browser must parse the index section of the bundle,
+<code>date-util.js.f1f2.wbn</code>, and record a list of resource's URLs, as the browser
+did for <code>index.js.abcd.wbn</code>.</p>
 </li>
 <li>
 <p>After recorded, the browser loads the main resource, <code>date-util.js</code>, from the
-bundle. If <code>date-util.js</code> depends on <code>./string-util.js</code>, <code>./string-util.js</code>
-is loaded from the bundle.</p>
+bundle. If <code>date-util.js</code> depends on <code>./string-util.js</code>, <code>string-util.js</code> is
+loaded from the bundle.</p>
 </li>
 <li>
 <p>Continue processing...</p>
@@ -398,7 +466,7 @@ load a bundle from the cache, instead of from the network.</li>
 doesn't change. The browser should be careful not to record resource entries
 listed in a prefetched bundle too early.</li>
 </ul>
-<h2 id="navigate-to-a-bundle"><a class="self-link" href="#navigate-to-a-bundle">Navigate to a bundle</a></h2>
+<h3 id="navigate-to-a-bundle"><a class="self-link" href="#navigate-to-a-bundle">Navigate to a bundle</a></h3>
 <p>In the previous example, we use <code>&lt;link&gt;</code>-based API to declare a starting <em>node</em>
 and its index information, as a <em>bootstrap</em>, however, if a browser supports
 <em>Navigate to a bundle</em> feature, we don't need such a declarative form in HTML.</p>
@@ -415,7 +483,7 @@ whose main resource is HTML file:</p>
 <em>directly</em> in its address bar, <code>./index.html</code> doesn't have to declare resources.
 The browser can know them from the bundle's index section, before starting to
 parse <code>index.html</code> file.</p>
-<h1 id="cache-strategy"><a class="self-link" href="#cache-strategy">Cache strategy</a></h1>
+<h2 id="cache-strategy"><a class="self-link" href="#cache-strategy">Cache strategy</a></h2>
 <p>It's up-to browsers how to cache bundles. This explainer doesn't define any
 formal procedure, however, there are several possible approaches:</p>
 <ul>
@@ -464,22 +532,126 @@ Cache of its resolved URL.</p>
 caching.</p>
 </li>
 </ul>
-<h1 id="considered-alternatives"><a class="self-link" href="#considered-alternatives">Considered alternatives</a></h1>
-<p>TODO(hayato): Add pros and cons</p>
+<h2 id="key-scenarios"><a class="self-link" href="#key-scenarios">Key scenarios</a></h2>
+<p>TODO(hayato): [Description of the end-user scenario]</p>
+<h2 id="considered-alternatives"><a class="self-link" href="#considered-alternatives">Considered alternatives</a></h2>
+<h3 id="resource-bundles"><a class="self-link" href="#resource-bundles"><a href="https://github.com/WICG/resource-bundles">Resource Bundles</a></a></h3>
+<p>TODO(hayato): Mention scopes.</p>
+<h2 id="faq"><a class="self-link" href="#faq">FAQ</a></h2>
+<h3 id="what-happens-if-a-bundle-doesn-t-declare-a-dependency-to-a-resource-which-is-used-from-its-inline-resources"><a class="self-link" href="#what-happens-if-a-bundle-doesn-t-declare-a-dependency-to-a-resource-which-is-used-from-its-inline-resources">What happens if a bundle doesn't declare a dependency to a resource which is used from its inline resources?</a></h3>
+<p>Nothing is wrong if you know what you are doing.</p>
+<p>However, this proposal strongly suggests that a bundle should be
+<em>self-contained</em> as much as possible; Include every resources as inline
+resources, or declare external dependencies explicitly in the bundle in order to
+achieve reproducibility.</p>
+<p>In the above example, <code>https://example.com/app/index.js.abcd.wbn</code> declares a
+dependency to the <em>specific</em> version of <code>date-util.js</code> with
+<code>https://cdn.example.com/date-util.js.f1f2.wbn</code>.</p>
+<p>It's totally fine to use an external file directly without any declaration. For
+example, <code>index.js</code> might use an external module, <code>hello.js</code>, as follows:</p>
+<pre><code class="language-js prettyprint">import * as hello from &quot;https://cdn.example.com/hello.js&quot;;
+</code></pre>
+<p>However, we no longer guarantee reproducibility. If
+<code>https://cdn.example.com/hello.js</code> changes its semantics, the web site, a user
+of <code>index.js.abcd.wbn</code>, might break. Especially, this can be problematic if an
+external dependency's <em>content</em> is out of control.</p>
+<p>If you can control an undeclared external resource's API stability somehow, this
+might not be a big issue. For example, <code>index.js</code> can hard-code the specific
+version of <code>hello.js</code>, such as:</p>
+<pre><code class="language-js prettyprint">import * as hello from &quot;https://cdn.example.com/hello@4.12.js&quot;;
+</code></pre>
+<p>However, this proposal suggests that this kind of hard-coding should be avoided,
+and such a dependency information should be specified outside of source code as
+much as possible.</p>
+<p>We can see many similar patterns in other package management systems, such as
+node (<a href="https://docs.npmjs.com/files/package.json/">package.json</a>), Rust (<a href="https://doc.rust-lang.org/cargo/">Cargo.toml</a>), deno (<a href="https://deno.land/manual/linking_to_external_code#it-seems-unwieldy-to-import-urls-everywhere">deps.ts</a>).</p>
+<p>This proposal aims to support this pattern by making it possible to declare
+dependencies inside of a bundle.</p>
+<h3 id="any-recommendations-for-bundle-s-granularity-how-should-we-group-resources-into-bundles"><a class="self-link" href="#any-recommendations-for-bundle-s-granularity-how-should-we-group-resources-into-bundles">Any recommendations for bundle's granularity? How should we group resources into bundles?</a></h3>
+<p>That's totally up-to you. There are various factors and trade-off to make a
+decision.</p>
+<p>For example, if you want to make an initial loading faster, with a cold start,
+you probably want to make the size of a bootstrap bundle smaller; let it include
+only minimum inline resources which are required for <a href="https://web.dev/first-contentful-paint/">first contentful paint</a>.</p>
+<pre><code>toppage
+└── https://example.com/app/index.js.abcd.wbn
+    ├── index.js (main-resurce, which should be small)
+    ├── support-file-for-initial-loading.js (which should be small)
+    ├── ...
+    ├── https://example.com/lazy-load-1.js.0088.wbn (the size might be big)
+    │   └── ...
+    ├── https://example.com/lazy-load-2.js.0089.wbn (the size might be big)
+    │   └── ...
+    └── https://example.com/lazy-load-3.js.008a.wbn (the size might be big)
+        └── ...
+</code></pre>
+<p>As another example, if you have:</p>
 <ul>
-<li><a href="https://github.com/WICG/resource-bundles">Resource Bundles</a></li>
-<li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit">Dynamic bundle serving with Web Bundles</a></li>
+<li>resources which wouldn't be updated frequently</li>
+<li>and resources which would be updated frequently, such as <em>daily update</em>.</li>
 </ul>
-<h1 id="faq"><a class="self-link" href="#faq">FAQ</a></h1>
-<p>TODO(hayato): Add FAQ</p>
-<h1 id="stakeholder-feedback-opposition"><a class="self-link" href="#stakeholder-feedback-opposition">Stakeholder Feedback / Opposition</a></h1>
+<p>In this case, you might want to group these resources separately in order to
+reduce the total bytes transferred in each day.</p>
+<p>For example, a site may serve the following bundles today:</p>
+<pre><code>toppage
+   https://example.com/app/index.js.abcd.wbn
+     index.js (main-resurce)
+     https://example.com/daily-hot-contents.00a0.wbn
+       ...
+     https://example.com/cold-contents.js.00a1.wbn
+       ...
+</code></pre>
+<p>If the <code>daily-hot-contents</code> is updated in the next day, a site re-packages their
+resources as follows:</p>
+<pre><code>toppage
+└── https://example.com/app/index.js.c0e3.wbn (changed)
+    ├── index.js (main-resurce)
+    ├── https://example.com/daily-host-contents.00c0.wbn (changed)
+    │   └── ...
+    └── https://example.com/cold-contents.js.00a1.wbn (didn't change)
+        └── ...
+</code></pre>
+<p>Then, the total byte transferred in the next day is nearly the sum of <code>index.js</code>
+and <code>https://example.com/daily-host-contents.00c0.wbn</code> because the browser
+probably can load <code>cold-contents.js.00a1.wbn</code>, whose hash didn't change, from
+its cache.</p>
+<h3 id="i-would-like-to-separate-code-into-bundles-for-various-reasons-but-i-m-afraid-this-causes-too-many-round-trips-if-bundles-are-nested-and-discovered-one-bye-one-is-there-any-good-way-to-avoid-it"><a class="self-link" href="#i-would-like-to-separate-code-into-bundles-for-various-reasons-but-i-m-afraid-this-causes-too-many-round-trips-if-bundles-are-nested-and-discovered-one-bye-one-is-there-any-good-way-to-avoid-it">I would like to separate code into bundles for various reasons, but I'm afraid this causes too many round-trips if bundles are nested and discovered one bye one. Is there any good way to avoid it?</a></h3>
+<p>A possible workaround as a user-land solution would be to declare indirect
+dependent bundles as well as direct dependent bundles.</p>
+<p>In the example case, the top page may declare:</p>
+<pre><code class="language-html prettyprint">&lt;!-- This is mandarory --&gt;
+&lt;link rel=webbundle href=https://example.com/app/index.js.abcd.wbn resources=&quot;index.js&quot; &gt;
+&lt;!-- The followings are optional, as a hint for a browser to prefetch --&gt;
+&lt;link rel=webbundle href=https://cdn.example.com/date-util.js.f1f2.wbn&gt;
+&lt;link rel=webbundle href=https://cdn.example.com/common-util.js.3b3b.wbn&gt;
+</code></pre>
+<p>The second and third link elements are not mandatory because they are not a
+direct dependency, but declaring them should guarantee that a browser prefetch
+these bundles in parallel, instead of on-demand basis.</p>
+<h3 id="how-can-we-create-cab-is-there-any-tool"><a class="self-link" href="#how-can-we-create-cab-is-there-any-tool">How can we create CAB? Is there any tool?</a></h3>
+<p>Nothing yet.</p>
+<p>In the future, we hope that js bundlers provide an option to use Content
+Addressable Bundles as its output format.</p>
+<p>Also, it would be nice that CDN supports a CAB format to serve their contents so
+that we can link to their CAB from our application bundles.</p>
+<h3 id="how-can-mutable-bundles-and-immutable-bundles-cab-interact-each-other"><a class="self-link" href="#how-can-mutable-bundles-and-immutable-bundles-cab-interact-each-other">How can <em>mutable</em> bundles and <em>immutable</em> bundles (CAB) interact each other?</a></h3>
+<p>TODO(hayato): We might want to <em>backport</em> a declarative dependency capability to
+mutable bundles as well as CAB.</p>
+<p>We might want to let them refer to each other, with some restrictions:</p>
+<ul>
+<li>Any bundles can refer to immutable bundles.</li>
+<li>Only mutable bundles can refer to mutable bundles.</li>
+</ul>
+<p>We'll explore this problem space, and update this section.</p>
+<h2 id="stakeholder-feedback-opposition"><a class="self-link" href="#stakeholder-feedback-opposition">Stakeholder Feedback / Opposition</a></h2>
 <p>Not yet.</p>
-<h1 id="references-acknowledgements"><a class="self-link" href="#references-acknowledgements">References &amp; acknowledgements</a></h1>
+<h2 id="references-acknowledgements"><a class="self-link" href="#references-acknowledgements">References &amp; acknowledgements</a></h2>
 <ul>
 <li><a href="https://web.dev/web-bundles/">Get started with Web Bundles</a></li>
 <li><a href="https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html">Web Bundles</a></li>
 <li><a href="https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md">Subresource Loading with Web Bundles</a></li>
 <li><a href="https://github.com/WICG/resource-bundles">Resource Bundles</a></li>
+<li><a href="https://gist.github.com/littledan/e01801001c277b0be03b1ca54788505e">Resource Batch Preloading</a></li>
 <li><a href="https://lowentropy.net/posts/bundles/">Bundling for the Web</a></li>
 <li><a href="https://docs.google.com/document/d/11t4Ix2bvF1_ZCV9HKfafGfWu82zbOD7aUhZ_FyDAgmA/edit">Dynamic bundle serving with Web Bundles</a></li>
 <li><a href="https://nixos.org/">NixOS</a></li>
