@@ -19,22 +19,21 @@ jobs:
       # We can not cache ~/.cargo/bin, which is considered harmful.
       - name: Cache cargo bin
         id: cache-cargo-bin
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: ./cargo-bin
+          path: ./cache-cargo-bin
           key: ${{ runner.os }}-cargo-bin-${{ hashFiles('.env') }}
       - name: Install site
         if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
         run: |
           cargo install --version ${{ steps.site-version.outputs.SITE_VERSION }} site
-          mkdir -p ./cargo-bin
-          cp -a ~/.cargo/bin/site ./cargo-bin/site
+          mkdir -p ./cache-cargo-bin
+          cp -a ~/.cargo/bin/site ./cache-cargo-bin/site
       - name: Build
-        run: ./cargo-bin/site build --root-dir . --config=config-release.toml --out-dir ./out
+        run: ./cache-cargo-bin/site build --root-dir . --config=config-release.toml --out-dir ./out
       - name: Deploy
         if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./out
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
