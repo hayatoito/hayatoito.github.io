@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-out_debug=~/src/var/site/debug
-out_release=~/src/var/site/release
+out_debug=~/var/site/debug
+out_release=~/var/site/release
 
 # Assuming `site`, `watchexec`, and `ghp-import` are installed.
 # They all are optional if you use GitHub Action to build.
