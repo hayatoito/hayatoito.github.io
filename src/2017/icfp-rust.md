@@ -1,7 +1,6 @@
 <!--
 title: Rustが最強のプログラミング言語である証明
 date: 2017-08-31
-toc: true
 -->
 
 2017 年現在、Rust が最強のプログラミング言語である証明を以下に示します。
@@ -18,7 +17,7 @@ ICFP プログラミングコンテストの説明については以下をご覧
 > 年のプログラミング言語」を決めることとなっており「その年はその言語の文句は言え
 > ない」とか．
 
-<div class='text-right'>
+<div class='text-end'>
 引用元: <a href=http://iwiwi.hatenablog.com/entry/20130927/1380255924>http://iwiwi.hatenablog.com/entry/20130927/1380255924</a>
 </div>
 
@@ -58,8 +57,9 @@ hayatox です。
 
 <br>
 
-<div class="embed-responsive embed-responsive-4by3">
-  <iframe class="embed-responsive-item" src="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full1/plain/randomMedium-ae0.json"></iframe>
+<!-- Bootstrap v5 -->
+<div class="ratio ratio-4x3">
+  <iframe src="https://icfpcontest2017.github.io/punttv/tv.html?game=games/full1/plain/randomMedium-ae0.json"></iframe>
 </div>
 
 ([Link](https://icfpcontest2017.github.io/punttv/tv.html?game=games/full1/plain/randomMedium-ae0.json),
@@ -98,16 +98,17 @@ Map:
 
 <br>
 
+<!-- Bootstrap v5 -->
 <div class='row'>
-  <div class='col-4 text-right'>使用言語 （チーム名: 人数 ）</div>
+  <div class='col-4 text-end'>使用言語 （チーム名: 人数 ）</div>
   <div class='col-8 text-center'>獲得ポイント</div>
 </div>
 
 <br>
 
 <div class='row'>
-  <div class='col-4 text-right'>Rust (hayatox: <a href='https://github.com/hayatoito/icfp2017/graphs/contributors'>1</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Rust (hayatox: <a href='https://github.com/hayatoito/icfp2017/graphs/contributors'>1</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 100.0%'>
         <span>109</span>
@@ -117,8 +118,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>C++ (GennAI: <a href='https://github.com/nya3jp/icfpc2017/graphs/contributors'>8</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>C++ (GennAI: <a href='https://github.com/nya3jp/icfpc2017/graphs/contributors'>8</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 97.2%'>
         <span>106</span>
@@ -128,8 +129,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Haskell (Sampou: <a href='https://github.com/nobsun/icfpc2017/graphs/contributors'>7</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Haskell (Sampou: <a href='https://github.com/nobsun/icfpc2017/graphs/contributors'>7</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 99.1%'>
         <span>108</span>
@@ -139,8 +140,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Common Lisp (cvnm: <a href='https://github.com/cybevnm/icfpc-2017/graphs/contributors'>1</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Common Lisp (cvnm: <a href='https://github.com/cybevnm/icfpc-2017/graphs/contributors'>1</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 63.3%'>
         <span>69</span>
@@ -150,8 +151,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Clojure (drop table teams;: <a href='https://github.com/candera/icfp-2017/graphs/contributors'>2</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Clojure (drop table teams;: <a href='https://github.com/candera/icfp-2017/graphs/contributors'>2</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 34.9%'>
         <span>38</span>
@@ -161,8 +162,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Java (A Storm Of Minds: <a href='https://github.com/jandreske/icfpc2017/graphs/contributors'>2</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Java (A Storm Of Minds: <a href='https://github.com/jandreske/icfpc2017/graphs/contributors'>2</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 100.0%'>
         <span>109</span>
@@ -172,8 +173,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Kotlin (Lambada Calculus: <a href='https://github.com/PaulTaykalo/icfp-2017/graphs/contributors'>9</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Kotlin (Lambada Calculus: <a href='https://github.com/PaulTaykalo/icfp-2017/graphs/contributors'>9</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 78.9%'>
         <span>86</span>
@@ -183,8 +184,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Scala (codingteam: <a href='https://github.com/codingteam/icfpc-2017/graphs/contributors'>4</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Scala (codingteam: <a href='https://github.com/codingteam/icfpc-2017/graphs/contributors'>4</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 44.0%'>
         <span>48</span>
@@ -194,8 +195,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>C# (kontur.ru: <a href='https://github.com/skbkontur/icfpc2017-kontur-ru/graphs/contributors'>16</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>C# (kontur.ru: <a href='https://github.com/skbkontur/icfpc2017-kontur-ru/graphs/contributors'>16</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 64.2%'>
         <span>70</span>
@@ -205,8 +206,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>F# (lambda-llama: <a href='https://github.com/lambda-llama/icfpc2017/graphs/contributors'>5</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>F# (lambda-llama: <a href='https://github.com/lambda-llama/icfpc2017/graphs/contributors'>5</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 0.0%'>
         <span>0</span>
@@ -216,8 +217,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Elixir (The Mikinators: <a href='https://github.com/claytonflesher/punting/graphs/contributors'>8</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Elixir (The Mikinators: <a href='https://github.com/claytonflesher/punting/graphs/contributors'>8</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 38.5%'>
         <span>42</span>
@@ -227,8 +228,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Python (Lambding Snakes vs Coding Monkeys: <a href='https://github.com/pankdm/icfpc-2017/graphs/contributors'>4</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Python (Lambding Snakes vs Coding Monkeys: <a href='https://github.com/pankdm/icfpc-2017/graphs/contributors'>4</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 86.2%'>
         <span>94</span>
@@ -238,8 +239,8 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Go (MIPT Lambda: <a href='https://github.com/ygorshenin/icfp2017/graphs/contributors'>3</a>)</div>
-  <div class='col-8'>
+  <div class='col-md-4 text-end'>Go (MIPT Lambda: <a href='https://github.com/ygorshenin/icfp2017/graphs/contributors'>3</a>)</div>
+  <div class='col-md-8'>
     <div class='progress'>
       <div class='progress-bar' style='width: 58.7%'>
         <span>64</span>
@@ -268,7 +269,7 @@ Map:
 <br>
 
 <div class='row'>
-  <div class='col-4 text-right'>Rust</div>
+  <div class='col-4 text-end'>Rust</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 100.0%'>
@@ -279,7 +280,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>C++</div>
+  <div class='col-4 text-end'>C++</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 12.2%'>
@@ -290,7 +291,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Haskell</div>
+  <div class='col-4 text-end'>Haskell</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 14.2%'>
@@ -301,7 +302,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Common Lisp</div>
+  <div class='col-4 text-end'>Common Lisp</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 63.3%'>
@@ -312,7 +313,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Clojure</div>
+  <div class='col-4 text-end'>Clojure</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 17.4%'>
@@ -323,7 +324,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Java</div>
+  <div class='col-4 text-end'>Java</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 50.0%'>
@@ -334,7 +335,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Kotlin</div>
+  <div class='col-4 text-end'>Kotlin</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 8.8%'>
@@ -345,7 +346,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Scala</div>
+  <div class='col-4 text-end'>Scala</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 11.0%'>
@@ -356,7 +357,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>C#</div>
+  <div class='col-4 text-end'>C#</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 4.0%'>
@@ -367,7 +368,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>F#</div>
+  <div class='col-4 text-end'>F#</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 0.0%'>
@@ -378,7 +379,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Elixir</div>
+  <div class='col-4 text-end'>Elixir</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 4.8%'>
@@ -389,7 +390,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Python</div>
+  <div class='col-4 text-end'>Python</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 21.6%'>
@@ -400,7 +401,7 @@ Map:
 </div>
 
 <div class='row'>
-  <div class='col-4 text-right'>Go</div>
+  <div class='col-4 text-end'>Go</div>
   <div class='col-8'>
     <div class='progress'>
       <div class='progress-bar progress-bar-success' style='width: 19.6%'>

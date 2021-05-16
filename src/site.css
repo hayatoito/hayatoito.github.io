@@ -96,6 +96,7 @@ thead > tr > td {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
+  color: var(--color);
   background-color: var(--background-color-2);
 }
 
@@ -258,67 +259,22 @@ h3 > a.self-link:hover::after {
 
 /* table of contents */
 #toc {
-  position: fixed;
-}
-
-#toc {
-  margin-top: 2.5rem;
-}
-
-#toc nav {
-  padding: 0;
-}
-
-/* toc item */
-#toc a {
-  border-radius: 0;
-  padding: 4px;
-  color: var(--color-2);
-  font-size: 0.8rem;
   background-color: var(--background-color-2);
-  border-left: 1px solid var(--color-3);
+  margin-bottom: 2rem;
 }
 
-#toc a.active,
+#toc a {
+  font-size: 0.8rem;
+  color: var(--color-2);
+}
+
 #toc a:hover,
 #toc a:focus {
-  color: var(--link-color) !important;
+  color: var(--link-color);
+  text-decoration: underline;
 }
 
-#toc a.active {
-  font-weight: bold;
-  border-left: 2px solid var(--link-color) !important;
-}
-
-/* 1st level toc item */
-#toc > nav > a {
-  padding-left: 16px;
-}
-
-#toc > nav > a.active {
-  padding-left: 15px;
-}
-
-/* 2nd level toc item */
-#toc > nav > nav > a {
-  padding-left: 32px;
-}
-
-#toc > nav > nav > a.active {
-  padding-left: 31px;
-}
-
-/* 2nd level (shown on .active) */
-#toc nav nav {
-  /* Hide by default, but at >768px, show it */
-  display: none;
-}
-
-/* Show 2nd level when 1st level is active */
-#toc a.active + nav {
-  display: block;
-}
-
+/* progress */
 .progress {
   background-color: var(--background-color-2);
 }

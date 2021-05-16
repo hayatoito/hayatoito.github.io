@@ -11,7 +11,7 @@
         {{ article.title|striptags }}
       </a>
     </h1>
-    <div class="text-right">
+    <div class="text-end">
       {% if article.author %}
 	{{ article.author }}
       {% else %}
@@ -19,14 +19,14 @@
       {% endif %}
     </div>
     {% if not article.hide_date %}
-    <div class="text-right">
+    <div class="text-end">
       <time datetime="{{ article.date }}">
         {{ article.date }}
       </time>
     </div>
     {% endif %}
     {% if article.update_date %}
-      <div class="text-right">
+      <div class="text-end">
         (Last Update:
       <time datetime="{{ article.update_date }}">
         {{ article.update_date }}
@@ -36,6 +36,12 @@
     {% endif %}
   </header>
   <div class="article-content">
+    {% if article.toc %}
+      <h1>Table of Contents</h1>
+      <div id="toc">
+        {{ article.toc_html}}
+      </div>
+    {% endif %}
     {{ article.content }}
   </div>
 </article>
