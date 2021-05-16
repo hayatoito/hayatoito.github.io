@@ -1,7 +1,7 @@
-#!/bin/zsh
+# Note: This is my *private* Makefile-ish, used by my Make-ish tool.
 
-out_debug=~/var/site/debug
-out_release=~/var/site/release
+out_debug=${this_dir}/out/debug
+out_release=${this_dir}/out/release
 
 # Assuming `site`, `watchexec`, and `ghp-import` are installed.
 # They all are optional if you use GitHub Action to build.
@@ -19,7 +19,7 @@ build_release() {
 }
 
 watch() {
-  watchexec --watch src --watch template zsh Make.zsh build
+  watchexec --watch src --watch template my-make build
 }
 
 serve() {
@@ -57,8 +57,3 @@ squash_gh_pages_history() {
   : # '--force' is required because remote's gh-pages is discarded.
   git push --force origin gh-pages
 }
-
-if ! [[ ${ZSH_EVAL_CONTEXT} =~ :file$ ]]; then
-  setopt err_exit xtrace
-  $@
-fi
