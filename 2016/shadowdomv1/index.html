@@ -3,16 +3,16 @@
   <head>
     <title>What's New in Shadow DOM v1 (by examples) - hayato</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card"  content="summary" />
     <meta property="twitter:title" content="What's New in Shadow DOM v1 (by examples) - hayato"/>
     <meta property="og:image" content="https://hayatoito.github.io/favicon.png">
     
     <link rel="canonical" href="https://hayatoito.github.io/2016/shadowdomv1/"/>
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="author" href="http://www.hatena.ne.jp/hayatoito1/" />
     <link href="https://hayatoito.github.io/site.css" rel="stylesheet">
     <link id="favicon" rel="icon" type="image/png" href="https://hayatoito.github.io/favicon.png" >
@@ -28,30 +28,22 @@
     </script>
     
   </head>
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <body>
     
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand d-flex">
       <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/">hayato</a>
         </li>
-      </ul>
-      <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/timeline/">Timeline</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <small><a href="https://hayatoito.github.io/feed.xml"><i class="fas fa-rss"></i></a></small>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
 	<li class="dropdown">
-	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <i class="fas fa-paint-brush"></i>
+	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	  </button>
-	  <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="dropdownMenuButton">
+	  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
 	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
 	    <button id="theme-dark" class="dropdown-item" href="#">Dark</button>
 	  </div>
@@ -60,9 +52,7 @@
     </nav>
     <div class="container">
       <div class="row">
-        
-        <div class="col col-xl-9">
-        
+        <div class="col">
           
 <article>
   <header class="page-header">
@@ -71,13 +61,13 @@
         What's New in Shadow DOM v1 (by examples)
       </a>
     </h1>
-    <div class="text-right">
+    <div class="text-end">
       
 	Hayato Ito
       
     </div>
     
-    <div class="text-right">
+    <div class="text-end">
       <time datetime="2016-06-22">
         2016-06-22
       </time>
@@ -86,6 +76,33 @@
     
   </header>
   <div class="article-content">
+    
+      <h1>Table of Contents</h1>
+      <div id="toc">
+        <ul>
+<li><a href="#creating-a-shadow-root">Creating a shadow root</a></li>
+<li><a href="#multiple-shadow-roots">Multiple Shadow Roots</a></li>
+<li><a href="#a-closed-shadow-root">A closed shadow root</a></li>
+<li><a href="#elements-which-can-be-a-shadow-host">Elements which can be a shadow host</a></li>
+<li><a href="#insertion-points-v0-vs-slots-v1">Insertion Points (v0) vs Slots (v1)</a></li>
+<li><a href="#re-distribution-directly-v0-vs-indirectly-by-flattening-v1">Re-distribution: Directly (v0) vs Indirectly by flattening (v1)</a></li>
+<li><a href="#fallback-contents">Fallback contents</a></li>
+<li><a href="#events-to-react-the-change-of-distributions">Events to react the change of distributions</a></li>
+<li><a href="#styling-for-distributed-nodes">Styling for distributed nodes</a></li>
+<li><a href="#shadow-piercing-combinators">Shadow piercing combinators</a></li>
+<li><a href="#css-cascading-order">CSS Cascading order</a></li>
+<li><a href="#sequential-focus-navigation">Sequential Focus Navigation</a></li>
+<li><a href="#delegatesfocus">DelegatesFocus</a></li>
+<li><a href="#activeelement">ActiveElement</a></li>
+<li><a href="#events-across-shadow-boundaries">Events across shadow boundaries</a></li>
+<li><a href="#getting-event-path">Getting Event path</a></li>
+<li><a href="#functions-which-are-renamed">Functions which are renamed</a></li>
+<li><a href="#new-utility-functions-in-node">New utility functions in Node</a></li>
+<li><a href="#questions">Questions?</a></li>
+</ul>
+
+      </div>
+    
     <p>This document is my attempt to track the difference between Shadow DOM v0 and
 v1.</p>
 <p>This is not a tutorial for Shadow DOM. Rather, this is my attempt to provide a
@@ -204,10 +221,10 @@ children by CSS query selector.</p>
 &lt;/div&gt;
 </code></pre>
 <p>The result is:</p>
-<table class="table table-striped"><thead><tr><th> Insertion point </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #i1             </td><td> #c1               </td></tr>
-<tr><td> #i2             </td><td> #c2, #c3          </td></tr>
-<tr><td> #i3             </td><td> Empty             </td></tr>
+<table class="table table-striped"><thead><tr><th>Insertion point</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#i1</td><td>#c1</td></tr>
+<tr><td>#i2</td><td>#c2, #c3</td></tr>
+<tr><td>#i3</td><td>Empty</td></tr>
 </tbody></table>
 <p>The v0 also had <code>&lt;shadow&gt;</code> insertion points, however, let me skip the
 explanation of <code>&lt;shadow&gt;</code> because multiple shadow roots are deprecated.</p>
@@ -229,10 +246,10 @@ slot name matching.</p>
 &lt;/div&gt;
 </code></pre>
 <p>The result is:</p>
-<table class="table table-striped"><thead><tr><th> Slot                                     </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #s1                                      </td><td> #c1               </td></tr>
-<tr><td> #s2                                      </td><td> #c2               </td></tr>
-<tr><td> #s3 (also known as the <em>&quot;default slot&quot;</em>) </td><td> #c3               </td></tr>
+<table class="table table-striped"><thead><tr><th>Slot</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#s1</td><td>#c1</td></tr>
+<tr><td>#s2</td><td>#c2</td></tr>
+<tr><td>#s3 (also known as the <em>&quot;default slot&quot;</em>)</td><td>#c3</td></tr>
 </tbody></table>
 <h1 id="re-distribution-directly-v0-vs-indirectly-by-flattening-v1"><a class="self-link" href="#re-distribution-directly-v0-vs-indirectly-by-flattening-v1">Re-distribution: Directly (v0) vs Indirectly by flattening (v1)</a></h1>
 <h2 id="v0-5"><a class="self-link" href="#v0-5">v0</a></h2>
@@ -257,15 +274,15 @@ slot name matching.</p>
 &lt;content id=&quot;i6&quot;&gt;&lt;/content&gt;
 </code></pre>
 <p>The result is:</p>
-<table class="table table-striped"><thead><tr><th> Insertion point </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #i1             </td><td> #c1               </td></tr>
-<tr><td> #i2             </td><td> #c2, #c3          </td></tr>
-<tr><td> #i3             </td><td> Empty             </td></tr>
+<table class="table table-striped"><thead><tr><th>Insertion point</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#i1</td><td>#c1</td></tr>
+<tr><td>#i2</td><td>#c2, #c3</td></tr>
+<tr><td>#i3</td><td>Empty</td></tr>
 </tbody></table>
-<table class="table table-striped"><thead><tr><th> Insertion point </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #i4             </td><td> #c3               </td></tr>
-<tr><td> #i5             </td><td> #c1, #c4          </td></tr>
-<tr><td> #i6             </td><td> #c2               </td></tr>
+<table class="table table-striped"><thead><tr><th>Insertion point</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#i4</td><td>#c3</td></tr>
+<tr><td>#i5</td><td>#c1, #c4</td></tr>
+<tr><td>#i6</td><td>#c2</td></tr>
 </tbody></table>
 <h2 id="v1-5"><a class="self-link" href="#v1-5">v1</a></h2>
 <pre><code class="language-html prettyprint">&lt;!-- Top level HTML --&gt;
@@ -289,15 +306,15 @@ slot name matching.</p>
 &lt;slot id=&quot;s6&quot; name=&quot;slot6&quot;&gt;&lt;/slot&gt;
 </code></pre>
 <p>The result is:</p>
-<table class="table table-striped"><thead><tr><th> Slot </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #s1  </td><td> #c1               </td></tr>
-<tr><td> #s2  </td><td> #c2               </td></tr>
-<tr><td> #s3  </td><td> #c3               </td></tr>
+<table class="table table-striped"><thead><tr><th>Slot</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#s1</td><td>#c1</td></tr>
+<tr><td>#s2</td><td>#c2</td></tr>
+<tr><td>#s3</td><td>#c3</td></tr>
 </tbody></table>
-<table class="table table-striped"><thead><tr><th> Slot </th><th> Distributed nodes </th></tr></thead><tbody>
-<tr><td> #s4  </td><td> #c1, #c2, #c4     </td></tr>
-<tr><td> #s5  </td><td> empty             </td></tr>
-<tr><td> #s6  </td><td> #c3               </td></tr>
+<table class="table table-striped"><thead><tr><th>Slot</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>#s4</td><td>#c1, #c2, #c4</td></tr>
+<tr><td>#s5</td><td>empty</td></tr>
+<tr><td>#s6</td><td>#c3</td></tr>
 </tbody></table>
 <p>You can find another complex
 <a href="http://w3c.github.io/webcomponents/spec/shadow/#flattening-example">example</a> in
@@ -333,11 +350,11 @@ this feature is &quot;default value of function parameter&quot; in a programming
 &lt;/slot&gt;
 </code></pre>
 <p>The result is</p>
-<table class="table table-striped"><thead><tr><th> Slot  </th><th> Assigned nodes </th><th> Distributed nodes   </th></tr></thead><tbody>
-<tr><td> slot1 </td><td> empty          </td><td> #fallback1, #child1 </td></tr>
-<tr><td> slot2 </td><td> #child1        </td><td> #child1             </td></tr>
-<tr><td> slot3 </td><td> empty          </td><td> #fallback3          </td></tr>
-<tr><td> slot4 </td><td> empty          </td><td> #fallback3          </td></tr>
+<table class="table table-striped"><thead><tr><th>Slot</th><th>Assigned nodes</th><th>Distributed nodes</th></tr></thead><tbody>
+<tr><td>slot1</td><td>empty</td><td>#fallback1, #child1</td></tr>
+<tr><td>slot2</td><td>#child1</td><td>#child1</td></tr>
+<tr><td>slot3</td><td>empty</td><td>#fallback3</td></tr>
+<tr><td>slot4</td><td>empty</td><td>#fallback3</td></tr>
 </tbody></table>
 <p>Thus, the flat tree will be:</p>
 <pre><code class="language-html prettyprint">&lt;div id=&quot;host&quot;&gt;
@@ -495,10 +512,10 @@ There is a small difference between them.
 After an event dispatching is done, <code>Event.composedPath()</code> returns an empty array, while <code>Event.path</code> does not.
 </div>
 <h1 id="functions-which-are-renamed"><a class="self-link" href="#functions-which-are-renamed">Functions which are renamed</a></h1>
-<table class="table table-striped"><thead><tr><th> V0                                        </th><th> V1                                                                                                      </th></tr></thead><tbody>
-<tr><td> <code>insertionPoint.getDistributedNodes()</code>    </td><td> <code>slot.assignedNodes({flatten: true})</code>                                                                   </td></tr>
-<tr><td> No equivalence                            </td><td> <code>slot.assignedNodes()</code>                                                                                  </td></tr>
-<tr><td> <code>Element.getDestinationInsertionPoints()</code> </td><td> <code>Element.assignedSlot</code> (The meaning is slightly different. It returns only the directly assigned slot.) </td></tr>
+<table class="table table-striped"><thead><tr><th>V0</th><th>V1</th></tr></thead><tbody>
+<tr><td><code>insertionPoint.getDistributedNodes()</code></td><td><code>slot.assignedNodes({flatten: true})</code></td></tr>
+<tr><td>No equivalence</td><td><code>slot.assignedNodes()</code></td></tr>
+<tr><td><code>Element.getDestinationInsertionPoints()</code></td><td><code>Element.assignedSlot</code> (The meaning is slightly different. It returns only the directly assigned slot.)</td></tr>
 </tbody></table>
 <h1 id="new-utility-functions-in-node"><a class="self-link" href="#new-utility-functions-in-node">New utility functions in Node</a></h1>
 <p>These functions are just utility functions. Thus, v0 or v1 does not matter.</p>
@@ -542,101 +559,16 @@ See <a href="https://github.com/w3c/webcomponents/issues/377">webcomponents #377
             <small>
               <a href="/">Home</a>
 	      | &copy; 2005-2021 hayato
-	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="fab fa-github"></i> GitHub</a>
+	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="bi-github"></i> GitHub</a>
+	      | <a href="https://hayatoito.github.io/feed.xml"><i class="bi-rss-fill"></i> Feed</a>
             </small>
           </footer>
           
         </div>
-        
-        <div class="d-print-none d-lg-none d-xl-block col-xl-3">
-          <nav id="toc" data-toggle="toc">
-            <nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#creating-a-shadow-root">Creating a shadow root</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0">v0</a>
-<a class="nav-link" href="#v1">v1</a>
-</nav>
-<a class="nav-link" href="#multiple-shadow-roots">Multiple Shadow Roots</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-1">v0</a>
-<a class="nav-link" href="#v1-1">v1</a>
-</nav>
-<a class="nav-link" href="#a-closed-shadow-root">A closed shadow root</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-2">v0</a>
-<a class="nav-link" href="#v1-2">v1</a>
-</nav>
-<a class="nav-link" href="#elements-which-can-be-a-shadow-host">Elements which can be a shadow host</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-3">v0</a>
-<a class="nav-link" href="#v1-3">v1</a>
-</nav>
-<a class="nav-link" href="#insertion-points-v0-vs-slots-v1">Insertion Points (v0) vs Slots (v1)</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-4">v0</a>
-<a class="nav-link" href="#v1-4">v1</a>
-</nav>
-<a class="nav-link" href="#re-distribution-directly-v0-vs-indirectly-by-flattening-v1">Re-distribution: Directly (v0) vs Indirectly by flattening (v1)</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-5">v0</a>
-<a class="nav-link" href="#v1-5">v1</a>
-</nav>
-<a class="nav-link" href="#fallback-contents">Fallback contents</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-6">v0</a>
-<a class="nav-link" href="#v1-6">v1</a>
-</nav>
-<a class="nav-link" href="#events-to-react-the-change-of-distributions">Events to react the change of distributions</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-7">v0</a>
-<a class="nav-link" href="#v1-7">v1</a>
-</nav>
-<a class="nav-link" href="#styling-for-distributed-nodes">Styling for distributed nodes</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-8">v0</a>
-<a class="nav-link" href="#v1-8">v1</a>
-</nav>
-<a class="nav-link" href="#shadow-piercing-combinators">Shadow piercing combinators</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-9">v0</a>
-<a class="nav-link" href="#v1-9">v1</a>
-</nav>
-<a class="nav-link" href="#css-cascading-order">CSS Cascading order</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-10">v0</a>
-<a class="nav-link" href="#v1-10">v1</a>
-</nav>
-<a class="nav-link" href="#sequential-focus-navigation">Sequential Focus Navigation</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-11">v0</a>
-<a class="nav-link" href="#v1-11">v1</a>
-</nav>
-<a class="nav-link" href="#delegatesfocus">DelegatesFocus</a>
-<a class="nav-link" href="#activeelement">ActiveElement</a>
-<a class="nav-link" href="#events-across-shadow-boundaries">Events across shadow boundaries</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-12">v0</a>
-<a class="nav-link" href="#v1-12">v1</a>
-</nav>
-<a class="nav-link" href="#getting-event-path">Getting Event path</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#v0-13">v0</a>
-<a class="nav-link" href="#v1-13">v1</a>
-</nav>
-<a class="nav-link" href="#functions-which-are-renamed">Functions which are renamed</a>
-<a class="nav-link" href="#new-utility-functions-in-node">New utility functions in Node</a>
-<a class="nav-link" href="#questions">Questions?</a>
-</nav>
-
-          </nav>
-        </div>
-        
       </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://hayatoito.github.io/site.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/rust.min.js"></script>

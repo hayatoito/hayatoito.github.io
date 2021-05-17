@@ -3,16 +3,16 @@
   <head>
     <title>六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017) - hayato</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card"  content="summary" />
     <meta property="twitter:title" content="六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017) - hayato"/>
     <meta property="og:image" content="https://hayatoito.github.io/favicon.png">
     
     <link rel="canonical" href="https://hayatoito.github.io/2017/faq/"/>
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="author" href="http://www.hatena.ne.jp/hayatoito1/" />
     <link href="https://hayatoito.github.io/site.css" rel="stylesheet">
     <link id="favicon" rel="icon" type="image/png" href="https://hayatoito.github.io/favicon.png" >
@@ -28,30 +28,22 @@
     </script>
     
   </head>
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <body>
     
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand d-flex">
       <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/">hayato</a>
         </li>
-      </ul>
-      <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/timeline/">Timeline</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <small><a href="https://hayatoito.github.io/feed.xml"><i class="fas fa-rss"></i></a></small>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
 	<li class="dropdown">
-	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <i class="fas fa-paint-brush"></i>
+	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	  </button>
-	  <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="dropdownMenuButton">
+	  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
 	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
 	    <button id="theme-dark" class="dropdown-item" href="#">Dark</button>
 	  </div>
@@ -60,9 +52,7 @@
     </nav>
     <div class="container">
       <div class="row">
-        
-        <div class="col col-xl-9">
-        
+        <div class="col">
           
 <article>
   <header class="page-header">
@@ -71,20 +61,20 @@
         六本木ではたらくソフトウェアエンジニアへのよくある質問とその答え (FAQ) (2015 - 2017)
       </a>
     </h1>
-    <div class="text-right">
+    <div class="text-end">
       
 	Hayato Ito
       
     </div>
     
-    <div class="text-right">
+    <div class="text-end">
       <time datetime="2017-03-20">
         2017-03-20
       </time>
     </div>
     
     
-      <div class="text-right">
+      <div class="text-end">
         (Last Update:
       <time datetime="2017-09-04">
         2017-09-04
@@ -94,6 +84,117 @@
     
   </header>
   <div class="article-content">
+    
+      <h1>Table of Contents</h1>
+      <div id="toc">
+        <ul>
+<li><a href="#contact-info">連絡先は？ (Contact Info)</a></li>
+<li><a href="#tech-lead">テックリード (Tech Lead) </a></li>
+<ul>
+<li><a href="#google-tech-lead">Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ </a></li>
+<li><a href="#what">普段、何をしていますか？ </a></li>
+<li><a href="#commits">普段、どれくらいコードを書いていますか？ </a></li>
+<li><a href="#code">普段、どのようなコードを書いてますか？ </a></li>
+<li><a href="#trip">出張は多いですか？ </a></li>
+</ul>
+<li><a href="#web-standards">Web 標準 (Web Standards) </a></li>
+<ul>
+<li><a href="#spec-editor">Spec Editor とはどのようなお仕事ですか？ </a></li>
+<li><a href="#whatwg-w3c">HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ </a></li>
+</ul>
+<li><a href="#web-components-shadow-dom">Web Components / Shadow DOM </a></li>
+<ul>
+<li><a href="#web-components">Web Components とは? </a></li>
+<li><a href="#shadow-dom">Shadow DOM とは？ </a></li>
+<li><a href="#shadow-dom-usage">Shadow DOM はどこに使用されているのですか？ </a></li>
+<li><a href="#web-components-details">もう少し詳しく Web Components について教えてください </a></li>
+<li><a href="#shadow-dom-8.8m">Shadow DOM のコードは 8,800,000 行 あるというのは本当でしょうか？ </a></li>
+<li><a href="#shadowdom-spec">Shadow DOM の Spec の場所は? </a></li>
+<li><a href="#front-end">今のフロントエンドの現状についてどう思いますか？ </a></li>
+<li><a href="#future-plans">今後 Web で取り組みたいことは？ </a></li>
+<li><a href="#dom-html">今の Web の DOM/HTML はだめだと思います。そこで私の考えた最強の DOM/HTML のアイデアがあるのですがどう思いますか？ </a></li>
+</ul>
+<li><a href="#kingsviking">漫画「王様達のヴァイキング」の技術監修 </a></li>
+<ul>
+<li><a href="#what-is-kingsviking">「王様達のヴァイキング」って？ </a></li>
+<li><a href="#kingsviking-supervisor">漫画の監修とは具体的にはどのようなことをするのでしょうか？ </a></li>
+<li><a href="#zer0">是枝くんのモデルですか？ </a></li>
+<li><a href="#sakai">坂井さんのモデルですか？ </a></li>
+<li><a href="#laughingcat">笑い猫のモデルですか？ </a></li>
+<li><a href="#valkyrja">ヴァルちゃん のモデルですか？ </a></li>
+<li><a href="#kingsviking-programming-language">漫画では、これまでどのようなプログラミング言語が登場しましたか？ </a></li>
+<li><a href="#security">監修をしているということはセキュリティの専門家ですか？ </a></li>
+</ul>
+<li><a href="#google-hiring">Google ソフトウェアエンジニアの採用 </a></li>
+<ul>
+<li><a href="#google-interview-number">今まで何人、Google でソフトウェアエンジニアの面接（インタビュー）をしましたか？ </a></li>
+<li><a href="#google-interview">インタビューではどのようなことを聞くのでしょうか？ </a></li>
+<li><a href="#google-join">Google にソフトウェアエンジニアとして入るにはどのような勉強・経験をしておけばよいでしょうか? </a></li>
+<li><a href="#google-swe">ソフトウェアエンジニアとしてはたらくにあたって Google のよいところって? </a></li>
+</ul>
+<li><a href="#google-intern">Google でのインターンについて </a></li>
+<ul>
+<li><a href="#google-intern-number">今まで何人、Google でインターンのホストをしましたか？ </a></li>
+<li><a href="#google-interview-what">Google でのソフトウェアエンジニア・インターンはどのようなことをするのでしょうか？ 応募したいのですが、スキル的に不安です...。 </a></li>
+<li><a href="#google-intern-rust">今年(2017 年)も、インターンのホストをしますか？ </a></li>
+<li><a href="#google-step-intern">Google STEP インターンではどのようなことを行うのですか？ </a></li>
+</ul>
+<li><a href="#competitive-programming">競技プログラミング / レッドコーダー </a></li>
+<ul>
+<li><a href="#redcoder">レッドコーダーになると Google からお誘いがくると聞きました。 </a></li>
+<li><a href="#google-competitive-programming">Google に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ </a></li>
+</ul>
+<li><a href="#programming">プログラミング </a></li>
+<ul>
+<li><a href="#programming-language">どのようなプログラミング言語を普段使用していますか？その用途は？ </a></li>
+<li><a href="#programming-language-values">各プログラミング言語において、後世に残すべき価値のあるものはなんだと思いますか？ </a></li>
+<li><a href="#best-programming-language">プログラミング言語がひとつだけしか選べないとしたら何を選びますか？ </a></li>
+<li><a href="#rust">Rust のよいところを教えてください。 </a></li>
+<li><a href="#rust-is-functional-programming">Rust って関数型プログラミング言語なんでしょ？ 難しそう。 </a></li>
+<li><a href="#rust-is-hard">Rust って学習コストが高いんですよね？ 難しそう。 </a></li>
+<li><a href="#icfpc">ICFP Programming Contest には何を使用して参加してますか？ </a></li>
+<li><a href="#rust-vs-scala">Scala から Rust に変えてよかったところは何ですか？ </a></li>
+<li><a href="#go">Go は使用しないのですか？ </a></li>
+<li><a href="#dynamic-programming-language-is-dead">動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? </a></li>
+<li><a href="#rust-as-scripting">使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ </a></li>
+<li><a href="#variable-is-not-box">初心者にプログラミングを教えるとき「変数は箱」は変ですか？ </a></li>
+</ul>
+<li><a href="#dev-env">開発環境 </a></li>
+<ul>
+<li><a href="#keyboard">キーボードは何を使用していますか？ </a></li>
+<li><a href="#recommended-editor">おすすめのエディタは？ </a></li>
+<li><a href="#editor">エディタは何を使用してますか？ </a></li>
+<li><a href="#emacs">Emacs で使用しているパッケージは？ </a></li>
+<li><a href="#emacs-el">Emacs の設定ファイルが 1 万行くらいあると聞いたのですがほんとうですか？ </a></li>
+<li><a href="#emacs-el-publish">Emacs の設定ファイルを公開する予定はありますか？ </a></li>
+<li><a href="#python-dev">Python の開発環境は? </a></li>
+<li><a href="#web-dev">HTML / CSS / JavaScript の開発環境は? </a></li>
+<li><a href="#cpp-dev">C++ の開発環境は? </a></li>
+<li><a href="#rust-dev">Rust の開発環境は? </a></li>
+<li><a href="#scala-dev">Scala の開発環境は? </a></li>
+<li><a href="#memo">メモ はどのようにとってますか？ </a></li>
+</ul>
+<li><a href="#study">オススメの本や勉強方法 </a></li>
+<ul>
+<li><a href="#book">オススメの本は？ </a></li>
+<li><a href="#course">Coursera や Udacity でのおすすめの オンラインのコースは？ </a></li>
+<li><a href="#python-study">Python のオススメの勉強方法は? </a></li>
+<li><a href="#haskell-study">Haskell のオススメの勉強方法は? </a></li>
+<li><a href="#scala-study">Scala のオススメの勉強方法は? </a></li>
+<li><a href="#rust-study">Rust のオススメの勉強方法は? </a></li>
+</ul>
+<li><a href="#software-engineering">ソフトウェア・エンジニアリング </a></li>
+<ul>
+<li><a href="#xxx-at-google">XXX を Google では行っていますか？ </a></li>
+</ul>
+<li><a href="#misc">その他 </a></li>
+<ul>
+<li><a href="#roppongi">タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。</a></li>
+</ul>
+</ul>
+
+      </div>
+    
     <ul>
 <li>グーグルではたらくソフトウェアエンジニアです。</li>
 <li>ご意見やご質問 あるいは Typo 等を見つけたときは
@@ -1151,129 +1252,16 @@ Amazon.com などでの順位が高くて、びっくりした覚えがありま
             <small>
               <a href="/">Home</a>
 	      | &copy; 2005-2021 hayato
-	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="fab fa-github"></i> GitHub</a>
+	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="bi-github"></i> GitHub</a>
+	      | <a href="https://hayatoito.github.io/feed.xml"><i class="bi-rss-fill"></i> Feed</a>
             </small>
           </footer>
           
         </div>
-        
-        <div class="d-print-none d-lg-none d-xl-block col-xl-3">
-          <nav id="toc" data-toggle="toc">
-            <nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#contact-info">連絡先は？ (Contact Info)</a>
-<a class="nav-link" href="#tech-lead">テックリード (Tech Lead) </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#google-tech-lead">Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ </a>
-<a class="nav-link" href="#what">普段、何をしていますか？ </a>
-<a class="nav-link" href="#commits">普段、どれくらいコードを書いていますか？ </a>
-<a class="nav-link" href="#code">普段、どのようなコードを書いてますか？ </a>
-<a class="nav-link" href="#trip">出張は多いですか？ </a>
-</nav>
-<a class="nav-link" href="#web-standards">Web 標準 (Web Standards) </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#spec-editor">Spec Editor とはどのようなお仕事ですか？ </a>
-<a class="nav-link" href="#whatwg-w3c">HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ </a>
-</nav>
-<a class="nav-link" href="#web-components-shadow-dom">Web Components / Shadow DOM </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#web-components">Web Components とは? </a>
-<a class="nav-link" href="#shadow-dom">Shadow DOM とは？ </a>
-<a class="nav-link" href="#shadow-dom-usage">Shadow DOM はどこに使用されているのですか？ </a>
-<a class="nav-link" href="#web-components-details">もう少し詳しく Web Components について教えてください </a>
-<a class="nav-link" href="#shadow-dom-8.8m">Shadow DOM のコードは 8,800,000 行 あるというのは本当でしょうか？ </a>
-<a class="nav-link" href="#shadowdom-spec">Shadow DOM の Spec の場所は? </a>
-<a class="nav-link" href="#front-end">今のフロントエンドの現状についてどう思いますか？ </a>
-<a class="nav-link" href="#future-plans">今後 Web で取り組みたいことは？ </a>
-<a class="nav-link" href="#dom-html">今の Web の DOM/HTML はだめだと思います。そこで私の考えた最強の DOM/HTML のアイデアがあるのですがどう思いますか？ </a>
-</nav>
-<a class="nav-link" href="#kingsviking">漫画「王様達のヴァイキング」の技術監修 </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#what-is-kingsviking">「王様達のヴァイキング」って？ </a>
-<a class="nav-link" href="#kingsviking-supervisor">漫画の監修とは具体的にはどのようなことをするのでしょうか？ </a>
-<a class="nav-link" href="#zer0">是枝くんのモデルですか？ </a>
-<a class="nav-link" href="#sakai">坂井さんのモデルですか？ </a>
-<a class="nav-link" href="#laughingcat">笑い猫のモデルですか？ </a>
-<a class="nav-link" href="#valkyrja">ヴァルちゃん のモデルですか？ </a>
-<a class="nav-link" href="#kingsviking-programming-language">漫画では、これまでどのようなプログラミング言語が登場しましたか？ </a>
-<a class="nav-link" href="#security">監修をしているということはセキュリティの専門家ですか？ </a>
-</nav>
-<a class="nav-link" href="#google-hiring">Google ソフトウェアエンジニアの採用 </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#google-interview-number">今まで何人、Google でソフトウェアエンジニアの面接（インタビュー）をしましたか？ </a>
-<a class="nav-link" href="#google-interview">インタビューではどのようなことを聞くのでしょうか？ </a>
-<a class="nav-link" href="#google-join">Google にソフトウェアエンジニアとして入るにはどのような勉強・経験をしておけばよいでしょうか? </a>
-<a class="nav-link" href="#google-swe">ソフトウェアエンジニアとしてはたらくにあたって Google のよいところって? </a>
-</nav>
-<a class="nav-link" href="#google-intern">Google でのインターンについて </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#google-intern-number">今まで何人、Google でインターンのホストをしましたか？ </a>
-<a class="nav-link" href="#google-interview-what">Google でのソフトウェアエンジニア・インターンはどのようなことをするのでしょうか？ 応募したいのですが、スキル的に不安です...。 </a>
-<a class="nav-link" href="#google-intern-rust">今年(2017 年)も、インターンのホストをしますか？ </a>
-<a class="nav-link" href="#google-step-intern">Google STEP インターンではどのようなことを行うのですか？ </a>
-</nav>
-<a class="nav-link" href="#competitive-programming">競技プログラミング / レッドコーダー </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#redcoder">レッドコーダーになると Google からお誘いがくると聞きました。 </a>
-<a class="nav-link" href="#google-competitive-programming">Google に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ </a>
-</nav>
-<a class="nav-link" href="#programming">プログラミング </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#programming-language">どのようなプログラミング言語を普段使用していますか？その用途は？ </a>
-<a class="nav-link" href="#programming-language-values">各プログラミング言語において、後世に残すべき価値のあるものはなんだと思いますか？ </a>
-<a class="nav-link" href="#best-programming-language">プログラミング言語がひとつだけしか選べないとしたら何を選びますか？ </a>
-<a class="nav-link" href="#rust">Rust のよいところを教えてください。 </a>
-<a class="nav-link" href="#rust-is-functional-programming">Rust って関数型プログラミング言語なんでしょ？ 難しそう。 </a>
-<a class="nav-link" href="#rust-is-hard">Rust って学習コストが高いんですよね？ 難しそう。 </a>
-<a class="nav-link" href="#icfpc">ICFP Programming Contest には何を使用して参加してますか？ </a>
-<a class="nav-link" href="#rust-vs-scala">Scala から Rust に変えてよかったところは何ですか？ </a>
-<a class="nav-link" href="#go">Go は使用しないのですか？ </a>
-<a class="nav-link" href="#dynamic-programming-language-is-dead">動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? </a>
-<a class="nav-link" href="#rust-as-scripting">使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ </a>
-<a class="nav-link" href="#variable-is-not-box">初心者にプログラミングを教えるとき「変数は箱」は変ですか？ </a>
-</nav>
-<a class="nav-link" href="#dev-env">開発環境 </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#keyboard">キーボードは何を使用していますか？ </a>
-<a class="nav-link" href="#recommended-editor">おすすめのエディタは？ </a>
-<a class="nav-link" href="#editor">エディタは何を使用してますか？ </a>
-<a class="nav-link" href="#emacs">Emacs で使用しているパッケージは？ </a>
-<a class="nav-link" href="#emacs-el">Emacs の設定ファイルが 1 万行くらいあると聞いたのですがほんとうですか？ </a>
-<a class="nav-link" href="#emacs-el-publish">Emacs の設定ファイルを公開する予定はありますか？ </a>
-<a class="nav-link" href="#python-dev">Python の開発環境は? </a>
-<a class="nav-link" href="#web-dev">HTML / CSS / JavaScript の開発環境は? </a>
-<a class="nav-link" href="#cpp-dev">C++ の開発環境は? </a>
-<a class="nav-link" href="#rust-dev">Rust の開発環境は? </a>
-<a class="nav-link" href="#scala-dev">Scala の開発環境は? </a>
-<a class="nav-link" href="#memo">メモ はどのようにとってますか？ </a>
-</nav>
-<a class="nav-link" href="#study">オススメの本や勉強方法 </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#book">オススメの本は？ </a>
-<a class="nav-link" href="#course">Coursera や Udacity でのおすすめの オンラインのコースは？ </a>
-<a class="nav-link" href="#python-study">Python のオススメの勉強方法は? </a>
-<a class="nav-link" href="#haskell-study">Haskell のオススメの勉強方法は? </a>
-<a class="nav-link" href="#scala-study">Scala のオススメの勉強方法は? </a>
-<a class="nav-link" href="#rust-study">Rust のオススメの勉強方法は? </a>
-</nav>
-<a class="nav-link" href="#software-engineering">ソフトウェア・エンジニアリング </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#xxx-at-google">XXX を Google では行っていますか？ </a>
-</nav>
-<a class="nav-link" href="#misc">その他 </a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#roppongi">タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。</a>
-</nav>
-</nav>
-
-          </nav>
-        </div>
-        
       </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://hayatoito.github.io/site.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/rust.min.js"></script>

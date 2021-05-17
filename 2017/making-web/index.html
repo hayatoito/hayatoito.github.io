@@ -3,16 +3,16 @@
   <head>
     <title>Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた - hayato</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card"  content="summary" />
     <meta property="twitter:title" content="Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた - hayato"/>
     <meta property="og:image" content="https://hayatoito.github.io/favicon.png">
     
     <link rel="canonical" href="https://hayatoito.github.io/2017/making-web/"/>
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="author" href="http://www.hatena.ne.jp/hayatoito1/" />
     <link href="https://hayatoito.github.io/site.css" rel="stylesheet">
     <link id="favicon" rel="icon" type="image/png" href="https://hayatoito.github.io/favicon.png" >
@@ -28,30 +28,22 @@
     </script>
     
   </head>
-  <body data-spy="scroll" data-target="#toc" data-offset="50">
+  <body>
     
-    <nav class="navbar navbar-expand">
+    <nav class="navbar navbar-expand d-flex">
       <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/">hayato</a>
         </li>
-      </ul>
-      <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" href="https://hayatoito.github.io/timeline/">Timeline</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <small><a href="https://hayatoito.github.io/feed.xml"><i class="fas fa-rss"></i></a></small>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ms-auto">
 	<li class="dropdown">
-	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <i class="fas fa-paint-brush"></i>
+	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	  </button>
-	  <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="dropdownMenuButton">
+	  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
 	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
 	    <button id="theme-dark" class="dropdown-item" href="#">Dark</button>
 	  </div>
@@ -60,9 +52,7 @@
     </nav>
     <div class="container">
       <div class="row">
-        
-        <div class="col col-xl-9">
-        
+        <div class="col">
           
 <article>
   <header class="page-header">
@@ -71,13 +61,13 @@
         Web のつくりかた: ソフトウェアエンジニアリングと雰囲気で理解する Web 標準とブラウザのつくりかた
       </a>
     </h1>
-    <div class="text-right">
+    <div class="text-end">
       
 	Hayato Ito
       
     </div>
     
-    <div class="text-right">
+    <div class="text-end">
       <time datetime="2017-12-25">
         2017-12-25
       </time>
@@ -86,6 +76,63 @@
     
   </header>
   <div class="article-content">
+    
+      <h1>Table of Contents</h1>
+      <div id="toc">
+        <ul>
+<li><a href="#web">Web プラットフォーム</a></li>
+<ul>
+<li><a href="#web-web-standards">Web 標準 (Web Standards)</a></li>
+<li><a href="#browser-vendor">ブラウザベンダ (Browser Vendor)</a></li>
+</ul>
+<li><a href="#web-web">Web のつくりかた: Web 標準編</a></li>
+<ul>
+<li><a href="#dom-standard">DOM Standard</a></li>
+<li><a href="#html-standard">HTML Standard</a></li>
+<li><a href="#web-1">Web 標準の更新のしかた</a></li>
+<li><a href="#wontfix-close-issue">WONTFIX / Close されやすい Issue</a></li>
+<li><a href="#a">ブラウザベンダが気にするところ</a></li>
+<li><a href="#web-web-plaform-test">Web プラットフォームテスト (Web Plaform Test)</a></li>
+<li><a href="#a-1">名前の衝突 / 後方互換製を壊す恐れ</a></li>
+<li><a href="#a-2">いつまでたっても実装されない仕様の取り扱い</a></li>
+<li><a href="#whatwg">WHATWG</a></li>
+</ul>
+<li><a href="#web-2">Web のつくりかた: ブラウザ編</a></li>
+<ul>
+<li><a href="#web-api">新機能の実装 / 新しい Web API をプラットフォームに追加する</a></li>
+<li><a href="#web-api-1">既存の機能の削除 / 既存の Web API をプラットフォームから削除する</a></li>
+</ul>
+<li><a href="#a-3">開発ツール・インフラ</a></li>
+<ul>
+<li><a href="#cl">CL</a></li>
+<li><a href="#a-4">ビルド</a></li>
+<li><a href="#a-5">クラウドコンパイル</a></li>
+<li><a href="#a-6">開発環境</a></li>
+<li><a href="#a-7">デバッグ</a></li>
+<li><a href="#git">バージョン管理: Git</a></li>
+<li><a href="#bug-tracking">Bug Tracking</a></li>
+<li><a href="#a-8">レビュー</a></li>
+</ul>
+<li><a href="#a-9">ソフトウェアエンジニアリング / 実践しているプラクティス</a></li>
+<ul>
+<li><a href="#always-on-tot">Always on ToT (常に先端に載っておく）</a></li>
+<li><a href="#a-10">炭鉱のカナリア</a></li>
+<li><a href="#a-11">短いリリースサイクル</a></li>
+<li><a href="#a-12">ビルドの再現性</a></li>
+<li><a href="#presubmit">presubmit チェック / コーディングスタイル / コードフォーマットツール</a></li>
+<li><a href="#owner">Owner システム</a></li>
+<li><a href="#a-13">テスト</a></li>
+<li><a href="#bots-ci">Bots (ボット) / CI (継続的インテグレーション)</a></li>
+<li><a href="#sherriff">Sherriff (シェリフ: 保安官)</a></li>
+<li><a href="#fuzzer">Fuzzer</a></li>
+<li><a href="#okrs">OKRs</a></li>
+<li><a href="#a-14">やっていないこと / ほとんど流行っていないこと / そんな言葉はだれも使っていない</a></li>
+</ul>
+<li><a href="#a-15">最後に</a></li>
+</ul>
+
+      </div>
+    
     <p>この記事は
 <a href="https://qiita.com/advent-calendar/2017/chromium">Chromium Browser アドベントカレンダー</a>
 25 日目の記事です。</p>
@@ -573,75 +620,16 @@ var event_handler_C4_DOMFocusIn_fired_count = 0;
             <small>
               <a href="/">Home</a>
 	      | &copy; 2005-2021 hayato
-	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="fab fa-github"></i> GitHub</a>
+	      | <a href="https://github.com/hayatoito/hayatoito.github.io/"><i class="bi-github"></i> GitHub</a>
+	      | <a href="https://hayatoito.github.io/feed.xml"><i class="bi-rss-fill"></i> Feed</a>
             </small>
           </footer>
           
         </div>
-        
-        <div class="d-print-none d-lg-none d-xl-block col-xl-3">
-          <nav id="toc" data-toggle="toc">
-            <nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#web">Web プラットフォーム</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#web-web-standards">Web 標準 (Web Standards)</a>
-<a class="nav-link" href="#browser-vendor">ブラウザベンダ (Browser Vendor)</a>
-</nav>
-<a class="nav-link" href="#web-web">Web のつくりかた: Web 標準編</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#dom-standard">DOM Standard</a>
-<a class="nav-link" href="#html-standard">HTML Standard</a>
-<a class="nav-link" href="#web-1">Web 標準の更新のしかた</a>
-<a class="nav-link" href="#wontfix-close-issue">WONTFIX / Close されやすい Issue</a>
-<a class="nav-link" href="#a">ブラウザベンダが気にするところ</a>
-<a class="nav-link" href="#web-web-plaform-test">Web プラットフォームテスト (Web Plaform Test)</a>
-<a class="nav-link" href="#a-1">名前の衝突 / 後方互換製を壊す恐れ</a>
-<a class="nav-link" href="#a-2">いつまでたっても実装されない仕様の取り扱い</a>
-<a class="nav-link" href="#whatwg">WHATWG</a>
-</nav>
-<a class="nav-link" href="#web-2">Web のつくりかた: ブラウザ編</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#web-api">新機能の実装 / 新しい Web API をプラットフォームに追加する</a>
-<a class="nav-link" href="#web-api-1">既存の機能の削除 / 既存の Web API をプラットフォームから削除する</a>
-</nav>
-<a class="nav-link" href="#a-3">開発ツール・インフラ</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#cl">CL</a>
-<a class="nav-link" href="#a-4">ビルド</a>
-<a class="nav-link" href="#a-5">クラウドコンパイル</a>
-<a class="nav-link" href="#a-6">開発環境</a>
-<a class="nav-link" href="#a-7">デバッグ</a>
-<a class="nav-link" href="#git">バージョン管理: Git</a>
-<a class="nav-link" href="#bug-tracking">Bug Tracking</a>
-<a class="nav-link" href="#a-8">レビュー</a>
-</nav>
-<a class="nav-link" href="#a-9">ソフトウェアエンジニアリング / 実践しているプラクティス</a>
-<nav class="nav nav-pills flex-column">
-<a class="nav-link" href="#always-on-tot">Always on ToT (常に先端に載っておく）</a>
-<a class="nav-link" href="#a-10">炭鉱のカナリア</a>
-<a class="nav-link" href="#a-11">短いリリースサイクル</a>
-<a class="nav-link" href="#a-12">ビルドの再現性</a>
-<a class="nav-link" href="#presubmit">presubmit チェック / コーディングスタイル / コードフォーマットツール</a>
-<a class="nav-link" href="#owner">Owner システム</a>
-<a class="nav-link" href="#a-13">テスト</a>
-<a class="nav-link" href="#bots-ci">Bots (ボット) / CI (継続的インテグレーション)</a>
-<a class="nav-link" href="#sherriff">Sherriff (シェリフ: 保安官)</a>
-<a class="nav-link" href="#fuzzer">Fuzzer</a>
-<a class="nav-link" href="#okrs">OKRs</a>
-<a class="nav-link" href="#a-14">やっていないこと / ほとんど流行っていないこと / そんな言葉はだれも使っていない</a>
-</nav>
-<a class="nav-link" href="#a-15">最後に</a>
-</nav>
-
-          </nav>
-        </div>
-        
       </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://hayatoito.github.io/site.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/rust.min.js"></script>
