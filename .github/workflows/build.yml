@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./cache
-          key: ${{ runner.os }}-cache-site-${{ hashFiles('.env') }}
+          key: ${{ runner.os }}-cache-site-1-${{ hashFiles('.env') }}
       - name: Download site
         if: steps.cache-site.outputs.cache-hit != 'true'
         run: |
