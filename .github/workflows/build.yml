@@ -16,21 +16,20 @@ jobs:
         run: |
           . ./.env
           echo "::set-output name=SITE_VERSION::${SITE_VERSION}"
-      # We can not cache ~/.cargo/bin, which is considered harmful.
-      - name: Cache cargo bin
-        id: cache-cargo-bin
+      - name: Cache site
+        id: cache-site
         uses: actions/cache@v2
         with:
-          path: ./cache-cargo-bin
-          key: ${{ runner.os }}-cargo-bin-${{ hashFiles('.env') }}
-      - name: Install site
-        if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
+          path: ./cache
+          key: ${{ runner.os }}-cache-site-${{ hashFiles('.env') }}
+      - name: Download site
+        if: steps.cache-site.outputs.cache-hit != 'true'
         run: |
-          cargo install --version ${{ steps.site-version.outputs.SITE_VERSION }} site
-          mkdir -p ./cache-cargo-bin
-          cp -a ~/.cargo/bin/site ./cache-cargo-bin/site
+          mkdir -p ~/cache
+          cd ~/cache && curl -L -O https://github.com/hayatoito/site/releases/download/v${{ steps.site-version.outputs.SITE_VERSION }}/site-x86_64-unknown-linux-musl.tar.gz
+          cd ~/cache && tar xvfz site-x86_64-unknown-linux-musl.tar.gz
       - name: Build
-        run: ./cache-cargo-bin/site build --root-dir . --config=config-release.toml --out-dir ./out
+        run: ~/cache/site build --root-dir . --config=config-release.toml --out-dir ./out
       - name: Deploy
         if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
