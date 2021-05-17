@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% block title %}{{ site_name|striptags }}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card"  content="summary" />
@@ -28,6 +27,7 @@
       gtag('config', '{{ google_analytics_tracking_id }}');
     </script>
     {% endif %}
+    <title>{% block title %}{{ site_name|striptags }}{% endblock %}</title>
   </head>
   <body>
     {% block body_content %}
