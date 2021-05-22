@@ -18,6 +18,12 @@ build_release() {
   site ${site_options} build --root-dir . --config=config-release.toml --out-dir ${out_release}
 }
 
+dev() {
+  build
+  serve &
+  watch
+}
+
 watch() {
   watchexec --watch src --watch template my-make build
 }
@@ -34,26 +40,28 @@ clean_release() {
   [[ -d ${out_release} ]] && rm -rf ${out_release} || true
 }
 
+# Deprecated: We use GitHub Actions
+
 # Note: ghp-import resets a given {branch} to origin/{branch}, then
 # creates a new commit on the top of it.
-deploy_to_gh_pages() {
-  clean_release
-  build_release
-  ghp-import -b gh-pages ${out_release}
-}
+# deploy_to_gh_pages() {
+#   clean_release
+#   build_release
+#   ghp-import -b gh-pages ${out_release}
+# }
 
-publish() {
-  deploy_to_gh_pages
-  git push origin gh-pages
-}
+# publish() {
+#   deploy_to_gh_pages
+#   git push origin gh-pages
+# }
 
-squash_gh_pages_history() {
-  return 1  # To avoid accidental update
-  local revision=$1
-  : # Reset origin/master to a previous commit
-  git update-ref refs/remotes/origin/gh-pages ${revision}
-  : # Make a new commit on the top of origin/master
-  deploy_to_gh_pages
-  : # '--force' is required because remote's gh-pages is discarded.
-  git push --force origin gh-pages
-}
+# squash_gh_pages_history() {
+#   return 1  # To avoid accidental update
+#   local revision=$1
+#   : # Reset origin/master to a previous commit
+#   git update-ref refs/remotes/origin/gh-pages ${revision}
+#   : # Make a new commit on the top of origin/master
+#   deploy_to_gh_pages
+#   : # '--force' is required because remote's gh-pages is discarded.
+#   git push --force origin gh-pages
+# }
