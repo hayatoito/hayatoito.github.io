@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site_name|striptags }}">
     <meta name="twitter:card"  content="summary" />
     <meta property="twitter:title" content="{% block og_title %}{{ site_name|striptags }}{% endblock %}"/>
     <meta property="og:image" content="{{ site_url }}/favicon.png">
@@ -41,7 +42,7 @@
       </ul>
       <ul class="navbar-nav ms-auto">
 	<li class="dropdown">
-	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-label="theme" aria-expanded="false">
 	  </button>
 	  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
 	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
