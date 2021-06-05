@@ -8,15 +8,14 @@
   --link-color: #337ab7;
   --red-color: #ff6a6a;
   --brown-color: olive;
-  --code-color: #e83e8c; /* default */
   --code-builtin-color: #333;
   --progress-bar-color: #fff;
   --progress-bar-background-color: #3387cc;
+  --blue-color: darkblue;
   --green-color: green;
-  --yellow-color: yellow;
   --purple-color: purple;
   --cyan-color: cyan;
-  --comment-color: green;
+  --comment-color: #919eb8;
   --pink-color: darkred;
   --keyword-color: teal;
 }
@@ -29,19 +28,17 @@
   --background-color: #222;
   --background-color-2: #333;
   --link-color: #63b8ff;
-  --red-color: #ff6a6a;
+  --red-color: #bf616a;
   --brown-color: #deb887;
-  --code-color: #ffc0cb;
   --code-builtin-color: #fff;
   --progress-bar-color: #fff;
   --progress-bar-background-color: #3387cc;
-  --green-color: #04f97f;
-  --yellow-color: #f0e68c;
-  --purple-color: #ab82ff;
-  --cyan-color: #7fffd4;
-  --comment-color: #98fb98;
-  --pink-color: #ffc0cb;
-  --keyword-color: #b4cdcd;
+  --blue-color: #81a1c1;
+  --green-color: #a3be8c;
+  --purple-color: #b48ead;
+  --cyan-color: #8fbcbb;
+  --comment-color: #919ea8;
+  --keyword-color: #81a1c1;
 }
 
 body {
@@ -52,6 +49,21 @@ body {
 
 p {
   margin: 1rem 0;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+hr {
+  border-top: 1px solid var(--color-3);
 }
 
 /* navbar */
@@ -101,7 +113,6 @@ thead > tr > td {
 }
 
 /* button */
-
 .btn {
   color: var(--color);
 }
@@ -146,44 +157,45 @@ thead > tr > td {
 }
 
 .article-info {
-  border-left-color: var(--link-color);
+  border-left-color: var(--blue-color);
 }
 .article-danger {
   border-left-color: var(--red-color);
 }
 
 /* header and footers */
-.page-header {
+.site-header {
   margin: 1rem 0;
 }
 
-article .site-article-title,
-.site-page .site-page-title {
+.site-title {
   font-size: 2rem;
 }
 
-article h1,
-.site-page h1 {
+.site-content h1 {
   font-size: 1.8rem;
   margin-top: 2em;
 }
 
-article header h1,
-.site-page h1:nth-child(1) {
+h1.site-title {
   margin-top: 1em;
 }
 
-h1.timeline-year {
+h1.site-timeline-year {
   margin-top: 0.5em;
 }
 
-article h2,
-.site-page h2 {
+.site-content h2 {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+.site-content h3 {
   font-size: 1.4rem;
   margin-top: 2rem;
 }
 
-.base-footer {
+.site-footer {
   color: var(--color-2);
 }
 
@@ -191,28 +203,13 @@ article h2,
   margin-bottom: 1rem;
 }
 
-article img {
+.site-article img {
   max-width: 100%;
   height: auto;
 }
 
-article img[src$=".svg"] {
+.site-article img[src$=".svg"] {
   background-color: #fff;
-}
-
-hr {
-  border-top: 1px solid var(--color-3);
-}
-
-a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  color: var(--link-color);
-  text-decoration: underline;
 }
 
 blockquote {
@@ -224,7 +221,10 @@ blockquote {
 
 /* code */
 code {
-  color: var(--code-color);
+  color: var(--color);
+  background-color: var(--background-color-2);
+  border-radius: 6px;
+  padding: 2.7px 5.4px;
 }
 
 pre {
@@ -284,8 +284,8 @@ h3 > a.self-link:hover::after {
 }
 
 /* highlight.js */
-/* Borrows from https://github.com/highlightjs/highlight.js/blob/master/src/styles/rainbow.css */
 
+/* Borrows from https://github.com/highlightjs/highlight.js/blob/master/src/styles/rainbow.css */
 .hljs {
   display: block;
   overflow-x: auto;
@@ -296,7 +296,6 @@ h3 > a.self-link:hover::after {
   color: var(--code-builtin-color);
 }
 
-.hljs-symbol,
 .hljs-bullet,
 .hljs-meta,
 .hljs-subst,
@@ -306,13 +305,13 @@ h3 > a.self-link:hover::after {
 }
 
 .hljs-doctag {
-  color: var(--yellow-color);
+  color: var(--comment-color);
 }
 
 .hljs-title,
 .hljs-name,
 .hljs-section {
-  color: var(--link-color);
+  color: var(--blue-color);
 }
 
 .hljs-number,
@@ -333,7 +332,8 @@ h3 > a.self-link:hover::after {
 
 .hljs-string,
 .hljs-regexp {
-  color: var(--brown-color);
+  /* color: var(--brown-color); */
+  color: var(--green-color);
 }
 
 .hljs-variable,
@@ -342,7 +342,7 @@ h3 > a.self-link:hover::after {
 .hljs-class .hljs-title,
 .hljs-attr,
 .hljs-attribute {
-  color: var(--pink-color);
+  color: var(--color);
 }
 
 .hljs-keyword,
