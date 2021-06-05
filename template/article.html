@@ -4,9 +4,9 @@
 {% block og_title %}{{ article.title|striptags }} - {{ super() }}{% endblock %}
 
 {% block content %}
-<article>
-  <header class="page-header">
-    <h1 id="top" class="site-article-title">
+<section class="site-content site-article">
+  <header class="site-header">
+    <h1 id="top" class="site-title">
       <a href="{{ site_url }}/{{ article.url }}" class="self-link">
         {{ article.title|striptags }}
       </a>
@@ -44,6 +44,6 @@
     {% endif %}
     {{ article.content }}
   </div>
-</article>
+</section>
 
 {% endblock content %}

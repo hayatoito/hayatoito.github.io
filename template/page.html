@@ -3,8 +3,8 @@
 {% block title %}{{ page.title|striptags }} - {{ super() }}{% endblock %}
 {% block og_title %}{{ page.title|striptags }} - {{ super() }}{% endblock %}
 {% block content %}
-<section id="content" class="content site-page">
-  <header><h1 class="page-header site-page-title">{{ page.title|striptags }}</h1></header>
+<section class="site-content site-page">
+  <header class="site-header"><h1 class="site-title">{{ page.title|striptags }}</h1></header>
   {{ page.content }}
 </section>
 {% endblock content %}
