@@ -1,0 +1,127 @@
+/* https://cdnjs.com/libraries/highlight.js */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css")
+(prefers-color-scheme: light);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark.min.css")
+(prefers-color-scheme: dark);
+
+/* https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css */
+body {
+  padding-bottom: 1rem;
+}
+
+.container {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 45px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+/* navbar */
+.navbar {
+  padding: 0.2rem 1rem;
+  background-color: var(--color-neutral-muted) !important;
+}
+
+.nav-link {
+  color: var(--color-fg-default) !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--color-accent-fg) !important;
+}
+
+/* self links */
+h1 > a.self-link,
+h2 > a.self-link,
+h3 > a.self-link,
+h4 > a.self-link,
+h5 > a.self-link,
+h6 > a.self-link {
+  color: var(--color);
+}
+
+h1 > a.self-link:hover,
+h2 > a.self-link:hover,
+h3 > a.self-link:hover,
+h4 > a.self-link:hover,
+h5 > a.self-link:hover,
+h6 > a.self-link:hover {
+  text-decoration: none;
+}
+
+/* Borrowed from github-markdown.css */
+h1 > a.self-link:hover::after,
+h2 > a.self-link:hover::after,
+h3 > a.self-link:hover::after,
+h4 > a.self-link:hover::after,
+h5 > a.self-link:hover::after,
+h6 > a.self-link:hover::after {
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.2em;
+  content: " ";
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+/* header and footer */
+.site-header {
+  margin: 1rem 0;
+}
+
+.site-footer {
+  color: var(--color-fg-muted);
+  font-size: smaller;
+  text-align: center;
+}
+
+.site-footnote-title {
+  margin-bottom: 1rem;
+}
+
+/* article */
+.article-author,
+.article-date {
+  text-align: right;
+}
+
+/* Message boxes. Borrows from bootstrap's document */
+.article-info,
+.article-danger {
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-left-width: 2px;
+  margin: 1rem 0;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.article-info {
+  border-left-color: var(--color-accent-emphasis);
+}
+
+.article-danger {
+  border-left-color: var(--color-danger-fg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-article img[src*="svg"] {
+    background-color: var(--color-fg-muted);
+  }
+}
+
+.site-article img {
+  max-width: 100%;
+  height: auto;
+}

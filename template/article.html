@@ -6,12 +6,12 @@
 {% block content %}
 <section class="site-content site-article">
   <header class="site-header">
-    <h1 id="top" class="site-title">
+    <h1 class="site-title">
       <a href="{{ site_url }}/{{ article.url }}" class="self-link">
         {{ article.title|striptags }}
       </a>
     </h1>
-    <div class="text-end">
+    <div class="article-author">
       {% if article.author %}
 	{{ article.author }}
       {% else %}
@@ -19,14 +19,14 @@
       {% endif %}
     </div>
     {% if not article.hide_date %}
-    <div class="text-end">
+    <div class="article-date">
       <time datetime="{{ article.date }}">
         {{ article.date }}
       </time>
     </div>
     {% endif %}
     {% if article.update_date %}
-      <div class="text-end">
+      <div class="article-date">
         (Last Update:
       <time datetime="{{ article.update_date }}">
         {{ article.update_date }}

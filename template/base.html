@@ -12,9 +12,9 @@
     {% elif page %}
     <link rel="canonical" href="{{ site_url }}/{{ page.url }}"/>
     {% endif %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="author" href="http://www.hatena.ne.jp/{{ hatena_id }}/" />
-    <link href="{{ site_url }}/site.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css" rel="stylesheet">
+    <link href="{{ site_url }}/site2.css" rel="stylesheet">
     <link id="favicon" rel="icon" type="image/png" href="{{ site_url }}/favicon.png" >
     <link href="{{ site_url }}/feed.xml" rel="alternate"
           title="{{ site_name }}" type="application/atom+xml">
@@ -29,43 +29,21 @@
     {% endif %}
     <title>{% block title %}{{ site_name|striptags }}{% endblock %}</title>
   </head>
-  <body>
-    <nav class="navbar navbar-expand d-flex">
-      <ul class="navbar-nav">
-        <li class="nav-item {% block nav_home_active %}{% endblock %}">
-          <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto">
-	<li class="dropdown">
-	  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-label="theme" aria-expanded="false">
-	  </button>
-	  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-	    <button id="theme-light" class="dropdown-item" href="#">Light</button>
-	    <button id="theme-dark" class="dropdown-item" href="#">Dark</button>
-	  </div>
-	</li>
-      </ul>
+  <body class="markdown-body">
+    <nav class="navbar">
+      <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
     </nav>
     <div class="container">
-      <div class="row">
-        <div class="col">
-          {% block content %}
-          {% endblock content %}
-          <footer class="site-footer text-center">
-            <small>
-              <a href="/">Home</a>
-	      | <a href="{{ github }}">GitHub</a>
-	      | <a href="{{ site_url }}/feed.xml">Feed</a>
-	      | &copy; 2005-2021 hayato
-            </small>
-          </footer>
-        </div>
-      </div>
+      {% block content %}
+      {% endblock content %}
+      <footer class="site-footer">
+          <a href="/">Home</a>
+	  | <a href="{{ github }}">GitHub</a>
+	  | <a href="{{ site_url }}/feed.xml">Feed</a>
+	  | &copy; 2005-2021 hayato
+      </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="{{ site_url }}/site.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>
