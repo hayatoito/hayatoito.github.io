@@ -22,7 +22,7 @@ make my best efforts to maintain this guide.
 Use `Element.createShadowRoot()`.
 
 ```javascript
-let e = document.createElement('div');
+let e = document.createElement("div");
 let shadowRoot = e.createShadowRoot();
 ```
 
@@ -31,15 +31,15 @@ let shadowRoot = e.createShadowRoot();
 Use `Element.attachShadow({ mode: 'open' })` for an _open_ shadow root.
 
 ```javascript
-let e = document.createElement('div');
-let shadowRoot = e.attachShadow({ mode: 'open' });
+let e = document.createElement("div");
+let shadowRoot = e.attachShadow({ mode: "open" });
 ```
 
 Use `Element.attachShadow({ mode: 'closed' })` for a _closed_ shadow root.
 
 ```javascript
-let e = document.createElement('div');
-let shadowRoot = e.attachShadow({ mode: 'closed' });
+let e = document.createElement("div");
+let shadowRoot = e.attachShadow({ mode: "closed" });
 ```
 
 <div class="article-danger">
@@ -47,7 +47,7 @@ A <code>mode</code> is mandatory in v1.
 </div>
 
 ```javascript
-let e = document.createElement('div');
+let e = document.createElement("div");
 // let shadowRoot = e.attachShadow(); // Throws an exception because `mode` is not given.
 ```
 
@@ -58,7 +58,7 @@ let e = document.createElement('div');
 Supported.
 
 ```javascript
-let e = document.createElement('div');
+let e = document.createElement("div");
 let olderShadowRoot = e.createShadowRoot();
 let youngerShadowRoot = e.createShadowRoot(); // It's okay. A shadow host can host more than one shadow roots.
 ```
@@ -73,8 +73,8 @@ Blink has already deprecated this feature even in v0. Do not use multiple shadow
 No longer supported.
 
 ```javascript
-let e = document.createElement('div');
-let shadowRoot = e.attachShadow({ mode: 'open' });
+let e = document.createElement("div");
+let shadowRoot = e.attachShadow({ mode: "open" });
 // let another = e.attachShadow({ mode: 'open' });  // Error.
 ```
 
@@ -98,16 +98,16 @@ shadow root in its implementation in Blink.
 Open:
 
 ```javascript
-let e = document.createElement('div');
-let shadowRoot = e.attachShadow({ mode: 'open' });
+let e = document.createElement("div");
+let shadowRoot = e.attachShadow({ mode: "open" });
 console.assert(e.shadowRoot == shadowRoot); // It's okay. shadowHost.shadowRoot returns a shadow root if it is open.
 ```
 
 Closed:
 
 ```javascript
-let e = document.createElement('div');
-let shadowRoot = e.attachShadow({ mode: 'closed' });
+let e = document.createElement("div");
+let shadowRoot = e.attachShadow({ mode: "closed" });
 console.assert(e.shadowRoot == null); // shadowHost.shadowRoot does not return the shadow root if it is closed.
 ```
 
@@ -137,8 +137,8 @@ Nothing prevents <code>Element.prototype.attachShadow</code> from being hijacked
 Every element can be a shadow host, _theoretically_.
 
 ```javascript
-let shadowRoot1 = document.createElement('div').createShadowRoot();
-let shadowRoot2 = document.createElement('input').createShadowRoot(); // Should be okay.
+let shadowRoot1 = document.createElement("div").createShadowRoot();
+let shadowRoot2 = document.createElement("input").createShadowRoot(); // Should be okay.
 ```
 
 <div class=article-danger>
@@ -152,7 +152,7 @@ Blink has already banned most of the supports.
 A limited number of elements can be a shadow host.
 
 ```javascript
-let shadowRoot = document.createElement('div').attachShadow({ mode: 'open' });
+let shadowRoot = document.createElement("div").attachShadow({ mode: "open" });
 // document.createElement('input').attachShadow({ mode: 'open' });  // Error. `<input>` can not be a shadow host.
 ```
 
@@ -168,7 +168,6 @@ Custom elements can be a shadow host.
 Use `<content select=query>` to select host's children. It can select host's
 children by CSS query selector.
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -178,7 +177,6 @@ children by CSS query selector.
 </my-host>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-host>'s shadow tree -->
 <div>
@@ -203,7 +201,6 @@ explanation of `<shadow>` because multiple shadow roots are deprecated.
 Use `<slot>` to select host's children. It selects host's children by _exact_
 slot name matching.
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -213,7 +210,6 @@ slot name matching.
 </my-host>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-host>'s shadow tree: -->
 <div>
@@ -235,7 +231,6 @@ The result is:
 
 ## v0
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -245,7 +240,6 @@ The result is:
 </my-host>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-host>'s shadow tree -->
 <my-splatoon>
@@ -256,7 +250,6 @@ The result is:
 </my-splatoon>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-splatoon>'s shadow tree -->
 <content id="i4" select="#c3"></content>
@@ -299,7 +292,6 @@ The result is:
 </my-splatoon>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-splatoon>'s shadow tree -->
 <slot id="s4" name="slot4"></slot>
@@ -344,7 +336,6 @@ this feature is "default value of function parameter" in a programming language.
 The following example is borrowed from
 [Blink's CL](https://codereview.chromium.org/1530643003)
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top-level HTML -->
 <div id="host">
@@ -352,7 +343,6 @@ The following example is borrowed from
 </div>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- #host's shadow tree -->
 <slot name="slot1">
@@ -379,7 +369,6 @@ The result is
 
 Thus, the flat tree will be:
 
-<!-- prettier-ignore -->
 ```html
 <div id="host">
   <div id="fallback1"></div>
@@ -402,7 +391,6 @@ the end of a microtask.
 
 HTML:
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -418,12 +406,12 @@ HTML:
 JavaScript:
 
 ```javascript
-slot_i1.addEventListener('slotchange', e => {
-  console.log('fired');
+slot_i1.addEventListener("slotchange", (e) => {
+  console.log("fired");
 });
-const c2 = document.createElement('div');
+const c2 = document.createElement("div");
 my_host.appendChild(c2);
-c2.setAttribute('slot', 's1');
+c2.setAttribute("slot", "s1");
 // slotchange event will be fired on slot, '<slot id=i1 name=s1>', at the end of a micro task.
 ```
 
@@ -436,7 +424,6 @@ TODO(hayato): Explain this feature in-depth. For a while, see
 
 Use `::content selector` pseudo elements.
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -446,7 +433,6 @@ Use `::content selector` pseudo elements.
 </my-host>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-host>'s shadow tree -->
 <div>
@@ -465,7 +451,6 @@ Use `::content selector` pseudo elements.
 
 Use `::slotted (compound-selector)` pseudo elements.
 
-<!-- prettier-ignore -->
 ```html
 <!-- Top level HTML -->
 <my-host>
@@ -474,7 +459,6 @@ Use `::slotted (compound-selector)` pseudo elements.
 </my-host>
 ```
 
-<!-- prettier-ignore -->
 ```html
 <!-- <my-host>'s shadow tree: -->
 <div>
@@ -590,15 +574,15 @@ HTML:
 JavaScript:
 
 ```javascript
-my_host.addEventListener('my-click1', e => {
-  console.log('my-click1 is fired'); // This will not be called.
+my_host.addEventListener("my-click1", (e) => {
+  console.log("my-click1 is fired"); // This will not be called.
 });
-my_host.addEventListener('my-click2', e => {
-  console.log('my-click2 is fired'); // This will be called.
+my_host.addEventListener("my-click2", (e) => {
+  console.log("my-click2 is fired"); // This will be called.
 });
 
-d1.dispatchEvent(new Event('my-click1', { bubbles: true }));
-d1.dispatchEvent(new Event('my-click2', { bubbles: true, composed: true }));
+d1.dispatchEvent(new Event("my-click1", { bubbles: true }));
+d1.dispatchEvent(new Event("my-click2", { bubbles: true, composed: true }));
 ```
 
 At `#my-host`, only an event listener for `my-click2` is called.

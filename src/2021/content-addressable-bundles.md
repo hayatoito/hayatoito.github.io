@@ -6,7 +6,8 @@ toc: false
 -->
 
 This proposal was merged into
-[wicg/webpackage](https://github.com/WICG/webpackage/blob/main/explainers/content-addressable-bundles.md) repo.
+[wicg/webpackage](https://github.com/WICG/webpackage/blob/main/explainers/content-addressable-bundles.md)
+repo.
 
 Last update: Mar 2021
 

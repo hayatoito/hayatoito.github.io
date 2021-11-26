@@ -8,14 +8,12 @@ out_release=${this_dir}/out/release
 
 build() {
   mkdir -p ${out_debug}
-  local site_options=${1:--v}
-  site ${site_options} build --root-dir . --config=config.toml --out-dir ${out_debug}
+  RUST_LOG=site=info site build --root-dir . --config=config.toml --out-dir ${out_debug}
 }
 
 build_release() {
   mkdir -p ${out_release}
-  local site_options=${1:--v}
-  site ${site_options} build --root-dir . --config=config-release.toml --out-dir ${out_release}
+  RUST_LOG=site=info site build --root-dir . --config=config-release.toml --out-dir ${out_release}
 }
 
 dev() {
