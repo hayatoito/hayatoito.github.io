@@ -51,7 +51,7 @@ DOM は Web の基本です。いってみれば Web を構成する原子のよ
 上で以下のコードを貼り付けて実行してみましょう。ノードが何個あるかわかります。
 
 ```javascript
-console.log(document.querySelectorAll('*').length);
+console.log(document.querySelectorAll("*").length);
 ```
 
 <div class="article-info">
@@ -416,7 +416,7 @@ function selectorMatch(selector, node) {
   // ...
 }
 
-console.log(selectorMatch(['div', 'p', 'p'], getElementById('foo')));
+console.log(selectorMatch(["div", "p", "p"], getElementById("foo")));
 ```
 
 <div class="article-danger">

@@ -131,7 +131,7 @@ Note: This change implies:
 
 ## Example 1: How imperative slotting API works in slotting=manual.
 
-``` text
+```text
 host
 ├──/shadowroot (slotting=manual)
 │   ├── slot1
@@ -140,7 +140,7 @@ host
 └── B
 ```
 
-``` javascript
+```javascript
 // '==' means ArrayEquals.
 assert(slot1.assignedNodes() == []);
 assert(slot2.assignedNodes() == []);

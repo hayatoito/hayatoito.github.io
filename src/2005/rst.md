@@ -1,4 +1,4 @@
-# reStructuredTextでblogger
+# reStructuredText で blogger
 
 <!--
 date: 2005-12-16

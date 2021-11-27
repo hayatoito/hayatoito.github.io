@@ -1,4 +1,4 @@
-# Python - generatorで素数生成
+# Python - generator で素数生成
 
 <!--
 date: 2007-07-30

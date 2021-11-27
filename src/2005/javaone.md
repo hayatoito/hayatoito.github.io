@@ -1,4 +1,4 @@
-# JavaOne Tokyoで講演します
+# JavaOne Tokyo で講演します
 
 <!--
 date: 2005-11-08

@@ -1,4 +1,4 @@
-# google-code-prettifyを導入してみる
+# google-code-prettify を導入してみる
 
 <!--
 date: 2007-03-26

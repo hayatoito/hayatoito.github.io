@@ -1,4 +1,4 @@
-# Google Code Jam 2006 - Round1に挑戦 - GenericsとAutoBoxing
+# Google Code Jam 2006 - Round1 に挑戦 - Generics と AutoBoxing
 
 <!--
 date: 2006-09-15

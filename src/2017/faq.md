@@ -89,16 +89,16 @@ Web Standards に関わると、他のブラウザベンダ(Apple, Mozilla, Micr
 話をする必要があります。旅行が好きなら、Web Standards のお仕事はオススメです。
 
 - 2015:
-  1.  [Jan] Sydney (Midnight Train)
-  2.  [Apr] San Francisco, Mountain View (Shadow DOM F2F)
-  3.  [May] Sydney (BlinkOn4)
-  4.  [Jul] Mountain View (Custom Elements F2F)
-  5.  [Oct] San Francisco (BlinkOn5)
-  6.  [Nov] Sapporo (W3C TPAC)
+  1.  (Jan) Sydney (Midnight Train)
+  2.  (Apr) San Francisco, Mountain View (Shadow DOM F2F)
+  3.  (May) Sydney (BlinkOn4)
+  4.  (Jul) Mountain View (Custom Elements F2F)
+  5.  (Oct) San Francisco (BlinkOn5)
+  6.  (Nov) Sapporo (W3C TPAC)
 - 2016:
-  1.  [Jan] Mountain View / Cupertino (Custom Elements F2F)
-  2.  [Jun] Munich (BlinkOn6)
-  3.  [Nov]: Lisbon (W3C TPAC)
+  1.  (Jan) Mountain View / Cupertino (Custom Elements F2F)
+  2.  (Jun) Munich (BlinkOn6)
+  3.  (Nov): Lisbon (W3C TPAC)
 - 2017:
   1.  (Plan) [Jan] Mountain View / San Francisco (BlinkOn7)
   2.  (Plan) [??]: San Francisco (W3C TPAC)

@@ -1,4 +1,4 @@
-# Google Code Jam 2006 - Qualification Roundに挑戦
+# Google Code Jam 2006 - Qualification Round に挑戦
 
 <!--
 date: 2006-09-06

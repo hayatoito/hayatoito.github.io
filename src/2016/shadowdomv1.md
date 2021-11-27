@@ -182,7 +182,8 @@ children by CSS query selector.
 <!-- <my-host>'s shadow tree -->
 <div>
   <content id="i1" select=".foo"></content>
-  <content id="i2" select="my-child"></content> <content id="i3"></content>
+  <content id="i2" select="my-child"></content>
+  <content id="i3"></content>
 </div>
 ```
 

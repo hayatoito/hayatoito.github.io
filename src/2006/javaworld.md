@@ -1,4 +1,4 @@
-# JavaWorldに寄稿しました
+# JavaWorld に寄稿しました
 
 <!--
 date: 2006-05-15

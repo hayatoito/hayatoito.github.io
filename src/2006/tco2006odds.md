@@ -1,4 +1,4 @@
-# 2006 TopCoder Open - Odds発表
+# 2006 TopCoder Open - Odds 発表
 
 <!--
 date: 2006-03-03
