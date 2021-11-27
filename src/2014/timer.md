@@ -1,5 +1,6 @@
+# Simple timer application for the pomodoro technique
+
 <!--
-title: Simple timer application for the pomodoro technique
 date: 2014-02-02
 -->
 

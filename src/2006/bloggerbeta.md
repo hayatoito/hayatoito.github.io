@@ -1,5 +1,6 @@
+# Blogger Beta に移行
+
 <!--
-title: Blogger Beta に移行
 date: 2006-10-30
 -->
 

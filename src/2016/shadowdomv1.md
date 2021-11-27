@@ -1,5 +1,6 @@
+# What's New in Shadow DOM v1 (by examples)
+
 <!--
-title: What's New in Shadow DOM v1 (by examples)
 date: 2016-06-22
 toc: true
 toc_level: 1

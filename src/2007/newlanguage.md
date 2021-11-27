@@ -1,5 +1,6 @@
+# New Launguage - 新言語追加の予定?
+
 <!--
-title: New Launguage - 新言語追加の予定?
 date: 2007-07-24
 -->
 

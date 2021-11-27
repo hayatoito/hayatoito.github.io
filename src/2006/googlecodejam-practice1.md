@@ -1,5 +1,6 @@
+# Google Code Jam 2006 - Practice1
+
 <!--
-title: Google Code Jam 2006 - Practice1
 date: 2006-08-16
 -->
 

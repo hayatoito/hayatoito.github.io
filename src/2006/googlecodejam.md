@@ -1,5 +1,6 @@
+# Stay tuned... Global Google Code Jam 2006 - 秋に開催?
+
 <!--
-title: Stay tuned... Global Google Code Jam 2006 - 秋に開催?
 date: 2006-07-19
 -->
 

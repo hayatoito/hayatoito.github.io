@@ -1,5 +1,6 @@
+# Imperative Shadow DOM Distribution API
+
 <!--
-title: Imperative Shadow DOM Distribution API
 date: 2018-03-08
 -->
 

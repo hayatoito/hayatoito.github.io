@@ -1,6 +1,7 @@
+# Hayato Ito
+
 <!--
 page: true
-title: Hayato Ito
 template: index
 -->
 

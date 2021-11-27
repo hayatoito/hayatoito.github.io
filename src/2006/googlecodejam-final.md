@@ -1,5 +1,6 @@
+# Google Code Jam 2006 - Championship Round
+
 <!--
-title: Google Code Jam 2006 - Championship Round
 date: 2006-10-31
 -->
 

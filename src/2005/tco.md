@@ -1,5 +1,6 @@
+# 2006 TopCoder Open - NSAがスポンサーに
+
 <!--
-title: 2006 TopCoder Open - NSAがスポンサーに
 date: 2005-12-13
 -->
 

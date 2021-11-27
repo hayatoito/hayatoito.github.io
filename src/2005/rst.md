@@ -1,5 +1,6 @@
+# reStructuredTextでblogger
+
 <!--
-title: reStructuredTextでblogger
 date: 2005-12-16
 -->
 

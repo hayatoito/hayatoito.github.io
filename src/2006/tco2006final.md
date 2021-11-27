@@ -1,5 +1,6 @@
+# 2006 TopCoder Open Final Round
+
 <!--
-title: 2006 TopCoder Open Final Round
 date: 2006-05-07
 -->
 

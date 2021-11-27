@@ -1,5 +1,6 @@
+# 2006 TopCoder Open - Odds発表
+
 <!--
-title: 2006 TopCoder Open - Odds発表
 date: 2006-03-03
 -->
 

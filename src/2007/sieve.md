@@ -1,5 +1,6 @@
+# Python - generatorで素数生成
+
 <!--
-title: Python - generatorで素数生成
 date: 2007-07-30
 -->
 

@@ -1,5 +1,6 @@
+# Google Code Jam 2006 - Qualification Round通過
+
 <!--
-title: Google Code Jam 2006 - Qualification Round通過
 date: 2006-09-09
 -->
 

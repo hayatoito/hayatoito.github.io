@@ -1,5 +1,6 @@
+# hayato.io (4topcoder)
+
 <!--
-title: hayato.io (4topcoder)
 date: 2014-01-04
 slug: hayato.io/
 -->

@@ -1,5 +1,6 @@
+# 2006 TopCoder Open Qualification Round
+
 <!--
-title: 2006 TopCoder Open Qualification Round
 date: 2006-03-02
 -->
 

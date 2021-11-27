@@ -1,5 +1,6 @@
+# google-code-prettifyを導入してみる
+
 <!--
-title: google-code-prettifyを導入してみる
 date: 2007-03-26
 -->
 

@@ -1,5 +1,6 @@
+# Suffix Array
+
 <!--
-title: Suffix Array
 date: 2007-03-27
 -->
 

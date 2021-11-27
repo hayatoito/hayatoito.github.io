@@ -1,5 +1,6 @@
+# JavaOne Tokyoで講演します
+
 <!--
-title: JavaOne Tokyoで講演します
 date: 2005-11-08
 -->
 

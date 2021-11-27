@@ -1,5 +1,6 @@
+# IBM Rational Software Development Forum Tokyoで講演します
+
 <!--
-title: IBM Rational Software Development Forum Tokyoで講演します
 date: 2006-04-27
 -->
 

@@ -1,5 +1,6 @@
+# Resource loading with Content Addressable Bundles
+
 <!--
-title: Resource loading with Content Addressable Bundles
 date: 2021-03-12
 author: Hayato Ito (hayato@google.com)
 toc: false

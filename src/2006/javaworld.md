@@ -1,5 +1,6 @@
+# JavaWorldに寄稿しました
+
 <!--
-title: JavaWorldに寄稿しました
 date: 2006-05-15
 -->
 

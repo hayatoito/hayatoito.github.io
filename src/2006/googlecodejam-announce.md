@@ -1,5 +1,6 @@
+# Google Code Jam 2006 - 開催決定
+
 <!--
-title: Google Code Jam 2006 - 開催決定
 date: 2006-08-15
 -->
 
