@@ -9,7 +9,8 @@ body {
   padding-bottom: 1rem;
 }
 
-.container {
+.navbar-box,
+.content-box {
   box-sizing: border-box;
   min-width: 200px;
   max-width: 980px;
@@ -17,16 +18,20 @@ body {
   padding: 0 45px;
 }
 
+.navbar-box {
+  display: flex;
+}
+
 @media (max-width: 767px) {
-  .container {
-    padding: 0 15px;
+  .navbar-box,
+  .content-box {
+    padding: 0 20px;
   }
 }
 
-/* navbar */
 .navbar {
-  padding: 0.2rem 1rem;
   background-color: var(--color-neutral-muted) !important;
+  padding: 0.2rem 0;
 }
 
 .nav-link {

@@ -7,7 +7,7 @@
 <section class="site-content site-article">
   <header class="site-header">
     <h1 class="site-title">
-      <a href="{{ site_url }}/{{ article.url }}" class="self-link">
+      <a class="self-link" href="{{ site_url }}/{{ article.url }}">
         {{ article.title|striptags }}
       </a>
     </h1>
@@ -45,5 +45,4 @@
     {{ article.content }}
   </div>
 </section>
-
 {% endblock content %}

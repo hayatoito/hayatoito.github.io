@@ -4,46 +4,49 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site_name|striptags }}">
-    <meta name="twitter:card"  content="summary" />
-    <meta property="twitter:title" content="{% block og_title %}{{ site_name|striptags }}{% endblock %}"/>
+    <meta name="twitter:card"  content="summary">
+    <meta property="twitter:title" content="{% block og_title %}{{ site_name|striptags }}{% endblock %}">
     <meta property="og:image" content="{{ site_url }}/favicon.png">
     {% if article %}
-    <link rel="canonical" href="{{ site_url }}/{{ article.url }}"/>
+    <link rel="canonical" href="{{ site_url }}/{{ article.url }}">
     {% elif page %}
-    <link rel="canonical" href="{{ site_url }}/{{ page.url }}"/>
+    <link rel="canonical" href="{{ site_url }}/{{ page.url }}">
     {% endif %}
-    <link rel="author" href="http://www.hatena.ne.jp/{{ hatena_id }}/" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css" rel="stylesheet">
-    <link href="{{ site_url }}/site2.css" rel="stylesheet">
-    <link id="favicon" rel="icon" type="image/png" href="{{ site_url }}/favicon.png" >
-    <link href="{{ site_url }}/feed.xml" rel="alternate"
-          title="{{ site_name }}" type="application/atom+xml">
+    <link rel="author" href="http://www.hatena.ne.jp/{{ hatena_id }}/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="{{ site_url }}/site2.css">
+    <link rel="icon" type="image/png" href="{{ site_url }}/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="{{ site_name }}" href="{{ site_url }}/feed.xml">
     {% if google_analytics_tracking_id %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_tracking_id }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ google_analytics_tracking_id }}');
+      gtag("js", new Date());
+      gtag("config", "{{ google_analytics_tracking_id }}");
     </script>
     {% endif %}
     <title>{% block title %}{{ site_name|striptags }}{% endblock %}</title>
   </head>
   <body class="markdown-body">
     <nav class="navbar">
-      <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
+      <div class="navbar-box">
+        <a class="nav-link" href="{{ site_url }}/">{{ site_name|striptags }}</a>
+      </div>
     </nav>
-    <div class="container">
+    <div class="content-box">
       {% block content %}
       {% endblock content %}
       <footer class="site-footer">
-          <a href="/">Home</a>
-	  | <a href="{{ github }}">GitHub</a>
-	  | <a href="{{ site_url }}/feed.xml">Feed</a>
-	  | &copy; 2005-2021 hayato
+        <a href="/">Home</a>
+        | <a href="{{ github }}">GitHub</a>
+        | <a href="{{ site_url }}/feed.xml">Feed</a>
+        | &copy; 2005-2021 hayato
       </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </body>
 </html>
