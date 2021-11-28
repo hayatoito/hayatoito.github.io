@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}{{ super() }}{% endblock %}
+{% block title %}{{ site.name|striptags }}{% endblock %}
 
 {% block content %}
-<section class="site-content site-page">
-  <h1 class="site-title">{{page.title|striptags }}</h1>
-  {{ page.content }}
+<section class="site-content">
+  <h1 class="site-title">{{entry.title|striptags }}</h1>
+  {{ entry.content }}
   <hr>
-  {% for a in year_articles %}
+  {% for a in articles_by_year %}
     <h1 id="{{ a.year }}" class="site-timeline-year">
       <a class="self-link" href="#{{ a.year }}">{{ a.year }}</a>
     </h1>
     <ul>
       {% for article in a.articles %}
-	<li><a href="{{ site_url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
+	<li><a href="{{ site.url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
       {% endfor %}
     </ul>
   {% endfor %}

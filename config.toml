@@ -1,5 +1,5 @@
-site_name = "[Dev] hayato"
-site_url = ""
+name = "[Dev] hayato"
+url = ""
 author = "Hayato Ito"
 output_draft_article = "true"
 hatena_id = "hayatoito1"

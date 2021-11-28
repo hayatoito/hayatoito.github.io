@@ -126,7 +126,7 @@ h6 > a.self-link:hover::after {
   }
 }
 
-.site-article img {
+.site-content img {
   max-width: 100%;
   height: auto;
 }

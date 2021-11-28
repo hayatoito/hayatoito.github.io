@@ -3,7 +3,7 @@
 <!--
 date: 2021-03-12
 author: Hayato Ito (hayato@google.com)
-toc: false
+toc: true
 -->
 
 This proposal was merged into
@@ -16,39 +16,16 @@ This is a strawperson proposal at very early stage, aiming to load multiple
 resources efficiently, using a Content-Addressable Bundle, which can link to
 other bundles.
 
-## Authors
+# Authors
 
 - Hayato Ito (hayato@google.com)
 
-## Participate
+# Participate
 
 - [WICG/webpackage](https://github.com/WICG/webpackage/)
   ([#638](https://github.com/WICG/webpackage/issues/638))
 
-<!-- TOC -->
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Goals](#goals)
-- [Non-Goals](#non-goals)
-- [Web Bundle format](#web-bundle-format)
-- [Web APIs](#web-apis)
-  - [Declarative form](#declarative-form)
-    - [Example](#example)
-  - [How to Load](#how-to-load)
-  - [Navigate to a bundle](#navigate-to-a-bundle)
-- [Cache strategy](#cache-strategy)
-- [Key scenarios](#key-scenarios)
-- [Considered alternatives](#considered-alternatives)
-  - [Resource Bundles](#resource-bundles)
-- [FAQ](#faq)
-- [Stakeholder Feedback / Opposition](#stakeholder-feedback--opposition)
-- [References & acknowledgements](#references--acknowledgements)
-
-<!-- /TOC -->
-
-## Introduction
+# Introduction
 
 - Loading many unbundled resources is still slower in 2021. We concluded that
   [bundling was necessary in 2018](https://v8.dev/features/modules#bundle), and
@@ -91,7 +68,7 @@ then be loaded on demand or in parallel, and also provide a new capability to
 express a dependency between bundles, which can be used for a browser to improve
 a loading performance.
 
-## Goals
+# Goals
 
 - This proposal aims to support [Code Splitting], as [webpack] or other bundlers
   already support as a user-land solution. Smaller bundles, if used correctly,
@@ -129,7 +106,7 @@ a loading performance.
   different requests, making URLs less meaningful/stable. Content-Addressability
   prevents this kind of undesired behaviors.
 
-## Non-Goals
+# Non-Goals
 
 - Although this proposal aims to give a browser an opportunity to improve cache
   efficiency by utilizing immutability and a dependency graph of bundles, this
@@ -151,7 +128,7 @@ a loading performance.
   some level. If you want a fine-grained cache control for an individual
   resource in a bundle, this proposal doesn't meet your requirements.
 
-## Web Bundle format
+# Web Bundle format
 
 TODO(hayato): Define a format using [CDDL]. For a while, this section explains a
 non-normative _conceptual_ format.
@@ -254,16 +231,16 @@ the former _immutable_ bundles, and the latter _mutable_ bundles in order to
 make the difference clear in some contexts. Unless otherwise noted, a bundle
 means a CAB, an _immutable_ bundle, in this proposal.
 
-## Web APIs
+# Web APIs
 
-### Declarative form
+## Declarative form
 
 Note: Declarative syntax is tentative. We borrow
 [\<link\>-based API](https://github.com/WICG/webpackage/blob/main/explainers/subresource-loading.md#link-based-api)
 from [Subresource loading with web bundles] proposal for the purpose of the
 explanation.
 
-#### Example
+### Example
 
 The page (`https://example.com/app/index.html`):
 
@@ -324,7 +301,7 @@ toppage
             └── ...
 ```
 
-### How to Load
+## How to Load
 
 1. When the HTML page is parsed, a browser records that `index.js` can be loaded
    from the bundle, `https://example.com/app/index.js.abcd.wbn`.
@@ -387,7 +364,7 @@ Notes:
   doesn't change. The browser should be careful not to record resource entries
   listed in a prefetched bundle too early.
 
-### Navigate to a bundle
+## Navigate to a bundle
 
 In the previous example, we use `<link>`-based API to declare a starting _node_
 and its index information, as a _bootstrap_, however, if a browser supports
@@ -409,7 +386,7 @@ _directly_ in its address bar, `./index.html` doesn't have to declare resources.
 The browser can know them from the bundle's index section, before starting to
 parse `index.html` file.
 
-## Cache strategy
+# Cache strategy
 
 It's up-to browsers how to cache bundles. This explainer doesn't define any
 formal procedure, however, there are several possible approaches:
@@ -462,19 +439,19 @@ formal procedure, however, there are several possible approaches:
   `https://example.com/app/index.js` must be treated separately, in terms of
   caching.
 
-## Key scenarios
+# Key scenarios
 
 TODO(hayato): [Description of the end-user scenario]
 
-## Considered alternatives
+# Considered alternatives
 
-### [Resource Bundles]
+## [Resource Bundles]
 
 TODO(hayato): Mention scopes.
 
-## FAQ
+# FAQ
 
-### What happens if a bundle doesn't declare a dependency to a resource which is used from its inline resources?
+## What happens if a bundle doesn't declare a dependency to a resource which is used from its inline resources?
 
 Nothing is wrong if you know what you are doing.
 
@@ -517,7 +494,7 @@ node ([package.json]), Rust ([Cargo.toml][cargo]), deno ([deps.ts]).
 This proposal aims to support this pattern by making it possible to declare
 dependencies inside of a bundle.
 
-### Any recommendations for bundle's granularity? How should we group resources into bundles?
+## Any recommendations for bundle's granularity? How should we group resources into bundles?
 
 That's totally up-to you. There are various factors and trade-off to make a
 decision.
@@ -598,7 +575,7 @@ The second and third link elements are not mandatory because they are not a
 direct dependency, but declaring them should guarantee that a browser prefetch
 these bundles in parallel, instead of on-demand basis.
 
-### How can we create CAB? Is there any tool?
+## How can we create CAB? Is there any tool?
 
 Nothing yet.
 
@@ -608,7 +585,7 @@ Addressable Bundles as its output format.
 Also, it would be nice that CDN supports a CAB format to serve their contents so
 that we can link to their CAB from our application bundles.
 
-### How can _mutable_ bundles and _immutable_ bundles (CAB) interact each other?
+## How can _mutable_ bundles and _immutable_ bundles (CAB) interact each other?
 
 TODO(hayato): We might want to _backport_ a declarative dependency capability to
 mutable bundles as well as CAB.
@@ -620,11 +597,11 @@ We might want to let them refer to each other, with some restrictions:
 
 We'll explore this problem space, and update this section.
 
-## Stakeholder Feedback / Opposition
+# Stakeholder Feedback / Opposition
 
 Not yet.
 
-## References & acknowledgements
+# References & acknowledgements
 
 - [Get started with Web Bundles]
 - [Web Bundles]

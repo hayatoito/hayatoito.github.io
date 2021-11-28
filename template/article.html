@@ -1,48 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}{{ article.title|striptags }} - {{ super() }}{% endblock %}
-{% block og_title %}{{ article.title|striptags }} - {{ super() }}{% endblock %}
-
 {% block content %}
-<section class="site-content site-article">
+<section class="site-content">
   <header class="site-header">
-    <h1 class="site-title">
-      <a class="self-link" href="{{ site_url }}/{{ article.url }}">
-        {{ article.title|striptags }}
-      </a>
-    </h1>
+    <h1 class="site-title">{{ entry.title|striptags }}</h1>
     <div class="article-author">
-      {% if article.author %}
-	{{ article.author }}
+      {% if entry.author %}
+	{{ entry.author }}
       {% else %}
-	{{ author }}
+        {{ site.author }}
       {% endif %}
     </div>
-    {% if not article.hide_date %}
-    <div class="article-date">
-      <time datetime="{{ article.date }}">
-        {{ article.date }}
-      </time>
-    </div>
-    {% endif %}
-    {% if article.update_date %}
+    {% if not entry.hide_date %}
       <div class="article-date">
-        (Last Update:
-      <time datetime="{{ article.update_date }}">
-        {{ article.update_date }}
-      </time>
-      )
-    </div>
-    {% endif %}
-  </header>
-  <div class="article-content">
-    {% if article.toc %}
-      <h1>Table of Contents</h1>
-      <div id="toc">
-        {{ article.toc_html}}
+        <time datetime="{{ entry.date }}">
+          {{ entry.date }}
+        </time>
       </div>
     {% endif %}
-    {{ article.content }}
-  </div>
+    {% if entry.update_date %}
+      <div class="article-date">
+        (Last Update:
+        <time datetime="{{ entry.update_date }}">
+          {{ entry.update_date }}
+        </time>
+        )
+      </div>
+    {% endif %}
+  </header>
+  {% if entry.toc %}
+    <h1>Table of Contents</h1>
+    <div id="toc">
+      {{ entry.toc_html}}
+    </div>
+    <hr>
+  {% endif %}
+  {{ entry.content }}
 </section>
 {% endblock content %}
