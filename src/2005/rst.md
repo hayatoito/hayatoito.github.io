@@ -1,7 +1,7 @@
 # reStructuredText で blogger
 
 <!--
-date: 2005-12-16
+date = "2005-12-16"
 -->
 
 この Blog は， もともとは

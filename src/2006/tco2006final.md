@@ -1,7 +1,7 @@
 # 2006 TopCoder Open Final Round
 
 <!--
-date: 2006-05-07
+date = "2006-05-07"
 -->
 
 [2006 TopCoder Open - Algorithm Competition](http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=tco06&d3=alg_description)

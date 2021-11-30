@@ -1,7 +1,7 @@
 # 2006 TopCoder Open Qualification Round
 
 <!--
-date: 2006-03-02
+date = "2006-03-02"
 -->
 
 [2006 TopCoder Open - Algorithm Competition](http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=tco06&d3=alg_description)

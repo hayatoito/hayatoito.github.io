@@ -1,8 +1,8 @@
 # Hayato Ito
 
 <!--
-page: true
-template: index
+page = true
+template = "index"
 -->
 
 Software Engineer at Google

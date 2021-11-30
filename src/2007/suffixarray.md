@@ -1,7 +1,7 @@
 # Suffix Array
 
 <!--
-date: 2007-03-27
+date = "2007-03-27"
 -->
 
 TopCoder SRM187、

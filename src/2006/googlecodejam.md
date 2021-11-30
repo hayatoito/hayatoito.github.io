@@ -1,7 +1,7 @@
 # Stay tuned... Global Google Code Jam 2006 - 秋に開催?
 
 <!--
-date: 2006-07-19
+date = "2006-07-19"
 -->
 
 毎年、恒例らしい Google Code Jam ですが、今年はこれまで

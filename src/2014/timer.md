@@ -1,7 +1,7 @@
 # Simple timer application for the pomodoro technique
 
 <!--
-date: 2014-02-02
+date = "2014-02-02"
 -->
 
 **Update** (2016-03-22 Tue): I have rewritten the timer application. This

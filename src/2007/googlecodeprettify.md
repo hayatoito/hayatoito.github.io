@@ -1,7 +1,7 @@
 # google-code-prettify を導入してみる
 
 <!--
-date: 2007-03-26
+date = "2007-03-26"
 -->
 
 [google-code-prettify](http://code.google.com/p/google-code-prettify/) を導入し

@@ -1,7 +1,7 @@
 # Google Code Jam 2006 - Qualification Round 通過
 
 <!--
-date: 2006-09-09
+date = "2006-09-09"
 -->
 
 予選通過のメールがきました。

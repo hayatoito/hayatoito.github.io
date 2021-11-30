@@ -1,9 +1,9 @@
 # What's New in Shadow DOM v1 (by examples)
 
 <!--
-date: 2016-06-22
-toc: true
-toc_level: 1
+date = "2016-06-22"
+toc = true
+toc_level = 1
 -->
 
 This document is my attempt to track the difference between Shadow DOM v0 and

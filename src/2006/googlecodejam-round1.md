@@ -1,7 +1,7 @@
 # Google Code Jam 2006 - Round1 に挑戦 - Generics と AutoBoxing
 
 <!--
-date: 2006-09-15
+date = "2006-09-15"
 -->
 
 Google Code Jam 2006 Round1 に挑戦。予選を通過した 1000 名のうち 500 名が通過で

@@ -1,7 +1,7 @@
 # Google Code Jam 2006 - 開催決定
 
 <!--
-date: 2006-08-15
+date = "2006-08-15"
 -->
 
 [Google Code Jam](http://www.topcoder.com/pl/?&module=Static&d1=google06&d2=overview)

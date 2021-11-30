@@ -1,7 +1,7 @@
 # Python - generator で素数生成
 
 <!--
-date: 2007-07-30
+date = "2007-07-30"
 -->
 
 Python の generator は無限ストリームを実現するのに便利。 たとえば、

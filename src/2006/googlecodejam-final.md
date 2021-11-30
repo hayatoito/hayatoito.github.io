@@ -1,7 +1,7 @@
 # Google Code Jam 2006 - Championship Round
 
 <!--
-date: 2006-10-31
+date = "2006-10-31"
 -->
 
 Google Code Jam 2006、Championship Round が開催されました。オンラインラウンドを

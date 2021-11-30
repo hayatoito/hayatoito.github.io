@@ -1,7 +1,7 @@
 # 2006 TopCoder Open - NSA がスポンサーに
 
 <!--
-date: 2005-12-13
+date = "2005-12-13"
 -->
 
 [2006 TopCoder Open](http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=tco06&d3=about)

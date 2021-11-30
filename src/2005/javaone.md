@@ -1,7 +1,7 @@
 # JavaOne Tokyo で講演します
 
 <!--
-date: 2005-11-08
+date = "2005-11-08"
 -->
 
 [2005 JavaOne Tokyo](http://jp.sun.com/company/events/javaone/2005/) で Geronimo

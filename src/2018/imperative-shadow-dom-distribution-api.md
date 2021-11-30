@@ -1,7 +1,7 @@
 # Imperative Shadow DOM Distribution API
 
 <!--
-date: 2018-03-08
+date = "2018-03-08"
 -->
 
 The straw-man proposal for Imperative Shadow DOM distribution API. The context
