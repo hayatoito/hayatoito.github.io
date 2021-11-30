@@ -6,7 +6,7 @@
 
 # Build locally
 
-- Install [site](https://crates.io/crates/site), a static site generator.
+- Install [site](https://github.com/hayatoito/site), a static site generator.
 
   `cargo install site`
 
