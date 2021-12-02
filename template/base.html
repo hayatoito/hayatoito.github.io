@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.name|striptags }}">
-    <meta name="twitter:card"  content="summary">
-    <meta property="twitter:title" content="{% block og_title %}{{ site.name|striptags }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ entry.title|striptags }} - {{ site.name|striptags }}{% endblock %}">
     <meta property="og:image" content="{{ site.url }}/favicon.png">
+    <meta name="twitter:card"  content="summary">
     <link rel="canonical" href="{{ site.url }}/{{ entry.url }}">
     <link rel="author" href="http://www.hatena.ne.jp/{{ site.hatena_id }}/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css">
