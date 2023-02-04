@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Read site version
         id: site-version
         run: |
@@ -18,10 +18,10 @@ jobs:
           echo "::set-output name=SITE_VERSION::${SITE_VERSION}"
       - name: Cache site
         id: cache-site
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./cache
-          key: ${{ runner.os }}-cache-site-1-${{ hashFiles('.env') }}
+          key: ${{ runner.os }}-cache-site-${{ hashFiles('.env') }}
       - name: Download site
         if: steps.cache-site.outputs.cache-hit != 'true'
         run: |
