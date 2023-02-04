@@ -11,11 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Read site version
-        id: site-version
-        run: |
-          . ./.env
-          echo "::set-output name=SITE_VERSION::${SITE_VERSION}"
       - name: Cache site
         id: cache-site
         uses: actions/cache@v3
@@ -27,7 +22,8 @@ jobs:
         run: |
           mkdir -p ./cache
           cd ./cache
-          curl -L -O https://github.com/hayatoito/site/releases/download/v${{ steps.site-version.outputs.SITE_VERSION }}/site-x86_64-unknown-linux-musl.tar.gz
+          . ./.env
+          curl -L -O "https://github.com/hayatoito/site/releases/download/v${SITE_VERSION}/site-x86_64-unknown-linux-musl.tar.gz"
           tar xvfz site-x86_64-unknown-linux-musl.tar.gz
       - name: Build
         run: ./cache/site build --root-dir . --config=config-release.toml --out-dir ./out
