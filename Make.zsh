@@ -16,6 +16,13 @@ build_release() {
   RUST_LOG=site=info site build --root-dir . --config=config-release.toml --out-dir ${out_release}
 }
 
+git_sync() {
+  git init
+  git remote add origin git@github.com:hayatoito/hayatoito.github.io.git
+  git fetch --filter=blob:none
+  git reset origin/main
+}
+
 dev() {
   build
   serve &

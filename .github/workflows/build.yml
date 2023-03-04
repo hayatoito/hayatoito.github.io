@@ -20,9 +20,9 @@ jobs:
       - name: Download site
         if: steps.cache-site.outputs.cache-hit != 'true'
         run: |
+          . ./.env
           mkdir -p ./cache
           cd ./cache
-          . ./.env
           curl -L -O "https://github.com/hayatoito/site/releases/download/v${SITE_VERSION}/site-x86_64-unknown-linux-musl.tar.gz"
           tar xvfz site-x86_64-unknown-linux-musl.tar.gz
       - name: Build

@@ -1,6 +1,5 @@
 .log
 out
+.my-project
 draft
-node_modules
-Makefile.private
 README.org
