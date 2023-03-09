@@ -8,6 +8,7 @@ template = "index"
 Software Engineer at Google
 
 - [LinkedIn](https://www.linkedin.com/in/hayato-ito-76022119/)
+- [Chronology](./chronology/)
 - GitHub: [github.com/hayatoito](http://github.com/hayatoito)
 - Twitter: [@hayatoito](http://twitter.com/hayatoito),
   [@shadow_hayato](http://twitter.com/shadow_hayato) (inactive)
