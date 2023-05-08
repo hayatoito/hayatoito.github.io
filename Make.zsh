@@ -59,14 +59,3 @@ clean_release() {
 #   deploy_to_gh_pages
 #   git push origin gh-pages
 # }
-
-# squash_gh_pages_history() {
-#   return 1  # To avoid accidental update
-#   local revision=$1
-#   : # Reset origin/master to a previous commit
-#   git update-ref refs/remotes/origin/gh-pages ${revision}
-#   : # Make a new commit on the top of origin/master
-#   deploy_to_gh_pages
-#   : # '--force' is required because remote's gh-pages is discarded.
-#   git push --force origin gh-pages
-# }

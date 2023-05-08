@@ -4,6 +4,9 @@
 
 - Source of https://hayatoito.github.io/
 
+GitHub Action ([build.yml](./.github/workflows/build.yml)) deploys to GitHub
+Pages.
+
 # Build locally
 
 - Install [site](https://github.com/hayatoito/site), a static site generator.
@@ -11,11 +14,3 @@
   `cargo install site`
 
 - See [Make.zsh](./Make.zsh) for the usage.
-
-# Build via GitHub Action
-
-The GitHub Action ([build.yml](./.github/workflows/build.yml)) is available to
-build and deploy automatially.
-
-- `main` branch (Source)
-- `gh-pages` branch (GitHub Pages)
