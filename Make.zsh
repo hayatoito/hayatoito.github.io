@@ -1,7 +1,7 @@
 # Note: This is a personal Makefile that I use with a private tool called 'my-make'.
 
-out_debug=${this_dir}/out/debug
-out_release=${this_dir}/out/release
+out_debug=./out/debug
+out_release=./out/release
 
 build() {
   mkdir -p ${out_debug}
@@ -27,11 +27,11 @@ dev() {
 }
 
 watch() {
-  watchman-make --make my-make -p src template -t build
+  watchman-make -p 'src/**' 'template/**' --make my-make -t build
 }
 
 serve() {
-  cd ${out_debug} && browser-sync start --port 8000 --server --files='*'
+  cd ${out_debug} && my-http-server-watch --watch --port 8000
 }
 
 clean() {
