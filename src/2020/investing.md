@@ -1572,7 +1572,7 @@ $$ d S_t = \mu S_t dt + \sigma S_t d B_t $$
 
 において、レバレッジを $ L $ 倍かけたとします。
 
-$$ d S_t = L \sigma S_t dt + L \sigma S_t d B_t $$
+$$ d S_t = L \mu S_t dt + L \sigma S_t d B_t $$
 
 その結果、時刻 $ t $ における価格の中央値（= 価格の対数期待値と一致します）$ M_t
 $ は
