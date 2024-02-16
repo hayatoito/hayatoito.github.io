@@ -9,14 +9,14 @@
   {{ entry.content }}
   <hr>
   {% for a in articles_by_year %}
-    <h1 id="{{ a.year }}" class="site-timeline-year">
-      <a class="self-link" href="#{{ a.year }}">{{ a.year }}</a>
-    </h1>
-    <ul>
-      {% for article in a.articles %}
-	<li><a href="{{ site.url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
-      {% endfor %}
-    </ul>
+  <h1 id="{{ a.year }}" class="site-timeline-year">
+    <a class="self-link" href="#{{ a.year }}">{{ a.year }}</a>
+  </h1>
+  <ul>
+    {% for article in a.articles %}
+    <li><a href="{{ site.url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
+    {% endfor %}
+  </ul>
   {% endfor %}
-{% endblock %}
 </section>
+{% endblock %}

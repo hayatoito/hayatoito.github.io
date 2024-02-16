@@ -6,34 +6,34 @@
     <h1 class="site-title">{{ entry.title|striptags }}</h1>
     <div class="article-author">
       {% if entry.author %}
-	{{ entry.author }}
+      {{ entry.author }}
       {% else %}
-        {{ site.author }}
+      {{ site.author }}
       {% endif %}
     </div>
     {% if not entry.hide_date %}
-      <div class="article-date">
-        <time datetime="{{ entry.date }}">
-          {{ entry.date }}
-        </time>
-      </div>
+    <div class="article-date">
+      <time datetime="{{ entry.date }}">
+        {{ entry.date }}
+      </time>
+    </div>
     {% endif %}
     {% if entry.update_date %}
-      <div class="article-date">
-        (Last Update:
-        <time datetime="{{ entry.update_date }}">
-          {{ entry.update_date }}
-        </time>
-        )
-      </div>
+    <div class="article-date">
+      (Last Update:
+      <time datetime="{{ entry.update_date }}">
+        {{ entry.update_date }}
+      </time>
+      )
+    </div>
     {% endif %}
   </header>
   {% if entry.toc %}
-    <h1>Table of Contents</h1>
-    <div id="toc">
-      {{ entry.toc_html}}
-    </div>
-    <hr>
+  <h1>Table of Contents</h1>
+  <div id="toc">
+    {{ entry.toc_html}}
+  </div>
+  <hr>
   {% endif %}
   {{ entry.content }}
 </section>
