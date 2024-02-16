@@ -29,11 +29,13 @@
     {% endif %}
   </header>
   {% if entry.toc %}
-  <h1>Table of Contents</h1>
-  <div id="toc">
-    {{ entry.toc_html}}
-  </div>
-  <hr>
+  <details>
+    <summary>Table of Contents</summary>
+    <div id="toc">
+      {{ entry.toc_html}}
+    </div>
+    <hr>
+  </details>
   {% endif %}
   {{ entry.content }}
 </section>
