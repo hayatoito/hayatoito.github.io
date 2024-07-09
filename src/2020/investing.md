@@ -1228,7 +1228,7 @@ TODO: 海外 ETF を買う必要性はもはやないに等しい、買う人も
 
 たとえば、50%を:
 
-- 10%ずつ 5 年にわけて分割で投資する (ドルコスト平均法; DCA: Doller Cost
+- 10%ずつ 5 年にわけて分割で投資する (ドルコスト平均法; DCA: Dollar Cost
   Averaging)
 - あるいは、50%を一括投資する (LSI: lump-sum investing)
 
