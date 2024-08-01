@@ -31,7 +31,7 @@ watch() {
 }
 
 serve() {
-  cd ${out_debug} && my-http-server-watch --watch --port 8000
+  cd ${out_debug} && my-http-server-run --watch --port 8000
 }
 
 clean() {
