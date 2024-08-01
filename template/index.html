@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ site.name|striptags }}{% endblock %}
-{% block og_title %}{{ site.name|striptags }}{% endblock %}
+{% block title %}{{ site.name|escape }}{% endblock %}
+{% block og_title %}{{ site.name|escape }}{% endblock %}
 
 {% block content %}
 <section class="site-content">
-  <h1 class="site-title">{{entry.title|striptags }}</h1>
+  <h1 class="site-title">{{entry.title|escape }}</h1>
   {{ entry.content }}
   <hr>
   {% for a in articles_by_year %}
@@ -14,7 +14,7 @@
   </h1>
   <ul>
     {% for article in a.articles %}
-    <li><a href="{{ site.url }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
+    <li><a href="{{ site.url }}/{{ article.url }}">{{ article.title|escape }}</a></li>
     {% endfor %}
   </ul>
   {% endfor %}

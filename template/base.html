@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.name|striptags }}">
-    <meta property="og:title" content="{% block og_title %}{{ entry.title|striptags }} - {{ site.name|striptags }}{% endblock %}">
+    <meta name="description" content="{{ site.name|escape }}">
+    <meta property="og:title" content="{% block og_title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}">
     <meta property="og:image" content="{{ site.url }}/favicon.png">
     <meta name="twitter:card"  content="summary">
     <link rel="canonical" href="{{ site.url }}/{{ entry.url }}">
@@ -22,12 +22,12 @@
       gtag("config", "{{ site.google_analytics_tracking_id }}");
     </script>
     {% endif %}
-    <title>{% block title %}{{ entry.title|striptags }} - {{ site.name|striptags }}{% endblock %}</title>
+    <title>{% block title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}</title>
   </head>
   <body class="markdown-body">
     <nav class="navbar">
       <div class="navbar-box">
-        <a class="nav-link" href="{{ site.url }}/">{{ site.name|striptags }}</a>
+        <a class="nav-link" href="{{ site.url }}/">{{ site.name|escape }}</a>
       </div>
     </nav>
     <div class="content-box">

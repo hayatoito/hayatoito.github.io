@@ -3,7 +3,7 @@
 {% block content %}
 <section class="site-content">
   <header class="site-header">
-    <h1 class="site-title">{{ entry.title|striptags }}</h1>
+    <h1 class="site-title">{{ entry.title|escape }}</h1>
   </header>
   {{ entry.content }}
 </section>
