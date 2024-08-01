@@ -45,25 +45,13 @@ math = true
 最後にお約束ですが「投資は自己責任」です。この記事はあくまで筆者の考え方をまとめ
 たメモと考えていただければ幸いです。
 
-<div class="article-info">
-
-注意) 2024 年から新しい NISA （以下、新 NISA と表記) の制度が始まります。この記
-事は 2024 年以降を対象にしています。
-
-2023 年内に投資をはじめる方は、以下の記事の「新 NISA」を「つみたて NISA」に置き
-換えて読んでもほぼ問題ないですが両者は枠が異なります。そのため一部の話は「つみた
-て NISA」にはあてはまりません。「つみたて NISA」に触れている以前の内容はこの記事
-の[古い版](https://github.com/hayatoito/hayatoito.github.io/blob/45db87b84d308452eabda88392b9b684a4070a61/src/2020/investing.md)等
-で見ることができます。
-
-</div>
-
-更新履歴:
+<details><summary>更新履歴</summary>
 
 直
 接、[ここ (Blame の結果)](https://github.com/hayatoito/hayatoito.github.io/blame/main/src/2020/investing.md)を
 みてもらうのが一番早いです。以下の更新履歴はおまけ程度です。
 
+- [2024-08-01 Thu] Editorial change.
 - [2023-11-12 Sun] 構成を変更するとともに、結構な箇所を加筆。
 - [2023-01-08 Sun] FAQ: 「特定口座から新 NISA に移したほうがよいでしょうか？」を
   追加
@@ -95,6 +83,8 @@ math = true
 - [2020-01-05 Sun] お得度を「点数」ではなく「相対的な数字」と表記
 - [2020-01-05 Sun] Fix Typo (債権 => 債券)。
 - [2020-01-04 Sat] 公開
+
+</details>
 
 ---
 
