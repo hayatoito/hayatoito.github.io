@@ -11,7 +11,15 @@ math = true
 <div class="article-info">
 
 2024年9月13日、「普通の人が資産運用で99点をとる方法とその考え方」が日経BPから出
-版されます。詳しくは[こちら](/2024/book-99)。
+版されました。詳しくは[こちら](/2024/book-99)。
+
+</div>
+
+<div class="article-danger">
+
+注意) 以下の記事は2023年以降更新されていません。現
+在、[書籍](https://www.amazon.co.jp/dp/4296001825)のほうが内容が新しいです
+([Issue #79](https://github.com/hayatoito/hayatoito.github.io/issues/79))。
 
 </div>
 
