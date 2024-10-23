@@ -9,11 +9,11 @@
   </author>
   <id>{{ site.url }}/</id>
   {% for article in articles %}
-  <entry>
-    <title>{{ article.title }}</title>
-    <link href="{{ site.url }}/{{ article.url }}" />
-    <id>{{ site.url }}/{{ article.url }}</id>
-    <updated>{{ article.date }}T00:00:00+09:00</updated>
-  </entry>
+    <entry>
+      <title>{{ article.title }}</title>
+      <link href="{{ site.url }}/{{ article.url }}" />
+      <id>{{ site.url }}/{{ article.url }}</id>
+      <updated>{{ article.date }}T00:00:00+09:00</updated>
+    </entry>
   {% endfor %}
 </feed>

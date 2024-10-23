@@ -1,0 +1,67 @@
+:root {
+  --sidebar-width: 320px;
+  --total-width: calc(
+    var(--main-width) + var(--sidebar-width) + var(--padding-width) * 3
+  );
+}
+
+@media print {
+  #sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1239px) {
+  #sidebar {
+    display: none;
+  }
+}
+
+/* media query doesn't support css variable.
+@media (min-width: var(--total-width)) { */
+@media (min-width: 1240px) {
+  #content-box, #navbar-box {
+    min-width: 200px;
+    max-width: var(--total-width);
+  }
+}
+
+#sidebar {
+  width: var(--sidebar-width);
+  padding-left: var(--padding-width);
+}
+
+#toc {
+  top: 50px;
+  position: sticky;
+  height: 90vh;
+  scrollbar-width: none;
+}
+
+.toc-list {
+  padding-left: 1em !important;
+}
+
+.toc-link::before {
+  width: 4px;
+  background-color: var(--bgColor-default) !important;
+}
+
+.is-active-link::before {
+  background-color: var(--fgColor-accent) !important;
+}
+
+.is-active-li {
+  background-color: var(--bgColor-neutral-muted) !important;
+}
+
+.node-name--H1 {
+  font-weight: bold;
+}
+
+/* title in toc */
+#toc > ol:first-child > li:first-child {
+  border-bottom: 2px solid var(--borderColor-neutral-muted);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}

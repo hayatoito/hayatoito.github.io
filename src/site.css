@@ -1,46 +1,56 @@
 /* https://cdnjs.com/libraries/highlight.js */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css")
-(prefers-color-scheme: light);
+  (prefers-color-scheme: light);
 @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark.min.css")
-(prefers-color-scheme: dark);
+  (prefers-color-scheme: dark);
+
+:root {
+  --main-width: 800px;
+  --padding-width: 40px;
+}
+
+html {
+  scroll-padding-top: 20px;
+}
 
 /* https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css */
 body {
   padding-bottom: 1rem;
 }
 
-.navbar-box,
-.content-box {
+#navbar-box,
+#content-box {
   box-sizing: border-box;
   min-width: 200px;
-  max-width: 980px;
+  max-width: calc(var(--main-width) + var(--padding-width) * 2);
   margin: 0 auto;
-  padding: 0 45px;
+  padding: 0 var(--padding-width);
 }
 
-.navbar-box {
+#navbar-box {
   display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 767px) {
-  .navbar-box,
-  .content-box {
+  #navbar-box,
+  #content-box {
     padding: 0 20px;
   }
 }
 
-.navbar {
-  background-color: var(--color-neutral-muted) !important;
+#navbar {
+  background-color: var(--bgColor-neutral-muted) !important;
   padding: 0.2rem 0;
 }
 
 .nav-link {
-  color: var(--color-fg-default) !important;
+  color: var(--fgColor-default) !important;
 }
 
 .nav-link:hover,
 .nav-link:focus {
-  color: var(--color-accent-fg) !important;
+  color: var(--fgColor-accent) !important;
 }
 
 /* self links */
@@ -50,7 +60,7 @@ h3 > a.self-link,
 h4 > a.self-link,
 h5 > a.self-link,
 h6 > a.self-link {
-  color: var(--color);
+  color: var(--fgColor-default);
 }
 
 h1 > a.self-link:hover,
@@ -80,31 +90,30 @@ h6 > a.self-link:hover::after {
 }
 
 /* header and footer */
-.site-header {
+#header {
   margin: 1rem 0;
 }
 
-.site-footer {
-  color: var(--color-fg-muted);
+#footer {
   font-size: smaller;
   text-align: center;
 }
 
-.site-footnote-title {
+.footnote-title {
   margin-bottom: 1rem;
 }
 
 /* article */
-.article-author,
-.article-date {
+.author,
+.date {
   text-align: right;
 }
 
 /* Message boxes. Borrows from bootstrap's document */
 .article-info,
 .article-danger {
-  background-color: var(--color-canvas-subtle);
-  border: 1px solid var(--color-border-default);
+  background-color: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
   border-left-width: 2px;
   margin: 1rem 0;
   padding-top: 1rem;
@@ -113,20 +122,37 @@ h6 > a.self-link:hover::after {
 }
 
 .article-info {
-  border-left-color: var(--color-accent-emphasis);
+  border-left-color: var(--borderColor-accent-emphasis);
 }
 
 .article-danger {
-  border-left-color: var(--color-danger-fg);
+  border-left-color: var(--borderColor-danger-emphasis);
 }
 
 @media (prefers-color-scheme: dark) {
-  .site-article img[src*="svg"] {
-    background-color: var(--color-fg-muted);
+  main img[src*="svg"] {
+    background-color: var(--fgColor-default);
   }
 }
 
-.site-content img {
-  max-width: 100%;
+#main img {
   height: auto;
+}
+
+#content-box {
+  display: flex;
+  justify-content: center;
+}
+
+#main {
+  flex: 1;
+}
+
+table {
+  width: auto !important;
+}
+
+pre, code {
+  overflow-x: auto !important;
+  max-width: var(--main-width) !important;
 }

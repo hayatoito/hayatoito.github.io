@@ -13,31 +13,10 @@ build_release() {
   RUST_LOG=site=info site build --root-dir . --config=config-release.toml --out-dir ${out_release}
 }
 
-git_sync() {
-  git init
-  git remote add origin git@github.com:hayatoito/hayatoito.github.io.git
-  git fetch --filter=blob:none
-  git reset origin/main
-}
-
-dev() {
-  build
-  serve &
-  watch
-}
-
-watch() {
-  watchman-make -p 'src/**' 'template/**' --make my-make -t build
-}
-
 serve() {
-  cd ${out_debug} && my-http-server-run --watch --port 8000
+  cd ${out_debug} && my-http-server --watch --port 8000 --open .
 }
 
-clean() {
-  [[ -d ${out_debug} ]] && rm -rf ${out_debug} || true
-}
-
-clean_release() {
-  [[ -d ${out_release} ]] && rm -rf ${out_release} || true
+format() {
+  djlint --reformat --indent 2 template/{article,base,page,index}.jinja
 }

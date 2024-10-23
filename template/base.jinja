@@ -4,44 +4,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.name|escape }}">
-    <meta property="og:title" content="{% block og_title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}">
+    <meta property="og:title"
+          content="{% block og_title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}">
     <meta property="og:image" content="{{ site.url }}/favicon.png">
     <meta name="twitter:card"  content="summary">
     <link rel="canonical" href="{{ site.url }}/{{ entry.url }}">
     <link rel="author" href="http://www.hatena.ne.jp/{{ site.hatena_id }}/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.0.0/github-markdown.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.7.0/github-markdown.min.css">
     <link rel="stylesheet" href="{{ site.url }}/site.css">
     <link rel="icon" type="image/png" href="{{ site.url }}/favicon.png">
-    <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="{{ site.name }}"
+          href="{{ site.url }}/feed.xml">
+    {% block head %}{% endblock %}
     {% if site.google_analytics_tracking_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tracking_id }}"></script>
-    <script>
+      <script async
+              src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tracking_id }}"></script>
+      <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());
       gtag("config", "{{ site.google_analytics_tracking_id }}");
-    </script>
+      </script>
     {% endif %}
-    <title>{% block title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}</title>
+    <title>
+      {% block title %}{{ entry.title|escape }} - {{ site.name|escape }}{% endblock %}
+    </title>
   </head>
   <body class="markdown-body">
-    <nav class="navbar">
-      <div class="navbar-box">
+    <nav id="navbar">
+      <div id="navbar-box">
         <a class="nav-link" href="{{ site.url }}/">{{ site.name|escape }}</a>
       </div>
     </nav>
-    <div class="content-box">
-      {% block content %}
-      {% endblock content %}
-      <footer class="site-footer">
-        <a href="/">Home</a>
-        | <a href="{{ site.github }}">GitHub</a>
-        | <a href="{{ site.url }}/feed.xml">Feed</a>
-        | &copy; 2005-2024 hayato
-      </footer>
+    <div id="content-box">
+      <div id="main">
+        {% block main %}
+        {% endblock main %}
+        <footer id="footer">
+          <a href="/">Home</a>
+          | <a href="{{ site.github }}">GitHub</a>
+          | <a href="{{ site.url }}/feed.xml">Feed</a>
+          | &copy; 2005-2024 hayato
+        </footer>
+      </div>
+      {% block sidebar %}
+      {% endblock sidebar %}
     </div>
     {% if entry.math %}
-    <script>
+      <script>
       window.MathJax = {
         tex: {
           inlineMath: [
@@ -53,13 +66,15 @@
           fontCache: "global",
         },
       };
-    </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+      </script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script"
+              async
+              src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
     {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script>
-      hljs.highlightAll();
-    </script>
+    <script>hljs.highlightAll();</script>
+    {% block body_end %}
+    {% endblock body_end %}
   </body>
 </html>

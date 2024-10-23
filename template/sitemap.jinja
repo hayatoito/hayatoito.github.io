@@ -5,9 +5,9 @@
     <priority>1.0</priority>
   </url>
   {% for article in articles %}
-  <url>
-    <loc>{{ site.url }}/{{ article.url }}</loc>
-    <priority>1.0</priority>
-  </url>
+    <url>
+      <loc>{{ site.url }}/{{ article.url }}</loc>
+      <priority>1.0</priority>
+    </url>
   {% endfor %}
 </urlset>

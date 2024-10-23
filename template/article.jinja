@@ -1,42 +1,41 @@
 {% extends "base.jinja" %}
-
-{% block content %}
-<section class="site-content">
-  <header class="site-header">
-    <h1 class="site-title">{{ entry.title|escape }}</h1>
-    <div class="article-author">
+{% block head %}
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.30.0/tocbot.css">
+  <link rel="stylesheet" href="{{ site.url }}/article.css">
+{% endblock %}
+{% block main %}
+  <header id="header">
+    <h1 class="title">{{ entry.title|escape }}</h1>
+    <div class="author">
       {% if entry.author %}
-      {{ entry.author }}
+        {{ entry.author }}
       {% else %}
-      {{ site.author }}
+        {{ site.author }}
       {% endif %}
     </div>
-    {% if not entry.hide_date %}
-    <div class="article-date">
-      <time datetime="{{ entry.date }}">
-        {{ entry.date }}
-      </time>
-    </div>
-    {% endif %}
-    {% if entry.update_date %}
-    <div class="article-date">
-      (Last Update:
-      <time datetime="{{ entry.update_date }}">
-        {{ entry.update_date }}
-      </time>
-      )
-    </div>
-    {% endif %}
+    {% if not entry.hide_date %}<div class="date">{{ entry.date }}</div>{% endif %}
+    {% if entry.update_date %}<div class="date">(Last Update: {{ entry.update_date }})</div>{% endif %}
   </header>
-  {% if entry.toc %}
-  <details>
-    <summary>Table of Contents</summary>
-    <div id="toc">
-      {{ entry.toc_html}}
-    </div>
-    <hr>
-  </details>
-  {% endif %}
-  {{ entry.content }}
-</section>
-{% endblock content %}
+  <main>
+    {{ entry.content }}
+  </main>
+{% endblock main %}
+{% block sidebar %}
+  <div id="sidebar">
+    <nav id="toc" class="toc">
+    </nav>
+  </div>
+{% endblock sidebar %}
+{% block body_end %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.30.0/tocbot.min.js"></script>
+  <script>
+  tocbot.init({
+    tocSelector: "#toc",
+    contentSelector: "#main",
+    headingSelector: "h1, h2",
+    hasInnerContainers: true,
+    collapseDepth: 6,
+  });
+  </script>
+{% endblock body_end %}
