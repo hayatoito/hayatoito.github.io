@@ -3,8 +3,6 @@
 <!--
 date = "2020-01-04"
 update_date = "2024-10-23"
-toc = true
-toc_level = 3
 math = true
 -->
 

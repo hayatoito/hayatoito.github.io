@@ -2,8 +2,6 @@
 
 <!--
 date = "2016-06-22"
-toc = true
-toc_level = 1
 -->
 
 This document is my attempt to track the difference between Shadow DOM v0 and
@@ -569,7 +567,7 @@ HTML:
 
 ```html
 <!-- <my-host>'s shadow tree -->
-<div id=d1></div>
+<div id="d1"></div>
 </style>
 ```
 

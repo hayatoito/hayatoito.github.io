@@ -2,7 +2,6 @@
 
 <!--
 date = "2017-12-25"
-toc = true
 -->
 
 この記事は
@@ -84,11 +83,11 @@ Web 標準によって文化やプロセスが異なります。たとえば CSS
 
 基本的な流れは以下のとおりです。
 
-1.  GitHub 上で Issue をあげる
-2.  Issee 上で議論をし関係者間で同意をとる
-3.  PR (Pull Request) を送る
-4.  必要に応じて テスト (Web Platorm Test) を書く
-5.  レビューを受けて Editor に Merge される
+1. GitHub 上で Issue をあげる
+2. Issee 上で議論をし関係者間で同意をとる
+3. PR (Pull Request) を送る
+4. 必要に応じて テスト (Web Platorm Test) を書く
+5. レビューを受けて Editor に Merge される
 
 通常のソフトウェア開発プロジェクトと大きな違いはありません。
 
@@ -199,10 +198,10 @@ Web 標準を変更するときは同時にテスト (Web Platform Test) も書�
 ([whatwg/dom/issues/510](https://github.com/whatwg/dom/issues/510#issuecomment-330486945)):
 
 ```sql
- SELECT page, count(*)
- FROM [httparchive:har.2017_09_01_chrome_requests_bodies]
- WHERE REGEXP_MATCH(body, r'<shadowroot>')
- GROUP BY page
+SELECT page, count(*)
+FROM [httparchive:har.2017_09_01_chrome_requests_bodies]
+WHERE REGEXP_MATCH(body, r'<shadowroot>')
+GROUP BY page
 ```
 
 ## いつまでたっても実装されない仕様の取り扱い
@@ -248,29 +247,29 @@ HTML 5 仕様の意義については、W3C に尋ねてください。
 
 基本的な流れは以下のようになります。
 
-1.  公開 ML
-    ([blink-dev](https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev))
-    に "Intent to implement: XXX" メールを出す （例:
-    [Shadow DOM v1](https://groups.google.com/a/chromium.org/d/msg/blink-dev/Ez2cuT0KmQo/eUpSsU-uAgAJ)
-    の場合）
+1. 公開 ML
+   ([blink-dev](https://groups.google.com/a/chromium.org/forum/#!forum/blink-dev))
+   に "Intent to implement: XXX" メールを出す （例:
+   [Shadow DOM v1](https://groups.google.com/a/chromium.org/d/msg/blink-dev/Ez2cuT0KmQo/eUpSsU-uAgAJ)
+   の場合）
 
-    「機能を実装する意思があること」を ML 上で宣言します。この ML は他のブラウザ
-    ベンダの人たちも見ていて意見を交換することもあります。実装することが本当に
-    Web のためになるのか？他のブラウザベンダの状況・実装の方針はどうか？などを話
-    し合います。
+   「機能を実装する意思があること」を ML 上で宣言します。この ML は他のブラウザ
+   ベンダの人たちも見ていて意見を交換することもあります。実装することが本当に
+   Web のためになるのか？他のブラウザベンダの状況・実装の方針はどうか？などを話
+   し合います。
 
-2.  実装する
+2. 実装する
 
-    実装に時間がかる大きめな機能は、ランタイムフラグを使用して機能を「デフォルト
-    ではオフ」の状態で開発を進めます。
+   実装に時間がかる大きめな機能は、ランタイムフラグを使用して機能を「デフォルト
+   ではオフ」の状態で開発を進めます。
 
-3.  公開 ML (blink-dev) に "Intent to ship: XXX" メールを出す (例:
-    [Shadow DOM v1](https://groups.google.com/a/chromium.org/d/msg/blink-dev/zrZRD2ls5tw/ibbjD3cQAQAJ)
-    の場合)
+3. 公開 ML (blink-dev) に "Intent to ship: XXX" メールを出す (例:
+   [Shadow DOM v1](https://groups.google.com/a/chromium.org/d/msg/blink-dev/zrZRD2ls5tw/ibbjD3cQAQAJ)
+   の場合)
 
-    ship (シップ) というのは、実際にその機能をデフォルトで有効にすることを指しま
-    す。ランタイムフラグで用いて開発を進めていた場合は、ランタイムフラグを「オン
-    」にするだけです。 ship には 3 人以上の API Owners からの LGTM が必要です。
+   ship (シップ) というのは、実際にその機能をデフォルトで有効にすることを指しま
+   す。ランタイムフラグで用いて開発を進めていた場合は、ランタイムフラグを「オン
+   」にするだけです。 ship には 3 人以上の API Owners からの LGTM が必要です。
 
 ## 既存の機能の削除 / 既存の Web API をプラットフォームから削除する
 
@@ -291,25 +290,25 @@ Web プラットフォームではこの戦略が使えません。どうして�
 
 既存の機能を削除する基本的な流れは以下のようになります。
 
-1.  公開 ML (blink-dev) に "Intent to deprecate: XXX" メールを出す（例:
-    [/deep/](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/68qSZM5QMRQ/pT2YCqZSomAJ)
-    の場合)
+1. 公開 ML (blink-dev) に "Intent to deprecate: XXX" メールを出す（例:
+   [/deep/](https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/68qSZM5QMRQ/pT2YCqZSomAJ)
+   の場合)
 
-    「XXX 機能を非推奨にする」と宣言します。あくまで非推奨にするだけでこの時点で
-    は削除されません。 Web 開発者が非推奨となった API を使用した場合、DevTool の
-    Console 上に警告メッセージがでることでしょう。
+   「XXX 機能を非推奨にする」と宣言します。あくまで非推奨にするだけでこの時点で
+   は削除されません。 Web 開発者が非推奨となった API を使用した場合、DevTool の
+   Console 上に警告メッセージがでることでしょう。
 
-2.  使用率が下がるのをまつ
+2. 使用率が下がるのをまつ
 
-    個々の機能・API の実際の Web における使用率をトラッキングしています (例:
-    [/deep/ and ::shadow](https://www.chromestatus.com/metrics/feature/timeline/popularity/1375)
-    の場合)。一定のしきい値を下回るまで待ちます。
+   個々の機能・API の実際の Web における使用率をトラッキングしています (例:
+   [/deep/ and ::shadow](https://www.chromestatus.com/metrics/feature/timeline/popularity/1375)
+   の場合)。一定のしきい値を下回るまで待ちます。
 
-3.  公開 ML (blink-dev) に "Intent to remove: XXX" メールを出す (例:
-    [/deep/](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HX5Y8Ykr5Ns)
-    の場合)。
+3. 公開 ML (blink-dev) に "Intent to remove: XXX" メールを出す (例:
+   [/deep/](https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/HX5Y8Ykr5Ns)
+   の場合)。
 
-    実際に削除することを宣言します。LGTM が必要です。
+   実際に削除することを宣言します。LGTM が必要です。
 
 これらはあくまで基本的なルールにすぎません。実際は各ケースに応じて柔軟に判断する
 ことが多いです。なにより大事なのは Web サイトのオーナーとのコミュニケーションで
