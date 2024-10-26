@@ -146,6 +146,7 @@ h6 > a.self-link:hover::after {
 
 #main {
   flex: 1;
+  overflow-x: auto;
 }
 
 table {
