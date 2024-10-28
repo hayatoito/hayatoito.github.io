@@ -43,12 +43,12 @@
 }
 
 .toc-link::before {
-  width: 4px;
+  width: 0.25em;
   background-color: var(--bgColor-default) !important;
 }
 
 .is-active-link::before {
-  background-color: var(--fgColor-accent) !important;
+  background-color: var(--borderColor-accent-emphasis) !important;
 }
 
 .is-active-li {

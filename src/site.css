@@ -112,13 +112,12 @@ h6 > a.self-link:hover::after {
 /* Message boxes. Borrows from bootstrap's document */
 .article-info,
 .article-danger {
-  background-color: var(--bgColor-muted);
   border: 1px solid var(--borderColor-default);
-  border-left-width: 2px;
-  margin: 1rem 0;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  background-color: var(--bgColor-muted);
+  padding: 0.5rem 1rem 0;
+  margin-bottom: 1rem;
+  color: inherit;
+  border-left: 0.25em solid var(--borderColor-default);
 }
 
 .article-info {
