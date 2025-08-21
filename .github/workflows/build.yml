@@ -25,11 +25,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ./cache
-          key: ${{ runner.os }}-cache-site-${{ hashFiles('.env') }}
+          key: ${{ runner.os }}-cache-site-${{ hashFiles('.dep') }}
       - name: Download site
         if: steps.cache-site.outputs.cache-hit != 'true'
         run: |
-          . ./.env
+          . ./.dep
           mkdir -p ./cache
           cd ./cache
           curl -L -O "https://github.com/hayatoito/site/releases/download/v${SITE_VERSION}/site-x86_64-unknown-linux-musl.tar.gz"
