@@ -75,7 +75,7 @@ Web 開発者は「実装が複数あることはわずらわしい」と考え�
   - テスト:
     [web-platform-tests/html](https://github.com/w3c/web-platform-tests/tree/master/html)
 
-<div class="article-info">
+<div class="note">
 Web 標準によって文化やプロセスが異なります。たとえば CSS は比較的伝統的な W3C のプロセスを重視している傾向が残っています。DOM や HTML は 主に WHATWG のブラウザベンダの代表者による話し合いと同意を重視しており極めて実践的です。
 </div>
 
@@ -228,7 +228,7 @@ GROUP BY page
 「[Shadow DOM 仕様](https://w3c.github.io/webcomponents/spec/shadow/)」をこれで
 削除することが可能になりとても負担が減ります。
 
-<div class="article-info">
+<div class="note">
 我々は W3C の DOM 仕様や HTML5 (HTML 5.1, HTML 5.2 など) 仕様には一切関わっていません。実際、私は W3C の DOM 仕様が Shadow DOM を取り入れようとしたとき、一時的に W3C DOM の Editor になってほしいと依頼されましたが、WHATWG にフォーカスするため丁重に依頼を断りました。
 
 HTML 5 仕様の意義については、W3C に尋ねてください。
@@ -279,7 +279,7 @@ Web プラットフォームでは多くの Web サイトが「分散」して�
 作成者が直接コントロールできるわけではありません。「削除」はとても大変な道のりに
 なりがちです。
 
-<div class="article-info">
+<div class="note">
 Google は内部で「単一レポジトリ」を採用しているのは有名な話です。この場合は API の名前の変更などは全部まとめて「リネーム」するひとつのパッチをアトミックにコミットすれば変更が可能です。
 これは単一レポジトリの大きな利点です。
 

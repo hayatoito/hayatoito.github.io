@@ -53,7 +53,7 @@ DOM は Web の基本です。いってみれば Web を構成する原子のよ
 console.log(document.querySelectorAll("*").length);
 ```
 
-<div class="article-info">
+<div class="note">
 注意: 正確にはこの方法ではすべてのノードが取得できません。ブラウザ内には「隠れた」DOM が存在します。後ほど説明します。
 </div>
 
@@ -118,7 +118,7 @@ Chrome のノードツリーの実装は以下のようになっています。
 このツリーの表現により Web で標準で利用できる多くの DOM API は定数時間 O(1) で実
 装が可能です。
 
-<div class="article-danger">
+<div class="warning">
 <p>
 課題 1: あなたが Chrome の開発者になったとしましょう。以下の DOM を操作する API:
 </p>
@@ -135,7 +135,7 @@ Chrome のノードツリーの実装は以下のようになっています。
 </p>
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 2: 以下の JavaScript の関数 <code>countNodes</code> は「手作業」でノードツリーをトラバースしてツリーに含まれるノードの個数を数えます。
 ツリーに含まれるノード数を N とした場合、<code>countNodes(document)</code> は実行時間が O(N)ではなく O(N^2) 時間がかかる可能性があります。それはなぜでしょうか？
 <a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>Node.childNodes</a> の動作についてはリンク先の <a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>MDN</a> のドキュメントを参照してください。
@@ -155,24 +155,24 @@ function countNodes(node) {
 console.log(countNodes(document));
 ```
 
-<div class="article-danger">
+<div class="warning">
 課題 3: <code>countNodes(document)</code> の結果、得られるノード数は <code>querySelectorAll('*').length</code> で得られる結果と同じでしょうか？ もし大きな違いがあるならそれはなぜでしょうか？ （注: これは少し意地悪な問題です。思いつかないときは飛ばしてかまいません）
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 4: あなたが Chrome の開発者になったとしましょう。<a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes>Node.childNodes</a> をどのように実装しますか？思いついた実装のメリットとデメリットをそれぞれあげてください。特にメモリ消費量への影響について考えてみましょう。
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 5: <code>countNodes()</code> を改良しましょう。<code>node.childNodes</code> を使用することなく「確実に」実行時間 O(N) でツリーをトラバースする関数に修正してください。
 必要に応じて <a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/>Node の Web API</a> を参照してください。
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 6: 再帰を使用しないでノード数を手作業でカウントする関数を JavaScript で書いてください。
 </div>
 
-<div class="article-info">
+<div class="note">
 <p><b>この記事を読むかもしれない Chrome 開発者へ</b></p>
 Blink 内部では C++ でこのように手作業でツリーをトラバースする必要はありません。Source/core/dom 内の NodeTraversal, ElementTraversal に用意されている抽象化された C++11 の Range-Based for loop を使用しましょう。
 手作業でツリーをトラバースする場合と比較して余分なオーバーヘッドはありません（ゼロコスト抽象化）。
@@ -180,7 +180,7 @@ Blink 内部では C++ でこのように手作業でツリーをトラバース
 またはこの <a href="https://codereview.chromium.org/642973003">CL</a> の Description を参照してください。
 </div>
 
-<div class="article-info">
+<div class="note">
 <p><b>Microsoft Edge について</b></p>
 今日のほとんどのモダンブラウザでは DOM はブラウザ内部ではツリーで表現されます。
 しかし Microsoft Edge はそうではありませんでした。Edge は歴史的な理由により Microsoft Word などのいわゆるドキュメントビューアで採用されることの多いデータ構造を採用していました。
@@ -216,12 +216,12 @@ Blink 内部では C++ でこのように手作業でツリーをトラバース
 ありません。時間と空間のトレードオフについては常に慎重に検討しなければいけません
 。
 
-<div class="article-danger">
+<div class="warning">
 課題 7: このページに含まれる全ノードのうち id 属性がついているものはいくつありますか？
 必要であれば <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute">Element.getAttribute()</a> を参照してください。
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 8: <code>document.getElementById(id)</code> に相当する JavaScript の関数 myGetElementById(root, id) を自分で作成してください。
 その際、普通に JavaScript の Object をハッシュマップとして使用してもよいですが、比較的新しい API である
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> を使用してもよいでしょう。
@@ -235,7 +235,7 @@ function myGetElementById(root, id) {
 myGetElementById(document, id);
 ```
 
-<div class="article-info">
+<div class="note">
 <p><b>同じ id が複数ある場合</b></p>
 同じ id をもつエレメントがツリー内に複数ある場合は <a href="https://dom.spec.whatwg.org/#concept-tree-order">Tree Order</a> の順番で最初に見つかるものが優先されます。
 そのため Chrome 内部では id とエレメントの対応表は単純な HashMap ではなく
@@ -244,7 +244,7 @@ myGetElementById(document, id);
 
 ![tree order](./tree-order.svg)
 
-<div class="article-danger">
+<div class="warning">
 課題 9: このページには id が重複しているノードがあるでしょうか？
 </div>
 
@@ -254,7 +254,7 @@ myGetElementById(document, id);
 のためツリーに関する情報もなんらかのタイミングでアップデートする必要があります。
 ユーザーに古い情報にもとづいた間違った結果を返すことは許されません。
 
-<div class="article-danger">
+<div class="warning">
 課題 10 (やや難): ノードツリーが更新されると、先ほどの課題8 で自分で作成した id と エレメントの対応表は古くなるでしょう。なんらかの方法で最新の状態を反映する必要があります。
 どのタイミングでどのように更新するのがよいでしょうか？考えてみましょう。どうすれば更新のコストを抑えることができますか？そのためには何が必要になるでしょうか？
 </div>
@@ -289,7 +289,7 @@ Light Tree にもなります。光と影はあくまで相対的な概念です
 界は実は上の世界を構成するほんの一部分にしかすぎないかもしれませんし、あなたが利
 用しているエレメントの内部には膨大な世界が広がっているかもしれません。
 
-<div class="article-info">
+<div class="note">
 <p><b>Shadow DOM の実装状況</b></p>
 
 Chrome と Safari はすでに実装済み。Firefox も現在実装中です。Edge も DOM のアー
@@ -310,7 +310,7 @@ Chrome と Safari はすでに実装済み。Firefox も現在実装中です。
 
 ![video element](./video-element.svg)
 
-<div class="article-info">
+<div class="note">
 実際の <code>video</code> エレメントが絵のように実装されているとは限りません。Shadow Tree 内の変更は Web 開発者に影響を与えません。Web を壊すことなく Chrome はいつでも実装を変更できます。
 </div>
 
@@ -323,7 +323,7 @@ Chrome と Safari はすでに実装済み。Firefox も現在実装中です。
 
 ![tree scope](./tree-scope.svg)
 
-<div class="article-info">
+<div class="note">
 <p><b>この記事を読むかもしれない Chrome 開発者へ</b></p>
 Chrome 内部ではノードツリーのルートである <code>Document クラス</code>と <code>ShadowRoot</code> クラスが共通の <code>TreeScope</code> を実装しています。多重継承です。<code>TreeScope</code> がツリーに関する情報をもっています。
 </div>
@@ -350,7 +350,7 @@ CSS ルール上では一番右に表記される `.foo` がリストの先頭�
 さい。Chrome 内部では CSS セレクタは Right-to-Left (右から左）の順番で Linked
 List として表現されます。双方向リストではなく片方向リストです。
 
-<div class="article-info">
+<div class="note">
 <p><b>この記事を読むかもしれないChrome開発者へ</b></p>
 
 CSS セレクタは最終的には Linked List として表現されますが、データの局所性を高め
@@ -405,7 +405,7 @@ id が 100 あるとして 12 bits のスロットを使用することで、0.2
 ブルームフィルタは Chrome では CSS セレクタマッチング以外にもマルウェアサイトの
 検出などでも使用しています。
 
-<div class="article-danger">
+<div class="warning">
 課題 11: 以下のような CSS セレクタマッチングを実現する関数を JavaScript で擬似的に実装してください。<code>selector</code> としてどのようなものが指定可能かはおまかせします。
 まずは例のように タグネームの配列のみでやってみましょう。
 </div>
@@ -418,15 +418,15 @@ function selectorMatch(selector, node) {
 console.log(selectorMatch(["div", "p", "p"], getElementById("foo")));
 ```
 
-<div class="article-danger">
+<div class="warning">
 課題 12: 先ほど作成した自作セレクタマッチングはどのような入力のときに時間がかかりますか？悪意のある入力を考えてみましょう。
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 13 (やや難): Bloom Filter を課題 11 に組み込んでください。マッチングの実行時間は改善されますか？
 </div>
 
-<div class="article-danger">
+<div class="warning">
 課題 14: ブラウザの CSS エンジンの裏を書いてみましょう。Chrome が固まるような悪意のあるノードツリーと CSS ルールの組み合わせをつくることは可能でしょうか？ノード数 100、スタイルシートのサイズ 1KB という条件で可能でしょうか？
 </div>
 
@@ -481,7 +481,7 @@ Twitter が提供するツイートを埋め込むためのコードは、内部
 ら見た場合マウスはエレメントの内部を移動しているだけです。イベントは上の世界に伝
 える必要はありません。
 
-<div class="article-info">
+<div class="note">
 Event がどのような「パス」を通ってきたかを知るには <a href="https://dom.spec.whatwg.org/#dom-event-composedpath"><code>Event.composedPath()</code></a> API が使用できます。
 </div>
 
@@ -510,7 +510,7 @@ Event がどのような「パス」を通ってきたかを知るには <a href
 
 3. （その後）一番上のノードツリー: イベントはティスパッチされません。
 
-<div class="article-info">
+<div class="note">
 内側のノードツリーから外側のノードツリー内のノードが「見える」のは一般には OK です。これは Shadow DOM のデザイン原則のひとつです。
 これは一般のプログラミング言語における原則、たとえば「インナークラス」が「アウタークラス」のフィールドにアクセスできるのと同様です。
 </div>
@@ -534,7 +534,7 @@ Event がどのような「パス」を通ってきたかを知るには <a href
 
 等が成り立ちます。
 
-<div class="article-danger">
+<div class="warning">
 課題 15: ノード間の先祖・子孫関係を判断する以下の JavaScript 関数を実装してください。
 </div>
 
@@ -549,7 +549,7 @@ console.log(isAncestorOf(a, d)); // -> true
 console.log(isAncestorOf(b, f)); // -> false
 ```
 
-<div class="article-info">
+<div class="note">
 課題ではノードツリー上のノード間の関係を判断していますが、実際の Chrome は イベント・ディスパッチの際は Super Tree 上でのツリー同士の関係で判断しています。
 Super Tree を使用することで大幅に計算量を削減できます。
 </div>
@@ -576,11 +576,11 @@ Super Tree を使用することで大幅に計算量を削減できます。
 
 の条件をチェックするだけで済みます。これは定数時間 O(1) で判断できます。
 
-<div class="article-danger">
+<div class="warning">
 課題 16: 先ほど実装した <code>isAncestorOf</code> を 実行時間が O(1) になるように改良してください。メモリはいくら使用してかまいません。どれくらい速度が改善したか計測してください？もし速度が改善しないようならなにが原因が考えてみましょう。
 </div>
 
-<div class="article-info">
+<div class="note">
 <p><b>最適化するべき？</b></p>
 
 <p>
@@ -630,7 +630,7 @@ Flattening のための詳細なデータ構造とアルゴリズムについて
 ん。Flat Tree はあくまでコンセプト上に存在する仮想的なツリーであり、レイアウト時
 に仮想的に作成されます。
 
-<div class="article-info">
+<div class="note">
 <p><b>Incremental Shadow DOM</b></p>
 
 現在、Flat Tree のつくりかたを根本的に改善する新しい魔法

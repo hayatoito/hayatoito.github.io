@@ -41,7 +41,7 @@ let e = document.createElement("div");
 let shadowRoot = e.attachShadow({ mode: "closed" });
 ```
 
-<div class="article-danger">
+<div class="warning">
 A <code>mode</code> is mandatory in v1.
 </div>
 
@@ -62,7 +62,7 @@ let olderShadowRoot = e.createShadowRoot();
 let youngerShadowRoot = e.createShadowRoot(); // It's okay. A shadow host can host more than one shadow roots.
 ```
 
-<div class="article-danger">
+<div class="warning">
 Though multiple shadow roots were originally introduced to support an <em>Inheritance Model</em> for components,
 Blink has already deprecated this feature even in v0. Do not use multiple shadow roots.
 </div>
@@ -117,12 +117,12 @@ The following APIs are subject to this kind of constraints:
 - TextNode.assignedSlot
 - Event.composedPath()
 
-<div class="article-info">
+<div class="note">
 To be precise, a concept of a <a href="https://dom.spec.whatwg.org/#concept-unclosed-node">unclosed node</a> is used to decide its <em>visibility</em> between two nodes.
 A <a href="https://dom.spec.whatwg.org/#concept-unclosed-node">unclosed node</a> is a binary relation between two nodes.
 </div>
 
-<div class="article-danger">
+<div class="warning">
 Shadow DOM is not a security mechanism. Please do not use Shadow DOM if you want a security.
 Nothing prevents <code>Element.prototype.attachShadow</code> from being hijacked.
 </div>
@@ -140,7 +140,7 @@ let shadowRoot1 = document.createElement("div").createShadowRoot();
 let shadowRoot2 = document.createElement("input").createShadowRoot(); // Should be okay.
 ```
 
-<div class=article-danger>
+<div class=warning>
 This is not real. We never successfully define proper semantics for every elements.
 Thus, some of them do not work as intended. See this <a href="https://github.com/w3c/webcomponents/issues/511#issuecomment-223851226">comment</a> for the history.
 Blink has already banned most of the supports.
@@ -323,7 +323,7 @@ the Shadow DOM specification.
 
 No supports.
 
-<div class=article-info>
+<div class=note>
 Blink has tried to support <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=380436">shadow as a function</a> as a similar feature.
 That should have archived "a constructor call for a super class", however, we gave it up.
 </div>
@@ -473,7 +473,7 @@ Use `::slotted (compound-selector)` pseudo elements.
 
 `#c1` becomes red.
 
-<div class=article-info>
+<div class=note>
 While <code>::content</code> can take any arbitrary selector, <code>::slotted</code> can only take a
 <a href="https://drafts.csswg.org/selectors-4/#compound">compound selector</a> (in the parenthesis).
 The reason of this restriction is to make a selector style-engine friendly, in terms of performance.
@@ -490,7 +490,7 @@ selector which crosses shadow boundaries.
 Use `/deep/` (zero-or-more shadow boundary crossing) and `::shadow` (one level
 shadow boundary crossing).
 
-<div class=article-danger>
+<div class=warning>
 These selectors were already deprecated in Blink. Do not use that.
 </div>
 
@@ -509,7 +509,7 @@ fix it without breaking the Web.
 
 Clarified. In short: "A rule in an outer tree wins a rule in an inner tree".
 
-<div class=article-info>
+<div class=note>
 Because <code>/deep/</code> and <code>::shadow</code> are unavailable in v1, only <code>::slotted</code> is affected by the new rule, as of now.
 </div>
 
@@ -597,7 +597,7 @@ Use `Event.path`, which is a _property_.
 
 Use `Event.composedPath()`, which is a _function_.
 
-<div class=article-info>
+<div class=note>
 There is a small difference between them.
 After an event dispatching is done, <code>Event.composedPath()</code> returns an empty array, while <code>Event.path</code> does not.
 </div>
@@ -639,7 +639,7 @@ If you have a question about the Web Standard itself, please see the followings:
 - [CSS Scoping]
 - [Shadow DOM]
 
-<div class=article-info>
+<div class=note>
 We have been upstream-ing Shadow DOM specification into the DOM Standard, the HTML Standard, or the CSS Scoping.
 The content of the Shadow DOM specification might not reflect the latest status.
 See <a href="https://github.com/w3c/webcomponents/issues/377">webcomponents #377</a> for details.
