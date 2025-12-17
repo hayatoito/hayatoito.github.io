@@ -21,19 +21,19 @@ update_date = "2017-09-04"
 - Twitter: [@shadow_hayato](http://twitter.com/shadow_hayato)
 - [IRC freenode](https://freenode.net/): hayato
 
-# テックリード (Tech Lead) <a name="tech-lead"></a>
+# テックリード (Tech Lead) {#tech-lead}
 
-## Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ <a name="google-tech-lead"></a>
+## Google における Tech Lead (テックリード) とはどのようなお仕事ですか？ {#google-tech-lead}
 
 Google では、チームやプロジェクト内でのリードエンジニアのことを Tech Lead と呼び
 ます。数人から 10 名ほどのチームに、Tech Lead が１人います。私は Google Chrome
 の DOM / HTML Team の Lead であり、Web Components Project の Tech Lead です。
 
-## 普段、何をしていますか？ <a name="what"></a>
+## 普段、何をしていますか？ {#what}
 
 主に Google Chrome で使用されているレンダリングエンジン Blink の開発です。
 
-## 普段、どれくらいコードを書いていますか？ <a name="commits"></a>
+## 普段、どれくらいコードを書いていますか？ {#commits}
 
 Blink はオープンソースです。Commits は公開されています:
 
@@ -52,7 +52,7 @@ Blink はオープンソースです。Commits は公開されています:
 [blink css]:
   https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/css/
 
-## 普段、どのようなコードを書いてますか？ <a name="code"></a>
+## 普段、どのようなコードを書いてますか？ {#code}
 
 代表的な CL (CL とは Change List の略で、主に Google で使用されている用語。いわ
 ゆる"パッチ"に相当します）
@@ -82,7 +82,7 @@ Blink はオープンソースです。Commits は公開されています:
 
 [speed hall of fame]: http://www.chromium.org/developers/speed-hall-of-fame
 
-## 出張は多いですか？ <a name="trip"></a>
+## 出張は多いですか？ {#trip}
 
 Web Standards に関わると、他のブラウザベンダ(Apple, Mozilla, Microsoft 等)と直接
 話をする必要があります。旅行が好きなら、Web Standards のお仕事はオススメです。
@@ -102,9 +102,9 @@ Web Standards に関わると、他のブラウザベンダ(Apple, Mozilla, Micr
   1.  (Plan) [Jan] Mountain View / San Francisco (BlinkOn7)
   2.  (Plan) [??]: San Francisco (W3C TPAC)
 
-# Web 標準 (Web Standards) <a name="web-standards"></a>
+# Web 標準 (Web Standards) {#web-standards}
 
-## Spec Editor とはどのようなお仕事ですか？ <a name="spec-editor"></a>
+## Spec Editor とはどのようなお仕事ですか？ {#spec-editor}
 
 Web そのものの仕組みをつくるお仕事です。Web 標準の仕様書を書きます。私は [Shadow
 DOM] の Spec Editor です。[DOM][dom standard] や [HTML][html standard] の仕様策
@@ -115,7 +115,7 @@ DOM] の Spec Editor です。[DOM][dom standard] や [HTML][html standard] の�
 
 [shadow dom]: http://w3c.github.io/webcomponents/spec/shadow/index.html
 
-## HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ <a name="whatwg-w3c"></a>
+## HTML の仕様は WHATWG HTML Standard と W3C HTML5 の両方あります。Chrome の開発ではどちらを参考にしていますか？ {#whatwg-w3c}
 
 WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 
@@ -140,9 +140,9 @@ WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 [dom standard]: https://dom.spec.whatwg.org/
 [html standard]: https://html.spec.whatwg.org/multipage/
 
-# Web Components / Shadow DOM <a name="web-components-shadow-dom"></a>
+# Web Components / Shadow DOM {#web-components-shadow-dom}
 
-## Web Components とは? <a name="web-components"></a>
+## Web Components とは? {#web-components}
 
 早い話がこのような Web を目指します。難しいことは覚えなくてよい、誰もがタグを書
 くだけで OK な Web に戻します。
@@ -165,7 +165,7 @@ WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 昔とある講演のためつくったスライド:
 [https://hayato.io/webcomponents-slides/](https://hayato.io/webcomponents-slides/)。
 
-## Shadow DOM とは？ <a name="shadow-dom"></a>
+## Shadow DOM とは？ {#shadow-dom}
 
 毎回、説明にとても苦労します。簡単に言うと:
 
@@ -200,7 +200,7 @@ WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 - [Chrome 53 Beta: Shadow DOM, PaymentRequest, and Android autoplay (Posted by Hayato Ito, Shadow DOM Chaffeur)](http://blog.chromium.org/2016/08/chrome-53-beta-shadow-dom.html)
 - [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/)
 
-## Shadow DOM はどこに使用されているのですか？ <a name="shadow-dom-usage"></a>
+## Shadow DOM はどこに使用されているのですか？ {#shadow-dom-usage}
 
 - Chrome / Blink の built-in elements (`<input>`, `<video>` など)。つまり
   Electron や Atom Editor や Visual Studio Code なども。
@@ -216,7 +216,7 @@ WHATWG の HTML Standard です。W3C の HTML5 仕様は見ていません。
 - Angular (Option)
 - その他 (Todo)
 
-## もう少し詳しく Web Components について教えてください <a name="web-components-details"></a>
+## もう少し詳しく Web Components について教えてください {#web-components-details}
 
 (...Shadow DOM からの続き) Shadow DOM と Custom Elemenets と HTML Imports を組み
 合わせることによって、Web 開発者は、自分のつくった世界そのものを Web Component
@@ -267,7 +267,7 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
 [the best new web technology new award]:
   http://www.w3.org/blog/2014/05/web-components-won-the-best-new-technology-2014-net-award/
 
-## Shadow DOM のコードは 8,800,000 行 あるというのは本当でしょうか？ <a name="shadow-dom-8.8m"></a>
+## Shadow DOM のコードは 8,800,000 行 あるというのは本当でしょうか？ {#shadow-dom-8.8m}
 
 違います。この [CL](https://trac.webkit.org/changeset/164131) や この WebKit の
 [Blog](https://webkit.org/blog/2455/last-week-in-webkit-millions-of-lines/) をみ
@@ -289,13 +289,13 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
 
 を受けての Apple さんのジョークです。
 
-## Shadow DOM の Spec の場所は? <a name="shadowdom-spec"></a>
+## Shadow DOM の Spec の場所は? {#shadowdom-spec}
 
 常に 最新の Editors Draft
 ([http://w3c.github.io/webcomponents/spec/shadow/](http://w3c.github.io/webcomponents/spec/shadow/))
 を参照あるいはリンクを貼るようにしてください。
 
-## 今のフロントエンドの現状についてどう思いますか？ <a name="front-end"></a>
+## 今のフロントエンドの現状についてどう思いますか？ {#front-end}
 
 - フロントエンドの人はなぜか自虐的なことばかりを言っている印象があるのですが、自
   虐からはなにも生まれないので、もっと誇りと自信をもってください。ユーザーが快適
@@ -311,7 +311,7 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
   進化に積極的に関わるようにするときっともっと面白いと思いますよ。変えられないも
   のなんてありません。いつでも大歓迎です。
 
-## 今後 Web で取り組みたいことは？ <a name="future-plans"></a>
+## 今後 Web で取り組みたいことは？ {#future-plans}
 
 まだまだ Web Components / Shadow DOM についてはやることが山積みではあるのですが
 (HTML Modules 等も控えています)、
@@ -332,7 +332,7 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
 あくまで未確定な予定ですので、あまり過度な期待はしないで、温かく見守っていてくだ
 さいね。
 
-## 今の Web の DOM/HTML はだめだと思います。そこで私の考えた最強の DOM/HTML のアイデアがあるのですがどう思いますか？ <a name="dom-html"></a>
+## 今の Web の DOM/HTML はだめだと思います。そこで私の考えた最強の DOM/HTML のアイデアがあるのですがどう思いますか？ {#dom-html}
 
 いいですね。具体的なアイデアがあるなら、まずはデモをつくってみることをオススメし
 ます。デモができたら声かけてください。
@@ -342,9 +342,9 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
 すぐに Close されると思います。中の人は、具体的ではない似たようなアイデアを何度
 も何度も聞いています。
 
-# 漫画「王様達のヴァイキング」の技術監修 <a name="kingsviking"></a>
+# 漫画「王様達のヴァイキング」の技術監修 {#kingsviking}
 
-## 「王様達のヴァイキング」って？ <a name="what-is-kingsviking"></a>
+## 「王様達のヴァイキング」って？ {#what-is-kingsviking}
 
 「[王様達のヴァイキング](http://spi-net.jp/weekly/comic008.html)」は、小学館
 の[週刊スピリッツ](http://spi-net.jp/)で連載中の漫画です。ハッカーと投資家が主人
@@ -352,7 +352,7 @@ Web Components は 2014 の [The Best New Web Technology new Award] を受賞し
 
 Twitter 公式アカウントは、[@kingsviking](https://twitter.com/kingsviking) です。
 
-## 漫画の監修とは具体的にはどのようなことをするのでしょうか？ <a name="kingsviking-supervisor"></a>
+## 漫画の監修とは具体的にはどのようなことをするのでしょうか？ {#kingsviking-supervisor}
 
 私は技術監修としてこの漫画をサポートしています。主に次のようなことに関わっていま
 す。
@@ -391,24 +391,24 @@ Twitter 公式アカウントは、[@kingsviking](https://twitter.com/kingsvikin
 一度くらい感謝されてもいいのでは...と思いつつ、それでも好きだからコードを書き続
 けるのです。:)
 
-## 是枝くんのモデルですか？ <a name="zer0"></a>
+## 是枝くんのモデルですか？ {#zer0}
 
 違います。是枝くんが使用するプログラミング言語・ソースコードは私にとてもよく似て
 ますが、あくまで偶然です。
 
-## 坂井さんのモデルですか？ <a name="sakai"></a>
+## 坂井さんのモデルですか？ {#sakai}
 
 違います。パンイチになったりしません。
 
-## 笑い猫のモデルですか？ <a name="laughingcat"></a>
+## 笑い猫のモデルですか？ {#laughingcat}
 
 違います。裸になったりしません。
 
-## ヴァルちゃん のモデルですか？ <a name="valkyrja"></a>
+## ヴァルちゃん のモデルですか？ {#valkyrja}
 
 違います。ワインを頭からかけたりしません。
 
-## 漫画では、これまでどのようなプログラミング言語が登場しましたか？ <a name="kingsviking-programming-language"></a>
+## 漫画では、これまでどのようなプログラミング言語が登場しましたか？ {#kingsviking-programming-language}
 
 これまで C, C++, PowerPC Assembly, Python 3, Scala, Rust 等が登場しています。
 
@@ -423,7 +423,7 @@ Twitter 公式アカウントは、[@kingsviking](https://twitter.com/kingsvikin
 
 興味のあるかたは (単行本を買って) コードも読んでみてくださいね。
 
-## 監修をしているということはセキュリティの専門家ですか？ <a name="security"></a>
+## 監修をしているということはセキュリティの専門家ですか？ {#security}
 
 違います。もちろんブラウザの開発においてセキュリティは最重要視しているので、セキ
 ュリティ関連のお仕事をすることもありますがそれはメインではありません。
@@ -450,14 +450,14 @@ Twitter 公式アカウントは、[@kingsviking](https://twitter.com/kingsvikin
 
 してました。だ、だけど、メインのお仕事じゃないからね！
 
-# Google ソフトウェアエンジニアの採用 <a name="google-hiring"></a>
+# Google ソフトウェアエンジニアの採用 {#google-hiring}
 
-## 今まで何人、Google でソフトウェアエンジニアの面接（インタビュー）をしましたか？ <a name="google-interview-number"></a>
+## 今まで何人、Google でソフトウェアエンジニアの面接（インタビュー）をしましたか？ {#google-interview-number}
 
 150 人以上です。すべて 1 : 1 での 45 分ほどの面接です。電話インタビューやインタ
 ーンの面接も含みます。
 
-## インタビューではどのようなことを聞くのでしょうか？ <a name="google-interview"></a>
+## インタビューではどのようなことを聞くのでしょうか？ {#google-interview}
 
 Q. 「バスにゴルフボールはいくつ入るでしょうか？」
 
@@ -466,7 +466,7 @@ A. 「そんな問題はもはや聞いていないです。いまはゴルフ�
 
 ...といった、変な情報に振り回されないでください。
 
-## Google にソフトウェアエンジニアとして入るにはどのような勉強・経験をしておけばよいでしょうか? <a name="google-join"></a>
+## Google にソフトウェアエンジニアとして入るにはどのような勉強・経験をしておけばよいでしょうか? {#google-join}
 
 「何をすればよいのか」を挙げるのは難しいです...。 (TODO: いつかちゃんと書く)
 
@@ -484,7 +484,7 @@ A. 「そんな問題はもはや聞いていないです。いまはゴルフ�
 エンジニアとして濃密な時間を過ごした人が正しく報われるインタビューをいつも心がけ
 ています。
 
-## ソフトウェアエンジニアとしてはたらくにあたって Google のよいところって? <a name="google-swe"></a>
+## ソフトウェアエンジニアとしてはたらくにあたって Google のよいところって? {#google-swe}
 
 - ソフトウェアエンジニアリング的に正しいことを正しく行っている
 
@@ -506,17 +506,17 @@ A. 「そんな問題はもはや聞いていないです。いまはゴルフ�
   エンジニアのリソースが限られている以上、意識的に切り捨てていかないと、前には進
   めません。
 
-# Google でのインターンについて <a name="google-intern"></a>
+# Google でのインターンについて {#google-intern}
 
-## 今まで何人、Google でインターンのホストをしましたか？ <a name="google-intern-number"></a>
+## 今まで何人、Google でインターンのホストをしましたか？ {#google-intern-number}
 
 6 人です。すべて学部生です。
 
-## Google でのソフトウェアエンジニア・インターンはどのようなことをするのでしょうか？ 応募したいのですが、スキル的に不安です...。 <a name="google-interview-what"></a>
+## Google でのソフトウェアエンジニア・インターンはどのようなことをするのでしょうか？ 応募したいのですが、スキル的に不安です...。 {#google-interview-what}
 
 TODO: 書きます。
 
-## 今年(2017 年)も、インターンのホストをしますか？ <a name="google-intern-rust"></a>
+## 今年(2017 年)も、インターンのホストをしますか？ {#google-intern-rust}
 
 いい人がいれば。
 
@@ -526,7 +526,7 @@ TODO: 書きます。
 
 興味があればぜひ応募してくださいね。
 
-## Google STEP インターンではどのようなことを行うのですか？ <a name="google-step-intern"></a>
+## Google STEP インターンではどのようなことを行うのですか？ {#google-step-intern}
 
 TODO: 書きます。
 
@@ -534,9 +534,9 @@ TODO: 書きます。
 [GitHub Issues](https://github.com/hayatoito/hayatoito.github.io/issues) どうぞ
 。
 
-# 競技プログラミング / レッドコーダー <a name="competitive-programming"></a>
+# 競技プログラミング / レッドコーダー {#competitive-programming}
 
-## レッドコーダーになると Google からお誘いがくると聞きました。 <a name="redcoder"></a>
+## レッドコーダーになると Google からお誘いがくると聞きました。 {#redcoder}
 
 Google から誘いがくるというのは、「よかったら面接をうけてみませんか？」くらいの
 意味しかありません。
@@ -553,7 +553,7 @@ Google の採用担当の人が何度も熱心に声をかけた結果、よう�
 にもかかわらず、エンジニアがインタビューした結果、思うような評価が得られなかった
 場合は、普通にお断りされてしまいます。
 
-## Google に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ <a name="google-competitive-programming"></a>
+## Google に入るにあたって、競技プログラミングの勉強をしておいたほうがよいでしょうか？ {#google-competitive-programming}
 
 これはよく聞かれる質問です。以下、事実のみを書いておきます。
 
@@ -595,9 +595,9 @@ Google の採用担当の人が何度も熱心に声をかけた結果、よう�
 
 [google summer of code]: https://developers.google.com/open-source/gsoc/
 
-# プログラミング <a name="programming"></a>
+# プログラミング {#programming}
 
-## どのようなプログラミング言語を普段使用していますか？その用途は？ <a name="programming-language"></a>
+## どのようなプログラミング言語を普段使用していますか？その用途は？ {#programming-language}
 
 - C++: Google Chrome が使用しているレンダリングエンジン Blink の開発。
 - Rust: CPU Intensive なコードを安全に書きたいとき。JVM に絶望したとき。
@@ -623,7 +623,7 @@ Google の採用担当の人が何度も熱心に声をかけた結果、よう�
   など。
 - Emacs Lisp: 趣味と実益。
 
-## 各プログラミング言語において、後世に残すべき価値のあるものはなんだと思いますか？ <a name="programming-language-values"></a>
+## 各プログラミング言語において、後世に残すべき価値のあるものはなんだと思いますか？ {#programming-language-values}
 
 - C++: Move Semantics, Zero-Overhead Principle, RAII, References, Template and
   Monomorphization
@@ -634,11 +634,11 @@ Google の採用担当の人が何度も熱心に声をかけた結果、よう�
 - Scheme: Hygienic macros
 - Rust: (後述)
 
-## プログラミング言語がひとつだけしか選べないとしたら何を選びますか？ <a name="best-programming-language"></a>
+## プログラミング言語がひとつだけしか選べないとしたら何を選びますか？ {#best-programming-language}
 
 Rust。
 
-## Rust のよいところを教えてください。 <a name="rust"></a>
+## Rust のよいところを教えてください。 {#rust}
 
 Rust は Move Semantics を言語デザインの中心にすることで、驚くほど多くの問題が統
 一的に解決できるということを実用的に示した唯一の言語だと思います。
@@ -717,7 +717,7 @@ Rust は Move Semantics を言語デザインの中心にすることで、驚�
 [ffi]: https://doc.rust-lang.org/book/ffi.html
 [unsafe]: https://doc.rust-lang.org/book/unsafe.html
 
-## Rust って関数型プログラミング言語なんでしょ？ 難しそう。 <a name="rust-is-functional-programming"></a>
+## Rust って関数型プログラミング言語なんでしょ？ 難しそう。 {#rust-is-functional-programming}
 
 Rust はあえていうなら「型クラス指向 (Type Class Oriented )」「Move Semantics
 Oriented」のプログラミング言語です。
@@ -728,7 +728,7 @@ Rust のことを関数型プログラミング言語と呼んでいる人がい
 個々の具体的な特徴についてその背景・意義・有用性についてきちんと学んだほうが生産
 的です。
 
-## Rust って学習コストが高いんですよね？ 難しそう。 <a name="rust-is-hard"></a>
+## Rust って学習コストが高いんですよね？ 難しそう。 {#rust-is-hard}
 
 Rust は学習コストが高いプログラミング言語と思われていますが、そもそも（ある程度
 大規模な）「プログラムを正しく」書くこと自体が普通の人間には相当難しいことです。
@@ -747,7 +747,7 @@ Rust は「学習コストが高い」言語というよりは「プログラミ
 グ」してきた人にとって Rust の学習コストが高く感じるのは、きちんと可視化がうまく
 いっている結果です。
 
-## ICFP Programming Contest には何を使用して参加してますか？ <a name="icfpc"></a>
+## ICFP Programming Contest には何を使用して参加してますか？ {#icfpc}
 
 [ICFP Programming Contest](http://www.icfpconference.org/contest.html)。 2009 -
 2015 は Scala で、2016, 2017 は Rust で参加しました。
@@ -827,15 +827,15 @@ Rust は「学習コストが高い」言語というよりは「プログラミ
   ラムダになっていて、ラムダから到達できる Node ごとにスコアが d \* d 点加算。た
   だし、距離 d は取っていないすべての Edge を使用して計算します。
 
-## Scala から Rust に変えてよかったところは何ですか？ <a name="rust-vs-scala"></a>
+## Scala から Rust に変えてよかったところは何ですか？ {#rust-vs-scala}
 
 - TODO: 書きます。 (-> draft/faq.md)
 
-## Go は使用しないのですか？ <a name="go"></a>
+## Go は使用しないのですか？ {#go}
 
 - TODO: 書きます。 (-> draft/faq.md)
 
-## 動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? <a name="dynamic-programming-language-is-dead"></a>
+## 動的言語しか使用したことがありません。静的言語も勉強したほうがよいですか? {#dynamic-programming-language-is-dead}
 
 これもよく聞かれる質問です。自分で考えましょう。問題解決にあたって最適な道具を選
 択するのも、ソフトウェアエンジニアにとって大事なスキルのひとつです。
@@ -875,7 +875,7 @@ Rust は「学習コストが高い」言語というよりは「プログラミ
 ひとつの価値観にとらわれることなく、実際に自分で触れて経験して発見することはとて
 も大事です。
 
-## 使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ <a name="rust-as-scripting"></a>
+## 使い捨てのスクリプト等でも Rust を使うって面倒じゃないですか？ {#rust-as-scripting}
 
 そう思っていた時期がありました。しかし、Rust は `<crate_root>/src/bin` 以下に
 `*.rs` ファイルをおいておくだけで、それぞれの `*.rs` をビルドして別の実行ファイ
@@ -903,7 +903,7 @@ Rust は「学習コストが高い」言語というよりは「プログラミ
 `<crate_root>/src/bin` の仕組みがなかったら、普段使いの"スクリプト"言語として
 Python を Rust で置き換えようとはきっと思わなかったでしょう。
 
-## 初心者にプログラミングを教えるとき「変数は箱」は変ですか？ <a name="variable-is-not-box"></a>
+## 初心者にプログラミングを教えるとき「変数は箱」は変ですか？ {#variable-is-not-box}
 
 やめましょう。その例えは表現力に乏しく、ほとんどのケースにおいて不適切ですぐに破
 綻します。混乱の元です。
@@ -1044,19 +1044,19 @@ Todo: ヒープの例を追加。
 
 _「プログラミングとはメモリの Syntax Sugar である。」_
 
-# 開発環境 <a name="dev-env"></a>
+# 開発環境 {#dev-env}
 
-## キーボードは何を使用していますか？ <a name="keyboard"></a>
+## キーボードは何を使用していますか？ {#keyboard}
 
 [Sculpt Ergonomic Keyboard for Business](https://www.microsoft.com/accessories/en-us/business/sculpt-ergonomic-keyboard-for-business/5kv-00001)。
 
 このキーボード（US 配列版）は残念ながら日本では販売していません。
 
-## おすすめのエディタは？ <a name="recommended-editor"></a>
+## おすすめのエディタは？ {#recommended-editor}
 
 ないです。
 
-## エディタは何を使用してますか？ <a name="editor"></a>
+## エディタは何を使用してますか？ {#editor}
 
 （Scala 以外は） Emacs。C++ は Eclipse CDT も使用します。
 
@@ -1066,7 +1066,7 @@ _「プログラミングとはメモリの Syntax Sugar である。」_
 Objective-C を書く人を除くと）Emacs を使う人がほとんどです。Emacs ユーザーの割合
 は 80% を超えると思います。
 
-## Emacs で使用しているパッケージは？ <a name="emacs"></a>
+## Emacs で使用しているパッケージは？ {#emacs}
 
 使用している e-lisp library をひとつひとつ挙げるのはとても難しいです...。 Emacs
 に標準で付属していない・自分でインストールしたパッケージなら、リストにするのは簡
@@ -1120,7 +1120,7 @@ Objective-C を書く人を除くと）Emacs を使う人がほとんどです�
 - yaml-mode
 - yasnippet
 
-## Emacs の設定ファイルが 1 万行くらいあると聞いたのですがほんとうですか？ <a name="emacs-el"></a>
+## Emacs の設定ファイルが 1 万行くらいあると聞いたのですがほんとうですか？ {#emacs-el}
 
 一時期そういう噂が流れましたが、いまはぐっと減っていると思います。安心してくださ
 い。
@@ -1198,21 +1198,21 @@ Objective-C を書く人を除くと）Emacs を使う人がほとんどです�
     5238   14558  177798 total
 ```
 
-## Emacs の設定ファイルを公開する予定はありますか？ <a name="emacs-el-publish"></a>
+## Emacs の設定ファイルを公開する予定はありますか？ {#emacs-el-publish}
 
 ありません。
 
-## Python の開発環境は? <a name="python-dev"></a>
+## Python の開発環境は? {#python-dev}
 
 - Emacs (python-mode, jedi-mode, company-mode, flycheck, flycheck-mypy)
 - mypy, ipython, pyenv, flake8
 
-## HTML / CSS / JavaScript の開発環境は? <a name="web-dev"></a>
+## HTML / CSS / JavaScript の開発環境は? {#web-dev}
 
 - Emacs (web-mode, nxml-mode, js2-mode, tern-mode, flycheck)
 - babel, eslint, csslint, tidy-html5
 
-## C++ の開発環境は? <a name="cpp-dev"></a>
+## C++ の開発環境は? {#cpp-dev}
 
 - Emacs (cc-mode, [rtags](https://github.com/Andersbakken/rtags),
   flycheck-rtags, company-rtags)
@@ -1237,19 +1237,19 @@ Objective-C を書く人を除くと）Emacs を使う人がほとんどです�
   [gn](https://chromium.googlesource.com/chromium/src/tools/gn/) +
   [ninja](https://ninja-build.org/)
 
-## Rust の開発環境は? <a name="rust-dev"></a>
+## Rust の開発環境は? {#rust-dev}
 
 - Emacs (rust-mode, [racer](https://github.com/phildawes/racer), flycheck,
   company-mode)
 - [rustup](https://github.com/rust-lang-nursery/rustup.rs)
 
-## Scala の開発環境は? <a name="scala-dev"></a>
+## Scala の開発環境は? {#scala-dev}
 
 - sbt
 - Eclipse ([Scala IDE](http://scala-ide.org/)) (+
   [Emacs+ Eclipse plugin](http://www.mulgasoft.com/))
 
-## メモ はどのようにとってますか？ <a name="memo"></a>
+## メモ はどのようにとってますか？ {#memo}
 
 Emacs + org-mode (アウトラインエディタとして) + org-babel (コード実行できるメモ
 環境として)。
@@ -1257,13 +1257,13 @@ Emacs + org-mode (アウトラインエディタとして) + org-babel (コー�
 アウトラインエディタはとても重要です。Todo やメモなどはすべて アウトラインエディ
 タ ( Emacs + org-mode ) で管理しています。
 
-# オススメの本や勉強方法 <a name="study"></a>
+# オススメの本や勉強方法 {#study}
 
 基本的に人にオススメとかはしないです。自分で見つけましょう。
 
 以下は単なる私の感想です。
 
-## オススメの本は？ <a name="book"></a>
+## オススメの本は？ {#book}
 
 - [SICP: Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/):
   ★★★★★★★
@@ -1355,7 +1355,7 @@ Emacs + org-mode (アウトラインエディタとして) + org-babel (コー�
 
 - TODO: 追加する
 
-## Coursera や Udacity でのおすすめの オンラインのコースは？ <a name="course"></a>
+## Coursera や Udacity でのおすすめの オンラインのコースは？ {#course}
 
 - [Intro to Artificial Intelligence](https://www.udacity.com/course/intro-to-artificial-intelligence--cs271):
   ★
@@ -1374,13 +1374,13 @@ Emacs + org-mode (アウトラインエディタとして) + org-babel (コー�
 
 - TODO: 他のコースを追加。
 
-## Python のオススメの勉強方法は? <a name="python-study"></a>
+## Python のオススメの勉強方法は? {#python-study}
 
 - [The Python Tutorial](https://docs.python.org/3/tutorial/) : ★★★★★
 
   Python は公式のチュートリアルがとてもよいので、これだけ読めば最初は十分です。
 
-## Haskell のオススメの勉強方法は? <a name="haskell-study"></a>
+## Haskell のオススメの勉強方法は? {#haskell-study}
 
 - [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/): ★★★★★
 
@@ -1388,17 +1388,17 @@ Emacs + org-mode (アウトラインエディタとして) + org-babel (コー�
   関数型プログラミングの考え方」だけはきちんと理解したいという人にもよいかもしれ
   ません。
 
-## Scala のオススメの勉強方法は? <a name="scala-study"></a>
+## Scala のオススメの勉強方法は? {#scala-study}
 
 - TODO: 書きます。
 
-## Rust のオススメの勉強方法は? <a name="rust-study"></a>
+## Rust のオススメの勉強方法は? {#rust-study}
 
 - TODO: 落ち着いたら書きます。
 
-# ソフトウェア・エンジニアリング <a name="software-engineering"></a>
+# ソフトウェア・エンジニアリング {#software-engineering}
 
-## XXX を Google では行っていますか？ <a name="xxx-at-google"></a>
+## XXX を Google では行っていますか？ {#xxx-at-google}
 
 - テスト駆動開発: 「テスト駆動開発」という言葉が普段の会話にでてくることはありま
   せん。テストを書くのは当たり前のことですが、わざわざ「テスト駆動開発」のような
@@ -1420,7 +1420,7 @@ Emacs + org-mode (アウトラインエディタとして) + org-babel (コー�
 - [グーグル社員はなぜメールを使わないのか](https://dot.asahi.com/dol/2017062600061.html):
   使います。
 
-# その他 <a name="misc"></a>
+# その他 {#misc}
 
 ## タイトルの「六本木ではたらく」とかあたま悪そうなのでやめたほうがいいです。<a name="roppongi"></a>
 

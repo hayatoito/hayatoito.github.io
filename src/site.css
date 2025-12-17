@@ -111,7 +111,8 @@ h6 > a.self-link:hover::after {
 
 /* Message boxes. Borrows from bootstrap's document */
 main .note,
-main .warning {
+main .warning,
+main .footnote {
   border: 1px solid var(--borderColor-default);
   background-color: var(--bgColor-muted);
   padding: 0.5rem 1rem 0;
@@ -126,6 +127,10 @@ main .note {
 
 main .warning {
   border-left-color: var(--borderColor-danger-emphasis);
+}
+
+main .footnote {
+  border-left-color: var(--borderColor-default);
 }
 
 @media (prefers-color-scheme: dark) {
