@@ -30,6 +30,7 @@ body {
 #navbar-box {
   display: flex;
   justify-content: space-between;
+  color: var(--fgColor-muted) !important;
 }
 
 @media (max-width: 767px) {
@@ -42,6 +43,16 @@ body {
 #navbar {
   background-color: var(--bgColor-neutral-muted) !important;
   padding: 0.2rem 0;
+}
+
+#navbar-box svg {
+  /* vertical-align: middle; */
+  vertical-align: -0.16em;
+  fill: var(--fgColor-muted);
+}
+
+#sponsor {
+  fill: var(--color-prettylights-syntax-entity) !important;
 }
 
 .nav-link {
@@ -97,6 +108,7 @@ h6 > a.self-link:hover::after {
 #footer {
   font-size: smaller;
   text-align: center;
+  color: var(--fgColor-muted) !important;
 }
 
 .footnote-title {

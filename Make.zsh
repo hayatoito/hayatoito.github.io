@@ -23,7 +23,7 @@ start() {
 }
 
 format() {
-  djlint --reformat --indent 2 template/{article,base,page,index}.jinja
+  uvx djlint --reformat --indent 2 template/{article,base,page,index}.jinja
 }
 
 watch() {
