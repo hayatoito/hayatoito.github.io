@@ -19,6 +19,7 @@ build_release() {
 }
 
 start() {
+  build
   cd ${out_debug} && my-http-server --watch . --port 8000 --open .
 }
 
