@@ -38,7 +38,7 @@ jobs:
         run: ./cache/site build --root . --config=config-release.toml --out ./out
       - name: Setup Pages
         if: github.event_name == 'push'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload artifact
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v4
