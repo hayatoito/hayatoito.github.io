@@ -1,0 +1,13 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "doctype-style": ["error", { "style": "lowercase" }],
+    "attr-quotes": "off",
+    "attr-delimiter": "off",
+    "no-raw-characters": "off",
+    "parser-error": "off",
+    "long-title": "off",
+    "attribute-allowed-values": "off",
+    "valid-id": "off"
+  }
+}
